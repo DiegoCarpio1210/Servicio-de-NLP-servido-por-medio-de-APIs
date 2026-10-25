@@ -1,0 +1,13 @@
+torch==2.7.1
+transformers==4.57.1
+datasets==4.3.0
+accelerate==1.11.0
+fastapi==0.119.1
+uvicorn==0.38.0
+pydantic==2.12.3
+numpy==2.2.5
+httpx==0.28.1
+matplotlib==3.10.7
+PyYAML==6.0.3
+jsonschema==4.25.1
+pytest==8.4.2

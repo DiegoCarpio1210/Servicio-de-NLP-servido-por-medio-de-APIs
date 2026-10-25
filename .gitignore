@@ -1,0 +1,14 @@
+/.venv/
+/cache/
+/data/
+/models/
+/checkpoints/
+.env
+__pycache__/
+.pytest_cache/
+*.pyc
+*.safetensors
+*.bin
+*.pt
+*.pth
+/logs/*predictions*.json

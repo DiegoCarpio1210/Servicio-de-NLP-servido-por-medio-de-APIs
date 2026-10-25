@@ -1,0 +1,39 @@
+{
+  "base_model": "distilbert/distilbert-base-uncased",
+  "seed": 42,
+  "train_size": 256,
+  "validation_size": 64,
+  "epochs": 1,
+  "learning_rate": 3e-05,
+  "batch_size": 2,
+  "gradient_accumulation_steps": 1,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.01,
+  "max_seq_length": 384,
+  "doc_stride": 128,
+  "output_dir": "checkpoints/smoke",
+  "model_dir": "models/smoke",
+  "max_steps": 8,
+  "optimizer_steps": 8,
+  "elapsed_seconds": 7.311051799915731,
+  "dataset": "rajpurkar/squad_v2",
+  "splits": {
+    "train": {
+      "count": 256,
+      "unanswerable": 85,
+      "unanswerable_ratio": 0.33203125,
+      "fingerprint": "a2465ac6fe5b2caf"
+    },
+    "validation": {
+      "count": 64,
+      "unanswerable": 32,
+      "unanswerable_ratio": 0.5,
+      "fingerprint": "9e42a40564079c1f"
+    }
+  },
+  "hardware": "Quadro P1000",
+  "torch_version": "2.7.1+cu118",
+  "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "params": 66364418,
+  "training_device": "cuda"
+}
