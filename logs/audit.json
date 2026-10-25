@@ -22,7 +22,7 @@
   {
     "requirement": "Multiple authentic commits",
     "status": "PASSED",
-    "detail": "2"
+    "detail": "3"
   },
   {
     "requirement": "Final calibrated model exists",

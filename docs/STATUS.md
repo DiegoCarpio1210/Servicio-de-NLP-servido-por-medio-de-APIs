@@ -24,8 +24,8 @@ background; this document reports completed pilot evidence only. No `submission`
 | Second tunnel installed and tested | PENDING | ngrok requires installation/account configuration; instructions in README |
 | Another-network test and instructor dry run | PENDING | Phone/mobile tethering and instructor harness |
 | Team identity and members | PASSED | `configs/team.json`; production default team Pimientero |
-| Repository remote/main/history | PASSED locally | origin set; authentic commits retained; remote verification recorded after push |
-| Published GitHub files | PENDING verification | Check remote HEAD and fetch committed README after push |
+| Repository remote/main/history | PASSED locally | origin set; authentic commits retained; remote main verified after push |
+| Published GitHub files | PASSED | Remote main matched d88f43c; team.json and REPORT.md fetched through GitHub connector |
 | No weights, tokens, environment, datasets in Git | PASSED initial review | .gitignore; run audit after staging final documentation |
 | Report exact headings 0–9, English, populated | PASSED as draft | REPORT.md; final full-run evidence still pending |
 | At least two real issues and fix commits | PASSED | REPORT section 7; commits 8955d78 and 06b6148 |

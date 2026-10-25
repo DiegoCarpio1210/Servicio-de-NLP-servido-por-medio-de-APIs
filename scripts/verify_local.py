@@ -13,7 +13,7 @@ import httpx
 def main():
     p=argparse.ArgumentParser(); p.add_argument('--model-dir',default='models/pilot'); p.add_argument('--repeat',type=int,default=10)
     a=p.parse_args(); env=os.environ.copy()
-    env.update(QA_API_TOKEN=secrets.token_urlsafe(32),TEAM_ID='local-verification',MODEL_DIR=a.model_dir)
+    env.update(QA_API_TOKEN=secrets.token_urlsafe(32),TEAM_ID='Pimientero',MODEL_DIR=a.model_dir)
     out=Path('logs')/Path(a.model_dir).name; out.mkdir(parents=True,exist_ok=True)
     with (out/'server.txt').open('w') as logfile:
         proc=subprocess.Popen([sys.executable,'-m','uvicorn','qa.api:app','--host','127.0.0.1','--port','8000','--workers','1'],

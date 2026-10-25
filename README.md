@@ -140,7 +140,7 @@ curl.exe -i -X POST "$base/predict" -H "Authorization: Bearer $env:QA_API_TOKEN"
 Expected status sequence: 200, 401, 401, 200, 200. The evaluator checks all five answers and offsets;
 its nonzero exit status means some sample failed. Repeating 10 times measures 50 sequential calls, not
 50 independent hidden questions. Use `scripts.verify_local` for an isolated real-model check with a temporary
-random token; its `local-verification` team ID is explicitly not the registered team.
+random token; it uses the registered team ID `Pimientero`. Historical pilot logs made before team identification retain their original test ID.
 
 ## HTTPS tunnel and external rehearsal
 
