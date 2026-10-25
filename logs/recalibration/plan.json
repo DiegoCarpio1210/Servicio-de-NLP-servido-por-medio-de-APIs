@@ -1,0 +1,16 @@
+{
+  "created_utc": "2026-10-25T22:34:26.046920+00:00",
+  "allowed_fit_partition": "512 calibration examples only",
+  "held_out_policy": "1024 examples used once for final comparison after policy lock; no threshold/configuration selection",
+  "public_policy": "no training, calibration, or policy selection",
+  "weights_policy": "unchanged",
+  "target_prior": {
+    "answerable": 0.75,
+    "unanswerable": 0.25
+  },
+  "primary_objective": "prior-weighted normalized Exact Match, conservative proxy for professor exact-match/correct-null credit",
+  "secondary_objective": "prior-weighted F1 (partial-overlap proxy; actual LLM judge unavailable)",
+  "candidate_scope": "diagnose current spans/logits/windows, then change abstention threshold only unless a reproducible extraction defect is found",
+  "tie_break": "secondary objective, then closest to original threshold",
+  "extra_training": "not authorized; recommendations only"
+}

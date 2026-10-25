@@ -1,0 +1,20 @@
+{
+  "partition": "calibration only",
+  "count": 512,
+  "weights_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
+  "all_finite": true,
+  "all_tails_covered": true,
+  "multiwindow_examples": 10,
+  "answerable_count": 256,
+  "answerable_missing_gold_window": 0,
+  "answerable_no_gold_within_30_tokens": 0,
+  "question_capped_count": 0,
+  "start_argmax_hit_count": 144,
+  "end_argmax_hit_count": 158,
+  "invalid_unconstrained_argmax_windows": 82,
+  "question_argmax_windows": 0,
+  "single_window_raw_span_F1": 63.35919656750673,
+  "multiwindow_raw_span_F1": 34.93877551020408,
+  "multiwindow_answerable_count": 7,
+  "metric_version": "official SQuAD v2 reference filtering"
+}

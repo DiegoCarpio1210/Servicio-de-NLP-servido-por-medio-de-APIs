@@ -1,0 +1,36 @@
+{
+  "training_examples": 12000,
+  "epochs": 2,
+  "training_seconds": 1582.5165039002895,
+  "optimizer_steps": 1522,
+  "validation": {
+    "all": {
+      "count": 1024,
+      "EM": 52.34375,
+      "F1": 53.40035522968657
+    },
+    "answerable": {
+      "count": 511,
+      "EM": 25.048923679060664,
+      "F1": 27.16626957964589
+    },
+    "unanswerable": {
+      "count": 513,
+      "EM": 79.53216374269006,
+      "F1": 79.53216374269006
+    }
+  },
+  "threshold": -1.8834419250488281,
+  "cpu_latency_mean_seconds": 0.2369118339999477,
+  "cpu_latency_max_seconds": 0.5592254000002868,
+  "http_50_seconds": 12.514860100000078,
+  "timeout_budget_pass": true,
+  "public_correct_first_five": 3,
+  "model_disk_bytes": 266541369,
+  "decision": "needs_improvement",
+  "decision_basis": "Engineering heuristic on independent validation only; not the professor grading formula. F1 >=60, answerable F1 >=50, unanswerable EM >=70.",
+  "recommendation": "Consider one additional epoch on the same 12k examples before expanding the dataset.",
+  "additional_epoch_estimate_minutes": 13.187637532502412,
+  "fresh_20k_two_epoch_estimate_minutes": 43.958791775008045,
+  "automatic_extension": false
+}

@@ -1,0 +1,51 @@
+{
+  "calibration_only": true,
+  "old_threshold": -1.8834419250488281,
+  "baseline": {
+    "all": {
+      "count": 512,
+      "EM": 51.953125,
+      "F1": 52.994914042919795
+    },
+    "answerable": {
+      "count": 256,
+      "EM": 23.046875,
+      "F1": 25.130453085839598
+    },
+    "unanswerable": {
+      "count": 256,
+      "EM": 80.859375,
+      "F1": 80.859375
+    }
+  },
+  "baseline_expected_EM": 37.5,
+  "baseline_expected_F1": 39.0626835643797,
+  "answerable_abstentions": 182,
+  "answerable_count": 256,
+  "raw_span_EM": 51.171875,
+  "raw_span_F1": 62.582075679221106,
+  "correct_spans_lost_to_null": 73,
+  "weighted_EM_candidate": {
+    "threshold": 1.7854061126708984,
+    "expected_EM": 43.359375,
+    "expected_F1": 49.5329126115274
+  },
+  "candidate_metrics": {
+    "all": {
+      "count": 512,
+      "EM": 39.84375,
+      "F1": 43.95944174101827
+    },
+    "answerable": {
+      "count": 256,
+      "EM": 46.875,
+      "F1": 55.106383482036534
+    },
+    "unanswerable": {
+      "count": 256,
+      "EM": 32.8125,
+      "F1": 32.8125
+    }
+  },
+  "status": "preliminary; score normalization superseded by locked_policy.json; counts and original observations retained"
+}
