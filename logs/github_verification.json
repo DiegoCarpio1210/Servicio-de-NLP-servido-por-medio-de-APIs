@@ -1,10 +1,11 @@
 {
   "repository": "https://github.com/DiegoCarpio1210/Servicio-de-NLP-servido-por-medio-de-APIs",
-  "verified_remote_commit": "d88f43c8d16f1702316f03352731c07f0f7a3bd0",
+  "verified_remote_commit": "bc4aed43a092df680a75d4338550b239e46b4368",
   "method": [
     "git ls-remote matched local HEAD",
-    "GitHub connector fetched configs/team.json and REPORT.md from main"
+    "GitHub connector fetched completed REPORT.md with real metrics from main"
   ],
   "submission_tag_created": false,
-  "weights_uploaded": false
+  "weights_uploaded": false,
+  "source_and_evidence_published": true
 }

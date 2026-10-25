@@ -22,7 +22,7 @@
   {
     "requirement": "Multiple authentic commits",
     "status": "PASSED",
-    "detail": "6"
+    "detail": "7"
   },
   {
     "requirement": "Calibrated current candidate exists",

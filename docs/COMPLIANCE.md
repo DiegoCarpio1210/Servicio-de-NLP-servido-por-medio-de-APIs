@@ -44,7 +44,7 @@ All evidence paths below are repository-relative. No new training was started du
 | IX: check from another network | PENDING | This host's HTTPS check cannot substitute for mobile/another-network testing |
 | IX, X, XI: instructor dry run and send current URL | PENDING | User must arrange slot/send URL; no message sent on user's behalf |
 | IX, XII: keep power/no sleep/tunnel active | PENDING presentation operation | README runbook; temporary tests shut down after completion |
-| XI, XIII.1: repository shared, weights outside Git | PASSED local audit; remote verification pending | Public official origin; model/data/venv/env excluded; verify final remote HEAD |
+| XI, XIII.1: repository shared, weights outside Git | PASSED | Remote main bc4aed4 matched local HEAD; REPORT.md retrieved from GitHub; weights/data/venv/env excluded |
 | XI: separate authorized weight distribution | PENDING | Weights remain local; choose release/shared-folder destination before sharing |
 | XI, XIII: final submission tag and tagged report | PENDING by explicit user instruction | No submission tag created |
 | XIII.3: running service for the live evaluation | PENDING session operation | Test service works but is stopped; start with instructor token for rehearsal |
