@@ -1,0 +1,22 @@
+[
+  {
+    "source": "Gu\u00eda_de_trabajo_APIs_and_NLP.pdf",
+    "sha256": "0e894ec98c90f89b9b1e0f99b702329912310977c686a8d2388fe5cc59ea986d",
+    "unchanged": true
+  },
+  {
+    "source": "public_sample.json",
+    "sha256": "3d823617676453f7c0a87a09fa9e68b168a7766aa11a1b8cc07f39a0a8253a94",
+    "unchanged": true
+  },
+  {
+    "source": "qa_api_contract.yaml",
+    "sha256": "1b0b49382be06f589157b5b11d46cb0da1afd92aef236bd763986c23952673aa",
+    "unchanged": true
+  },
+  {
+    "source": "REPORT_TEMPLATE.md",
+    "sha256": "6f8dec0a8a1360c1ecfb1c9ae10c81d016ec4eada7c7eaa5e92969267790e6c0",
+    "unchanged": true
+  }
+]

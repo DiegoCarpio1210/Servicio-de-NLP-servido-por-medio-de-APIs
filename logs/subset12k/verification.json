@@ -1,0 +1,33 @@
+{
+  "training_complete": true,
+  "selected_checkpoint_matches_export": true,
+  "pilot_weights_differ": true,
+  "weights_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
+  "params": 66364418,
+  "device": "cpu",
+  "threshold": -1.8834419250488281,
+  "validation_records_verified": 1536,
+  "fresh_forward_predictions_matched": 32,
+  "calibration_count": 512,
+  "held_out_count": 1024,
+  "disjoint_splits": true,
+  "held_out": {
+    "all": {
+      "count": 1024,
+      "EM": 52.34375,
+      "F1": 53.40035522968657
+    },
+    "answerable": {
+      "count": 511,
+      "EM": 25.048923679060664,
+      "F1": 27.16626957964589
+    },
+    "unanswerable": {
+      "count": 513,
+      "EM": 79.53216374269006,
+      "F1": 79.53216374269006
+    }
+  },
+  "no_answer_precision_percent": 54.47263017356475,
+  "method": "Recompute exact threshold sweep and all 1024 held-out metrics from recorded predictions; verify every reference/offset and 32 deterministic fresh model forwards."
+}

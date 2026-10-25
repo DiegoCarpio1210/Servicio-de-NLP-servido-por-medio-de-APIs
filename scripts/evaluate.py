@@ -8,7 +8,7 @@ from qa.metrics import summarize, threshold_sweep
 
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument('--model-dir',default='models/final')
+    p=argparse.ArgumentParser(); p.add_argument('--model-dir',default='models/subset12k')
     p.add_argument('--limit',type=int,default=0); args=p.parse_args()
     engine=Engine(args.model_dir, require_calibration=False)
     config=engine.metadata.copy()

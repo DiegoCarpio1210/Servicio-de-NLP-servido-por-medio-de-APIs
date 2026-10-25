@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -11,6 +12,8 @@ from qa.spans import aggregate, decide
 class Engine:
     def __init__(self, model_dir, require_calibration=True):
         root = Path(model_dir)
+        with (root / "model.safetensors").open("rb") as stream:
+            self.weights_sha256 = hashlib.file_digest(stream, "sha256").hexdigest()
         self.metadata = json.loads((root / "training_metadata.json").read_text())
         if self.metadata.get("optimizer_steps", 0) <= 0:
             raise ValueError("A genuinely fine-tuned checkpoint is required")

@@ -1,4 +1,5 @@
 """Temporary HTTPS smoke/latency verification from this host, NOT another network."""
+import argparse
 import json
 import os
 import re
@@ -11,8 +12,9 @@ import httpx
 
 
 def main():
-    env=os.environ.copy(); env.update(QA_API_TOKEN=secrets.token_urlsafe(32),TEAM_ID='Pimientero',MODEL_DIR='models/pilot')
-    out=Path('logs/pilot'); out.mkdir(exist_ok=True,parents=True)
+    parser=argparse.ArgumentParser(); parser.add_argument('--model-dir',default='models/subset12k'); args=parser.parse_args()
+    env=os.environ.copy(); env.update(QA_API_TOKEN=secrets.token_urlsafe(32),TEAM_ID='Pimientero',MODEL_DIR=args.model_dir)
+    out=Path('logs')/Path(args.model_dir).name; out.mkdir(exist_ok=True,parents=True)
     processes=[]
     try:
         with (out/'tunnel-server.txt').open('w') as serverlog, (out/'tunnel-client.txt').open('w') as tunnellog:

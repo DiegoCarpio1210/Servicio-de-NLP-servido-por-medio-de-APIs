@@ -24,7 +24,7 @@ def create_app(loader=None):
         from qa.inference import Engine
         if not token or not team or any(c.isspace() for c in team):
             raise ValueError("Set QA_API_TOKEN and a registered TEAM_ID without spaces")
-        engine = Engine(os.getenv("MODEL_DIR", "models/final"))
+        engine = Engine(os.getenv("MODEL_DIR", "models/subset12k"))
         engine.predict("Warmup context.", "What is this?")
         return engine
 
@@ -69,7 +69,9 @@ def create_app(loader=None):
         if engine is None:
             return JSONResponse({"error": "internal_error"}, 500)
         return {"team": team, "model": engine.metadata["base_model"], "params": engine.params,
-                "max_seq_length": engine.max_length, "doc_stride": engine.stride}
+                "max_seq_length": engine.max_length, "doc_stride": engine.stride,
+                "checkpoint_sha256": getattr(engine,"weights_sha256",None),
+                "training_steps": engine.metadata.get("optimizer_steps")}
 
     @app.post("/predict")
     def predict(body: PredictRequest):

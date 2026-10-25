@@ -1,0 +1,6 @@
+{
+  "model_dir": "models/subset12k",
+  "decision": "needs_improvement",
+  "evidence": "logs/subset12k/summary.json",
+  "submission_ready": false
+}

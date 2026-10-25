@@ -1,0 +1,99 @@
+{
+  "checks": [
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "malformed_json",
+      "passed": true
+    },
+    {
+      "check": "unicode",
+      "passed": true,
+      "response": {
+        "id": "unicode",
+        "answer": null,
+        "start": null,
+        "score": 0.8219531064863341
+      }
+    },
+    {
+      "check": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+      "passed": true,
+      "response": {
+        "id": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+        "answer": null,
+        "start": null,
+        "score": 0.7458277134807081
+      }
+    },
+    {
+      "check": "heldout-null",
+      "passed": true,
+      "response": {
+        "id": "heldout-null",
+        "answer": null,
+        "start": null,
+        "score": 0.9323095786048421
+      }
+    }
+  ],
+  "all_passed": true
+}
