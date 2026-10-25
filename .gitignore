@@ -11,4 +11,4 @@ __pycache__/
 *.bin
 *.pt
 *.pth
-/logs/*predictions*.json
+/logs/**/*predictions*.json

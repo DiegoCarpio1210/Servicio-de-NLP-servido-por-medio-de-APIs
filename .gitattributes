@@ -1,0 +1,4 @@
+* text=auto
+originals/* -text
+*.png binary
+*.pdf binary

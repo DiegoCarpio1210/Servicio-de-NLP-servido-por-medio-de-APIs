@@ -22,8 +22,8 @@ def main():
     set_seed(c['seed'])
     torch.set_num_threads(4)
     raw = load_splits(c)
-    tokenizer = AutoTokenizer.from_pretrained(c['base_model'], use_fast=True, cache_dir='cache')
-    model = AutoModelForQuestionAnswering.from_pretrained(c['base_model'], cache_dir='cache')
+    tokenizer = AutoTokenizer.from_pretrained(c['base_model'], use_fast=True, cache_dir='cache', revision=c.get('base_revision','main'))
+    model = AutoModelForQuestionAnswering.from_pretrained(c['base_model'], cache_dir='cache', revision=c.get('base_revision','main'))
     encoded = {k: ds.map(lambda x: training_features(x, tokenizer, c['max_seq_length'], c['doc_stride']),
                         batched=True, remove_columns=ds.column_names) for k, ds in raw.items()}
     gpu = torch.cuda.is_available() and not args.cpu
@@ -42,6 +42,8 @@ def main():
     elapsed = time.perf_counter()-started
     root = Path(c['model_dir']); root.mkdir(parents=True,exist_ok=True)
     trainer.save_model(root); tokenizer.save_pretrained(root)
+    # A previous model's threshold must never survive retraining in the same directory.
+    (root/'calibration.json').unlink(missing_ok=True)
     metadata = {**c, 'optimizer_steps': trainer.state.global_step, 'elapsed_seconds': elapsed,
                 'dataset': 'rajpurkar/squad_v2', 'splits': {k:stats(ds) for k,ds in raw.items()},
                 'hardware': torch.cuda.get_device_name(0) if gpu else platform.processor(),

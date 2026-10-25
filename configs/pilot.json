@@ -1,9 +1,9 @@
 {
   "base_model": "distilbert/distilbert-base-uncased",
   "seed": 42,
-  "train_size": 4096,
-  "validation_size": 512,
-  "epochs": 3,
+  "train_size": 1024,
+  "validation_size": 128,
+  "epochs": 2,
   "learning_rate": 3e-05,
   "batch_size": 4,
   "gradient_accumulation_steps": 4,
@@ -13,5 +13,6 @@
   "doc_stride": 128,
   "output_dir": "checkpoints/pilot",
   "model_dir": "models/pilot",
-  "max_steps": -1
+  "max_steps": -1,
+  "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be"
 }

@@ -1,4 +1,5 @@
-from datasets import load_dataset
+from pathlib import Path
+from datasets import load_dataset, load_from_disk
 import numpy as np
 
 
@@ -15,7 +16,8 @@ def subset(dataset, size, seed):
 
 
 def load_splits(config):
-    raw = load_dataset('rajpurkar/squad_v2', cache_dir='data/hf')
+    snapshot = Path('data/squad_v2')
+    raw = load_from_disk(str(snapshot)) if snapshot.exists() else load_dataset('rajpurkar/squad_v2', cache_dir='data/hf')
     return {k: subset(raw[k], config[k+'_size'], config['seed']) for k in ('train','validation')}
 
 

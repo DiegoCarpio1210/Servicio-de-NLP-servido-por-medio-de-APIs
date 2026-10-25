@@ -13,5 +13,6 @@
   "doc_stride": 128,
   "output_dir": "checkpoints/full",
   "model_dir": "models/final",
-  "max_steps": -1
+  "max_steps": -1,
+  "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be"
 }

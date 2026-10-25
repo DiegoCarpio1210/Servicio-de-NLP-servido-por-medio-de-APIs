@@ -13,5 +13,6 @@
   "doc_stride": 128,
   "output_dir": "checkpoints/smoke",
   "model_dir": "models/smoke",
-  "max_steps": 8
+  "max_steps": 8,
+  "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be"
 }
