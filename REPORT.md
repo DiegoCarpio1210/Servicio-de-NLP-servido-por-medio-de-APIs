@@ -1,6 +1,6 @@
 # Project Report — Extractive QA as a Service
 
-Draft with real pilot results; full-data training is RUNNING, not completed. Final submission is PENDING.
+Draft: the full-data run was stopped; the authorized 12,000-example run is in progress. Final submission is PENDING.
 
 ## 0. Team
 
@@ -35,7 +35,7 @@ its quality still depends on sufficient training. Both encoder and newly initial
 **Loss curve:** [real pilot loss](logs/pilot/loss.png); exact history and metadata are alongside it.
 **Validation results:** threshold holdout (64 examples): EM 50.00, F1 50.00;
 answerable EM/F1 0/0, unanswerable EM/F1 100/100. This null-heavy pilot is inadequate.
-Full training on 130,319 examples, three epochs, is running; its metrics are PENDING.
+The full-data run was stopped. The replacement uses 12,000 examples and two epochs; its metrics are PENDING.
 
 ## 3. No-answer threshold
 
@@ -110,7 +110,7 @@ Decoder models are excluded from the implementation.
 
 ## 9. Known limitations
 
-Pilot answerable accuracy is unacceptable. Full training, final calibration, final-quality metrics and the
+Pilot answerable accuracy is unacceptable. The 12,000-example run, its calibration, candidate metrics and the
 instructor dry run remain PENDING. Questions beyond 64 tokens lose their suffix internally; spans above 30 tokens
 cannot be returned. Confidence is not probability-calibrated. English-only training limits other languages.
 Malformed or oversized requests fail validation. Tunnels require Internet, AC power and disabled sleep.

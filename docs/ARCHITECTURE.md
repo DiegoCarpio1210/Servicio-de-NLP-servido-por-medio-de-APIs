@@ -13,9 +13,9 @@ are supervised at CLS. `scripts.train` initializes a fresh QA head on the BASE e
 The Trainer writes resumable optimizer checkpoints, then saves the best validation-loss model and tokenizer.
 Training metadata records the exact sample counts, seed, hardware, elapsed time and optimizer-step count.
 
-`evaluate` uses model logits, not a generic question-answering pipeline. It splits validation into threshold
-calibration and threshold holdout sets. Checkpoint selection already used validation loss, so the holdout is
-not a completely untouched research test set. Public samples are excluded from every learning decision.
+`evaluate` uses model logits, not a generic question-answering pipeline. The current 12k configuration divides validation into 512 checkpoint-selection, 512 threshold-calibration
+and 1,024 independent holdout examples. Their IDs are disjoint; the holdout does not select the checkpoint or threshold.
+Historical pilot results used only a threshold holdout and remain labeled accordingly. Public samples are excluded from every learning decision.
 
 ## Online prediction
 
@@ -58,3 +58,10 @@ Fewer layers make DistilBERT a sensible CPU candidate. Actual QA parameters are 
 not copied from a model card. BERT-base is a documented architectural alternative, not an empirically trained
 competitor in this run. Train it with a separate config, its own base revision and output directory if resources
 permit; compare the same validation split and CPU workload. Do not claim BERT's accuracy or latency without that run.
+
+## Efficient 12k training control
+
+Only masked trailing padding is removed from training features. DataCollatorWithPadding pads each length-grouped
+batch, preserving every real token and start/end label. FP32 batch 16 was selected from measured GPU timings
+and memory peaks; no gradient accumulation is required. A global process lock prevents duplicate training.
+A STOP file is checked at optimizer boundaries; it requests evaluation, a resumable checkpoint and an orderly exit.

@@ -1,0 +1,36 @@
+{
+  "device": "cuda",
+  "gpu": "Quadro P1000",
+  "training_windows": 64,
+  "selection_windows": 8,
+  "config": {
+    "base_model": "distilbert/distilbert-base-uncased",
+    "seed": 42,
+    "train_size": 64,
+    "validation_size": 32,
+    "epochs": 2,
+    "learning_rate": 3e-05,
+    "batch_size": 16,
+    "gradient_accumulation_steps": 1,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "output_dir": "checkpoints/strategy-smoke",
+    "model_dir": "models/strategy-smoke",
+    "max_steps": 2,
+    "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "save_steps": 100,
+    "eval_steps": 400,
+    "logging_steps": 25,
+    "validation_partition": {
+      "selection": 8,
+      "calibration": 8,
+      "holdout": 16
+    },
+    "require_cuda": true,
+    "fp16": false,
+    "dynamic_padding": true
+  },
+  "resume_from": null
+}

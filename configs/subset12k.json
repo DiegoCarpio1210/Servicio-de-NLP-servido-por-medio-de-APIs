@@ -1,0 +1,29 @@
+{
+  "base_model": "distilbert/distilbert-base-uncased",
+  "seed": 42,
+  "train_size": 12000,
+  "validation_size": 2048,
+  "epochs": 2,
+  "learning_rate": 3e-05,
+  "batch_size": 16,
+  "gradient_accumulation_steps": 1,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.01,
+  "max_seq_length": 384,
+  "doc_stride": 128,
+  "output_dir": "checkpoints/subset12k",
+  "model_dir": "models/subset12k",
+  "max_steps": -1,
+  "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "save_steps": 100,
+  "eval_steps": 400,
+  "logging_steps": 25,
+  "validation_partition": {
+    "selection": 512,
+    "calibration": 512,
+    "holdout": 1024
+  },
+  "require_cuda": true,
+  "fp16": false,
+  "dynamic_padding": true
+}

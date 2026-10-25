@@ -1,0 +1,10 @@
+{
+  "previous_run": "full SQuAD 2.0",
+  "state": "stopped",
+  "periodic_checkpoints_present": false,
+  "logs_preserved": true,
+  "pilot_artifacts_preserved": true,
+  "gpu_memory_after_stop_mib": 0,
+  "gpu_utilization_after_stop_percent": 0,
+  "reason": "User authorized replacement with exactly 12000 examples and two epochs"
+}

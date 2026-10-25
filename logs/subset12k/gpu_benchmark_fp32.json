@@ -1,0 +1,22 @@
+{
+  "gpu": "Quadro P1000",
+  "rows": [
+    {
+      "batch": 8,
+      "mean_microstep_seconds": 1.1256983000785112,
+      "examples_per_second": 7.106699903022013,
+      "peak_allocated_mib": 1730.91552734375,
+      "peak_reserved_mib": 1900.0,
+      "status": "ok"
+    },
+    {
+      "batch": 16,
+      "mean_microstep_seconds": 2.2008551749167964,
+      "examples_per_second": 7.269901346691239,
+      "peak_allocated_mib": 2668.08740234375,
+      "peak_reserved_mib": 2802.0,
+      "status": "ok"
+    }
+  ],
+  "purpose": "performance probe only; weights discarded"
+}

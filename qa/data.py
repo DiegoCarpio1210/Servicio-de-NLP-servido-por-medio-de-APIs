@@ -25,3 +25,18 @@ def stats(dataset):
     n = sum(not a['text'] for a in dataset['answers'])
     return {'count': len(dataset), 'unanswerable': n, 'unanswerable_ratio': n/len(dataset),
             'fingerprint': dataset._fingerprint}
+
+
+def validation_partitions(dataset, config):
+    """Disjoint stratified examples for checkpoint selection, threshold fit and final scoring."""
+    sizes=config['validation_partition']
+    if sum(sizes.values()) != len(dataset):
+        raise ValueError('Validation pool size must equal the three partition sizes')
+    selection=subset(dataset,sizes['selection'],config['seed']+101)
+    selected=set(selection['id'])
+    remaining=dataset.select([i for i,item in enumerate(dataset['id']) if item not in selected])
+    calibration=subset(remaining,sizes['calibration'],config['seed']+102)
+    calibrated=set(calibration['id'])
+    holdout=remaining.select([i for i,item in enumerate(remaining['id']) if item not in calibrated])
+    assert len(holdout)==sizes['holdout']
+    return {'selection':selection,'calibration':calibration,'holdout':holdout}

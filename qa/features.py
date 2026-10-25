@@ -29,3 +29,13 @@ def training_features(examples, tokenizer, max_length=384, stride=128):
         ends.append(end)
     batch["start_positions"], batch["end_positions"] = starts, ends
     return dict(batch)
+
+
+def trim_training_padding(features, input_names):
+    """Remove only masked trailing padding; keep every real token and label unchanged."""
+    result={k:list(v) for k,v in features.items()}
+    for i,mask in enumerate(features['attention_mask']):
+        length=sum(mask)
+        for key in input_names:
+            result[key][i]=features[key][i][:length]
+    return result

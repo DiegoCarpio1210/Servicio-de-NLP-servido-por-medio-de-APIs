@@ -1,0 +1,124 @@
+{
+  "threshold": -1.71333247423172,
+  "criterion": "calibration F1, EM tie-break",
+  "calibration": {
+    "all": {
+      "count": 8,
+      "EM": 50.0,
+      "F1": 50.0
+    },
+    "answerable": {
+      "count": 4,
+      "EM": 0.0,
+      "F1": 0.0
+    },
+    "unanswerable": {
+      "count": 4,
+      "EM": 100.0,
+      "F1": 100.0
+    }
+  },
+  "held_out": {
+    "all": {
+      "count": 16,
+      "EM": 50.0,
+      "F1": 50.0
+    },
+    "answerable": {
+      "count": 8,
+      "EM": 0.0,
+      "F1": 0.0
+    },
+    "unanswerable": {
+      "count": 8,
+      "EM": 100.0,
+      "F1": 100.0
+    }
+  },
+  "sensitivity": [
+    {
+      "threshold": -1.71333247423172,
+      "count": 8,
+      "EM": 50.0,
+      "F1": 50.0
+    },
+    {
+      "threshold": -0.71333247423172,
+      "count": 8,
+      "EM": 37.5,
+      "F1": 37.5
+    },
+    {
+      "threshold": -0.5557796955108643,
+      "count": 8,
+      "EM": 25.0,
+      "F1": 25.0
+    },
+    {
+      "threshold": -0.5133777260780334,
+      "count": 8,
+      "EM": 25.0,
+      "F1": 25.0
+    },
+    {
+      "threshold": -0.49543797969818115,
+      "count": 8,
+      "EM": 12.5,
+      "F1": 12.5
+    },
+    {
+      "threshold": -0.3655167818069458,
+      "count": 8,
+      "EM": 12.5,
+      "F1": 13.690476190476192
+    },
+    {
+      "threshold": -0.35620129108428955,
+      "count": 8,
+      "EM": 12.5,
+      "F1": 13.690476190476192
+    },
+    {
+      "threshold": -0.34472399950027466,
+      "count": 8,
+      "EM": 0.0,
+      "F1": 1.1904761904761918
+    },
+    {
+      "threshold": -0.2990003824234009,
+      "count": 8,
+      "EM": 0.0,
+      "F1": 1.1904761904761918
+    }
+  ],
+  "dataset": "rajpurkar/squad_v2 validation",
+  "independent_of_checkpoint_selection": true,
+  "calibration_ids": [
+    "5737477bc3c5551400e51ea5",
+    "572fe4a304bcaa1900d76e55",
+    "5ad262f7d7d075001a4290d5",
+    "5726f7715951b619008f838f",
+    "5a67a492f038b7001ab0c3c6",
+    "5a5812f9770dc0001aeeffd1",
+    "5ad295d4d7d075001a429afc",
+    "572fd8efb2c2fd14005684f9"
+  ],
+  "held_out_ids": [
+    "5727e6cbff5b5019007d97f2",
+    "5726a34bf1498d1400e8e59f",
+    "5ad24ce8d7d075001a428c0d",
+    "5725d7e438643c19005acdfb",
+    "5ad26fafd7d075001a42942c",
+    "5706074552bb8914006897d7",
+    "5705fd8475f01819005e7841",
+    "5a8944653b2508001a72a57c",
+    "571144d1a58dae1900cd6d71",
+    "5acfef1b77cf76001a68657a",
+    "5730ab63396df91900096261",
+    "5a5915cd3e1742001a15cf75",
+    "5730285a04bcaa1900d77271",
+    "5a2c382dbfd06b001a5aea74",
+    "5a2c0fb8bfd06b001a5ae9bb",
+    "5a3e5697378766001a002599"
+  ]
+}

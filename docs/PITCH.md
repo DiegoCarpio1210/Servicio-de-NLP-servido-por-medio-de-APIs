@@ -1,7 +1,7 @@
 # Three-minute English pitch
 
 Rehearsal target: roughly 360 words at 120 words/minute. Replace bracketed factual fields only after verification.
-This is a rehearsal draft; the current pilot must not be described as final-quality training.
+This is a rehearsal draft; report only the completed candidate metrics; do not present pending results as final.
 
 **0:00-0:40 — Model choice.**
 Our project exposes extractive question answering as an authenticated API. Given a paragraph and a question,
@@ -12,7 +12,7 @@ but we have not measured that trade-off empirically. Our loaded QA model contain
 
 **0:40-1:30 — Training and evidence.**
 We use the official SQuAD 2.0 training split, with a fixed seed and representative sampling when resources
-are limited. The final run uses [verified example count and epochs]. Our loss curve and validation metrics
+are limited. The final run uses 12,000 examples and two epochs. Our loss curve and validation metrics
 are saved in the repository. Unanswerable questions and windows without the answer are trained at the CLS
 position. Long contexts become overlapping windows rather than being cut off. We tune the abstention
 threshold using validation only, and report a separate threshold holdout. Our final answerable F1 is

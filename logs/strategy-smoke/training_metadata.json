@@ -1,0 +1,55 @@
+{
+  "base_model": "distilbert/distilbert-base-uncased",
+  "seed": 42,
+  "train_size": 64,
+  "validation_size": 32,
+  "epochs": 2,
+  "learning_rate": 3e-05,
+  "batch_size": 16,
+  "gradient_accumulation_steps": 1,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.01,
+  "max_seq_length": 384,
+  "doc_stride": 128,
+  "output_dir": "checkpoints/strategy-smoke",
+  "model_dir": "models/strategy-smoke",
+  "max_steps": 2,
+  "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "save_steps": 100,
+  "eval_steps": 400,
+  "logging_steps": 25,
+  "validation_partition": {
+    "selection": 8,
+    "calibration": 8,
+    "holdout": 16
+  },
+  "require_cuda": true,
+  "fp16": false,
+  "dynamic_padding": true,
+  "optimizer_steps": 2,
+  "elapsed_seconds": 6.185169100295752,
+  "completed": true,
+  "actual_epochs": 0.5,
+  "best_checkpoint": "checkpoints/strategy-smoke\\checkpoint-2",
+  "peak_gpu_allocated_mib": 2472.22802734375,
+  "peak_gpu_reserved_mib": 2788.0,
+  "dataset": "rajpurkar/squad_v2",
+  "splits": {
+    "train": {
+      "count": 64,
+      "unanswerable": 21,
+      "unanswerable_ratio": 0.328125,
+      "fingerprint": "5563e1341562ac4d"
+    },
+    "validation": {
+      "count": 8,
+      "unanswerable": 4,
+      "unanswerable_ratio": 0.5,
+      "fingerprint": "ed4bb28112834dd5"
+    }
+  },
+  "hardware": "Quadro P1000",
+  "torch_version": "2.7.1+cu118",
+  "params": 66364418,
+  "training_device": "cuda"
+}

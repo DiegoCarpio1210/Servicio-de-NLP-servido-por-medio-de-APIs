@@ -18,3 +18,16 @@
 5. Audit found that reusing MODEL_DIR could retain an earlier checkpoint's calibration.
    Fix: invalidate calibration after saving newly trained weights; serving refuses uncalibrated artifacts.
    This was a code-path finding, not a claimed observed production outage.
+
+## 12k strategy change
+
+- The full-data process had no control-file listener and had not reached its first scheduled checkpoint.
+  Only its verified process tree was stopped; logs were retained. The new `EvidenceCallback` handles a STOP
+  sentinel at an optimizer boundary and requests checkpoint + evaluation before exiting with code 75.
+- The first strategy smoke run failed while writing `data_manifest.json`: datasets 4.3 returns Column objects,
+  which Python JSON does not serialize directly. Converting ID columns to lists fixed it; the real smoke run
+  and separate calibration/evaluation then completed. No failed run was presented as successful training.
+- A Windows source write briefly used cp1252 for an em dash, failing compileall. The report generator was
+  rewritten explicitly as UTF-8 and compilation was rerun. This did not interrupt the training process.
+- The original threshold holdout had participated in checkpoint selection. The replacement uses disjoint
+  selection/calibration/holdout IDs, with a regression test and a recorded manifest.

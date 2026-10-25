@@ -2,7 +2,7 @@
 import argparse
 import json
 from pathlib import Path
-from qa.data import load_splits, subset
+from qa.data import load_splits, subset, validation_partitions
 from qa.inference import Engine
 from qa.metrics import summarize, threshold_sweep
 
@@ -14,7 +14,13 @@ def main():
     config=engine.metadata.copy()
     config['validation_size']=args.limit or config['validation_size']
     ds=load_splits(config)['validation']
-    calibration=subset(ds,len(ds)//2,config['seed']+1)
+    if 'validation_partition' in config:
+        from datasets import concatenate_datasets
+        parts=validation_partitions(ds,config)
+        calibration=parts['calibration']
+        ds=concatenate_datasets([parts['calibration'],parts['holdout']])
+    else:
+        calibration=subset(ds,len(ds)//2,config['seed']+1)
     ids=set(calibration['id'])
     rows=[]
     for i,ex in enumerate(ds):
@@ -28,6 +34,7 @@ def main():
     result={'threshold':best['threshold'],'criterion':'calibration F1, EM tie-break',
             'calibration':summarize(cal,best['threshold']), 'held_out':summarize(held,best['threshold']),
             'sensitivity':results, 'dataset':'rajpurkar/squad_v2 validation',
+            'independent_of_checkpoint_selection':'validation_partition' in config,
             'calibration_ids':[r['id'] for r in cal], 'held_out_ids':[r['id'] for r in held]}
     root=Path(args.model_dir); (root/'calibration.json').write_text(json.dumps(result,indent=2))
     out=Path('logs')/root.name; out.mkdir(parents=True,exist_ok=True)

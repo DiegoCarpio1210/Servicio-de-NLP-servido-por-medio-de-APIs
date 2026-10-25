@@ -24,3 +24,13 @@ __pycache__/
 /tmp/
 *.tmp
 *.log
+
+/logs/**/job.json
+/logs/**/history_live.json
+/logs/**/*_execution.txt
+/logs/**/stop_process_evidence.json
+/logs/training.lock
+/logs/**/STOP
+/logs/subset_launcher*
+
+/logs/**/*.lock

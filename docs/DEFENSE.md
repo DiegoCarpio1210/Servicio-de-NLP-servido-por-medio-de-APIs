@@ -17,7 +17,7 @@ Each member should open the named function, trace an example, and answer without
 | Why minimum CLS across windows? | Unrelated windows should not force null when another window supports a span; standard SQuAD v2 aggregation. |
 | What is threshold direction? | Null when null-minus-span exceeds threshold; lowering it increases abstention. |
 | Is score a probability? | Sigmoid of threshold-distance; not a calibrated probability or an accuracy guarantee. |
-| Why is validation not training? | No gradients use validation examples; it selects checkpoint and threshold. The threshold holdout still influenced checkpoint selection via validation loss. |
+| Why is validation not training? | No gradients use validation examples; it selects checkpoint and threshold. In the current 12k run, checkpoint selection, threshold calibration and final holdout have disjoint example IDs. Historical pilot evaluation used a weaker split. |
 | How do subsets stay representative? | `subset` samples both answerability classes with a seeded NumPy RNG and logs exact counts. |
 | How is evaluation normalized? | Lowercase, remove ASCII punctuation and English articles, normalize whitespace; maximum score over references. |
 | Why a single worker? | Multiple workers duplicate weights and CPU contention; no measurement currently justifies them. |

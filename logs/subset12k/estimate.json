@@ -1,0 +1,40 @@
+{
+  "train": {
+    "count": 12000,
+    "unanswerable": 4005,
+    "unanswerable_ratio": 0.33375,
+    "fingerprint": "9e209351aebb5127"
+  },
+  "validation": {
+    "selection": {
+      "count": 512,
+      "unanswerable": 256,
+      "unanswerable_ratio": 0.5,
+      "fingerprint": "55fda436166a736c"
+    },
+    "calibration": {
+      "count": 512,
+      "unanswerable": 256,
+      "unanswerable_ratio": 0.5,
+      "fingerprint": "f16ded346ec569e4"
+    },
+    "holdout": {
+      "count": 1024,
+      "unanswerable": 513,
+      "unanswerable_ratio": 0.5009765625,
+      "fingerprint": "40bcdc81144f6c90"
+    }
+  },
+  "training_windows": 12166,
+  "optimizer_steps": 1522,
+  "conservative_training_minutes": 55.82835960372274,
+  "estimated_pipeline_minutes_range": [
+    56,
+    81
+  ],
+  "assumptions": "Measured static 384-token FP32 throughput. Dynamic padding may reduce time. Evaluation, checkpoints and CPU scoring add overhead.",
+  "batch": 16,
+  "gradient_accumulation_steps": 1,
+  "precision": "fp32",
+  "dynamic_padding": true
+}

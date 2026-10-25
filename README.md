@@ -2,14 +2,14 @@
 
 University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
 No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
-**Status: engineering implementation and genuine pilot evidence; NOT yet a final academic submission.**
+**Status: 12,000-example / two-epoch training is running; NOT yet a final academic submission.**
 See `docs/STATUS.md` for measured results and remaining gates. Never present smoke or pilot accuracy as full training.
 
 ## Repository map
 
 ```text
 originals/             Professor's PDF, immutable YAML, samples, report template, master brief
-configs/               smoke (8 steps), pilot (1024 examples), extended (4096), full train
+configs/               subset12k (current), smoke/pilot/extended/full (historical)
 qa/api.py              Strict contract, exact Bearer authentication, background loading
 qa/features.py         Shared overflow windows and CLS/span labels
 qa/spans.py            Valid context spans, character offsets, minimum-null aggregation
@@ -65,29 +65,29 @@ No unmeasured memory or latency guarantee is made.
 .\.venv\Scripts\python.exe -m scripts.train --config configs/smoke.json
 .\.venv\Scripts\python.exe -m scripts.evaluate --model-dir models/smoke --limit 64
 
-# Pilot, then full run for quality:
+# Historical pilot (retained for reproducibility):
 .\.venv\Scripts\python.exe -m scripts.train --config configs/pilot.json
 .\.venv\Scripts\python.exe -m scripts.evaluate --model-dir models/pilot
-.\.venv\Scripts\python.exe -m scripts.train --config configs/train.json
-.\.venv\Scripts\python.exe -m scripts.evaluate --model-dir models/final
+# Current authorized run (do not start twice):
+.\.venv\Scripts\python.exe -m scripts.run_subset
 
 # CPU training override, much slower:
-.\.venv\Scripts\python.exe -m scripts.train --config configs/train.json --cpu
+.\.venv\Scripts\python.exe -m scripts.train --config configs/pilot.json --cpu
 # Resume: replace checkpoint-N with an existing saved directory:
-.\.venv\Scripts\python.exe -m scripts.train --config configs/train.json --resume checkpoints/full/checkpoint-N
+.\.venv\Scripts\python.exe -m scripts.train --config configs/subset12k.json --resume checkpoints/subset12k/checkpoint-N
 ```
 
 A zero size in configuration means the full split. Subsets preserve the answerability ratio with seed 42;
 exact counts and fingerprints are recorded. Train and validation remain separate. Questions are capped at 64
 tokens; contexts are never silently cut. Windows use 384 tokens and overlap 128; answers outside a window
 use CLS supervision. All encoder weights and the newly initialized QA head are trained.
-The full schedule is 3 epochs, learning rate 3e-5, linear decay, 10% warmup, weight decay .01,
-per-device batch 4 and accumulation 4 (effective batch 16 on one GPU).
+The current schedule is 2 epochs on 12,000 examples, learning rate 3e-5, linear decay, 10% warmup, weight decay .01,
+FP32 batch 16 and accumulation 1. Dynamic padding and length grouping remove padded computation without cutting real tokens.
 
-The best checkpoint is selected by validation loss. Calibration uses a reproducible half of validation and
-reports the other half separately. That half is held out from **threshold fitting**, not from model selection.
-Metrics on small subsets are uncertain. Compare answerable F1 and abstention performance separately.
-A larger training/validation run is necessary before claiming competitive performance.
+The best checkpoint is selected on 512 validation examples. A separate 512-example partition calibrates
+abstention; 1,024 different examples provide independent final scores. The pipeline preserves all IDs to verify
+separation. Old pilot evidence used a different split and remains labeled historical. Public samples are excluded
+from all learning decisions. No automatic extension to more examples or epochs is allowed.
 
 After downloading once, avoid redundant network access:
 
@@ -101,13 +101,13 @@ Retraining invalidates previous calibration. Never copy a threshold from a diffe
 
 ## Start the actual service
 
-Do not use `models/smoke` for the professor's evaluation. Use `models/final` after training and calibration.
+Do not use `models/smoke` for the professor's evaluation. Use `models/subset12k` after training and calibration.
 Set the registered team ID and request the instructor's development token. Do not paste tokens into source files,
 chat, logs or tracked files. This project does not automatically read `.env`.
 
 ```powershell
 $env:TEAM_ID = 'Pimientero'
-$env:MODEL_DIR = (Resolve-Path 'models/final').Path
+$env:MODEL_DIR = (Resolve-Path 'models/subset12k').Path
 $env:TORCH_NUM_THREADS = '4'
 $secret = Read-Host 'Instructor API token' -AsSecureString
 $env:QA_API_TOKEN = [System.Net.NetworkCredential]::new('', $secret).Password
@@ -188,8 +188,11 @@ A commit cannot contain its own hash without changing the hash. Record the final
 or resolve `submission^{commit}`; do not fabricate a self-referential hash in REPORT.md.
 The user authorized publication of development progress to the official repository. The final submission tag remains withheld until validation is complete.
 
-## Team and full run in progress
+## Team and current 12k run
 
 Team: **Pimientero**. Members and official repository are recorded in `configs/team.json` and REPORT.md.
-A full-data background job is running. Read `docs/STATUS.md` before launching another training process.
-The job writes `logs/final/job.json`; model weights and live console logs are not published.
+The full-data job was stopped. A 12,000-example, two-epoch background job is running. Read `docs/STATUS.md` before launching another training process.
+The job writes `logs/subset12k/job.json`; model weights and live console logs are not published.
+
+The pre-run estimate and FP32/FP16 batch benchmarks are in `logs/subset12k/`. To stop safely or resume, follow
+`docs/STATUS.md`. Do not use the historical `run_full.py` workflow; it has been superseded by `run_subset.py`.
