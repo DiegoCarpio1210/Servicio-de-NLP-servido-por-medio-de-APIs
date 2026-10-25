@@ -1,0 +1,9 @@
+{
+  "team": "Pimientero",
+  "model": "distilbert/distilbert-base-uncased",
+  "params": 66364418,
+  "max_seq_length": 384,
+  "doc_stride": 128,
+  "checkpoint_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
+  "training_steps": 1522
+}

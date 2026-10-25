@@ -7,7 +7,7 @@ from pathlib import Path
 
 def main():
     checks=[]
-    def record(name,passed,detail): checks.append({'requirement':name,'status':'PASSED' if passed else 'PENDING','detail':detail})
+    def record(name,passed,detail,failure_status='PENDING'): checks.append({'requirement':name,'status':'PASSED' if passed else failure_status,'detail':detail})
     expected=re.findall(r'^## [0-9]\..*$',Path('originals/REPORT_TEMPLATE.md').read_text(encoding='utf-8'),re.M)
     report=Path('REPORT.md').read_text(encoding='utf-8')
     headings=re.findall(r'^## [0-9]\..*$',report,re.M)
@@ -29,9 +29,11 @@ def main():
     record('Multiple authentic commits',count>=2,str(count))
     candidate=json.loads(Path('configs/candidate.json').read_text()) if Path('configs/candidate.json').exists() else {}
     record('Calibrated current candidate exists',bool(candidate) and (Path(candidate['model_dir'])/'calibration.json').exists(),'Current 12k candidate; full data is not required by the assignment')
-    record('Candidate quality heuristic',candidate.get('decision')=='provisional_candidate','Independent-validation heuristic, not a guaranteed grade')
-    record('Required team/repository/tunnel facts complete','PENDING' not in report,'Replace only with verified facts')
-    record('External HTTPS evidence',Path('logs/latency-tunnel.json').exists(),'Run from another network and inspect results')
+    record('Optional engineering quality target',candidate.get('decision')=='provisional_candidate','Independent-validation heuristic, not a mandatory professor cutoff','FAILED')
+    record('Final submission fields complete','PENDING' not in report,'Submission tag and instructor dry-run URL intentionally pending')
+    tunnel=Path('logs/subset12k/tunnel-summary.json')
+    record('Candidate HTTPS round trip from this host',tunnel.exists() and json.loads(tunnel.read_text()).get('timeout_budget_pass',False),'Temporary authorized tunnel, same trained checkpoint')
+    record('Independent-network rehearsal',Path('logs/external_network_verification.json').exists(),'Different network and instructor rehearsal remain manual')
     Path('logs/audit.json').write_text(json.dumps(checks,indent=2))
     print(json.dumps(checks,indent=2))
     return 0 if all(c['status']=='PASSED' for c in checks) else 1

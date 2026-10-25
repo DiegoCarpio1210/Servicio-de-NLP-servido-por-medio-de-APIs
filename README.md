@@ -2,8 +2,8 @@
 
 University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
 No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
-**Status: 12,000-example / two-epoch training is running; NOT yet a final academic submission.**
-See `docs/STATUS.md` for measured results and remaining gates. Never present smoke or pilot accuracy as full training.
+**Status: 12,000-example / two-epoch model evaluated. EM 52.34%, F1 53.40%, public 3/5. NOT yet ready for submission.**
+See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
 
 ## Repository map
 
@@ -191,8 +191,16 @@ The user authorized publication of development progress to the official reposito
 ## Team and current 12k run
 
 Team: **Pimientero**. Members and official repository are recorded in `configs/team.json` and REPORT.md.
-The full-data job was stopped. A 12,000-example, two-epoch background job is running. Read `docs/STATUS.md` before launching another training process.
+The full-data job was stopped. The 12,000-example, two-epoch job completed; measured results are in logs/subset12k/summary.json. Read `docs/STATUS.md` before launching another training process.
 The job writes `logs/subset12k/job.json`; model weights and live console logs are not published.
 
 The pre-run estimate and FP32/FP16 batch benchmarks are in `logs/subset12k/`. To stop safely or resume, follow
 `docs/STATUS.md`. Do not use the historical `run_full.py` workflow; it has been superseded by `run_subset.py`.
+
+## Completed-model verification
+
+`python -m scripts.verify_completed` checks weight identity, all saved calibration/holdout metrics and 32 fresh
+predictions. `python -m scripts.verify_local --model-dir models/subset12k --repeat 10` verifies real HTTP behavior
+and timing. `/info` adds `checkpoint_sha256` and `training_steps` to prove the loaded artifact; the original YAML
+allows extra response fields. Public evaluation exits 1 when answers are wrong even if the API contract passes.
+The independent evaluation already completed; do not retrain merely to start or verify this service.

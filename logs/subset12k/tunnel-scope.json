@@ -1,0 +1,6 @@
+{
+  "scope": "HTTPS round trip from the same host; separate network NOT tested",
+  "temporary_url": "https://nuclear-jimmy-serving-contractor.trycloudflare.com",
+  "evaluation_returncode": 1,
+  "tunnel_stopped_after_test": true
+}

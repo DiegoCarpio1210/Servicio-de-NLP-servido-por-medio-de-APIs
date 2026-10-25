@@ -1,0 +1,11 @@
+{
+  "requests": 50,
+  "contract_valid": 50,
+  "mean_seconds": 0.3973110400000951,
+  "max_seconds": 0.7222758999996586,
+  "total_seconds": 20.4713425000009,
+  "timeout_budget_pass": true,
+  "checkpoint_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
+  "scope": "HTTPS round trip from this host; separate-network test remains pending",
+  "tunnel_closed_after_test": true
+}

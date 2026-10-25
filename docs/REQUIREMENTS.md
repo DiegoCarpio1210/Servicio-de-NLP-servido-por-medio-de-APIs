@@ -1,5 +1,7 @@
 # Requirements and acceptance inventory
 
+Historical planning inventory. The current exhaustive review is [COMPLIANCE.md](COMPLIANCE.md).
+
 Authority: original OpenAPI > PDF summary; original report headings are immutable.
 All 12 PDF pages (I-XV), four ZIP entries and master prompt were read. ZIP CRC integrity passed.
 Original files remain unchanged. No public case may enter training or calibration.
