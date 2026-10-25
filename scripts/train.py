@@ -5,9 +5,24 @@ import platform
 import time
 from pathlib import Path
 import torch
-from transformers import AutoTokenizer, AutoModelForQuestionAnswering, Trainer, TrainingArguments, set_seed
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering, Trainer, TrainerCallback, TrainingArguments, set_seed
 from qa.data import load_splits, stats
 from qa.features import training_features
+
+
+class EvidenceCallback(TrainerCallback):
+    def __init__(self, logdir):
+        self.logdir=logdir
+        self.logdir.mkdir(parents=True,exist_ok=True)
+
+    def on_log(self, args, state, control, **kwargs):
+        (self.logdir/'history_live.json').write_text(json.dumps(state.log_history,indent=2))
+
+    def on_step_end(self, args, state, control, **kwargs):
+        # Preserve resumable state even during long epochs; latest two checkpoints are retained.
+        if state.global_step % 500 == 0:
+            control.should_save=True
+        return control
 
 
 def main():
@@ -36,7 +51,8 @@ def main():
         seed=c['seed'], data_seed=c['seed'], fp16=gpu, use_cpu=not gpu,
         report_to='none', dataloader_num_workers=0, max_steps=c['max_steps'])
     trainer = Trainer(model=model, args=training_args, train_dataset=encoded['train'],
-                      eval_dataset=encoded['validation'], processing_class=tokenizer)
+                      eval_dataset=encoded['validation'], processing_class=tokenizer,
+                      callbacks=[EvidenceCallback(Path('logs')/Path(c['model_dir']).name)])
     started = time.perf_counter()
     trainer.train(resume_from_checkpoint=args.resume)
     elapsed = time.perf_counter()-started

@@ -106,7 +106,7 @@ Set the registered team ID and request the instructor's development token. Do no
 chat, logs or tracked files. This project does not automatically read `.env`.
 
 ```powershell
-$env:TEAM_ID = 'REPLACE_WITH_REGISTERED_TEAM_ID'
+$env:TEAM_ID = 'Pimientero'
 $env:MODEL_DIR = (Resolve-Path 'models/final').Path
 $env:TORCH_NUM_THREADS = '4'
 $secret = Read-Host 'Instructor API token' -AsSecureString
@@ -156,8 +156,8 @@ cloudflared tunnel --url http://localhost:8000
 
 Copy the printed HTTPS URL. Repeat all five curl tests and the HTTP evaluator against that URL **from another
 network** (e.g. mobile tethering). Do not add interactive authentication that would block the professor's harness.
-Measure the full round trip: <5 seconds each, <150 seconds for 50 sequential requests. Both tunnel clients and
-an external network test remain manual gates until recorded. A Quick Tunnel URL changes when restarted.
+Measure the full round trip: <5 seconds each, <150 seconds for 50 sequential requests. Cloudflare was installed and measured through HTTPS from this host; ngrok and
+an independent-network test remain manual gates. A Quick Tunnel URL changes when restarted.
 Send the current URL to the instructor before the dry run and presentation; resend after changes.
 Keep the laptop on AC, disable sleep through Windows power settings for the session, and leave server and tunnel
 running. Do not deploy the model to cloud hosting. If both tunnels fail, ask the instructor about the documented
@@ -179,11 +179,17 @@ git commit -m "Record validated final training, API and tunnel results"
 git rev-parse HEAD
 git tag submission
 # Only after choosing and authorizing your remote:
-git remote add origin YOUR_REPOSITORY_URL
+git remote add origin https://github.com/DiegoCarpio1210/Servicio-de-NLP-servido-por-medio-de-APIs.git
 git push -u origin main
 git push origin submission
 ```
 
 A commit cannot contain its own hash without changing the hash. Record the final reviewed hash in the handoff
 or resolve `submission^{commit}`; do not fabricate a self-referential hash in REPORT.md.
-No remote push or final tag is performed automatically while factual or validation gates remain open.
+The user authorized publication of development progress to the official repository. The final submission tag remains withheld until validation is complete.
+
+## Team and full run in progress
+
+Team: **Pimientero**. Members and official repository are recorded in `configs/team.json` and REPORT.md.
+A full-data background job is running. Read `docs/STATUS.md` before launching another training process.
+The job writes `logs/final/job.json`; model weights and live console logs are not published.

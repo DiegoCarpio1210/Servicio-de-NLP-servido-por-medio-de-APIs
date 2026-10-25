@@ -1,0 +1,42 @@
+[
+  {
+    "requirement": "Report headings 0-9 unchanged and ordered",
+    "status": "PASSED",
+    "detail": "['## 0. Team', '## 1. Model choice and justification', '## 2. Training', '## 3. No-answer threshold', '## 4. Serving architecture', '## 5. Results on the public sample set', '## 6. Model size and latency (not graded)', '## 7. Problems encountered and how you fixed them', '## 8. Decoder investigation', '## 9. Known limitations']"
+  },
+  {
+    "requirement": "Every report section populated",
+    "status": "PASSED",
+    "detail": "Draft content is not final evidence"
+  },
+  {
+    "requirement": "No tracked weights, private env, cache or dataset",
+    "status": "PASSED",
+    "detail": "[]"
+  },
+  {
+    "requirement": "No literal API token assignments in tracked text",
+    "status": "PASSED",
+    "detail": "[]"
+  },
+  {
+    "requirement": "Multiple authentic commits",
+    "status": "PASSED",
+    "detail": "2"
+  },
+  {
+    "requirement": "Final calibrated model exists",
+    "status": "PENDING",
+    "detail": "Pilot does not satisfy the final-quality gate"
+  },
+  {
+    "requirement": "Required team/repository/tunnel facts complete",
+    "status": "PENDING",
+    "detail": "Replace only with verified facts"
+  },
+  {
+    "requirement": "External HTTPS evidence",
+    "status": "PENDING",
+    "detail": "Run from another network and inspect results"
+  }
+]

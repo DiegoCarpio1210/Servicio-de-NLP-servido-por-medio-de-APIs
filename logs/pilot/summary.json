@@ -1,0 +1,17 @@
+{
+  "model": "pilot",
+  "requests": 50,
+  "mean_seconds": 0.34507145802490413,
+  "max_seconds": 0.9295632997527719,
+  "total_seconds": 18.059648899827152,
+  "timeout_budget_pass": true,
+  "correct": 20,
+  "model_disk_bytes": 266435264,
+  "hardware": {
+    "gpu": "Quadro P1000",
+    "vram_gib": 4,
+    "ram_gib": 31.72,
+    "cpu": "Intel family 6 model 158 stepping 10"
+  },
+  "quality_warning": "Undertrained; not suitable for final assessment"
+}

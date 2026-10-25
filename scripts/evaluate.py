@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from qa.data import load_splits, subset
 from qa.inference import Engine
-from qa.metrics import summarize
+from qa.metrics import summarize, threshold_sweep
 
 
 def main():
@@ -23,10 +23,7 @@ def main():
         if (i+1)%50==0: print(f'Evaluated {i+1}/{len(ds)}',flush=True)
     cal=[r for r in rows if r['calibration']]; held=[r for r in rows if not r['calibration']]
     if not cal or not held: raise ValueError('Need at least two validation examples')
-    margins=sorted(set(r['margin'] for r in cal))
-    thresholds=[margins[0]-1]+margins
-    # Small calibration splits use an exact threshold sweep; no public examples.
-    results=[{'threshold':t,**summarize(cal,t)['all']} for t in thresholds]
+    results=threshold_sweep(cal)
     best=max(results,key=lambda r:(r['F1'],r['EM'],-abs(r['threshold'])))
     result={'threshold':best['threshold'],'criterion':'calibration F1, EM tie-break',
             'calibration':summarize(cal,best['threshold']), 'held_out':summarize(held,best['threshold']),

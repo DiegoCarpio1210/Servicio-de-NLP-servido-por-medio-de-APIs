@@ -12,3 +12,15 @@ __pycache__/
 *.pt
 *.pth
 /logs/**/*predictions*.json
+/tools/
+/logs/*_execution.txt
+/logs/full_launcher*
+/logs/**/server.txt
+/logs/**/tunnel-server.txt
+/logs/**/tunnel-client.txt
+/logs/final/job.json
+/logs/final/history_live.json
+/logs/final/*_execution.txt
+/tmp/
+*.tmp
+*.log

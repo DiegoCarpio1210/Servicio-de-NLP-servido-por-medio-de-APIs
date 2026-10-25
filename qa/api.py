@@ -19,7 +19,7 @@ class PredictRequest(BaseModel):
 
 def create_app(loader=None):
     token = os.getenv("QA_API_TOKEN", "")
-    team = os.getenv("TEAM_ID", "")
+    team = os.getenv("TEAM_ID", "Pimientero")
     def default_loader():
         from qa.inference import Engine
         if not token or not team or any(c.isspace() for c in team):

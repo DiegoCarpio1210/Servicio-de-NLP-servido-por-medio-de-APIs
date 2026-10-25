@@ -1,0 +1,11 @@
+{
+  "requests": 50,
+  "mean_seconds": 0.6270392540283501,
+  "max_seconds": 1.1453686002641916,
+  "total_seconds": 32.212004400324076,
+  "timeout_budget_pass": true,
+  "contract_valid": 50,
+  "correct": 20,
+  "scope": "same-host HTTPS round trip; NOT independent-network rehearsal",
+  "tunnel": "cloudflared 2026.10.3 HTTP/2; stopped after testing"
+}

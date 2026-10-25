@@ -1,0 +1,658 @@
+{
+  "url": "http://127.0.0.1:8000",
+  "elapsed_seconds": 18.059648899827152,
+  "rows": [
+    {
+      "id": "sample-01",
+      "cycle": 0,
+      "seconds": 0.5464071002788842,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 0,
+      "seconds": 0.30941669968888164,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 0,
+      "seconds": 0.34510029992088675,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 0,
+      "seconds": 0.31595540000125766,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 0,
+      "seconds": 0.8204826000146568,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 1,
+      "seconds": 0.27130919974297285,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 1,
+      "seconds": 0.24619120033457875,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 1,
+      "seconds": 0.21646030014380813,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 1,
+      "seconds": 0.3111848998814821,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 1,
+      "seconds": 0.9295632997527719,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 2,
+      "seconds": 0.422399100381881,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 2,
+      "seconds": 0.47246430022642016,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 2,
+      "seconds": 0.268178700003773,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 2,
+      "seconds": 0.21019239956513047,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 2,
+      "seconds": 0.6450627003796399,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 3,
+      "seconds": 0.19944520015269518,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 3,
+      "seconds": 0.2617828999646008,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 3,
+      "seconds": 0.20113230030983686,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 3,
+      "seconds": 0.23421949986368418,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 3,
+      "seconds": 0.6804961999878287,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 4,
+      "seconds": 0.219503799919039,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 4,
+      "seconds": 0.23633639980107546,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 4,
+      "seconds": 0.24959579994902015,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 4,
+      "seconds": 0.18566720001399517,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 4,
+      "seconds": 0.61526869982481,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 5,
+      "seconds": 0.22054889984428883,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 5,
+      "seconds": 0.22401419980451465,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 5,
+      "seconds": 0.22894870024174452,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 5,
+      "seconds": 0.22863999987021089,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 5,
+      "seconds": 0.5858539999462664,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 6,
+      "seconds": 0.2509147999808192,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 6,
+      "seconds": 0.229487800039351,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 6,
+      "seconds": 0.2713925000280142,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 6,
+      "seconds": 0.21629750030115247,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 6,
+      "seconds": 0.6891423002816737,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 7,
+      "seconds": 0.21369290025904775,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 7,
+      "seconds": 0.21310260007157922,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 7,
+      "seconds": 0.2030996000394225,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 7,
+      "seconds": 0.28438480012118816,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 7,
+      "seconds": 0.602112099993974,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 8,
+      "seconds": 0.28748359996825457,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 8,
+      "seconds": 0.2552296002395451,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 8,
+      "seconds": 0.22158430004492402,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 8,
+      "seconds": 0.23069419991225004,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 8,
+      "seconds": 0.6618535001762211,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-01",
+      "cycle": 9,
+      "seconds": 0.23060959996655583,
+      "response": {
+        "id": "sample-01",
+        "answer": null,
+        "start": null,
+        "score": 0.8411197863516591
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-02",
+      "cycle": 9,
+      "seconds": 0.21255529997870326,
+      "response": {
+        "id": "sample-02",
+        "answer": null,
+        "start": null,
+        "score": 0.8066710132999043
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-03",
+      "cycle": 9,
+      "seconds": 0.20741689996793866,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9406561345216643
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 9,
+      "seconds": 0.20844110008329153,
+      "response": {
+        "id": "sample-04",
+        "answer": null,
+        "start": null,
+        "score": 0.9283591845077698
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-05",
+      "cycle": 9,
+      "seconds": 0.6622558999806643,
+      "response": {
+        "id": "sample-05",
+        "answer": null,
+        "start": null,
+        "score": 0.9331848497600682
+      },
+      "contract_valid": true,
+      "correct": false
+    }
+  ],
+  "all_correct": false,
+  "timeout_budget_pass": true
+}

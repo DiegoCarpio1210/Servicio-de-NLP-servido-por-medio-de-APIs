@@ -28,3 +28,22 @@ def summarize(rows, threshold):
         output[group] = {'count': len(subset), 'EM': 100*sum(v[0] for v in values)/len(values) if values else None,
                          'F1': 100*sum(v[1] for v in values)/len(values) if values else None}
     return output
+
+
+def threshold_sweep(rows):
+    """Exact O(n log n) sweep: switch tied margins from null to span together."""
+    ordered=sorted(rows,key=lambda r:r['margin'])
+    if not ordered: raise ValueError('Empty calibration set')
+    totals=[0.,0.]
+    for r in ordered:
+        values=score('',r['references'])
+        for j in range(2): totals[j]+=values[j]
+    def snapshot(threshold):
+        return {'threshold':threshold,'count':len(rows),'EM':100*totals[0]/len(rows),'F1':100*totals[1]/len(rows)}
+    results=[snapshot(ordered[0]['margin']-1)]
+    for i,r in enumerate(ordered):
+        old=score('',r['references']); new=score(r['text'],r['references'])
+        for j in range(2): totals[j]+=new[j]-old[j]
+        if i+1==len(ordered) or ordered[i+1]['margin']!=r['margin']:
+            results.append(snapshot(r['margin']))
+    return results

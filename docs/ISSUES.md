@@ -4,7 +4,7 @@
    Reproduced in smoke evaluation and the first pilot launch. The smoke training had already downloaded the files.
    Fix: explicit offline mode (`scripts/offline.ps1`) and a persistent dataset snapshot (`scripts/prepare_data.py`, `qa/data.py`).
    Successful offline smoke evaluation is recorded in `logs/smoke/evaluation.json`.
-   Fix commit: PENDING next logical commit.
+   Fix commit: `06b6148`.
 2. The first PDF extraction wrote the text successfully but printing it failed with UnicodeEncodeError:
    Windows cp1252 cannot encode the approximation symbol in the professor's guide.
    Fix: read the saved UTF-8 extraction with PowerShell `Get-Content -Encoding UTF8`; all 12 pages were read.

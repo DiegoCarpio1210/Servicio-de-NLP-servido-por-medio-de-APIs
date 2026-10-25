@@ -1,0 +1,7 @@
+{
+  "team": "local-verification",
+  "model": "distilbert/distilbert-base-uncased",
+  "params": 66364418,
+  "max_seq_length": 384,
+  "doc_stride": 128
+}

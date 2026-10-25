@@ -28,3 +28,14 @@ def test_metrics():
     assert score('The cat.', ['cat'])==(1,1)
     assert score('',[])==(1,1)
     assert score('a cat dog',['cat'])==(0,2/3)
+
+
+def test_fast_threshold_sweep_matches_brute_force():
+    from qa.metrics import threshold_sweep,summarize
+    rows=[{'text':'cat','references':['cat'],'margin':1},
+          {'text':'cat dog','references':['cat'],'margin':1},
+          {'text':'x','references':[],'margin':2}]
+    for row in threshold_sweep(rows):
+        brute=summarize(rows,row['threshold'])['all']
+        assert row['EM']==pytest.approx(brute['EM'])
+        assert row['F1']==pytest.approx(brute['F1'])
