@@ -1,0 +1,8 @@
+{
+  "method": "Reconstructed historical pilot, smoke and strategy-smoke validation subsets from saved training metadata using the original stratified sampler; compared IDs and contexts against the reserved fresh 1024",
+  "pilot": {"id_overlap": 0, "context_overlap": 0},
+  "smoke": {"id_overlap": 0, "context_overlap": 0},
+  "strategy_smoke": {"id_overlap": 0, "context_overlap": 0},
+  "new_holdout_predictions_inspected": false,
+  "partition_changed": false
+}

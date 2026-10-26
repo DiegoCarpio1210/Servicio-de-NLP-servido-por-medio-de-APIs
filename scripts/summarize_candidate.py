@@ -5,6 +5,8 @@ from qa.metrics import prior_weighted_metrics
 
 
 def main():
+    if Path('logs/continued20k/plan.json').exists():
+        raise RuntimeError('Historical 12k report writer is superseded by the continuation experiment; refusing to overwrite its candidate/report')
     root=Path('logs/subset12k')
     m=json.loads((root/'training_metadata.json').read_text())
     e=json.loads((root/'evaluation.json').read_text())

@@ -28,11 +28,22 @@ def main():
     count=int(subprocess.check_output(['git','rev-list','--count','HEAD'],text=True))
     record('Multiple authentic commits',count>=2,str(count))
     candidate=json.loads(Path('configs/candidate.json').read_text()) if Path('configs/candidate.json').exists() else {}
-    record('Calibrated current candidate exists',bool(candidate) and (Path(candidate['model_dir'])/'calibration.json').exists(),'Current 12k candidate; full data is not required by the assignment')
+    record('Calibrated current candidate exists',bool(candidate) and (Path(candidate['model_dir'])/'calibration.json').exists(),candidate.get('model_dir','No candidate'))
     record('Optional engineering quality target',candidate.get('decision')=='provisional_candidate','Independent-validation heuristic, not a mandatory professor cutoff','FAILED')
     record('Final submission fields complete','PENDING' not in report,'Submission tag and instructor dry-run URL intentionally pending')
     tunnel=Path('logs/subset12k/tunnel-summary.json')
-    record('Candidate HTTPS round trip from this host',tunnel.exists() and json.loads(tunnel.read_text()).get('timeout_budget_pass',False),'Temporary authorized tunnel, same trained checkpoint')
+    import hashlib
+    tunnel_evidence=json.loads(tunnel.read_text()) if tunnel.exists() else {}
+    model_path=Path(candidate.get('model_dir','models/subset12k'))
+    digest=None
+    if (model_path/'model.safetensors').exists():
+        with (model_path/'model.safetensors').open('rb') as f: digest=hashlib.file_digest(f,'sha256').hexdigest()
+    calibration=json.loads((model_path/'calibration.json').read_text()) if (model_path/'calibration.json').exists() else {}
+    current_tunnel=(tunnel_evidence.get('timeout_budget_pass',False) and
+                    tunnel_evidence.get('checkpoint_sha256')==digest and
+                    tunnel_evidence.get('threshold')==calibration.get('threshold'))
+    record('Current candidate and threshold HTTPS round trip',current_tunnel,
+           'Historical previous-policy HTTPS test is retained; it does not verify a changed candidate/profile')
     record('Independent-network rehearsal',Path('logs/external_network_verification.json').exists(),'Different network and instructor rehearsal remain manual')
     Path('logs/audit.json').write_text(json.dumps(checks,indent=2))
     print(json.dumps(checks,indent=2))

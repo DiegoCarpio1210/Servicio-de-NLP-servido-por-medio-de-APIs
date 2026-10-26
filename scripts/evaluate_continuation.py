@@ -5,9 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 import time
+import numpy as np
 from datasets import load_from_disk
 from qa.inference import Engine
-from qa.metrics import prior_weighted_metrics, summarize, weighted_threshold_sweep
+from qa.metrics import prior_weighted_metrics, summarize, weighted_threshold_sweep, score
 
 ROOT=Path('logs/continued20k')
 
@@ -88,10 +89,22 @@ def evaluate():
         fresh=fresh_new if name=='continued' else fresh_base
         results[name]={'previously_consulted_holdout':metrics(rows,profile['threshold']),
                        'fresh_holdout':metrics(fresh,profile['threshold'])}
+    # Fixed paired uncertainty estimate, never used to change the frozen selection.
+    rng=np.random.default_rng(42); intervals={}
+    assert [r['id'] for r in fresh_base]==[r['id'] for r in fresh_new]
+    def em(row,threshold):
+        return score('' if row['margin']>threshold else row['text'],row['references'])[0]
+    for name in ('original','recalibrated'):
+        delta={flag:np.array([em(new,lock['profiles']['continued']['threshold'])-em(old,lock['profiles'][name]['threshold'])
+                             for old,new in zip(fresh_base,fresh_new) if bool(new['references'])==flag]) for flag in (True,False)}
+        samples=[100*(.75*rng.choice(delta[True],len(delta[True]),replace=True).mean()+
+                      .25*rng.choice(delta[False],len(delta[False]),replace=True).mean()) for _ in range(2000)]
+        intervals['continued_minus_'+name]=np.percentile(samples,[2.5,97.5]).tolist()
     assert lockpath.read_bytes()==locked_bytes
     result={'selected_before_final_evaluation':lock['selected'],'profiles':results,
             'lock_sha256':hashlib.sha256(locked_bytes).hexdigest(),'elapsed_seconds':time.time()-started,
             'old_holdout_previously_consulted':True,'fresh_holdout_previously_unused':True,
+            'fresh_weighted_EM_gain_95pct_bootstrap_intervals':intervals,
             'candidate_selection_not_revised_after_evaluation':True}
     dump(ROOT/'comparison.json',result)
     # Compatibility evidence for the existing HTTP verifier; no calibration is refitted here.
