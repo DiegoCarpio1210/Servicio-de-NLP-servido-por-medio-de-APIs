@@ -12,10 +12,12 @@ from qa.features import training_features, trim_training_padding
 
 
 class EvidenceCallback(TrainerCallback):
-    def __init__(self, logdir, save_steps=500):
+    def __init__(self, logdir, save_steps=500, max_seconds=None):
         self.logdir=logdir
         self.save_steps=save_steps
         self.stop_requested=False
+        self.max_seconds=max_seconds
+        self.started=time.monotonic()
         self.logdir.mkdir(parents=True,exist_ok=True)
 
     def on_log(self, args, state, control, **kwargs):
@@ -28,7 +30,7 @@ class EvidenceCallback(TrainerCallback):
         if state.max_steps and state.global_step >= state.max_steps:
             control.should_save=True
             control.should_evaluate=True
-        if (self.logdir/'STOP').exists():
+        if (self.logdir/'STOP').exists() or (self.max_seconds and time.monotonic()-self.started>=self.max_seconds):
             self.stop_requested=True
             control.should_save=True
             control.should_evaluate=True
@@ -59,8 +61,17 @@ def main():
         manifest={'train_ids':list(raw['train']['id']),**{k+'_ids':list(v['id']) for k,v in partitions.items()},
                   'train_stats':stats(raw['train']), 'validation_stats':{k:stats(v) for k,v in partitions.items()}}
         (logdir/'data_manifest.json').write_text(json.dumps(manifest,indent=2))
-    tokenizer = AutoTokenizer.from_pretrained(c['base_model'], use_fast=True, cache_dir='cache', revision=c.get('base_revision','main'))
-    model = AutoModelForQuestionAnswering.from_pretrained(c['base_model'], cache_dir='cache', revision=c.get('base_revision','main'))
+    if c.get('warm_start'):
+        import hashlib
+        source=Path(c['warm_start'])
+        with (source/'model.safetensors').open('rb') as f:
+            assert hashlib.file_digest(f,'sha256').hexdigest()==c['warm_start_sha256']
+        assert source.resolve()!=Path(c['model_dir']).resolve()
+        tokenizer=AutoTokenizer.from_pretrained(source,use_fast=True,local_files_only=True)
+        model=AutoModelForQuestionAnswering.from_pretrained(source,local_files_only=True)
+    else:
+        tokenizer = AutoTokenizer.from_pretrained(c['base_model'], use_fast=True, cache_dir='cache', revision=c.get('base_revision','main'))
+        model = AutoModelForQuestionAnswering.from_pretrained(c['base_model'], cache_dir='cache', revision=c.get('base_revision','main'))
     encoded = {k: ds.map(lambda x: training_features(x, tokenizer, c['max_seq_length'], c['doc_stride']),
                         batched=True, remove_columns=ds.column_names) for k, ds in raw.items()}
     if c.get('dynamic_padding'):
@@ -69,7 +80,7 @@ def main():
     if c.get('require_cuda') and not gpu:
         raise RuntimeError('CUDA required by this configuration; refusing silent CPU fallback')
     if gpu: torch.cuda.reset_peak_memory_stats()
-    callback=EvidenceCallback(logdir,c.get('save_steps',500))
+    callback=EvidenceCallback(logdir,c.get('save_steps',500),c.get('max_training_seconds'))
     training_args = TrainingArguments(output_dir=c['output_dir'], num_train_epochs=c['epochs'],
         learning_rate=c['learning_rate'], per_device_train_batch_size=c['batch_size'],
         per_device_eval_batch_size=c['batch_size'], gradient_accumulation_steps=c['gradient_accumulation_steps'],

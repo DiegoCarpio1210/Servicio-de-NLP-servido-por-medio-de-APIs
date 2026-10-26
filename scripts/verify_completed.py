@@ -3,7 +3,7 @@ import hashlib,json,random
 from pathlib import Path
 from qa.inference import Engine
 from qa.data import load_splits,validation_partitions
-from qa.metrics import summarize,threshold_sweep
+from qa.metrics import summarize,threshold_sweep,weighted_threshold_sweep
 
 
 def digest(path):
@@ -32,13 +32,18 @@ def main():
         assert row['references']==ex['answers']['text']
         if row['start'] is not None:
             assert ex['context'][row['start']:row['start']+len(row['text'])]==row['text']
-    sweep=threshold_sweep(cal)
-    best=max(sweep,key=lambda r:(r['F1'],r['EM'],-abs(r['threshold'])))
     e=json.loads((root/'evaluation.json').read_text())
+    if e.get('objective')=='teacher_em':
+        sweep=weighted_threshold_sweep(cal,e['answerable_prior'])
+        best=max(sweep,key=lambda r:(round(r['EM'],10),round(r['F1'],10),-abs(r['threshold']-e['old_threshold'])))
+    else:
+        sweep=threshold_sweep(cal)
+        best=max(sweep,key=lambda r:(r['F1'],r['EM'],-abs(r['threshold'])))
     assert best['threshold']==e['threshold']
     assert summarize(held,best['threshold'])==e['held_out']
     assert summarize(cal,best['threshold'])==e['calibration']
     engine=Engine(model)
+    assert engine.threshold==e['threshold']
     assert str(next(engine.model.parameters()).device)=='cpu' and engine.weights_sha256==weights
     sampled=random.Random(42).sample(rows,32)
     for row in sampled:

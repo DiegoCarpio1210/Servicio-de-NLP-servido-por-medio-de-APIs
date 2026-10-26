@@ -5,5 +5,7 @@
   "max_seq_length": 384,
   "doc_stride": 128,
   "checkpoint_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
-  "training_steps": 1522
+  "training_steps": 1522,
+  "no_answer_threshold": 1.7854061126708984,
+  "calibration_objective": "teacher_em"
 }

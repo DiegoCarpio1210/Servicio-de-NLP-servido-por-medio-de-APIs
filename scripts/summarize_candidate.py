@@ -1,6 +1,7 @@
 """Publish measured 12k evidence into the draft report; no synthetic or inferred scores."""
 import json,re,statistics
 from pathlib import Path
+from qa.metrics import prior_weighted_metrics
 
 
 def main():
@@ -31,7 +32,7 @@ def main():
              'decision_basis':'Engineering heuristic on independent validation only; not the professor grading formula. F1 >=60, answerable F1 >=50, unanswerable EM >=70.',
              'recommendation':recommendation,'additional_epoch_estimate_minutes':epoch_minutes,
              'fresh_20k_two_epoch_estimate_minutes':m['elapsed_seconds']/60*20000/12000,
-             'automatic_extension':False}
+             'automatic_extension':False,'calibration_objective':e.get('objective','balanced_f1'),'weighted_75_25':prior_weighted_metrics(held)}
     Path('configs/candidate.json').write_text(json.dumps({'model_dir':m['model_dir'],'decision':summary['decision'],'evidence':'logs/subset12k/summary.json','submission_ready':False},indent=2))
     (root/'summary.json').write_text(json.dumps(summary,indent=2))
     report=Path('REPORT.md').read_text(encoding='utf-8')
@@ -58,8 +59,9 @@ Holdout EM/F1: {held['all']['EM']:.2f}/{held['all']['F1']:.2f}; answerable EM/F1
 {held['answerable']['EM']:.2f}/{held['answerable']['F1']:.2f}; unanswerable EM/F1:
 {held['unanswerable']['EM']:.2f}/{held['unanswerable']['F1']:.2f}. The earlier full-data run was stopped before its first checkpoint;
 its logs and all pilot artifacts were preserved. No full-data completion is claimed.""")
+    objective_text='75/25 prior-weighted EM, with weighted F1 as a tie-break' if e.get('objective')=='teacher_em' else 'calibration F1, with EM as a tie-break'
     replace_section(3,f"""Return null when minimum window CLS start-plus-end minus the best valid span score exceeds
-**{e['threshold']:.8f}**. The exact sweep maximizes calibration F1, with EM as a tie-break.
+**{e['threshold']:.8f}**. The exact sweep maximizes {objective_text}.
 The 512 calibration examples are separate from checkpoint selection and the 1,024-example final holdout.
 Public cases are never used to fit the model or threshold. Lower thresholds increase abstention;
 higher thresholds increase unsupported-span risk. The threshold-sensitivity sweep is saved in evaluation.json.""")
@@ -101,7 +103,7 @@ No additional training or submission tag was created. See `logs/subset12k/summar
 """
     status=status.split(marker)[0]
     status=status.replace('- State: RUNNING.', '- State: COMPLETED (candidate still requires review).')
-    status=status.replace('| Full two-epoch 12k run | PENDING — RUNNING |', '| Full two-epoch 12k run | PASSED |')
+    status=status.replace('| Full two-epoch 12k run | PENDING â€” RUNNING |', '| Full two-epoch 12k run | PASSED |')
     status=status.replace('| Independent EM/F1 and subgroup accuracy | PENDING |', '| Independent EM/F1 and subgroup accuracy | MEASURED |')
     status=status.replace('| Candidate CPU latency/public five cases | PENDING |', '| Candidate CPU latency/public five cases | MEASURED |')
     status=status.rstrip()+'\n\n'+message

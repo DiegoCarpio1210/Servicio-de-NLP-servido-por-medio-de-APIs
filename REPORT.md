@@ -24,24 +24,24 @@ its quality still depends on sufficient training. Both encoder and newly initial
 
 | Item | Value |
 |---|---|
-| Training data (full SQuAD 2.0 train or subset; how many examples) | 12,000 SQuAD 2.0 train examples; 4005 unanswerable; seed 42 |
-| Validation data (what you validated on, how many examples) | 512 checkpoint selection, 512 calibration, 1,024 independent holdout; disjoint IDs |
+| Training data | 12,000 SQuAD 2.0 train examples; 4005 unanswerable; seed 42 |
+| Validation data | 512 checkpoint selection, 512 calibration, 1,024 independent holdout; disjoint IDs |
 | Epochs | 2; 1522 optimizer steps |
 | Learning rate and schedule (warmup?) | 3e-5; linear decay; 10% warmup; weight decay .01 |
 | Batch size | 16; accumulation 1; FP32; length-grouped dynamic padding |
-| `max_seq_length` / `doc_stride` | 384 / 128 |
-| Hardware and training time | Quadro P1000 4 GiB; 26m22s (1,582.52 seconds) |
+| max_seq_length / doc_stride | 384 / 128 |
+| Hardware and training time | Quadro P1000 4 GiB; 26.38 minutes |
 
-[Real loss curve](logs/subset12k/loss.png). Final checkpoint-selection loss: 1.7962. Logs and metadata: `logs/subset12k/`.
-Holdout EM/F1: 52.34/53.40; answerable EM/F1:
-25.05/27.17; unanswerable EM/F1:
-79.53/79.53. The earlier full-data run was stopped before its first checkpoint;
+[Real loss curve](logs/subset12k/loss.png). Logs and metadata: `logs/subset12k/`.
+Holdout EM/F1: 41.11/44.68; answerable EM/F1:
+48.73/55.88; unanswerable EM/F1:
+33.53/33.53. The earlier full-data run was stopped before its first checkpoint;
 its logs and all pilot artifacts were preserved. No full-data completion is claimed.
 
 ## 3. No-answer threshold
 
 Return null when minimum window CLS start-plus-end minus the best valid span score exceeds
-**-1.88344193**. The exact sweep maximizes calibration F1, with EM as a tie-break.
+**1.78540611**. The exact sweep maximizes 75/25 prior-weighted EM, with weighted F1 as a tie-break.
 The 512 calibration examples are separate from checkpoint selection and the 1,024-example final holdout.
 Public cases are never used to fit the model or threshold. Lower thresholds increase abstention;
 higher thresholds increase unsupported-span risk. The threshold-sensitivity sweep is saved in evaluation.json.
@@ -75,21 +75,20 @@ $env:MODEL_DIR = 'models/subset12k'
 | sample-04 | null | 10,000 times and the GPU memory requirement by 3 times | 263 | No |
 | sample-05 | 50,257 / 50,257 tokens | 50,257 | 3157 | Yes |
 
-Real HTTP result: 3/5. Cases 03 and 04 select superficially relevant numbers despite missing evidence; no public-answer tuning was performed. Full contexts, including the last window, were processed.
+Real HTTP result: 3/5. Wrong cases remain prediction failures; no public-answer tuning was performed. Full contexts, including the last window, were processed.
 
 ## 6. Model size and latency (not graded)
 
 | Item | Value |
 |---|---|
 | Parameters | 66,364,418 |
-| Size on disk | 254.19 MiB including tokenizer and metadata |
-| Mean latency per `/predict` request on your laptop (CPU) | 0.237 s |
-| Maximum CPU latency / 50 sequential requests | 0.559 s / 12.51 s |
+| Size on disk | 254.10 MiB including tokenizer and metadata |
+| Mean CPU latency | 0.295 s |
+| Maximum CPU latency / 50 sequential requests | 0.694 s / 15.32 s |
 | Laptop CPU and RAM | Intel family 6/model 158; 31.72 GiB |
 
-This repeats five cases ten times, not the hidden test. The same checkpoint completed 50 HTTPS calls in
-20.47 s (maximum 0.722 s) from this host. The temporary tunnel was closed.
-Independent-network rehearsal and instructor dry run remain PENDING.
+This repeats five cases ten times, not the hidden test. The previous-threshold HTTPS test took 20.47 seconds from this host. The adjusted policy has not been retested
+through HTTPS; an independent-network rehearsal remains PENDING.
 
 ## 7. Problems encountered and how you fixed them
 
@@ -111,8 +110,8 @@ implemented or benchmarked. Our current encoder already covers the long public c
 
 ## 9. Known limitations
 
-Consider one additional epoch on the same 12k examples before expanding the dataset. These are measured validation results, not a promised grade.
-An extra epoch is estimated at 13.2 minutes; no extension was started automatically.
+Recalibration raised 75/25 weighted EM from 38.52 to 44.93 but reduced impossible EM from 79.53 to 33.53.
+A subsequent user-authorized 20k continuation is in progress; its outcomes are pending. See docs/CONTINUATION_EXPERIMENT.md.
 Instructor dry run, backup tunnel and final report review remain PENDING. Questions are capped internally at
 64 tokens, answers at 30 tokens; confidence is not probability-calibrated. Training is English-only.
 Malformed inputs fail validation. The final submission tag has not been created.

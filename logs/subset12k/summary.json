@@ -6,31 +6,36 @@
   "validation": {
     "all": {
       "count": 1024,
-      "EM": 52.34375,
-      "F1": 53.40035522968657
+      "EM": 41.11328125,
+      "F1": 44.68226756728716
     },
     "answerable": {
       "count": 511,
-      "EM": 25.048923679060664,
-      "F1": 27.16626957964589
+      "EM": 48.7279843444227,
+      "F1": 55.879925614289725
     },
     "unanswerable": {
       "count": 513,
-      "EM": 79.53216374269006,
-      "F1": 79.53216374269006
+      "EM": 33.528265107212476,
+      "F1": 33.528265107212476
     }
   },
-  "threshold": -1.8834419250488281,
-  "cpu_latency_mean_seconds": 0.2369118339999477,
-  "cpu_latency_max_seconds": 0.5592254000002868,
-  "http_50_seconds": 12.514860100000078,
+  "threshold": 1.7854061126708984,
+  "cpu_latency_mean_seconds": 0.29543482599998244,
+  "cpu_latency_max_seconds": 0.6939019999990705,
+  "http_50_seconds": 15.315535600000658,
   "timeout_budget_pass": true,
   "public_correct_first_five": 3,
-  "model_disk_bytes": 266541369,
+  "model_disk_bytes": 266440021,
   "decision": "needs_improvement",
   "decision_basis": "Engineering heuristic on independent validation only; not the professor grading formula. F1 >=60, answerable F1 >=50, unanswerable EM >=70.",
   "recommendation": "Consider one additional epoch on the same 12k examples before expanding the dataset.",
   "additional_epoch_estimate_minutes": 13.187637532502412,
   "fresh_20k_two_epoch_estimate_minutes": 43.958791775008045,
-  "automatic_extension": false
+  "automatic_extension": false,
+  "calibration_objective": "teacher_em",
+  "weighted_75_25": {
+    "EM": 44.92805453512014,
+    "F1": 50.292010487520415
+  }
 }

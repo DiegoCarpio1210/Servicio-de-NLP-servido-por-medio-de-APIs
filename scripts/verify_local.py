@@ -34,6 +34,7 @@ def main():
                 info.raise_for_status()
                 with (Path(a.model_dir)/'model.safetensors').open('rb') as weights:
                     assert info.json()['checkpoint_sha256']==hashlib.file_digest(weights,'sha256').hexdigest()
+                assert info.json()['no_answer_threshold']==json.loads((Path(a.model_dir)/'calibration.json').read_text())['threshold']
                 assert info.json()['training_steps']==json.loads((Path(a.model_dir)/'training_metadata.json').read_text())['optimizer_steps']
                 (out/'info.json').write_text(json.dumps(info.json(),indent=2))
                 from scripts.http_contract_checks import check

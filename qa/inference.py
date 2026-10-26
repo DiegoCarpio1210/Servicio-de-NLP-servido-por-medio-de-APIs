@@ -1,5 +1,6 @@
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 from threading import Lock
@@ -22,7 +23,9 @@ class Engine:
         calibration = root / "calibration.json"
         if require_calibration and not calibration.exists():
             raise ValueError("Validation calibration is required before serving")
-        self.threshold = json.loads(calibration.read_text())["threshold"] if calibration.exists() else 0.
+        self.calibration = json.loads(calibration.read_text()) if calibration.exists() else {}
+        self.threshold = float(self.calibration.get('threshold',0.))
+        if not math.isfinite(self.threshold): raise ValueError('Calibration threshold must be finite')
         torch.set_num_threads(int(os.getenv("TORCH_NUM_THREADS", "4")))
         self.tokenizer = AutoTokenizer.from_pretrained(root, local_files_only=True, use_fast=True)
         self.model = AutoModelForQuestionAnswering.from_pretrained(root, local_files_only=True).to("cpu").eval()

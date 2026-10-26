@@ -16,14 +16,14 @@ are limited. The evaluated run uses 12,000 examples and two epochs. Our loss cur
 are saved in the repository. Unanswerable questions and windows without the answer are trained at the CLS
 position. Long contexts become overlapping windows rather than being cut off. We tune the abstention
 threshold using validation only, and report a separate threshold holdout. Our measured answerable F1 is
-27.17 percent, and our unanswerable F1 is 79.53 percent. The five public cases never enter training.
+55.88 percent, but unanswerable F1 fell to 33.53 percent after recalibration. Target-weighted EM rose to 44.93 percent; this trade-off motivates the authorized continuation experiment, whose results are pending. The five public cases never enter training.
 
 **1:30-2:20 — Service and access.**
 FastAPI validates the exact request schema. The model loads once, warms up, and runs on CPU with one server
 worker. Health reports loading until initialization succeeds. Protected routes require an exact, case-sensitive
 Bearer header, with the token read from the environment. For each request, we select a valid span across all
 windows, compare it with the null score, and slice the original context. That guarantees character offsets
-remain meaningful. Our HTTPS tunnel forwards requests to the laptop. Locally, the maximum was 0.559 seconds and fifty requests took 12.51 seconds. The same candidate took 20.47 seconds through HTTPS from this host. The instructor dry run is still pending.
+remain meaningful. Our HTTPS tunnel forwards requests to the laptop. Locally, the maximum was 0.694 seconds and fifty requests took 15.32 seconds. The previous threshold took 20.47 seconds through HTTPS from this host. The instructor dry run is still pending.
 
 **2:20-3:00 — Decoder investigation and limitations.**
 Our evaluated model answered three public cases correctly but failed both impossible questions, selecting

@@ -2,7 +2,7 @@
 
 University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
 No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
-**Status: 12,000-example / two-epoch model evaluated. EM 52.34%, F1 53.40%, public 3/5. NOT yet ready for submission.**
+**Status: 12,000-example / two-epoch model evaluated. Recalibrated EM 41.11%, F1 44.68%; 75/25 weighted EM 44.93%; public 3/5. NOT yet ready for submission.**
 See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
 
 ## Repository map

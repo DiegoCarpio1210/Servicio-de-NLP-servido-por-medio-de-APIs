@@ -69,9 +69,9 @@
       "passed": true,
       "response": {
         "id": "unicode",
-        "answer": null,
-        "start": null,
-        "score": 0.8219531064863341
+        "answer": "Paris",
+        "start": 12,
+        "score": 0.8946563348982773
       }
     },
     {
@@ -79,9 +79,9 @@
       "passed": true,
       "response": {
         "id": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
-        "answer": null,
-        "start": null,
-        "score": 0.7458277134807081
+        "answer": "English context",
+        "start": 1071,
+        "score": 0.9303686327184728
       }
     },
     {
@@ -91,7 +91,7 @@
         "id": "heldout-null",
         "answer": null,
         "start": null,
-        "score": 0.9323095786048421
+        "score": 0.9583951451142503
       }
     }
   ],

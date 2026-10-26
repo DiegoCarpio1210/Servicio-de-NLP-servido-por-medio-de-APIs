@@ -1,0 +1,71 @@
+{
+  "policy_commit": "759bcb3",
+  "evaluation_started_utc": "2026-10-25T22:40:59.713975+00:00",
+  "weights_unchanged": true,
+  "weights_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
+  "old_threshold": -1.8834419250488281,
+  "new_threshold": 1.7854061126708984,
+  "metric_version": "official SQuAD v2 normalized-empty-reference filtering",
+  "before": {
+    "all": {
+      "count": 1024,
+      "EM": 52.24609375,
+      "F1": 53.30269897968657
+    },
+    "answerable": {
+      "count": 511,
+      "EM": 24.853228962818005,
+      "F1": 26.970574863403225
+    },
+    "unanswerable": {
+      "count": 513,
+      "EM": 79.53216374269006,
+      "F1": 79.53216374269006
+    }
+  },
+  "after": {
+    "all": {
+      "count": 1024,
+      "EM": 41.11328125,
+      "F1": 44.68226756728716
+    },
+    "answerable": {
+      "count": 511,
+      "EM": 48.7279843444227,
+      "F1": 55.879925614289725
+    },
+    "unanswerable": {
+      "count": 513,
+      "EM": 33.528265107212476,
+      "F1": 33.528265107212476
+    }
+  },
+  "before_weighted_75_25": {
+    "EM": 38.52296265778602,
+    "F1": 40.11097208322494
+  },
+  "after_weighted_75_25": {
+    "EM": 44.92805453512014,
+    "F1": 50.292010487520415
+  },
+  "weighted_EM_delta_95_percent_bootstrap_interval": [
+    3.2741528478731086,
+    9.388787799025723
+  ],
+  "before_errors": {
+    "answerable_abstained": 341,
+    "answerable_answered": 170,
+    "unanswerable_correct_null": 408,
+    "unanswerable_false_span": 105
+  },
+  "after_errors": {
+    "answerable_abstained": 112,
+    "answerable_answered": 399,
+    "unanswerable_correct_null": 172,
+    "unanswerable_false_span": 341
+  },
+  "fresh_holdout_forward_matches": 32,
+  "evaluation_method": "Fixed post-adjustment evaluation using cached span logits/margins for all 1024 examples plus 32 fresh forwards. Span algorithm and weights unchanged.",
+  "held_out_used_for_selection": false,
+  "public_used_for_selection": false
+}

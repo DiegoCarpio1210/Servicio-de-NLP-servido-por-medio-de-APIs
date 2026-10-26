@@ -18,6 +18,16 @@ def subset(dataset, size, seed):
 def load_splits(config):
     snapshot = Path('data/squad_v2')
     raw = load_from_disk(str(snapshot)) if snapshot.exists() else load_dataset('rajpurkar/squad_v2', cache_dir='data/hf')
+    if config.get('data_manifest'):
+        import json
+        manifest=json.loads(Path(config['data_manifest']).read_text())
+        result={}
+        for split,key in (('train','train_ids'),('validation','selection_ids')):
+            lookup={item:i for i,item in enumerate(raw[split]['id'])}
+            ids=manifest[key]
+            if len(ids)!=len(set(ids)): raise ValueError('Duplicate manifest IDs')
+            result[split]=raw[split].select([lookup[item] for item in ids])
+        return result
     return {k: subset(raw[k], config[k+'_size'], config['seed']) for k in ('train','validation')}
 
 
