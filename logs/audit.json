@@ -22,7 +22,7 @@
   {
     "requirement": "Multiple authentic commits",
     "status": "PASSED",
-    "detail": "12"
+    "detail": "13"
   },
   {
     "requirement": "Calibrated current candidate exists",
@@ -47,6 +47,6 @@
   {
     "requirement": "Independent-network rehearsal",
     "status": "PENDING",
-    "detail": "Different network and instructor rehearsal remain manual"
+    "detail": "Requires successful current-model HTTPS evidence and explicit operator network declaration; file existence alone is insufficient"
   }
 ]

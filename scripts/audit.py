@@ -44,7 +44,15 @@ def main():
                     tunnel_evidence.get('threshold')==calibration.get('threshold'))
     record('Current candidate and threshold HTTPS round trip',current_tunnel,
            'Historical previous-policy HTTPS test is retained; it does not verify a changed candidate/profile')
-    record('Independent-network rehearsal',Path('logs/external_network_verification.json').exists(),'Different network and instructor rehearsal remain manual')
+    external_path=Path('logs/external_network_verification.json')
+    external=json.loads(external_path.read_text()) if external_path.exists() else {}
+    external_pass=(external.get('technical_pass') is True and external.get('preflight_pass') is True and
+                   external.get('https') is True and external.get('completed_requests')==50 and
+                   external.get('network_scope')=='operator declares another network' and
+                   external.get('info',{}).get('checkpoint_sha256')==digest and
+                   external.get('info',{}).get('no_answer_threshold')==calibration.get('threshold'))
+    record('Independent-network rehearsal',external_pass,
+           'Requires successful current-model HTTPS evidence and explicit operator network declaration; file existence alone is insufficient')
     Path('logs/audit.json').write_text(json.dumps(checks,indent=2))
     print(json.dumps(checks,indent=2))
     return 0 if all(c['status']=='PASSED' for c in checks) else 1

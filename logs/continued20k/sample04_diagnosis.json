@@ -1,0 +1,59 @@
+{
+  "id": "sample-04",
+  "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+  "device": "cpu",
+  "threshold": -0.98309326171875,
+  "context_characters": 464,
+  "windows": [
+    {
+      "active_tokens": 124,
+      "context_end": 464,
+      "cls_start_logit": 4.682481288909912,
+      "cls_end_logit": 5.177278518676758,
+      "null_score": 9.859760284423828,
+      "top_spans": [
+        {
+          "text": "10,000 times and the GPU memory requirement by 3 times",
+          "start": 263,
+          "end": 317,
+          "score": 11.989439964294434,
+          "tokens": 13
+        },
+        {
+          "text": "3 times",
+          "start": 310,
+          "end": 317,
+          "score": 11.961949348449707,
+          "tokens": 2
+        },
+        {
+          "text": "10,000",
+          "start": 263,
+          "end": 269,
+          "score": 11.73324966430664,
+          "tokens": 3
+        },
+        {
+          "text": "10,000 times",
+          "start": 263,
+          "end": 275,
+          "score": 11.680150032043457,
+          "tokens": 4
+        },
+        {
+          "text": "10,000 times and the GPU memory requirement by 3",
+          "start": 263,
+          "end": 311,
+          "score": 11.626301765441895,
+          "tokens": 12
+        }
+      ],
+      "all_logits_finite": true
+    }
+  ],
+  "margin": -2.1296796798706055,
+  "returns_null": false,
+  "offset_valid": true,
+  "diagnostic_only": true,
+  "weights_or_parameters_changed": false
+}

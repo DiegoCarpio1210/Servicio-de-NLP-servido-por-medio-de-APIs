@@ -74,3 +74,10 @@ All evidence paths below are repository-relative. The single authorized continua
 6. Rehearse the pitch and individual Q&A. After all gates pass, review the final report and authorize submission tagging.
 
 Dependency check: `pip check` passed in the existing venv. The instructions are provided for clean setup, but a second clean machine was not independently tested.
+
+Preparation evidence: `logs/continued20k/sample04_diagnosis.json` confirms the selected hash, CPU execution,
+full single-window coverage, finite logits and valid offsets. This diagnoses the public failure without fitting
+any parameter. `logs/rehearsal_tests.txt` records four mocked runner tests; 47 prior model/API tests and 19 real
+HTTP checks are reused unchanged. The new runner enforces per-request and global wall-clock deadlines;
+neither a mocked test nor a generated file is proof of real external connectivity. RUNBOOK_ES.md covers secure
+token entry, startup, explicitly authorized tunnels, external test, ngrok backup and shutdown.

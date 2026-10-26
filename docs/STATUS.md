@@ -17,3 +17,10 @@ Pending: instructor token entered locally, current-model HTTPS and another-netwo
 official dry run and active URL, authorized separate weight distribution, pitch/Q&A rehearsal and final review.
 The API test process was stopped after verification. Start it with the README commands and the candidate model path.
 No further training is authorized automatically. Submission is not declared complete.
+
+Preparation update: sample-04 was inspected once on CPU without changing weights/settings. Its entire context
+is present; a valid but semantically unsupported span outranks CLS. No general inference bug was demonstrated.
+See SAMPLE04_DIAGNOSIS.md. The original 47 tests and 19 real HTTP checks remain valid; four new mocked tests
+cover the rehearsal runner. This is not evidence of actual HTTPS or another-network execution.
+RUNBOOK_ES.md provides the team's operating steps; DEFENSE.md includes a plain-language explanation and
+four-member practice rotation. No public tunnel was opened and no additional training/evaluation sweep occurred.

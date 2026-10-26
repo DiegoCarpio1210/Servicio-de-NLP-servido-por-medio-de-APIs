@@ -1,5 +1,9 @@
 # Remaining human-operated rehearsal
 
+Concrete PowerShell steps for the team: [RUNBOOK_ES.md](RUNBOOK_ES.md).
+Use the new `scripts.rehearse` runner for HTTPS deadlines, schema/authentication checks and separate technical
+versus accuracy outcomes. The older evaluator below remains a historical command, not proof of a completed external test.
+
 The current candidate is models/continued20k, checkpoint-1600, threshold -0.98309326171875.
 Its 47 automated tests, 19 real HTTP checks and local 50-request timing passed. Public sample 04 is still wrong:
 the model extracts GPT-3 reduction quantities for a question about BERT-base. The public set is 4/5, not 5/5.

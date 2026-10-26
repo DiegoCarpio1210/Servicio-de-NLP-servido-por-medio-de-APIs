@@ -93,6 +93,8 @@ $env:MODEL_DIR = 'models/continued20k'
 | sample-05 | 50,257 / 50,257 tokens | 50,257 | 3157 | Yes |
 
 Real HTTP: 4/5. Sample 04 incorrectly extracts GPT-3 reduction figures for a BERT-base question: a semantic attribution error. Results were observed only after candidate locking; no case-specific fixes.
+Read-only logit inspection confirmed complete single-window coverage and valid offsets. The shorter runner-up
+span is also about GPT-3, so shortening extraction would not solve abstention. See docs/SAMPLE04_DIAGNOSIS.md.
 
 ## 6. Model size and latency (not graded)
 

@@ -4,7 +4,7 @@ Rehearsal target: roughly 360 words at 120 words/minute. Replace bracketed factu
 This is a rehearsal draft; report only the completed candidate metrics; do not present pending results as final.
 
 **0:00-0:40 — Model choice.**
-Our project exposes extractive question answering as an authenticated API. Given a paragraph and a question,
+Our service helps users inspect answers directly in their source paragraph, through an authenticated API. Given a paragraph and a question,
 we return an exact substring or null when the paragraph does not support an answer. We chose the base
 DistilBERT encoder and trained its question-answering head and encoder ourselves. Its six layers make it a
 practical candidate for CPU inference on our laptop. BERT-base has twelve layers and might improve quality,

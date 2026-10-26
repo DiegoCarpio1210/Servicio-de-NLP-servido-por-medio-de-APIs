@@ -208,6 +208,11 @@ The independent evaluation already completed; do not retrain merely to start or 
 
 ## Selected continuation: completed, do not retrain
 
+For step-by-step team operation, see [the Spanish runbook](docs/RUNBOOK_ES.md). The prepared HTTPS rehearsal
+is `python -m scripts.rehearse --url <HTTPS-URL> --output logs/external_network_verification.json`.
+Run it from the other network with `--external-network --network-note "actual device/network description"`;
+it prompts for the token without saving it. No current-model external rehearsal has been performed yet.
+
 The run used 20k examples (12k previous + 8k new), two additional epochs, 1e-5 learning rate and a fresh schedule.
 It took 42m59s. Exported checkpoint-1600 had the best selection loss; the run itself completed 2,534 steps.
 The original models/subset12k and its checkpoints remain intact. /info reports both step counts and the weight hash.
