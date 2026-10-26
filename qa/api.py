@@ -24,7 +24,7 @@ def create_app(loader=None):
         from qa.inference import Engine
         if not token or not team or any(c.isspace() for c in team):
             raise ValueError("Set QA_API_TOKEN and a registered TEAM_ID without spaces")
-        engine = Engine(os.getenv("MODEL_DIR", "models/subset12k"))
+        engine = Engine(os.getenv("MODEL_DIR", "models/continued20k"))
         engine.predict("Warmup context.", "What is this?")
         return engine
 

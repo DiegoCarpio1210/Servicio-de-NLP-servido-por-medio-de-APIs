@@ -2,7 +2,7 @@
 
 University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
 No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
-**Status: 12,000-example / two-epoch model evaluated. Recalibrated EM 41.11%, F1 44.68%; 75/25 weighted EM 44.93%; public 3/5. NOT yet ready for submission.**
+**Status: continued20k candidate evaluated on a fresh 1,024-example holdout: EM 53.61%, F1 56.18%, 75/25 weighted EM 43.73%; public 4/5. NOT yet ready for submission.**
 See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
 
 ## Repository map
@@ -68,7 +68,7 @@ No unmeasured memory or latency guarantee is made.
 # Historical pilot (retained for reproducibility):
 .\.venv\Scripts\python.exe -m scripts.train --config configs/pilot.json
 .\.venv\Scripts\python.exe -m scripts.evaluate --model-dir models/pilot
-# Current authorized run (do not start twice):
+# Historical completed 12k workflow; do not launch again:
 .\.venv\Scripts\python.exe -m scripts.run_subset
 
 # CPU training override, much slower:
@@ -101,13 +101,13 @@ Retraining invalidates previous calibration. Never copy a threshold from a diffe
 
 ## Start the actual service
 
-Do not use `models/smoke` for the professor's evaluation. Use `models/subset12k` after training and calibration.
+Do not use `models/smoke` for the professor's evaluation. Use the selected `models/continued20k` export; training and calibration are already complete.
 Set the registered team ID and request the instructor's development token. Do not paste tokens into source files,
 chat, logs or tracked files. This project does not automatically read `.env`.
 
 ```powershell
 $env:TEAM_ID = 'Pimientero'
-$env:MODEL_DIR = (Resolve-Path 'models/subset12k').Path
+$env:MODEL_DIR = (Resolve-Path 'models/continued20k').Path
 $env:TORCH_NUM_THREADS = '4'
 $secret = Read-Host 'Instructor API token' -AsSecureString
 $env:QA_API_TOKEN = [System.Net.NetworkCredential]::new('', $secret).Password
@@ -144,14 +144,14 @@ random token; it uses the registered team ID `Pimientero`. Historical pilot logs
 
 ## HTTPS tunnel and external rehearsal
 
-Install ngrok from its official installer and Cloudflare's cloudflared as the backup. Consult `docs/SOURCES.md`.
+Cloudflare is the installed primary tunnel; ngrok must still be installed and tested as backup. Consult `docs/SOURCES.md`.
 Authenticate ngrok using your account's authtoken in its official configuration flow; this is different from
 `QA_API_TOKEN`. Then, in another terminal:
 
 ```powershell
 ngrok http 8000
 # Backup, run separately:
-cloudflared tunnel --url http://localhost:8000
+.\tools\cloudflared.exe tunnel --url http://localhost:8000
 ```
 
 Copy the printed HTTPS URL. Repeat all five curl tests and the HTTP evaluator against that URL **from another
@@ -179,7 +179,7 @@ git commit -m "Record validated final training, API and tunnel results"
 git rev-parse HEAD
 git tag submission
 # Only after choosing and authorizing your remote:
-git remote add origin https://github.com/DiegoCarpio1210/Servicio-de-NLP-servido-por-medio-de-APIs.git
+git remote -v  # origin is already configured
 git push -u origin main
 git push origin submission
 ```
@@ -188,7 +188,7 @@ A commit cannot contain its own hash without changing the hash. Record the final
 or resolve `submission^{commit}`; do not fabricate a self-referential hash in REPORT.md.
 The user authorized publication of development progress to the official repository. The final submission tag remains withheld until validation is complete.
 
-## Team and current 12k run
+## Team and historical 12k run
 
 Team: **Pimientero**. Members and official repository are recorded in `configs/team.json` and REPORT.md.
 The full-data job was stopped. The 12,000-example, two-epoch job completed; measured results are in logs/subset12k/summary.json. Read `docs/STATUS.md` before launching another training process.
@@ -199,8 +199,23 @@ The pre-run estimate and FP32/FP16 batch benchmarks are in `logs/subset12k/`. To
 
 ## Completed-model verification
 
-`python -m scripts.verify_completed` checks weight identity, all saved calibration/holdout metrics and 32 fresh
-predictions. `python -m scripts.verify_local --model-dir models/subset12k --repeat 10` verifies real HTTP behavior
+`python -m scripts.verify_completed` is the historical 12k verifier. Current export identity was checked by
+`scripts.verify_continuation_artifacts`; results are saved under logs/continued20k.
+`python -m scripts.verify_local --model-dir models/continued20k --repeat 10` verifies real HTTP behavior
 and timing. `/info` adds `checkpoint_sha256` and `training_steps` to prove the loaded artifact; the original YAML
 allows extra response fields. Public evaluation exits 1 when answers are wrong even if the API contract passes.
 The independent evaluation already completed; do not retrain merely to start or verify this service.
+
+## Selected continuation: completed, do not retrain
+
+The run used 20k examples (12k previous + 8k new), two additional epochs, 1e-5 learning rate and a fresh schedule.
+It took 42m59s. Exported checkpoint-1600 had the best selection loss; the run itself completed 2,534 steps.
+The original models/subset12k and its checkpoints remain intact. /info reports both step counts and the weight hash.
+The threshold is -0.98309326171875, fitted only on 512 calibration examples with a 70% impossible-class floor.
+The candidate was locked in commit bac0cba before evaluating old and fresh holdouts. See
+docs/CONTINUATION_EXPERIMENT.md for the full comparison and its uncertainty. The fresh holdout is now observed;
+do not tune on it. Generic scripts.evaluate refuses this manifest-based experiment to avoid using selection data
+as calibration. Existing evaluation results are complete and do not need rerunning.
+
+No public tunnel was opened for this candidate. The old HTTPS test does not establish current-model network
+performance. Follow docs/FINAL_REHEARSAL.md for the remaining authorized human-operated rehearsal.

@@ -1,6 +1,6 @@
 # One authorized continuation experiment
 
-Status: training launched; results pending. Do not confuse the planned run with completed evidence.
+Status: the single authorized continuation completed. Measured results appear below.
 The user authorized exactly one controlled fine-tuning run in the 2026-10-26 request.
 
 ## Diagnosis and alternatives
@@ -66,3 +66,58 @@ job.json, history_live.json, runtime.json and training_execution.txt. The first 
 datasets, weights, checkpoints, process logs and prediction caches remain ignored.
 To request a safe stop, create logs/continued20k/STOP; the callback saves before exiting. Do not launch another
 training while job.json reports running. Any resumption needs review of the saved state and remaining time budget.
+
+## Completed results
+
+The run completed flag is True; actual epochs 2.000, 2534 steps, 42.98 minutes. Best checkpoint: checkpoints/continued20k\checkpoint-1600.
+
+Candidate fixed on calibration before final evaluation: **continued**. Fresh holdout comparison:
+
+| Profile | Overall EM | Overall F1 | Answerable EM | Answerable F1 | Impossible EM | 75/25 EM | 75/25 F1 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| original | 52.25 | 53.50 | 22.35 | 24.87 | 81.91 | 37.24 | 39.13 |
+| recalibrated | 37.70 | 41.94 | 47.65 | 56.17 | 27.82 | 42.69 | 49.08 |
+| continued | 53.61 | 56.18 | 33.92 | 39.08 | 73.15 | 43.73 | 47.60 |
+
+Public cases: 4/5. CPU 50 requests: 14.08s; max 0.632s. See comparison.json for the previously consulted holdout and paired bootstrap intervals. No configuration was adjusted from these final results.
+
+## Interpretation and previously consulted holdout
+
+The continued candidate was locked in commit bac0cba, before both final comparisons. On the fresh set,
+weighted EM gains 6.49 points over the original (paired bootstrap 95% interval 3.99–8.88).
+The gain over recalibrated is only 1.04 points (interval -1.70–3.68), so superiority on that average is not
+statistically established. The new candidate instead offers a much stronger correct-null rate: 73.15 vs 27.82,
+while answerable EM falls from 47.65 to 33.92 relative to the aggressive recalibration.
+Compared with original, answerable EM improves 22.35 -> 33.92 but impossible EM declines 81.91 -> 73.15.
+These trade-offs are explicit; no profile dominates every metric. We retain the candidate selected using the
+predeclared calibration safeguard, not merely because it is newest. Accuracy is still modest and does not
+justify a high-grade guarantee. The hidden test uses non-SQuAD texts and an unknown partial-credit judge.
+
+Separate historical holdout (1,024, already consulted; 511 answerable / 513 impossible):
+
+| Profile | EM | F1 | Answerable EM | Impossible EM | 75/25 EM |
+|---|---:|---:|---:|---:|---:|
+| original | 52.25 | 53.30 | 24.85 | 79.53 | 38.52 |
+| recalibrated | 41.11 | 44.68 | 48.73 | 33.53 | 44.93 |
+| continued | 56.05 | 57.58 | 36.01 | 76.02 | 46.01 |
+
+The fresh table above uses 510 answerable / 514 impossible examples and must not be mixed with this table.
+Historical baseline metrics were corrected for normalized-empty references before this experiment.
+
+## CPU measurements
+
+Same laptop and the same five public inputs repeated ten times; measurements were taken at different times.
+The first two measurements are reused evidence, not reruns. Differences do not establish an inference speedup.
+
+| Profile | Mean CPU request (s) | Maximum (s) | 50 HTTP requests (s) |
+|---|---:|---:|---:|
+| Original, historical | 0.237 | 0.559 | 12.51 |
+| Recalibrated, historical | 0.295 | 0.694 | 15.32 |
+| Continued, current | 0.271 | 0.632 | 14.08 |
+
+All meet the local 5s/request and 150s/50-request limits. Network timing for the new candidate remains unverified.
+47 automated tests and 19 real-model HTTP checks passed. One obsolete default-model assertion was updated
+from subset12k to continued20k; its initial failure is retained in pytest_initial.txt. Public result is 4/5:
+sample 04 still returns an unsupported GPT-3 quantity for a BERT-base question.
+Do not present the project as ready for the official dry run until this quality failure and operational gates
+have been reviewed. No more training, threshold changes or public-specific fixes were attempted.

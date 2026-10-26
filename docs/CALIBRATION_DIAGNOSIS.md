@@ -1,5 +1,8 @@
 # Calibration diagnosis and fixed-policy evaluation
 
+Historical phase: this document records the inference-only experiment. The subsequently authorized
+training continuation and current candidate are documented in CONTINUATION_EXPERIMENT.md and STATUS.md.
+
 No additional training was run. The encoder, QA head, span algorithm and checkpoint-1522 weights are unchanged.
 The active threshold is 1.7854061126708984, replacing -1.8834419250488281.
 This improves the stated 75% answerable target mix, but substantially reduces correct abstentions.

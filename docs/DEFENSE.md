@@ -26,6 +26,11 @@ Each member should open the named function, trace an example, and answer without
 | What failed in the smoke experiment? | Correct HTTP and offsets did not imply quality; answerable F1 was zero after only eight updates. |
 | Does a decoder fix a null-heavy model? | Not automatically; supervision and calibration are still needed, and generated answers require grounding. |
 | What is pending before submission? | Read docs/STATUS.md; never substitute expected results for actual measurements. |
+| Why does the exported model have fewer steps than the run? | Training completed 2,534 continuation steps, but selection loss was lowest at step 1,600. We export that checkpoint; /info distinguishes selected and run steps. |
+| Why a new holdout? | The old 1,024 scores had already been consulted. A fresh 1,024 excludes historical validation IDs and contexts; the candidate was fixed before its predictions were read. |
+| What does 75/25 weighting mean? | It is .75 times the answerable metric plus .25 times the impossible metric, assuming class-conditional performance transfers. It is not the professor's actual grade. |
+| Why constrain calibration? | Maximizing the target average alone severely reduced correct nulls. The continued model's threshold must first reach 70% impossible EM on calibration; this does not guarantee 70% on test. |
+| Why no LoRA? | Full fine-tuning already fits the 4 GiB GPU and time budget. Adapter savings do not establish better QA accuracy, and we avoided an unmeasured integration change. |
 
 Practice: locate each function, predict its output on a tiny example, then explain why a malicious or malformed
 request cannot bypass the authentication checks. Each member must understand training, API and inference,

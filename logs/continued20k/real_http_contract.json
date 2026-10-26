@@ -1,0 +1,99 @@
+{
+  "checks": [
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/info",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "exact_auth/predict",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "invalid_body",
+      "passed": true
+    },
+    {
+      "check": "malformed_json",
+      "passed": true
+    },
+    {
+      "check": "unicode",
+      "passed": true,
+      "response": {
+        "id": "unicode",
+        "answer": "Paris",
+        "start": 12,
+        "score": 0.5128627047397513
+      }
+    },
+    {
+      "check": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+      "passed": true,
+      "response": {
+        "id": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+        "answer": "English context",
+        "start": 1071,
+        "score": 0.9925338223515687
+      }
+    },
+    {
+      "check": "heldout-null",
+      "passed": true,
+      "response": {
+        "id": "heldout-null",
+        "answer": null,
+        "start": null,
+        "score": 0.9262127953269403
+      }
+    }
+  ],
+  "all_passed": true
+}

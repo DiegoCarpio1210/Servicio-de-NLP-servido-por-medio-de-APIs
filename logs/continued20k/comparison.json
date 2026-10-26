@@ -1,0 +1,164 @@
+{
+  "selected_before_final_evaluation": "continued",
+  "profiles": {
+    "original": {
+      "previously_consulted_holdout": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 52.24609375,
+            "F1": 53.30269897968657
+          },
+          "answerable": {
+            "count": 511,
+            "EM": 24.853228962818005,
+            "F1": 26.970574863403225
+          },
+          "unanswerable": {
+            "count": 513,
+            "EM": 79.53216374269006,
+            "F1": 79.53216374269006
+          }
+        },
+        "weighted_75_25": {
+          "EM": 38.52296265778602,
+          "F1": 40.11097208322494
+        }
+      },
+      "fresh_holdout": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 52.24609375,
+            "F1": 53.500142244397765
+          },
+          "answerable": {
+            "count": 510,
+            "EM": 22.352941176470587,
+            "F1": 24.87087383973197
+          },
+          "unanswerable": {
+            "count": 514,
+            "EM": 81.90661478599222,
+            "F1": 81.90661478599222
+          }
+        },
+        "weighted_75_25": {
+          "EM": 37.241359578851,
+          "F1": 39.129809076297036
+        }
+      }
+    },
+    "recalibrated": {
+      "previously_consulted_holdout": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 41.11328125,
+            "F1": 44.68226756728716
+          },
+          "answerable": {
+            "count": 511,
+            "EM": 48.7279843444227,
+            "F1": 55.879925614289725
+          },
+          "unanswerable": {
+            "count": 513,
+            "EM": 33.528265107212476,
+            "F1": 33.528265107212476
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.92805453512014,
+          "F1": 50.292010487520415
+        }
+      },
+      "fresh_holdout": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 37.6953125,
+            "F1": 41.94091155461003
+          },
+          "answerable": {
+            "count": 510,
+            "EM": 47.64705882352941,
+            "F1": 56.171555748864066
+          },
+          "unanswerable": {
+            "count": 514,
+            "EM": 27.82101167315175,
+            "F1": 27.82101167315175
+          }
+        },
+        "weighted_75_25": {
+          "EM": 42.690547035935,
+          "F1": 49.083919729935985
+        }
+      }
+    },
+    "continued": {
+      "previously_consulted_holdout": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 56.0546875,
+            "F1": 57.582304874095016
+          },
+          "answerable": {
+            "count": 511,
+            "EM": 36.007827788649706,
+            "F1": 39.069041469810756
+          },
+          "unanswerable": {
+            "count": 513,
+            "EM": 76.0233918128655,
+            "F1": 76.0233918128655
+          }
+        },
+        "weighted_75_25": {
+          "EM": 46.011718794703654,
+          "F1": 48.30762905557444
+        }
+      },
+      "fresh_holdout": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 53.61328125,
+            "F1": 56.18342205106609
+          },
+          "answerable": {
+            "count": 510,
+            "EM": 33.92156862745098,
+            "F1": 39.08200819665034
+          },
+          "unanswerable": {
+            "count": 514,
+            "EM": 73.15175097276264,
+            "F1": 73.15175097276264
+          }
+        },
+        "weighted_75_25": {
+          "EM": 43.7291142137789,
+          "F1": 47.599443890678415
+        }
+      }
+    }
+  },
+  "lock_sha256": "0f8d7181efc8c5fd6a67a5f6b33b2ab892a48db7930340d70314b4e46a2b0863",
+  "elapsed_seconds": 587.0531878471375,
+  "old_holdout_previously_consulted": true,
+  "fresh_holdout_previously_unused": true,
+  "fresh_weighted_EM_gain_95pct_bootstrap_intervals": {
+    "continued_minus_original": [
+      3.985594529640651,
+      8.883726253147174
+    ],
+    "continued_minus_recalibrated": [
+      -1.7046520943007548,
+      3.6833943694209204
+    ]
+  },
+  "candidate_selection_not_revised_after_evaluation": true
+}

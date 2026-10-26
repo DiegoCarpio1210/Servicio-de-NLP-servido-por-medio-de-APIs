@@ -19,6 +19,8 @@ def main():
     prior=args.answerable_prior if args.answerable_prior is not None else previous.get('answerable_prior',.75)
     engine=Engine(args.model_dir, require_calibration=False)
     config=engine.metadata.copy()
+    if config.get('data_manifest'):
+        raise ValueError('Manifest-based continuation uses scripts.evaluate_continuation; never split its checkpoint-selection data for calibration')
     config['validation_size']=args.limit or config['validation_size']
     ds=load_splits(config)['validation']
     if 'validation_partition' in config:

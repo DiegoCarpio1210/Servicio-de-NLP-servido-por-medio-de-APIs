@@ -13,3 +13,8 @@ Model and dataset cards inspected on 2026-10-25:
 - https://ngrok.com/docs/start (ngrok setup documentation).
 
 No results from these papers or model cards are reported as our measurements.
+
+Continuation and calibration methods:
+- https://github.com/rajpurkar/SQuAD-explorer/blob/master/evaluate-v2.0.py (official normalization and reference filtering).
+- https://github.com/huggingface/transformers/blob/v4.57.1/examples/pytorch/question-answering/utils_qa.py (window/span postprocessing).
+- https://huggingface.co/docs/peft/main/en/conceptual_guides/lora (adapter alternative considered, not implemented or benchmarked).

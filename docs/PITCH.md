@@ -12,22 +12,22 @@ but we have not measured that trade-off empirically. Our loaded QA model contain
 
 **0:40-1:30 — Training and evidence.**
 We use the official SQuAD 2.0 training split, with a fixed seed and representative sampling when resources
-are limited. The evaluated run uses 12,000 examples and two epochs. Our loss curve and validation metrics
+are limited. After 12,000 examples and two epochs, a 43-minute continuation added 8,000 new examples. Our loss curve and validation metrics
 are saved in the repository. Unanswerable questions and windows without the answer are trained at the CLS
 position. Long contexts become overlapping windows rather than being cut off. We tune the abstention
 threshold using validation only, and report a separate threshold holdout. Our measured answerable F1 is
-55.88 percent, but unanswerable F1 fell to 33.53 percent after recalibration. Target-weighted EM rose to 44.93 percent; this trade-off motivates the authorized continuation experiment, whose results are pending. The five public cases never enter training.
+39.08 percent, and impossible EM is 73.15 percent on a fresh 1,024-example holdout. Target-weighted EM is 43.73 percent. The selected checkpoint is step 1,600, preceding the run's final step 2,534. The five public cases never enter training.
 
 **1:30-2:20 — Service and access.**
 FastAPI validates the exact request schema. The model loads once, warms up, and runs on CPU with one server
 worker. Health reports loading until initialization succeeds. Protected routes require an exact, case-sensitive
 Bearer header, with the token read from the environment. For each request, we select a valid span across all
 windows, compare it with the null score, and slice the original context. That guarantees character offsets
-remain meaningful. Our HTTPS tunnel forwards requests to the laptop. Locally, the maximum was 0.694 seconds and fifty requests took 15.32 seconds. The previous threshold took 20.47 seconds through HTTPS from this host. The instructor dry run is still pending.
+remain meaningful. The tunnel forwards requests to the laptop. Locally, the maximum was 0.632 seconds and fifty requests took 14.08 seconds. Current-model HTTPS and the instructor dry run remain pending.
 
 **2:20-3:00 — Decoder investigation and limitations.**
-Our evaluated model answered three public cases correctly but failed both impossible questions, selecting
-numbers that did not support the requested facts. A working API does not establish model accuracy. A decoder
+Our candidate answered four public cases correctly but still extracts GPT-3 reduction figures for a BERT-base
+question. A working API does not establish model accuracy. A decoder
 could generate explanations or combine non-contiguous facts, but generated text may violate the exact-span
 contract. It would also require sequential generation and additional grounding checks. We therefore keep
 our encoder, document limitations honestly, and distinguish tested software behavior from measured model quality.

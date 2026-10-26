@@ -1,20 +1,19 @@
 # Current status — Pimientero
 
-One controlled continuation was authorized on 2026-10-26 and is running. No submission tag exists.
-See [CONTINUATION_EXPERIMENT.md](CONTINUATION_EXPERIMENT.md) for its frozen plan and recovery details.
+One continuation completed; no additional run or submission tag. Candidate: **continued**, `models/continued20k`.
+Selection was fixed on calibration before either final holdout was evaluated. All metrics below use the fresh 1,024.
 
-The completed recalibration experiment is documented in [CALIBRATION_DIAGNOSIS.md](CALIBRATION_DIAGNOSIS.md).
-Original 12k/two-epoch weights are preserved. With adjusted threshold 1.78540611, old holdout EM/F1 is
-41.11/44.68, answerable 48.73/55.88, impossible 33.53, and 75/25 weighted EM/F1 44.93/50.29.
-This improves the target-weighted objective but reduces correct abstentions. Public cases remain 3/5.
-46 tests and 19 real HTTP checks passed; 50 local requests took 15.32 seconds (maximum .694).
-Historical HTTPS timing 20.47 seconds used the previous threshold; independent-network verification is pending.
+| Profile | Overall EM | Overall F1 | Answerable EM | Answerable F1 | Impossible EM | 75/25 EM | 75/25 F1 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| original | 52.25 | 53.50 | 22.35 | 24.87 | 81.91 | 37.24 | 39.13 |
+| recalibrated | 37.70 | 41.94 | 47.65 | 56.17 | 27.82 | 42.69 | 49.08 |
+| continued | 53.61 | 56.18 | 33.92 | 39.08 | 73.15 | 43.73 | 47.60 |
 
-The continuation starts from the saved trained weights with a nested 20k sample, two additional epochs and
-1e-5 learning rate. Estimate 44–60 minutes; time guard at 55 minutes. Results are not yet available.
-Selection/calibration remain separate; a fresh 1,024-example test excludes historical validation contexts.
-Do not launch another run. Inspect logs/continued20k/job.json and history_live.json for actual progress.
+Public accuracy: 4/5. Fifty local CPU requests: 14.08s; maximum 0.632s.
+Training: original 26m22s plus continuation 42.98 minutes. Original weights are preserved.
+See CONTINUATION_EXPERIMENT.md, logs/continued20k/comparison.json and COMPLIANCE.md.
 
-Remaining delivery gates: instructor token entered locally, backup tunnel and another-network rehearsal,
-official dry run and active URL, authorized separate weight distribution, English pitch/Q&A preparation,
-quality review and later explicit submission-tag authorization. See COMPLIANCE.md for the full matrix.
+Pending: instructor token entered locally, current-model HTTPS and another-network test, backup tunnel,
+official dry run and active URL, authorized separate weight distribution, pitch/Q&A rehearsal and final review.
+The API test process was stopped after verification. Start it with the README commands and the candidate model path.
+No further training is authorized automatically. Submission is not declared complete.

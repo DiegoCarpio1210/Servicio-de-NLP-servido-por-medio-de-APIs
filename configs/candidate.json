@@ -1,6 +1,9 @@
 {
-  "model_dir": "models/subset12k",
+  "model_dir": "models/continued20k",
+  "profile": "continued",
+  "threshold": -0.98309326171875,
   "decision": "needs_improvement",
-  "evidence": "logs/subset12k/summary.json",
+  "evidence": "logs/continued20k/summary.json",
+  "selection_evidence": "logs/continued20k/locked_candidate.json",
   "submission_ready": false
 }

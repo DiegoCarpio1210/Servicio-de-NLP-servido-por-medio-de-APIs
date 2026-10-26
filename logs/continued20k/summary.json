@@ -1,0 +1,37 @@
+{
+  "selected": "continued",
+  "model_dir": "models\\continued20k",
+  "selection_source": "locked calibration decision",
+  "fresh_holdout": {
+    "groups": {
+      "all": {
+        "count": 1024,
+        "EM": 53.61328125,
+        "F1": 56.18342205106609
+      },
+      "answerable": {
+        "count": 510,
+        "EM": 33.92156862745098,
+        "F1": 39.08200819665034
+      },
+      "unanswerable": {
+        "count": 514,
+        "EM": 73.15175097276264,
+        "F1": 73.15175097276264
+      }
+    },
+    "weighted_75_25": {
+      "EM": 43.7291142137789,
+      "F1": 47.599443890678415
+    }
+  },
+  "public_correct": 4,
+  "cpu_mean_seconds": 0.27121142000018156,
+  "cpu_max_seconds": 0.6316832000011345,
+  "http_50_seconds": 14.081316999989212,
+  "timeout_budget_pass": true,
+  "continued_training_seconds": 2579.003947200006,
+  "continued_training_completed": true,
+  "no_further_training_started": true,
+  "submission_ready": false
+}
