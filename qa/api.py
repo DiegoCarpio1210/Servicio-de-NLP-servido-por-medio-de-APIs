@@ -71,7 +71,8 @@ def create_app(loader=None):
         return {"team": team, "model": engine.metadata["base_model"], "params": engine.params,
                 "max_seq_length": engine.max_length, "doc_stride": engine.stride,
                 "checkpoint_sha256": getattr(engine,"weights_sha256",None),
-                "training_steps": engine.metadata.get("optimizer_steps"),
+                "training_steps": engine.metadata.get("selected_optimizer_steps",engine.metadata.get("optimizer_steps")),
+                "training_run_steps": engine.metadata.get("optimizer_steps"),
                 "no_answer_threshold": getattr(engine,"threshold",None),
                 "calibration_objective": getattr(engine,"calibration",{}).get("objective","balanced_f1")}
 

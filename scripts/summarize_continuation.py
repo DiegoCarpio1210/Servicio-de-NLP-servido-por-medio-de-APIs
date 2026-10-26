@@ -56,6 +56,8 @@ def main():
 Continuation: nested 20,000 examples (12,000 previous + 8,000 new; 6,675 impossible),
 {training['actual_epochs']:.2f} additional epochs, {training['optimizer_steps']} steps, {training['elapsed_seconds']/60:.2f} minutes.
 Both use the Quadro P1000 4 GiB and train encoder plus QA head. Original weights/checkpoints are preserved.
+The continuation export uses the minimum-loss checkpoint at step {training.get('selected_optimizer_steps',training['optimizer_steps'])}
+(epoch {training.get('selected_epoch',training['actual_epochs']):.3f}), which can precede the end of the completed run.
 
 | Setting | Initial / continuation |
 |---|---|

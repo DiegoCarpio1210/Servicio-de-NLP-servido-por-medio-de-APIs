@@ -1,0 +1,10 @@
+{
+  "export_matches_best_checkpoint": true,
+  "original_matches_preserved_checkpoint": true,
+  "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+  "original_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
+  "run_steps": 2534,
+  "selected_steps": 1600,
+  "selected_epoch": 1.2628255722178374,
+  "optimizer_scheduler_rng_present": true
+}

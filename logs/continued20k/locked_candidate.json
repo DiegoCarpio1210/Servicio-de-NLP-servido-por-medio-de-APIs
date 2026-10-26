@@ -1,0 +1,87 @@
+{
+  "locked_utc": "2026-10-26T13:51:02.109633+00:00",
+  "selected": "continued",
+  "selection_partition": "512 calibration examples only",
+  "profiles": {
+    "original": {
+      "model_dir": "models/subset12k",
+      "threshold": -1.8834419250488281,
+      "groups": {
+        "all": {
+          "count": 512,
+          "EM": 51.7578125,
+          "F1": 52.799601542919795
+        },
+        "answerable": {
+          "count": 256,
+          "EM": 22.65625,
+          "F1": 24.739828085839598
+        },
+        "unanswerable": {
+          "count": 256,
+          "EM": 80.859375,
+          "F1": 80.859375
+        }
+      },
+      "weighted_75_25": {
+        "EM": 37.20703125,
+        "F1": 38.7697148143797
+      }
+    },
+    "recalibrated": {
+      "model_dir": "models/subset12k",
+      "threshold": 1.7854061126708984,
+      "groups": {
+        "all": {
+          "count": 512,
+          "EM": 39.84375,
+          "F1": 43.95944174101827
+        },
+        "answerable": {
+          "count": 256,
+          "EM": 46.875,
+          "F1": 55.106383482036534
+        },
+        "unanswerable": {
+          "count": 256,
+          "EM": 32.8125,
+          "F1": 32.8125
+        }
+      },
+      "weighted_75_25": {
+        "EM": 43.359375,
+        "F1": 49.5329126115274
+      }
+    },
+    "continued": {
+      "model_dir": "models/continued20k",
+      "threshold": -0.98309326171875,
+      "groups": {
+        "all": {
+          "count": 512,
+          "EM": 51.7578125,
+          "F1": 53.91764530149181
+        },
+        "answerable": {
+          "count": 256,
+          "EM": 32.8125,
+          "F1": 37.13216560298362
+        },
+        "unanswerable": {
+          "count": 256,
+          "EM": 70.703125,
+          "F1": 70.703125
+        }
+      },
+      "weighted_75_25": {
+        "EM": 42.28515625,
+        "F1": 45.52490545223772
+      }
+    }
+  },
+  "decision_rule": "On 512 calibration examples maximize 75/25 weighted EM subject to impossible EM >=70%; weighted F1 tie-break. Compare original, recalibrated, and continued weights on calibration only; select highest weighted EM among eligible profiles before any final evaluation.",
+  "continued_weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+  "baseline_weights_sha256": "60ff15f44cc8bf2bd0a98fceae9a594f536874ae957d76279b86b308604ab1d4",
+  "heldout_consulted_for_selection": false,
+  "public_consulted_for_selection": false
+}

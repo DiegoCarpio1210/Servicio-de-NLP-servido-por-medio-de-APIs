@@ -35,7 +35,8 @@ def main():
                 with (Path(a.model_dir)/'model.safetensors').open('rb') as weights:
                     assert info.json()['checkpoint_sha256']==hashlib.file_digest(weights,'sha256').hexdigest()
                 assert info.json()['no_answer_threshold']==json.loads((Path(a.model_dir)/'calibration.json').read_text())['threshold']
-                assert info.json()['training_steps']==json.loads((Path(a.model_dir)/'training_metadata.json').read_text())['optimizer_steps']
+                metadata=json.loads((Path(a.model_dir)/'training_metadata.json').read_text())
+                assert info.json()['training_steps']==metadata.get('selected_optimizer_steps',metadata['optimizer_steps'])
                 (out/'info.json').write_text(json.dumps(info.json(),indent=2))
                 from scripts.http_contract_checks import check
                 check(client,env['QA_API_TOKEN'],out)

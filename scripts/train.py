@@ -115,8 +115,12 @@ def main():
                 'peak_gpu_reserved_mib':torch.cuda.max_memory_reserved()/2**20 if gpu else None,
                 'dataset': 'rajpurkar/squad_v2', 'splits': {k:stats(ds) for k,ds in raw.items()},
                 'hardware': torch.cuda.get_device_name(0) if gpu else platform.processor(),
-                'torch_version': torch.__version__, 'base_revision': getattr(model.config, '_commit_hash', None),
+                'torch_version': torch.__version__, 'base_revision': getattr(model.config, '_commit_hash', None) or c.get('base_revision'),
                 'params': sum(p.numel() for p in model.parameters()), 'training_device': 'cuda' if gpu else 'cpu'}
+    if trainer.state.best_model_checkpoint:
+        selected_state=json.loads((Path(trainer.state.best_model_checkpoint)/'trainer_state.json').read_text())
+        metadata['selected_optimizer_steps']=selected_state['global_step']
+        metadata['selected_epoch']=selected_state['epoch']
     (root/'training_metadata.json').write_text(json.dumps(metadata,indent=2))
     logdir=Path('logs')/root.name; logdir.mkdir(parents=True,exist_ok=True)
     (logdir/'training_metadata.json').write_text(json.dumps(metadata,indent=2))
