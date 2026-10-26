@@ -1,0 +1,14 @@
+{
+  "requests": 50,
+  "contract_valid": 50,
+  "public_correct_first_five": 4,
+  "mean_seconds": 0.3850454020014149,
+  "max_seconds": 0.754621700005373,
+  "total_seconds": 19.25237049999123,
+  "timeout_budget_pass": true,
+  "checkpoint_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+  "threshold": -0.98309326171875,
+  "scope": "Same host via real public HTTPS; mobile/other network NOT tested",
+  "tunnel_closed_after_test": true,
+  "evidence_dir": "logs\\continued20k\\https-20261026T205037Z"
+}

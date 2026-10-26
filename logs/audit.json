@@ -22,7 +22,7 @@
   {
     "requirement": "Multiple authentic commits",
     "status": "PASSED",
-    "detail": "13"
+    "detail": "14"
   },
   {
     "requirement": "Calibrated current candidate exists",
@@ -41,8 +41,8 @@
   },
   {
     "requirement": "Current candidate and threshold HTTPS round trip",
-    "status": "PENDING",
-    "detail": "Historical previous-policy HTTPS test is retained; it does not verify a changed candidate/profile"
+    "status": "PASSED",
+    "detail": "Requires matching weight hash and threshold; HTTPS from this host is separate from another-network rehearsal"
   },
   {
     "requirement": "Independent-network rehearsal",

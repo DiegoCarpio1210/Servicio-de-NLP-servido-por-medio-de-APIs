@@ -13,7 +13,7 @@ Public accuracy: 4/5. Fifty local CPU requests: 14.08s; maximum 0.632s.
 Training: original 26m22s plus continuation 42.98 minutes. Original weights are preserved.
 See CONTINUATION_EXPERIMENT.md, logs/continued20k/comparison.json and COMPLIANCE.md.
 
-Pending: instructor token entered locally, current-model HTTPS and another-network test, backup tunnel,
+Pending: instructor token for the eventual official session, another-network test, ngrok account setup/backup tunnel test,
 official dry run and active URL, authorized separate weight distribution, pitch/Q&A rehearsal and final review.
 The API test process was stopped after verification. Start it with the README commands and the candidate model path.
 No further training is authorized automatically. Submission is not declared complete.
@@ -23,4 +23,16 @@ is present; a valid but semantically unsupported span outranks CLS. No general i
 See SAMPLE04_DIAGNOSIS.md. The original 47 tests and 19 real HTTP checks remain valid; four new mocked tests
 cover the rehearsal runner. This is not evidence of actual HTTPS or another-network execution.
 RUNBOOK_ES.md provides the team's operating steps; DEFENSE.md includes a plain-language explanation and
-four-member practice rotation. No public tunnel was opened and no additional training/evaluation sweep occurred.
+four-member practice rotation. No public tunnel was opened during that preparation phase; the later authorized test is recorded below. No additional training/evaluation sweep occurred.
+
+## Latest connectivity verification (supersedes earlier pending same-host HTTPS status)
+
+Authorized temporary Cloudflare HTTPS with the selected model and a random test token: 50/50 contract-valid
+responses, 19.252s total, .755s maximum, .385s mean. Public accuracy remains 4/5 (40/50 repeated inputs).
+No technical exceptions occurred. API and tunnel were stopped; three URL probes returned HTTP 530.
+Weights and calibration hashes are unchanged. Evidence: logs/continued20k/tunnel-summary.json and its linked
+rehearsal/lifecycle files. This is from the origin laptop, not a mobile or separate-network test.
+ngrok 3.39.11 is installed from Microsoft Store and version-checked. Configuration file is absent: user account
+authtoken setup and backup tunnel testing remain pending. No instructor token was requested or used.
+PHONE_TEST_ES.md explains the pending phone test. Official dry run, public sample-04, weight sharing and
+submission approval remain open. No submission tag was created.

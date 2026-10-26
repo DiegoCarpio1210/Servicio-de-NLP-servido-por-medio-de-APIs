@@ -69,7 +69,7 @@ FastAPI and uvicorn use one worker. A background loader reads local weights and 
 warms the model, then changes health from 503 to 200. A lock and inference mode govern prediction. All overlapping
 windows are scored; answers are sliced from the original context, preserving character offsets. Exact Bearer
 comparison uses only `QA_API_TOKEN`; invalid inputs receive the YAML error format.
-Cloudflare was tested historically with the baseline; current-model HTTPS is PENDING. Ngrok is the untested backup. Instructor dry run is PENDING. Optional /info fields expose the loaded weight hash and actual training steps.
+Current-model Cloudflare HTTPS passed from this laptop: 50 calls in 19.25s, maximum .755s. The temporary tunnel was closed. Ngrok is installed but account setup and its tunnel test are pending. Instructor dry run is PENDING. Optional /info fields expose the loaded weight hash and actual training steps.
 Clean-machine PowerShell commands and secure token entry are in README:
 
 ```powershell
@@ -101,8 +101,8 @@ span is also about GPT-3, so shortening extraction would not solve abstention. S
 66,364,418 parameters; 254.10 MiB including tokenizer/metadata.
 CPU mean 0.271s, maximum 0.632s; 50 sequential calls 14.08s.
 This repeats five public cases ten times, not fifty hidden questions. Laptop: Intel family 6/model 158,
-31.72 GiB RAM. Current-policy HTTPS and independent-network rehearsal remain PENDING;
-historical baseline HTTPS took 20.47s and does not validate changed weights/settings.
+31.72 GiB RAM. Current-policy HTTPS from this host took 19.25s for 50 calls, mean .385s and max .755s.
+Three post-close probes returned HTTP 530; model/calibration hashes were unchanged. Independent-network rehearsal remains PENDING.
 
 ## 7. Problems encountered and how you fixed them
 

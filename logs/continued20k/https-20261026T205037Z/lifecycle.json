@@ -1,0 +1,35 @@
+{
+  "scope": "Same host via real public HTTPS; mobile/other network NOT tested",
+  "before_hashes": {
+    "model.safetensors": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "calibration.json": "52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd"
+  },
+  "random_test_token_only": true,
+  "rehearsal_exit_code": 1,
+  "owned_processes_stopped": true,
+  "after_hashes": {
+    "model.safetensors": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "calibration.json": "52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd"
+  },
+  "model_and_calibration_unchanged": true,
+  "url": "https://succeed-moment-competitors-smaller.trycloudflare.com",
+  "closure_checks": [
+    {
+      "status": 530,
+      "serves_api": false
+    },
+    {
+      "status": 530,
+      "serves_api": false
+    },
+    {
+      "status": 530,
+      "serves_api": false
+    }
+  ],
+  "public_api_unavailable": true,
+  "local_post_close_check": {
+    "reachable": false,
+    "error": "ConnectTimeout"
+  }
+}

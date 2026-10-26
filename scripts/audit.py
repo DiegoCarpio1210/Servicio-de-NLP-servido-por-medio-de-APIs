@@ -31,7 +31,7 @@ def main():
     record('Calibrated current candidate exists',bool(candidate) and (Path(candidate['model_dir'])/'calibration.json').exists(),candidate.get('model_dir','No candidate'))
     record('Optional engineering quality target',candidate.get('decision')=='provisional_candidate','Independent-validation heuristic, not a mandatory professor cutoff','FAILED')
     record('Final submission fields complete','PENDING' not in report,'Submission tag and instructor dry-run URL intentionally pending')
-    tunnel=Path('logs/subset12k/tunnel-summary.json')
+    tunnel=Path('logs')/Path(candidate.get('model_dir','models/subset12k')).name/'tunnel-summary.json'
     import hashlib
     tunnel_evidence=json.loads(tunnel.read_text()) if tunnel.exists() else {}
     model_path=Path(candidate.get('model_dir','models/subset12k'))
@@ -43,7 +43,7 @@ def main():
                     tunnel_evidence.get('checkpoint_sha256')==digest and
                     tunnel_evidence.get('threshold')==calibration.get('threshold'))
     record('Current candidate and threshold HTTPS round trip',current_tunnel,
-           'Historical previous-policy HTTPS test is retained; it does not verify a changed candidate/profile')
+           'Requires matching weight hash and threshold; HTTPS from this host is separate from another-network rehearsal')
     external_path=Path('logs/external_network_verification.json')
     external=json.loads(external_path.read_text()) if external_path.exists() else {}
     external_pass=(external.get('technical_pass') is True and external.get('preflight_pass') is True and

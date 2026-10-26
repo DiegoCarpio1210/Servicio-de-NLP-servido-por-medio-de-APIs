@@ -1,0 +1,9 @@
+{
+  "installed": true,
+  "source": "Microsoft Store via winget, product 9MVS1J51GMK6",
+  "verified_version": "3.39.11-msix-stable",
+  "config_check": "missing ngrok.yml",
+  "account_authentication": "pending user local setup",
+  "backup_tunnel_test": "NOT performed",
+  "credentials_read_or_recorded": false
+}

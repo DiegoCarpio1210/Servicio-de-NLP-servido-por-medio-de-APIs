@@ -14,10 +14,10 @@ do not hard-code an answer or claim that the service is ready for submission.
    never paste it in chat, source files or Git. Use the different presentation-day token when provided.
 2. From the project directory, set TEAM_ID=Pimientero and MODEL_DIR=models/continued20k. Start the README
    single-worker uvicorn command. Check /health locally before making protected calls.
-3. Public exposure has NOT been performed for this candidate. When you decide to authorize/open the rehearsal,
+3. A temporary authorized current-model HTTPS test from the origin laptop passed and was closed; another-network exposure/check remains pending. When you decide to authorize/open the rehearsal,
    run `.\tools\cloudflared.exe tunnel --url http://localhost:8000` in a separate terminal. Keep its HTTPS URL.
-   The earlier successful HTTPS measurement used older weights/settings and cannot replace this test.
-4. Install ngrok from the official instructions linked in SOURCES.md, create/sign in to your account and configure
+   The current-model same-host result cannot replace this independent-network test.
+4. ngrok 3.39.11 is installed; create/sign in to your account and configure
    its authtoken locally. Do not share that authtoken. Test `ngrok http 8000` as the separate backup tunnel.
 5. On a second device/network (for example mobile data), enter the QA token securely and run the five curl
    checks from README against the HTTPS URL: health 200, missing-token info 401, wrong-token info 401,

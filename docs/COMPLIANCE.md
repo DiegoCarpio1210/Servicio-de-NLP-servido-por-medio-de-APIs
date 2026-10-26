@@ -39,8 +39,8 @@ All evidence paths below are repository-relative. The single authorized continua
 | Master 4: serving selected 12k model, not pilot | PASSED | Current selected continuation, not pilot: artifact_verification.json and HTTP info.json match checkpoint-1600 |
 | VI, XI: five public answers all correct | FAILED | 4/5; sample-04 should be null but returns GPT-3 reduction figures |
 | XII: 5-second request / 150-second global cap | PASSED locally | 50 sequential requests 14.08 s, max .632 s; current candidate, public cases repeated ten times |
-| IX: HTTPS tunnel to own laptop | PENDING current candidate | Historical baseline HTTPS 20.47 s preserved; no new public exposure or current-model network claim |
-| IX: second tunnel installed and tested | PENDING | ngrok setup/account required; official instructions in README |
+| IX: HTTPS tunnel to own laptop | PASSED from this host | Current candidate: 50 valid HTTPS calls in 19.25 s, max .755 s; logs/continued20k/tunnel-summary.json; tunnel closed, three 530 probes |
+| IX: second tunnel installed and tested | PARTIAL | ngrok 3.39.11 installed/version verified; missing account configuration; no backup tunnel test yet; logs/ngrok_setup.json |
 | IX: check from another network | PENDING | This host's HTTPS check cannot substitute for mobile/another-network testing |
 | IX, X, XI: instructor dry run and send current URL | PENDING | User must arrange slot/send URL; no message sent on user's behalf |
 | IX, XII: keep power/no sleep/tunnel active | PENDING presentation operation | README runbook; temporary tests shut down after completion |
@@ -68,7 +68,7 @@ All evidence paths below are repository-relative. The single authorized continua
 
 1. Review the measured accuracy: current public result is 4/5; fresh answerable EM is 33.92 and impossible EM is 73.15. The one authorized continuation is complete. No additional training is authorized automatically.
 2. Obtain the instructor token and enter it locally with the secure README prompt; do not send it in chat.
-3. Install/configure ngrok as backup, then test both tunnels from another network (mobile tethering is suitable).
+3. Configure the already installed ngrok as backup, then test both tunnels from another network (mobile tethering is suitable).
 4. Start the candidate on CPU, send the active HTTPS URL to the instructor, and perform the official dry run.
 5. Choose an authorized location to share weights; the public Git repository contains code/evidence only.
 6. Rehearse the pitch and individual Q&A. After all gates pass, review the final report and authorize submission tagging.

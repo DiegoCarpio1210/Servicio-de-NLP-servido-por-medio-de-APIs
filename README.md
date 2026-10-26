@@ -144,7 +144,7 @@ random token; it uses the registered team ID `Pimientero`. Historical pilot logs
 
 ## HTTPS tunnel and external rehearsal
 
-Cloudflare is the installed primary tunnel; ngrok must still be installed and tested as backup. Consult `docs/SOURCES.md`.
+Cloudflare is the primary tunnel; ngrok 3.39.11 is installed but requires local account configuration and a backup tunnel test. Consult `docs/SOURCES.md`.
 Authenticate ngrok using your account's authtoken in its official configuration flow; this is different from
 `QA_API_TOKEN`. Then, in another terminal:
 
@@ -211,7 +211,7 @@ The independent evaluation already completed; do not retrain merely to start or 
 For step-by-step team operation, see [the Spanish runbook](docs/RUNBOOK_ES.md). The prepared HTTPS rehearsal
 is `python -m scripts.rehearse --url <HTTPS-URL> --output logs/external_network_verification.json`.
 Run it from the other network with `--external-network --network-note "actual device/network description"`;
-it prompts for the token without saving it. No current-model external rehearsal has been performed yet.
+it prompts for the token without saving it. Current-model HTTPS from the origin laptop passed; a genuinely separate-network rehearsal remains pending.
 
 The run used 20k examples (12k previous + 8k new), two additional epochs, 1e-5 learning rate and a fresh schedule.
 It took 42m59s. Exported checkpoint-1600 had the best selection loss; the run itself completed 2,534 steps.
@@ -222,5 +222,4 @@ docs/CONTINUATION_EXPERIMENT.md for the full comparison and its uncertainty. The
 do not tune on it. Generic scripts.evaluate refuses this manifest-based experiment to avoid using selection data
 as calibration. Existing evaluation results are complete and do not need rerunning.
 
-No public tunnel was opened for this candidate. The old HTTPS test does not establish current-model network
-performance. Follow docs/FINAL_REHEARSAL.md for the remaining authorized human-operated rehearsal.
+An authorized temporary Cloudflare test with the current candidate passed: 50 calls in 19.25s, max .755s. The tunnel was closed and three probes returned 530. Another-network testing remains pending. Follow docs/FINAL_REHEARSAL.md for the remaining authorized human-operated rehearsal.

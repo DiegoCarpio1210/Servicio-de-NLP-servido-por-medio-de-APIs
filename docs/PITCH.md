@@ -23,7 +23,7 @@ FastAPI validates the exact request schema. The model loads once, warms up, and 
 worker. Health reports loading until initialization succeeds. Protected routes require an exact, case-sensitive
 Bearer header, with the token read from the environment. For each request, we select a valid span across all
 windows, compare it with the null score, and slice the original context. That guarantees character offsets
-remain meaningful. The tunnel forwards requests to the laptop. Locally, the maximum was 0.632 seconds and fifty requests took 14.08 seconds. Current-model HTTPS and the instructor dry run remain pending.
+remain meaningful. The tunnel forwards requests to the laptop. Locally, the maximum was 0.632 seconds and fifty requests took 14.08 seconds. HTTPS from this laptop took 19.25 seconds for fifty calls. Another-network testing and the instructor dry run remain pending.
 
 **2:20-3:00 — Decoder investigation and limitations.**
 Our candidate answered four public cases correctly but still extracts GPT-3 reduction figures for a BERT-base

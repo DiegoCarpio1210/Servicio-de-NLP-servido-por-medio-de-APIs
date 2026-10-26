@@ -1,7 +1,7 @@
 # Ejecución y ensayo — equipo Pimientero
 
 Guía operativa para el equipo. El informe y la presentación académica permanecen en inglés.
-No requiere entrenar otra vez. No se ha abierto un túnel para la candidata actual.
+No requiere entrenar otra vez. Un ensayo temporal de Cloudflare ya pasó desde la laptop y fue cerrado. La prueba desde otra red sigue pendiente; consulta PHONE_TEST_ES.md.
 
 ## 1. Iniciar la API en tu computadora
 
@@ -32,7 +32,7 @@ el hash que figura en logs/continued20k/info.json. No compartas el token en el c
 
 ## 2. Abrir HTTPS — solo cuando autorices la exposición
 
-Estos comandos son instrucciones; Codex no los ha ejecutado para esta candidata. Si quieres que Codex
+El ensayo automatizado autorizado con token aleatorio ya se ejecutó y se cerró. Los comandos siguientes permiten una nueva sesión coordinada. Si quieres que Codex
 haga una prueba temporal, autoriza expresamente abrir el túnel y especifica si usarás un token temporal o el
 oficial configurado localmente. La prueba desde otra red requiere además un segundo dispositivo/conexión.
 
@@ -73,7 +73,7 @@ qué dispositivos/redes usaste. No se declarará realizado este ensayo hasta rec
 
 ## 4. Instalar y probar ngrok de respaldo
 
-Instala siguiendo las [instrucciones oficiales de Windows](https://ngrok.com/download/windows):
+ngrok 3.39.11 ya fue instalado desde Microsoft Store. Solo si preparas otra computadora, instala siguiendo las [instrucciones oficiales de Windows](https://ngrok.com/download/windows):
 
 ```powershell
 winget install ngrok -s msstore
@@ -103,8 +103,7 @@ Repite el ensayo desde la otra red con la URL HTTPS de ngrok y una salida distin
 .\.venv\Scripts\python.exe -m scripts.rehearse --url https://TU-DOMINIO.ngrok-free.app --external-network --network-note "Segundo equipo con datos moviles; respaldo" --output logs/ensayo-ngrok-01.json
 ```
 
-No afirmamos que ngrok esté instalado, autenticado ni probado aún. Si la instalación pide intervención,
-completa el flujo oficial y verifica `ngrok version` antes de abrirlo.
+Se verificó `ngrok version`, pero falta la configuración de la cuenta y probar su túnel. `ngrok config check` indicó que todavía no existe ngrok.yml; configura el authtoken localmente como se explica arriba.
 
 ## 5. Detener de forma segura
 
