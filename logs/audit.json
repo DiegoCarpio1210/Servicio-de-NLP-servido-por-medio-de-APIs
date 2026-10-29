@@ -22,7 +22,7 @@
   {
     "requirement": "Multiple authentic commits",
     "status": "PASSED",
-    "detail": "14"
+    "detail": "15"
   },
   {
     "requirement": "Calibrated current candidate exists",
@@ -45,7 +45,12 @@
     "detail": "Requires matching weight hash and threshold; HTTPS from this host is separate from another-network rehearsal"
   },
   {
-    "requirement": "Independent-network rehearsal",
+    "requirement": "Five manual independent-network functional checks",
+    "status": "PASSED",
+    "detail": "User-reported Samsung mobile data checks corroborated by server status logs; no mobile timing claim"
+  },
+  {
+    "requirement": "Independent-network 50-request timing rehearsal",
     "status": "PENDING",
     "detail": "Requires successful current-model HTTPS evidence and explicit operator network declaration; file existence alone is insufficient"
   }

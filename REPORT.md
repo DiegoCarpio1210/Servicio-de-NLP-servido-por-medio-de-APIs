@@ -102,7 +102,7 @@ span is also about GPT-3, so shortening extraction would not solve abstention. S
 CPU mean 0.271s, maximum 0.632s; 50 sequential calls 14.08s.
 This repeats five public cases ten times, not fifty hidden questions. Laptop: Intel family 6/model 158,
 31.72 GiB RAM. Current-policy HTTPS from this host took 19.25s for 50 calls, mean .385s and max .755s.
-Three post-close probes returned HTTP 530; model/calibration hashes were unchanged. Independent-network rehearsal remains PENDING.
+Three post-close probes returned HTTP 530; model/calibration hashes were unchanged. Five manual independent-network functional checks passed on a Samsung using mobile data (logs/continued20k/mobile_connectivity.json); this was not a mobile latency benchmark. The final POST returned Paris at offset 0. The restored tunnel was closed (HTTP 530), its in-memory token invalidated, and model/calibration hashes preserved.
 
 ## 7. Problems encountered and how you fixed them
 
@@ -127,6 +127,6 @@ implemented or benchmarked. Our current encoder already covers the long public c
 Model accuracy remains dataset-dependent; weighted scores assume the stated 75/25 mix transfers.
 The impossible-class calibration floor is not a deployment guarantee. Confidence is not probability-calibrated;
 questions cap at 64 tokens, spans at 30. Training is English-only. The new holdout is now observed and must
-not become a tuning set. Instructor dry run, backup tunnel, independent-network checks, weight sharing and
+not become a tuning set. Instructor dry run, backup tunnel, weight sharing and
 final review remain PENDING. No second continuation or submission tag was created.
 

@@ -51,7 +51,16 @@ def main():
                    external.get('network_scope')=='operator declares another network' and
                    external.get('info',{}).get('checkpoint_sha256')==digest and
                    external.get('info',{}).get('no_answer_threshold')==calibration.get('threshold'))
-    record('Independent-network rehearsal',external_pass,
+    mobile_path=Path('logs/continued20k/mobile_connectivity.json')
+    mobile=json.loads(mobile_path.read_text(encoding='utf-8')) if mobile_path.exists() else {}
+    mobile_checks=mobile.get('checks',[])
+    mobile_pass=(len(mobile_checks)==5 and all(c.get('result')=='passed' for c in mobile_checks)
+                 and mobile.get('info',{}).get('checkpoint_sha256')==digest
+                 and mobile.get('info',{}).get('no_answer_threshold')==calibration.get('threshold')
+                 and mobile.get('closure',{}).get('public_api_unavailable') is True)
+    record('Five manual independent-network functional checks',mobile_pass,
+           'User-reported Samsung mobile data checks corroborated by server status logs; no mobile timing claim')
+    record('Independent-network 50-request timing rehearsal',external_pass,
            'Requires successful current-model HTTPS evidence and explicit operator network declaration; file existence alone is insufficient')
     Path('logs/audit.json').write_text(json.dumps(checks,indent=2))
     print(json.dumps(checks,indent=2))

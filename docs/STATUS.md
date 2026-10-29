@@ -36,3 +36,7 @@ ngrok 3.39.11 is installed from Microsoft Store and version-checked. Configurati
 authtoken setup and backup tunnel testing remain pending. No instructor token was requested or used.
 PHONE_TEST_ES.md explains the pending phone test. Official dry run, public sample-04, weight sharing and
 submission approval remain open. No submission tag was created.
+
+## Mobile connectivity completed — 2026-10-29
+
+Five manual Cloudflare checks passed from a Samsung Galaxy S25 Ultra on mobile data, with the laptop on independent Wi-Fi: health, info without token, info with wrong token, authenticated info, and authenticated POST predict. The last returned Paris/start 0/score 0.8257633643007211 and server HTTP 200. Evidence: logs/continued20k/mobile_connectivity.json. Device/network and response bodies were reported by the user; server status logs corroborate them. No mobile 50-request timing is claimed. The restored API/tunnel were stopped, HTTPS returned 530, the in-memory test token is no longer usable, and model/calibration hashes are unchanged. This supersedes earlier pending phone-test status. Official dry run, ngrok backup test, sample-04 failure, separate weight delivery, presentation and final submission fields remain open.

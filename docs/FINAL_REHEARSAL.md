@@ -14,16 +14,16 @@ do not hard-code an answer or claim that the service is ready for submission.
    never paste it in chat, source files or Git. Use the different presentation-day token when provided.
 2. From the project directory, set TEAM_ID=Pimientero and MODEL_DIR=models/continued20k. Start the README
    single-worker uvicorn command. Check /health locally before making protected calls.
-3. A temporary authorized current-model HTTPS test from the origin laptop passed and was closed; another-network exposure/check remains pending. When you decide to authorize/open the rehearsal,
+3. A temporary authorized current-model HTTPS test from the origin laptop passed and was closed; five manual another-network checks also passed (logs/continued20k/mobile_connectivity.json). Both temporary sessions are now inactive. When you decide to authorize/open the rehearsal,
    run `.\tools\cloudflared.exe tunnel --url http://localhost:8000` in a separate terminal. Keep its HTTPS URL.
-   The current-model same-host result cannot replace this independent-network test.
+   The manual mobile checks are separate from the 50-request same-host HTTPS timing.
 4. ngrok 3.39.11 is installed; create/sign in to your account and configure
    its authtoken locally. Do not share that authtoken. Test `ngrok http 8000` as the separate backup tunnel.
-5. On a second device/network (for example mobile data), enter the QA token securely and run the five curl
+5. COMPLETED for Cloudflare: on a second device/network (for example mobile data), enter the QA token securely and run the five curl
    checks from README against the HTTPS URL: health 200, missing-token info 401, wrong-token info 401,
    valid-token info 200, valid predict 200 with exact offsets. A second terminal on the same laptop/network
    does not establish independent-network connectivity.
-6. From that external network, run `python -m scripts.evaluate_public --url <HTTPS-URL> --repeat 10
+6. Additional full external-network timing remains unmeasured. From that external network, run `python -m scripts.evaluate_public --url <HTTPS-URL> --repeat 10
    --output logs/external_network_verification.json` with QA_API_TOKEN set locally. Record the actual results.
    Require <5 seconds per request and <150 seconds for all 50; these are repeated public inputs, not hidden data.
    An exit code of 1 can mean wrong predictions even when connectivity and schemas pass; inspect the JSON.

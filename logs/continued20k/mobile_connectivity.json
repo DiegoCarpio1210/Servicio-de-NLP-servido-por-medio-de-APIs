@@ -1,0 +1,94 @@
+{
+  "completion_date": "2026-10-29",
+  "device": "Samsung Galaxy S25 Ultra",
+  "client": "HTTP Request Shortcuts; browser for unauthenticated checks",
+  "network_evidence": "User confirms phone mobile data with Wi-Fi disabled and laptop on independent Wi-Fi",
+  "scope": "Five manual external functional checks across two temporary sessions; NOT a 50-request mobile benchmark",
+  "checks": [
+    {
+      "endpoint": "/health",
+      "response": {
+        "status": "ok"
+      },
+      "source": "Confirmación del usuario: teléfono con datos móviles y Wi-Fi desactivado; laptop en red independiente",
+      "result": "passed",
+      "authenticated_endpoints": "pending"
+    },
+    {
+      "endpoint": "/info",
+      "authentication": "none",
+      "response": {
+        "error": "unauthorized"
+      },
+      "source": "Confirmación del usuario: teléfono con datos móviles y Wi-Fi desactivado",
+      "result": "passed",
+      "note": "Respuesta JSON observada; código HTTP no observado directamente en Safari"
+    },
+    {
+      "endpoint": "/info",
+      "method": "GET",
+      "authentication": "Bearer wrong",
+      "http_status": 401,
+      "response": {
+        "error": "unauthorized"
+      },
+      "source": "Confirmación del usuario: HTTP Request Shortcuts en Samsung Galaxy S25 Ultra mediante datos móviles",
+      "result": "passed"
+    },
+    {
+      "endpoint": "/info",
+      "method": "GET",
+      "authentication": "valid temporary token via Password Input; Remember value disabled",
+      "source": "Confirmación del usuario: Samsung Galaxy S25 Ultra mediante datos móviles y HTTPS",
+      "result": "passed",
+      "reported_fields": {
+        "team": "Pimientero",
+        "training_steps": 1600,
+        "training_run_steps": 2534,
+        "model": "distilbert/distilbert-base-uncased",
+        "params": 66364418
+      },
+      "note": "Código HTTP no comunicado por el usuario; respuesta JSON recibida correctamente"
+    },
+    {
+      "endpoint": "/predict",
+      "method": "POST",
+      "result": "passed",
+      "http_status": 200,
+      "response": {
+        "id": "phone-01",
+        "answer": "Paris",
+        "start": 0,
+        "score": 0.8257633643007211
+      },
+      "source": "User-reported phone response, corroborated by server POST /predict HTTP 200 log",
+      "offset_check": "User confirms context match; Paris starts at character 0"
+    }
+  ],
+  "info": {
+    "team": "Pimientero",
+    "model": "distilbert/distilbert-base-uncased",
+    "params": 66364418,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "training_steps": 1600,
+    "training_run_steps": 2534,
+    "no_answer_threshold": -0.98309326171875,
+    "calibration_objective": "teacher_em_null_floor70"
+  },
+  "model_unchanged": true,
+  "closure": {
+    "state": "closed",
+    "http_status": 530,
+    "public_api_unavailable": true,
+    "token_revocation": "API terminated; random token existed only in process memory; do not reuse"
+  },
+  "sanitized_server_evidence": [
+    "GET /health HTTP/1.1 200 OK",
+    "GET /info HTTP/1.1 401 Unauthorized",
+    "GET /info HTTP/1.1 200 OK",
+    "POST /predict HTTP/1.1 200 OK"
+  ],
+  "limitations": "Access logs omit request headers/bodies: they cannot distinguish missing from wrong token alone. Those cases and device/network identity are corroborated by user reports. No mobile latency was measured."
+}
