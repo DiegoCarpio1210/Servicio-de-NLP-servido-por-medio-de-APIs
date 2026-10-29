@@ -69,7 +69,7 @@ FastAPI and uvicorn use one worker. A background loader reads local weights and 
 warms the model, then changes health from 503 to 200. A lock and inference mode govern prediction. All overlapping
 windows are scored; answers are sliced from the original context, preserving character offsets. Exact Bearer
 comparison uses only `QA_API_TOKEN`; invalid inputs receive the YAML error format.
-Current-model Cloudflare HTTPS passed from this laptop: 50 calls in 19.25s, maximum .755s. The temporary tunnel was closed. Ngrok is installed but account setup and its tunnel test are pending. Instructor dry run is PENDING. Optional /info fields expose the loaded weight hash and actual training steps.
+Current-model Cloudflare HTTPS passed from this laptop: 50 calls in 19.25s, maximum .755s. The temporary tunnel was closed. Ngrok backup passed four real HTTPS checks from this laptop (health, authentication, prediction); the API and tunnel were then stopped. Evidence: logs/ngrok_setup.json. Instructor dry run is PENDING. Optional /info fields expose the loaded weight hash and actual training steps.
 Clean-machine PowerShell commands and secure token entry are in README:
 
 ```powershell
@@ -127,6 +127,5 @@ implemented or benchmarked. Our current encoder already covers the long public c
 Model accuracy remains dataset-dependent; weighted scores assume the stated 75/25 mix transfers.
 The impossible-class calibration floor is not a deployment guarantee. Confidence is not probability-calibrated;
 questions cap at 64 tokens, spans at 30. Training is English-only. The new holdout is now observed and must
-not become a tuning set. Instructor dry run, backup tunnel, weight sharing and
+not become a tuning set. Instructor dry run, weight sharing and
 final review remain PENDING. No second continuation or submission tag was created.
-

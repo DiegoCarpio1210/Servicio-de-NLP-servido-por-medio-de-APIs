@@ -1,0 +1,26 @@
+{
+  "url": "https://diploma-supper-padded.ngrok-free.dev",
+  "scope": "Origin laptop through real public HTTPS; not a separate mobile-network test",
+  "before_hashes": {
+    "model.safetensors": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "calibration.json": "52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd"
+  },
+  "checks": [],
+  "random_api_token_in_memory_only": true,
+  "passed": false,
+  "error": "RuntimeError",
+  "owned_processes_stopped": true,
+  "model_and_calibration_unchanged": true,
+  "closure_checks": [
+    {
+      "status": 404,
+      "api_unavailable": true
+    },
+    {
+      "status": 404,
+      "api_unavailable": true
+    }
+  ],
+  "local_api_unavailable": true,
+  "ngrok_error_code": "ERR_NGROK_105"
+}

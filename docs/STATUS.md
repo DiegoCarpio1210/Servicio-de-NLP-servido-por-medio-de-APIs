@@ -40,3 +40,10 @@ submission approval remain open. No submission tag was created.
 ## Mobile connectivity completed — 2026-10-29
 
 Five manual Cloudflare checks passed from a Samsung Galaxy S25 Ultra on mobile data, with the laptop on independent Wi-Fi: health, info without token, info with wrong token, authenticated info, and authenticated POST predict. The last returned Paris/start 0/score 0.8257633643007211 and server HTTP 200. Evidence: logs/continued20k/mobile_connectivity.json. Device/network and response bodies were reported by the user; server status logs corroborate them. No mobile 50-request timing is claimed. The restored API/tunnel were stopped, HTTPS returned 530, the in-memory test token is no longer usable, and model/calibration hashes are unchanged. This supersedes earlier pending phone-test status. Official dry run, ngrok backup test, sample-04 failure, separate weight delivery, presentation and final submission fields remain open.
+
+## Ngrok backup attempt — 2026-10-29
+CPU model loaded, but ngrok rejected the locally configured credential with ERR_NGROK_105 before any HTTPS functional checks. Configuration syntax validation passed; account authentication did not. User must replace the authtoken locally. API and tunnel processes stopped; two public probes returned 404 and local API was unavailable. Model/calibration unchanged. Evidence: logs/continued20k/ngrok-20261029T185458Z/evidence.json. Backup remains pending.
+
+
+## Ngrok backup verified — 2026-10-29
+The replacement authtoken was accepted by ngrok. Four real public HTTPS checks passed from the origin laptop: health 200, info without token 401, authenticated info 200, predict 200 (Paris, start 0, score 0.8257633643007211; 0.304 s). Selected checkpoint-1600 and calibration verified. API and tunnel stopped; two closure probes returned 404 and local API was unavailable. Weights/calibration unchanged. No ngrok mobile test or 50-request benchmark is claimed. Evidence: logs/continued20k/ngrok-20261029T190027Z/evidence.json. This supersedes the failed first attempt and earlier pending backup status. No credentials were read or included in evidence.

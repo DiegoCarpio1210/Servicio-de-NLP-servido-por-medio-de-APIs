@@ -2,8 +2,9 @@
   "installed": true,
   "source": "Microsoft Store via winget, product 9MVS1J51GMK6",
   "verified_version": "3.39.11-msix-stable",
-  "config_check": "missing ngrok.yml",
-  "account_authentication": "pending user local setup",
-  "backup_tunnel_test": "NOT performed",
-  "credentials_read_or_recorded": false
+  "config_check": "Valid configuration file",
+  "account_authentication": "ACCEPTED: real authenticated tunnel connection on 2026-10-29",
+  "backup_tunnel_test": "PASSED four real HTTPS checks from origin laptop; closed after test; not a mobile-network test",
+  "credentials_read_or_recorded": false,
+  "evidence": "logs/continued20k/ngrok-20261029T190027Z/evidence.json"
 }

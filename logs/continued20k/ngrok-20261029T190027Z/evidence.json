@@ -1,0 +1,73 @@
+{
+  "url": "https://diploma-supper-padded.ngrok-free.dev",
+  "scope": "Origin laptop through real public HTTPS; not a separate mobile-network test",
+  "before_hashes": {
+    "model.safetensors": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "calibration.json": "52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd"
+  },
+  "checks": [
+    {
+      "name": "health",
+      "status": 200,
+      "response": {
+        "status": "ok"
+      },
+      "seconds": 0.13722189998952672,
+      "passed": true
+    },
+    {
+      "name": "info_no_token",
+      "status": 401,
+      "response": {
+        "error": "unauthorized"
+      },
+      "seconds": 0.13335680001182482,
+      "passed": true
+    },
+    {
+      "name": "info_valid_token",
+      "status": 200,
+      "response": {
+        "team": "Pimientero",
+        "model": "distilbert/distilbert-base-uncased",
+        "params": 66364418,
+        "max_seq_length": 384,
+        "doc_stride": 128,
+        "checkpoint_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+        "training_steps": 1600,
+        "training_run_steps": 2534,
+        "no_answer_threshold": -0.98309326171875,
+        "calibration_objective": "teacher_em_null_floor70"
+      },
+      "seconds": 0.13854839996201918,
+      "passed": true
+    },
+    {
+      "name": "predict",
+      "status": 200,
+      "response": {
+        "id": "ngrok-01",
+        "answer": "Paris",
+        "start": 0,
+        "score": 0.8257633643007211
+      },
+      "seconds": 0.3035563000012189,
+      "passed": true
+    }
+  ],
+  "random_api_token_in_memory_only": true,
+  "passed": true,
+  "owned_processes_stopped": true,
+  "model_and_calibration_unchanged": true,
+  "closure_checks": [
+    {
+      "status": 404,
+      "api_unavailable": true
+    },
+    {
+      "status": 404,
+      "api_unavailable": true
+    }
+  ],
+  "local_api_unavailable": true
+}

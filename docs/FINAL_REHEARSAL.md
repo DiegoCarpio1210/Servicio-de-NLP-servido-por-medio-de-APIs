@@ -17,7 +17,7 @@ do not hard-code an answer or claim that the service is ready for submission.
 3. A temporary authorized current-model HTTPS test from the origin laptop passed and was closed; five manual another-network checks also passed (logs/continued20k/mobile_connectivity.json). Both temporary sessions are now inactive. When you decide to authorize/open the rehearsal,
    run `.\tools\cloudflared.exe tunnel --url http://localhost:8000` in a separate terminal. Keep its HTTPS URL.
    The manual mobile checks are separate from the 50-request same-host HTTPS timing.
-4. ngrok 3.39.11 is installed; create/sign in to your account and configure
+4. COMPLETED: ngrok 3.39.11 backup passed four real HTTPS checks from the laptop; see logs/ngrok_setup.json. For future setup, create/sign in to your account and configure
    its authtoken locally. Do not share that authtoken. Test `ngrok http 8000` as the separate backup tunnel.
 5. COMPLETED for Cloudflare: on a second device/network (for example mobile data), enter the QA token securely and run the five curl
    checks from README against the HTTPS URL: health 200, missing-token info 401, wrong-token info 401,
