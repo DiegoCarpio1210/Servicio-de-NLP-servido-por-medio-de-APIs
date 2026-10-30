@@ -1,0 +1,78 @@
+{
+  "active": {
+    "model_dir": "models/quality40k",
+    "training_steps": 2000,
+    "hashes": {
+      "model.safetensors": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "tokenizer.json": "88288f3bbc81d03d5cc31434d30f8bd3c80771c9875a75fa763d167a8e34889e",
+      "tokenizer_config.json": "28c9ee630d522e35659d41fd5580c4ea4e6fe7698ad29b9269a5eb6c2b2f2090",
+      "special_tokens_map.json": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "config.json": "2190b45d6d0617eb577ff39ee02ce94103f90729cba2391bdb8d2859541b393a",
+      "calibration.json": "92add960d092fdf7269f32c36e184e486f4d497d36b71a3e53f243099ed48fe0"
+    },
+    "calibration": {
+      "threshold": -0.40494251441686124,
+      "policy": {
+        "name": "length05",
+        "max_length": 30,
+        "length_penalty": 0.5
+      },
+      "objective": "teacher_em_null_floor70",
+      "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "source": "logs/quality20261029/final_lock.json"
+    },
+    "backup_model_dir": "models/continued20k"
+  },
+  "backup_hashes_unchanged": {
+    "weights": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "calibration": "52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd"
+  },
+  "ui_info": {
+    "team": "Pimientero",
+    "model": "distilbert/distilbert-base-uncased",
+    "params": 66364418,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+    "training_steps": 2000,
+    "training_run_steps": 2531,
+    "no_answer_threshold": -0.40494251441686124,
+    "extraction_policy": {
+      "name": "length05",
+      "max_length": 30,
+      "length_penalty": 0.5
+    },
+    "calibration_objective": "teacher_em_null_floor70"
+  },
+  "dashboard": {
+    "source": "logs/quality20261029/final_comparison.json \u00b7 trained",
+    "label": "quality40k \u00b7 checkpoint-2000 \u00b7 modelo activo",
+    "metrics": {
+      "count": 1024,
+      "EM": 61.81640625,
+      "F1": 65.52553295229076
+    },
+    "answerable": {
+      "count": 512,
+      "EM": 48.046875,
+      "F1": 55.465128404581534
+    },
+    "unanswerable": {
+      "count": 512,
+      "EM": 75.5859375,
+      "F1": 75.5859375
+    },
+    "weighted_75_25": {
+      "EM": 54.931640625,
+      "F1": 60.49533067843615
+    }
+  },
+  "identical_public_responses_to_locked_candidate": true,
+  "requests": 50,
+  "elapsed_seconds": 13.144847100018524,
+  "max_seconds": 0.5524401000002399,
+  "time_limits_pass": true,
+  "public_correct_of_5": 4,
+  "browser_visual_check": "Attempted; browser tool timed out. Real UI gateway requests and static routes passed instead."
+}

@@ -74,7 +74,7 @@ function renderStats() {
     const card=element('div','metric'); card.append(element('small','',label),element('strong','',value),element('span','',note)); $('metrics-grid').append(card);
   }
   $('model-details').replaceChildren();
-  const details = [['Estado',connected?'API conectada':'API no disponible'],['Modelo',info?.model || '—'],['Parámetros',info ? info.params.toLocaleString('es') : '—'],['Checkpoint',info ? `continued20k · checkpoint-${info.training_steps}` : '—'],['Pasos del checkpoint / ejecución',info ? `${info.training_steps} / ${info.training_run_steps}` : '—'],['Dispositivo','CPU'],['Ventana / solapamiento',info ? `${info.max_seq_length} / ${info.doc_stride} tokens` : '—']];
+  const details = [['Estado',connected?'API conectada':'API no disponible'],['Modelo',info?.model || '—'],['Parámetros',info ? info.params.toLocaleString('es') : '—'],['Checkpoint',info ? `${info.training_steps===2000 ? 'quality40k' : 'continued20k'} · checkpoint-${info.training_steps}` : '—'],['Pasos del checkpoint / ejecución',info ? `${info.training_steps} / ${info.training_run_steps}` : '—'],['Dispositivo','CPU'],['Ventana / solapamiento',info ? `${info.max_seq_length} / ${info.doc_stride} tokens` : '—']];
   for (const [key,value] of details) { const row=element('div'); row.append(element('dt','',key),element('dd','',value)); $('model-details').append(row); }
   $('evaluation-source').textContent=evaluation ? 'Fuente: '+evaluation.source : 'Evaluación histórica no disponible.';
 }

@@ -114,3 +114,11 @@ La ventana de inicio explica dependencias ausentes, pesos incorrectos o puertos 
 `tmp/local-app/8000.log` y `8765.log`, ignorados por Git. Si la interfaz indica desconexión, inicia el `.bat`,
 espera a que esté lista y vuelve a intentar. Un error de inferencia conserva la pregunta para reintentar.
 Ante pesos/calibración distintos, restaura los artefactos seleccionados: no cambies los hashes para eludir la verificación.
+
+## Activación aprobada de quality40k
+
+El lanzador ahora carga quality40k checkpoint-2000, con umbral -0.4049425144
+y política length05. El dashboard corresponde a ese modelo activo. continued20k
+permanece intacto como respaldo. La configuración y todos los hashes esperados
+están en configs/active_model.json. Esta nota sustituye las referencias anteriores
+a la candidata pendiente de activación. No hay rediseño ni túnel público.

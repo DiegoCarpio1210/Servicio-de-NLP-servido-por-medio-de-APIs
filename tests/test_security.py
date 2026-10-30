@@ -21,7 +21,7 @@ def test_auth_precedes_invalid_json(monkeypatch):
         assert r.status_code==401 and r.json()=={'error':'unauthorized'}
 
 
-def test_default_model_is_continued_candidate(monkeypatch):
+def test_default_model_is_quality40k(monkeypatch):
     from test_contract import FakeEngine
     import qa.inference
     seen=[]
@@ -32,4 +32,4 @@ def test_default_model_is_continued_candidate(monkeypatch):
         for _ in range(100):
             if c.get('/health').status_code==200: break
             time.sleep(.01)
-        assert seen==['models/continued20k']
+        assert seen==['models/quality40k']

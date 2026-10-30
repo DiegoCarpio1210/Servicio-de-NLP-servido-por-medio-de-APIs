@@ -62,6 +62,6 @@ def test_limits_and_candidate_metrics(monkeypatch):
         assert data['answerable']['EM']==48.046875
         assert data['unanswerable']['EM']==75.5859375
         assert data['weighted_75_25']['EM']==54.931640625
-        assert 'candidata' in data['label']
+        assert 'modelo activo' in data['label']
         for path in ('/','/assets/app.js','/assets/style.css'):
             assert client.get(path).status_code==200

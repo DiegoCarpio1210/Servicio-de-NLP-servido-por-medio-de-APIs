@@ -11,7 +11,7 @@ El valor se oculta y queda en la memoria del proceso; no se escribe en el códig
 ```powershell
 Set-Location 'C:\Users\Lenovo P52s\Desktop\Servicio de NLP servido por medio de APIs'
 $env:TEAM_ID = 'Pimientero'
-$env:MODEL_DIR = (Resolve-Path 'models/continued20k').Path
+$env:MODEL_DIR = (Resolve-Path 'models/quality40k').Path
 $env:TORCH_NUM_THREADS = '4'
 $qaSecret = Read-Host 'Token QA del profesor' -AsSecureString
 $env:QA_API_TOKEN = [System.Net.NetworkCredential]::new('', $qaSecret).Password
@@ -26,9 +26,9 @@ curl.exe -i http://127.0.0.1:8000/health
 ```
 
 Espera HTTP 200 y `{"status":"ok"}`. Mientras carga puede devolver 503. Si no inicia, revisa que existan
-los pesos y calibration.json en models/continued20k y que el token no esté vacío. GitHub no contiene pesos.
+los pesos y calibration.json en models/quality40k y que el token no esté vacío. GitHub no contiene pesos.
 La API debe mostrar en `/info` `training_steps:1600`, `training_run_steps:2534`, umbral -0.98309326171875 y
-el hash que figura en logs/continued20k/info.json. No compartas el token en el chat.
+el hash que figura en logs/quality40k/info.json. No compartas el token en el chat.
 
 ## 2. Abrir HTTPS — solo cuando autorices la exposición
 

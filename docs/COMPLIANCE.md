@@ -4,8 +4,8 @@ Authority: professor OpenAPI YAML overrides the PDF summary. All four original f
 those in the original ZIP (`logs/source_integrity.json`). This review covers PDF sections I-XV, YAML schemas
 and endpoints, the ten report sections, and the master brief. PASSED means the stated check was executed or
 its artifact inspected; it never means a guaranteed grade. FAILED distinguishes an observed failure from PENDING.
-All evidence paths below are repository-relative. Production remains continued20k;
-the completed quality40k candidate is recommended but awaits activation approval.
+All evidence paths below are repository-relative. Production now uses approved quality40k checkpoint-2000; continued20k is retained
+as backup. Historical candidate/recovery evidence below remains labeled by phase.
 Historical evidence is preserved. The current comparison is in logs/quality20261029/.
 
 ## Recovery and candidate review — 2026-10-30
@@ -28,7 +28,7 @@ Historical evidence is preserved. The current comparison is in logs/quality20261
 | Stable UI startup/gateway/stop recovery | PASSED | ui_recovery.json: real answer/null/Unicode/long-context tests, host/CSRF rejection; launcher lifecycle evidence |
 | Visual design/history/copy/dark/responsive | PRIOR VERIFIED, unchanged | Existing screenshots/UI evidence; no new visual redesign or new browser-session claim |
 | Candidate public HTTPS/mobile checks | PENDING if activated | This evaluation used loopback only; prior stable connectivity evidence remains valid for stable |
-| Candidate activation | PENDING user approval | CANDIDATE_REVIEW_ES.md; production/default unchanged |
+| Candidate activation | PASSED, user authorized | configs/active_model.json; activation.json verifies actual API/UI identity, tokenizer hashes, frozen policy and preserved backup |
 | Candidate dashboard metrics and complete GUI source | PASSED update | qa/ui.py reads verified final_comparison.json; explicit candidate label; README links HTML/CSS/JS, gateway, launcher and stop BAT |
 | Report headings 0–9, English, nonempty | PASSED | REPORT.md matches original template; 756 prose words including headings, excluding tables |
 | Official delivery | PENDING | Public sample failure, instructor dry run/live service, weight distribution, team defense, final tag approval |
@@ -96,7 +96,7 @@ above and QUALITY_RESULTS.md govern the experimental comparison.
 
 ## Required user actions before submission
 
-1. Review and approve or decline quality40k activation. Same-final-set answerable EM improves 36.33 to 48.05, impossible EM falls 79.10 to 75.59. Public result remains 4/5. No further training is authorized.
+1. quality40k activation is approved and complete. Review the remaining public-sample failure. Same-final-set answerable EM improves 36.33 to 48.05, impossible EM falls 79.10 to 75.59. Public result remains 4/5. No further training is authorized.
 2. Obtain the instructor token and enter it locally with the secure README prompt; do not send it in chat.
 3. Ngrok backup passed four real HTTPS checks from the origin laptop. Cloudflare passed five mobile functional checks. A separate mobile ngrok test and a 50-request mobile benchmark were not performed.
 4. Start the candidate on CPU, send the active HTTPS URL to the instructor, and perform the official dry run.
@@ -111,3 +111,14 @@ any parameter. `logs/rehearsal_tests.txt` records four mocked runner tests; 47 p
 HTTP checks are reused unchanged. The new runner enforces per-request and global wall-clock deadlines;
 neither a mocked test nor a generated file is proof of real external connectivity. RUNBOOK_ES.md covers secure
 token entry, startup, explicitly authorized tunnels, external test, ngrok backup and shutdown.
+
+## Approved production activation
+
+quality40k is the default in qa/api.py and the Windows launcher. Its frozen policy
+is implemented in qa/postprocessing.py and selected by its calibration artifact.
+All 50 production HTTP responses match the locked experimental candidate exactly;
+13.14s total and .552s maximum pass the limits. Eighteen contract checks and four
+real UI gateway cases passed. Dashboard metrics match the active checkpoint.
+Browser automation timed out; no new visual-click test is claimed. Original
+weights, backup and public-sample failure remain unchanged. Evidence: activation.json,
+activation_ui.json, activation_pytest.txt and logs/quality40k/{info,public,real_http_contract}.json.

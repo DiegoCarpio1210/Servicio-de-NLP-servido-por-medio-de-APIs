@@ -8,6 +8,7 @@ import torch
 from transformers import AutoModelForQuestionAnswering, AutoTokenizer
 from qa.features import encode
 from qa.spans import aggregate, decide
+from qa.postprocessing import candidate as policy_candidate
 
 
 class Engine:
@@ -24,6 +25,9 @@ class Engine:
         if require_calibration and not calibration.exists():
             raise ValueError("Validation calibration is required before serving")
         self.calibration = json.loads(calibration.read_text()) if calibration.exists() else {}
+        self.policy = self.calibration.get('policy')
+        if self.calibration.get('weights_sha256', self.weights_sha256) != self.weights_sha256:
+            raise ValueError('Calibration belongs to different weights')
         self.threshold = float(self.calibration.get('threshold',0.))
         if not math.isfinite(self.threshold): raise ValueError('Calibration threshold must be finite')
         torch.set_num_threads(int(os.getenv("TORCH_NUM_THREADS", "4")))
@@ -46,7 +50,7 @@ class Engine:
                                zip(batch["offset_mapping"][i], batch.sequence_ids(i))]
                     cls = batch["input_ids"][i].index(self.tokenizer.cls_token_id)
                     windows.append((output.start_logits[j].numpy(), output.end_logits[j].numpy(), offsets, cls))
-        return aggregate(context, windows)
+        return policy_candidate(context, windows, self.policy) if self.policy else aggregate(context, windows)
 
     def predict(self, context, question):
         result = decide(self.candidate(context, question), self.threshold)

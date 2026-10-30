@@ -1,6 +1,6 @@
 # Project Report — Extractive QA as a Service
 
-Measured draft; official submission is PENDING. Production remains continued20k; quality40k awaits approval.
+Measured draft; official submission is PENDING. Production now uses approved quality40k checkpoint-2000; continued20k is preserved as backup.
 
 ## 0. Team
 
@@ -80,8 +80,8 @@ contract. Overflow windows preserve long contexts; original-string offsets suppo
 Unicode. A separate loopback gateway on 8765 serves the optional GUI and keeps
 the API token out of the browser.
 
-Run `INICIAR_PIMIENTERO.bat`; stop with `DETENER_PIMIENTERO.bat`. These still select
-continued20k. For the official session, follow [the secure runbook](docs/RUNBOOK_ES.md)
+Run `INICIAR_PIMIENTERO.bat`; stop with `DETENER_PIMIENTERO.bat`. These now select
+quality40k with the frozen length05 policy. For the official session, follow [the secure runbook](docs/RUNBOOK_ES.md)
 to set the instructor token locally and start an authorized HTTPS tunnel.
 No public service was exposed for this candidate evaluation.
 
@@ -106,7 +106,10 @@ remains unresolved. [Raw HTTP evidence](logs/quality20261029/cpu_trained/result.
 | Stable | 22.93s | .443s | 1.186s | 826.9 MiB |
 | quality40k | 28.54s | .551s | 1.419s | 826.0 MiB |
 
-Both satisfy 5s/request and 150s total. Calls repeat five public inputs ten times,
+Both satisfy 5s/request and 150s total. After approved production activation,
+50 actual API requests took 13.14s, maximum .552s; outputs matched the locked
+candidate exactly. UI gateway answer/null/Unicode/long-context checks passed.
+The browser automation timed out, so no new visual-session check is claimed. Calls repeat five public inputs ten times,
 not fifty hidden questions. Mean server CPU utilization across all logical cores
 was 31.91% versus 32.45%; single-run timings are descriptive. Eighteen real HTTP
 contract checks per profile passed, including authentication, Unicode and long
@@ -143,7 +146,7 @@ follows final scoring.
 
 The candidate still misses aspirational 65 EM, 70 F1 and 50 answerable EM. Reduced
 abstention increases wrong non-null outputs from 19.14% to 23.14% of all examples.
-English questions are capped at 64 tokens. Candidate activation, public-sample
+English questions are capped at 64 tokens. Public-sample
 conformance, instructor dry run/live service, authorized weights, team defense and
 final submission approval remain pending. REPORT.md is retained; no PDF or tag is
 created. Details: [quality comparison](docs/QUALITY_RESULTS.md).

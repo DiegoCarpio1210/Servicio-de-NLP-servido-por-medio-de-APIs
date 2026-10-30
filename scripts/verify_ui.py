@@ -13,8 +13,8 @@ def main():
     checks=[]
     with httpx.Client(base_url='http://127.0.0.1:8765',timeout=30,trust_env=False) as client:
         info=client.get('/ui/info').json()
-        assert info['checkpoint_sha256']=='7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848'
-        assert info['training_steps']==1600
+        assert info['checkpoint_sha256']=='d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f'
+        assert info['training_steps']==2000
         headers={'Origin':'http://127.0.0.1:8765','X-Pimientero-UI':'1'}
         for case,context,question in [
             ('answer','Paris is the capital of France.','What is the capital of France?'),

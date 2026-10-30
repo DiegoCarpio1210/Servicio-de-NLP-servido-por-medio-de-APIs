@@ -71,7 +71,7 @@ def create_app(transport=None):
     def evaluation():
         data = json.loads((ROOT/'logs/quality20261029/final_comparison.json').read_text())['profiles']['trained']
         return {'source':'logs/quality20261029/final_comparison.json · trained',
-                'label':'quality40k · checkpoint-2000 · candidata evaluada',
+                'label':'quality40k · checkpoint-2000 · modelo activo',
                 'metrics':data['groups']['all'],
                 'answerable':data['groups']['answerable'],
                 'unanswerable':data['groups']['unanswerable'],

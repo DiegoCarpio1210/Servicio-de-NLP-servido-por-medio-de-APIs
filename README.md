@@ -2,9 +2,9 @@
 
 University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
 No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
-**Status: quality40k is recommended for approval; production still uses continued20k. On the same reserved 1,024 examples, weighted EM improves from 47.02% to 54.93% (95% paired interval for gain +5.48 to +10.43 points). Public accuracy remains 4/5. NOT ready for final submission.**
+**Status: quality40k checkpoint-2000 is now the approved production default; continued20k is preserved as backup. On the same reserved 1,024 examples, weighted EM improves from 47.02% to 54.93% (95% paired interval for gain +5.48 to +10.43 points). Public accuracy remains 4/5. NOT ready for final submission.**
 See [measured comparison and independence limitations](docs/QUALITY_RESULTS.md) and
-[candidate activation review](docs/CANDIDATE_REVIEW_ES.md). The dashboard displays verified quality40k candidate results, separately from the active continued20k model. Serving weights and threshold have not been switched.
+[candidate activation review](docs/CANDIDATE_REVIEW_ES.md). The dashboard displays the verified results of the active quality40k model. The approved threshold and length05 extraction policy are unchanged from evaluation.
 See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
 
 ## PIMIENTERO AI — local graphical application
@@ -13,7 +13,7 @@ On Windows, double-click **`INICIAR_PIMIENTERO.bat`**. It checks dependencies an
 starts the CPU API and a separate local UI gateway, waits for readiness, and opens **http://127.0.0.1:8765**
 in your default browser. Stop both services with **`DETENER_PIMIENTERO.bat`** or Ctrl+C in the launcher.
 No public tunnel, training, dataset download, frontend build or manually entered API token is needed.
-The model files must already exist in the ignored `models/continued20k/` directory.
+The model files must already exist in the ignored `models/quality40k/` directory.
 
 Open **http://127.0.0.1:8765** after the launcher reports readiness. The academic
 API is at **http://127.0.0.1:8000**; its protected endpoints require authentication.
@@ -141,13 +141,13 @@ Retraining invalidates previous calibration. Never copy a threshold from a diffe
 
 ## Start the actual service
 
-Do not use `models/smoke` for the professor's evaluation. Use the selected `models/continued20k` export; training and calibration are already complete.
+Do not use `models/smoke` for the professor's evaluation. Use the selected `models/quality40k` export; training and calibration are already complete.
 Set the registered team ID and request the instructor's development token. Do not paste tokens into source files,
 chat, logs or tracked files. This project does not automatically read `.env`.
 
 ```powershell
 $env:TEAM_ID = 'Pimientero'
-$env:MODEL_DIR = (Resolve-Path 'models/continued20k').Path
+$env:MODEL_DIR = (Resolve-Path 'models/quality40k').Path
 $env:TORCH_NUM_THREADS = '4'
 $secret = Read-Host 'Instructor API token' -AsSecureString
 $env:QA_API_TOKEN = [System.Net.NetworkCredential]::new('', $secret).Password
@@ -241,7 +241,7 @@ The pre-run estimate and FP32/FP16 batch benchmarks are in `logs/subset12k/`. To
 
 `python -m scripts.verify_completed` is the historical 12k verifier. Current export identity was checked by
 `scripts.verify_continuation_artifacts`; results are saved under logs/continued20k.
-`python -m scripts.verify_local --model-dir models/continued20k --repeat 10` verifies real HTTP behavior
+`python -m scripts.verify_local --model-dir models/quality40k --repeat 10` verifies real HTTP behavior
 and timing. `/info` adds `checkpoint_sha256` and `training_steps` to prove the loaded artifact; the original YAML
 allows extra response fields. Public evaluation exits 1 when answers are wrong even if the API contract passes.
 The independent evaluation already completed; do not retrain merely to start or verify this service.
@@ -262,4 +262,4 @@ docs/CONTINUATION_EXPERIMENT.md for the full comparison and its uncertainty. The
 do not tune on it. Generic scripts.evaluate refuses this manifest-based experiment to avoid using selection data
 as calibration. Existing evaluation results are complete and do not need rerunning.
 
-An authorized temporary Cloudflare test with the current candidate passed: 50 calls in 19.25s, max .755s. The tunnel was closed and three probes returned 530. Another-network testing remains pending. Follow docs/FINAL_REHEARSAL.md for the remaining authorized human-operated rehearsal.
+Historical continued20k connectivity evidence (not a new quality40k external test): an authorized temporary Cloudflare test passed: 50 calls in 19.25s, max .755s. The tunnel was closed and three probes returned 530. Another-network testing remains pending. Follow docs/FINAL_REHEARSAL.md for the remaining authorized human-operated rehearsal.

@@ -42,13 +42,12 @@ def main():
             with socket.socket() as sock:
                 try:sock.bind(('127.0.0.1',port))
                 except OSError:raise RuntimeError(f'El puerto {port} está ocupado. Cierra el servicio existente antes de iniciar; no se ha detenido ningún proceso ajeno.')
-        model=ROOT/'models/continued20k'
-        for name in ('model.safetensors','config.json','tokenizer.json','training_metadata.json','calibration.json'):
-            if not (model/name).is_file():raise RuntimeError(f'Falta models/continued20k/{name}. Restaura los archivos del modelo; no se entrenará ni descargará automáticamente.')
-        for name in ('model.safetensors','calibration.json'):
+        active=json.loads((ROOT/'configs/active_model.json').read_text())
+        model=ROOT/active['model_dir']
+        for name,expected in active['hashes'].items():
+            if not (model/name).is_file():raise RuntimeError(f'Falta {model/name}. Restaura los archivos del modelo; no se descargarán automáticamente.')
             with (model/name).open('rb') as f:before[name]=hashlib.file_digest(f,'sha256').hexdigest()
-        if before['model.safetensors']!='7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848':raise RuntimeError('Los pesos no coinciden con el checkpoint-1600 seleccionado.')
-        if before['calibration.json']!='52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd':raise RuntimeError('La calibración no coincide con la versión seleccionada.')
+            if before[name]!=expected:raise RuntimeError(f'El archivo {name} no coincide con quality40k checkpoint-2000.')
         (RUN/'STOP').unlink(missing_ok=True)
         env=os.environ.copy();env.update(QA_API_TOKEN=secrets.token_urlsafe(32),TEAM_ID='Pimientero',MODEL_DIR=str(model),CUDA_VISIBLE_DEVICES='')
         print('PIMIENTERO AI | Cargando DistilBERT en CPU. La primera carga puede tardar unos minutos.',flush=True)
@@ -63,7 +62,7 @@ def main():
                     r=client.get(URL+'/ui/info')
                     if r.status_code==200:
                         data=r.json()
-                        if data['checkpoint_sha256']!=before['model.safetensors'] or data['training_steps']!=1600:raise RuntimeError('La API cargó un modelo inesperado.')
+                        if data['checkpoint_sha256']!=before['model.safetensors'] or data['training_steps']!=active['training_steps'] or data['no_answer_threshold']!=active['calibration']['threshold'] or data['extraction_policy']!=active['calibration']['policy']:raise RuntimeError('La API cargó un modelo inesperado.')
                         break
                 except httpx.HTTPError:pass
                 time.sleep(1)

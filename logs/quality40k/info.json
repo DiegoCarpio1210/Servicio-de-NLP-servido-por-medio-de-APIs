@@ -1,0 +1,17 @@
+{
+  "team": "Pimientero",
+  "model": "distilbert/distilbert-base-uncased",
+  "params": 66364418,
+  "max_seq_length": 384,
+  "doc_stride": 128,
+  "checkpoint_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+  "training_steps": 2000,
+  "training_run_steps": 2531,
+  "no_answer_threshold": -0.40494251441686124,
+  "extraction_policy": {
+    "name": "length05",
+    "max_length": 30,
+    "length_penalty": 0.5
+  },
+  "calibration_objective": "teacher_em_null_floor70"
+}

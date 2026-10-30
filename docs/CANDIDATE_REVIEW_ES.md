@@ -1,3 +1,10 @@
+# Activación aprobada
+
+quality40k checkpoint-2000 ya está activo. Ejecuta INICIAR_PIMIENTERO.bat.
+continued20k se conserva como respaldo; el dashboard corresponde a quality40k.
+La revisión histórica siguiente conserva el protocolo previo a la aprobación.
+Evidencia actual: logs/quality20261029/activation.json.
+
 # Candidata quality40k: revisión antes de activarla
 
 La aplicación habitual sigue utilizando `continued20k`, checkpoint-1600. El

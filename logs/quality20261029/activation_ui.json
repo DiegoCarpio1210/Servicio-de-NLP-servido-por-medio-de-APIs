@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "case": "answer",
+      "status": 200,
+      "response": {
+        "id": "answer",
+        "answer": "Paris",
+        "start": 0,
+        "score": 0.9746790582130406
+      },
+      "seconds": 0.2172048999927938,
+      "context_chars": 31,
+      "offset_valid": true
+    },
+    {
+      "case": "null",
+      "status": 200,
+      "response": {
+        "id": "null",
+        "answer": null,
+        "start": null,
+        "score": 0.9994050125928329
+      },
+      "seconds": 0.1780548000242561,
+      "context_chars": 31,
+      "offset_valid": true
+    },
+    {
+      "case": "unicode",
+      "status": 200,
+      "response": {
+        "id": "unicode",
+        "answer": "Paris",
+        "start": 2,
+        "score": 0.8175513612366294
+      },
+      "seconds": 0.16338660003384575,
+      "context_chars": 33,
+      "offset_valid": true
+    },
+    {
+      "case": "long_context",
+      "status": 200,
+      "response": {
+        "id": "long_context",
+        "answer": "Paris",
+        "start": 3600,
+        "score": 0.601901181350807
+      },
+      "seconds": 0.33077169995522127,
+      "context_chars": 3631,
+      "offset_valid": true
+    }
+  ],
+  "info": {
+    "team": "Pimientero",
+    "model": "distilbert/distilbert-base-uncased",
+    "params": 66364418,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+    "training_steps": 2000,
+    "training_run_steps": 2531,
+    "no_answer_threshold": -0.40494251441686124,
+    "extraction_policy": {
+      "name": "length05",
+      "max_length": 30,
+      "length_penalty": 0.5
+    },
+    "calibration_objective": "teacher_em_null_floor70"
+  },
+  "oversized_input": 422,
+  "host_rebinding": 403,
+  "cross_site_post": 403,
+  "academic_api_without_token": 401,
+  "scope": "Real local CPU model through UI gateway; four smoke inputs, not a new accuracy evaluation"
+}
