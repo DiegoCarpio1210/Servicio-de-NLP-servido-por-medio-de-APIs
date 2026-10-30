@@ -1,55 +1,37 @@
-# Activación aprobada
+# Approved quality40k deployment and candidate review
 
-quality40k checkpoint-2000 ya está activo. Ejecuta INICIAR_PIMIENTERO.bat.
-continued20k se conserva como respaldo; el dashboard corresponde a quality40k.
-La revisión histórica siguiente conserva el protocolo previo a la aprobación.
-Evidencia actual: logs/quality20261029/activation.json.
+quality40k checkpoint-2000 is active. Run `INICIAR_PIMIENTERO.bat` and open
+http://127.0.0.1:8765. continued20k checkpoint-1600 remains intact as backup.
+The dashboard displays the active quality40k evaluation, not pretrained results.
 
-# Candidata quality40k: revisión antes de activarla
+## Frozen approved configuration
 
-La aplicación habitual sigue utilizando `continued20k`, checkpoint-1600. El
-dashboard muestra las métricas verificadas de quality40k como candidata y distingue
-el modelo activo. No cambies únicamente `MODEL_DIR`:
-la nueva candidata requiere tanto sus pesos como su política de extracción y
-umbral, y todavía necesita aprobación para activarse en producción.
-
-## Configuración congelada
-
-- Pesos: `models/quality40k/model.safetensors`, exportados desde checkpoint-2000.
+- Weights: `models/quality40k/model.safetensors`.
 - SHA-256: `d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f`.
-- Tokenizer y configuración: archivos locales del mismo directorio; su identidad
-  con el checkpoint está verificada en `logs/quality20261029/artifact_audit.json`.
-- Política: máximo de 30 tokens; puntuar cada span como
-  `start_logit + end_logit - 0.5 * log(longitud_en_tokens)`.
-- Null: mínimo CLS entre ventanas; devolver null cuando
-  `null_score - mejor_span > -0.40494251441686124`.
-- Secuencia 384, stride 128, inferencia CPU, cuatro hilos.
-- Fuente reproducible: perfil `trained` en `logs/quality20261029/final_lock.json`.
+- Maximum span length: 30 tokens.
+- Span score: start logit + end logit - 0.5 * log(token length).
+- Null threshold: -0.40494251441686124, applied to minimum-window CLS minus best span.
+- Sequence length 384, stride 128, CPU inference with four production threads.
+- Tokenizer/config/calibration hashes: `configs/active_model.json`.
+- Original decision record: `logs/quality20261029/final_lock.json`, profile trained.
 
-La política no contiene reglas por pregunta, entidades ni ejemplos públicos. Su
-selección y calibración terminaron antes de puntuar la reserva final, con registro
-en el commit `37fc668`. No deben modificarse con los resultados finales conocidos.
+Selection and calibration were committed before final scoring in `37fc668`.
+The policy contains no question-specific rules. Subsequent production HTTP outputs
+matched the evaluated candidate exactly. See `logs/quality20261029/activation.json`.
+The architecture and white/black/gray design are preserved. A browser automation
+timeout means the activation run did not include a new visual-click verification;
+real UI gateway inference, offsets, Unicode, long contexts and authentication passed.
 
-## Cómo se probó sin cambiar la aplicación
+## New pretrained candidates
 
-`experiments/candidate_api.py` utiliza la misma fábrica de API y autenticación
-académicas con un adaptador de inferencia experimental. El verificador inicia una
-única instancia local en `127.0.0.1:8000`, genera un token en memoria, comprueba el
-hash y el umbral, ejecuta las pruebas y cierra sus procesos. No abre túneles.
+The user now reports that the professor permits pretrained QA models. The
+benchmark evaluates the named Deepset models without training, using the same
+context-disjoint local validation partitions for all compared models. It does not
+replace quality40k or update its calibration. Published vendor results are not
+local measurements, and the historical validation-exposure limitations remain.
 
-Los resultados se guardan en `logs/quality20261029/cpu_*/`. No vuelvas a ejecutar
-el verificador sobre evidencias existentes: se niega a sobrescribirlas. No hay
-tokens guardados en estos resultados. Las predicciones completas de la evaluación
-están excluidas de Git; las métricas, manifiestos de IDs y configuración sí se
-publican.
-
-## Después de la aprobación
-
-La integración pendiente deberá activar conjuntamente pesos, política y umbral,
-actualizar los hashes esperados por el lanzador y asociar el dashboard a las
-métricas del modelo realmente activo. Después se repetirán las comprobaciones
-críticas de la interfaz y API. Se conservará `continued20k` como respaldo.
-
-Por ahora, para utilizar la versión estable, ejecuta `INICIAR_PIMIENTERO.bat` y
-cierra con `DETENER_PIMIENTERO.bat`. La aprobación de la candidata no implica
-autorizar un túnel público ni crear la etiqueta `submission`.
+Any future replacement requires separate user approval. A promotion must activate
+weights, tokenizer, policy and threshold together, update expected hashes and the
+dashboard's evaluation source, and repeat critical API/UI checks. Preserve this
+approved model as a rollback option. Candidate approval never authorizes public
+exposure, credential publication or the submission tag automatically.

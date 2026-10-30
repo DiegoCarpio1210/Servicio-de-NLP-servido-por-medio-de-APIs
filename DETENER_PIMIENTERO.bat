@@ -4,7 +4,7 @@ setlocal
 set PYTHONUTF8=1
 cd /d "%~dp0"
 if not exist ".venv\Scripts\python.exe" (
-  echo Falta el entorno .venv. Cierra la ventana de inicio con Ctrl+C.
+  echo The .venv environment is missing. Close the launcher window with Ctrl+C.
   pause
   exit /b 1
 )

@@ -4,7 +4,7 @@ setlocal
 set PYTHONUTF8=1
 cd /d "%~dp0"
 if not exist ".venv\Scripts\python.exe" (
-  echo Falta el entorno .venv. Consulta docs\INTERFAZ_LOCAL.md para instalar las dependencias.
+  echo The .venv environment is missing. See docs\INTERFAZ_LOCAL.md for dependency setup.
   pause
   exit /b 1
 )

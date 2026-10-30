@@ -1,0 +1,36 @@
+{
+  "models": [
+    {
+      "id": "deepset/deberta-v3-base-squad2",
+      "revision": "eea39c60cc305c2e4a9504f5ff117294bebb42db",
+      "license": "cc-by-4.0",
+      "source": "https://huggingface.co/deepset/deberta-v3-base-squad2",
+      "published_squad2_validation": {
+        "EM": 83.8248,
+        "F1": 87.41
+      },
+      "published_not_local_measurement": true
+    },
+    {
+      "id": "deepset/roberta-base-squad2",
+      "revision": "adc3b06f79f797d1c575d5479d6f5efe54a9e3b4",
+      "license": "cc-by-4.0",
+      "source": "https://huggingface.co/deepset/roberta-base-squad2",
+      "published_squad2_validation": {
+        "EM": 79.9309,
+        "F1": 82.9501
+      },
+      "published_not_local_measurement": true
+    }
+  ],
+  "seed": 20261030,
+  "calibration_size": 512,
+  "final_size": 1024,
+  "cpu_threads": 2,
+  "worker_timeout_seconds": 10800,
+  "max_worker_rss_gib": 8,
+  "minimum_free_disk_gib": 6,
+  "minimum_available_ram_gib": 4,
+  "maximum_download_attempts_per_launch": 1,
+  "approval_basis": "User reports professor now permits pretrained QA models; original documents preserved."
+}

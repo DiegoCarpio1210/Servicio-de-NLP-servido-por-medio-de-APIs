@@ -36,3 +36,10 @@ Historical status chronology is preserved in history/status_before_quality40k.md
 Activation evidence: logs/quality20261029/activation.json and activation_ui.json.
 50 production API calls: 13.14s total, .552s maximum; 4/5 public remains unchanged.
 Actual GUI gateway inference passed; browser automation timed out.
+
+## Current autonomous work
+
+A separate pretrained benchmark is running/resumable under logs/pretrained_benchmark.
+Consult its progress.json for live status, not this static note. quality40k remains
+the production model; no promotion or training is authorized. Application and
+operating documentation are English-only; historical evidence is preserved.

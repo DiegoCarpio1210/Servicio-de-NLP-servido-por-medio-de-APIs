@@ -19,7 +19,9 @@ We fine-tuned `distilbert/distilbert-base-uncased`, BASE revision
 `12040accade4e8a0f71eabdb258fecc2e7e948be`, including its QA head and encoder.
 Six layers and 66,364,418 parameters suit laptop CPU inference. Twelve-layer
 BERT-base is a permitted but costlier alternative, not locally benchmarked.
-A downloaded SQuAD-fine-tuned model would not demonstrate our own BASE training.
+The user reports a later instructor clarification permitting pretrained QA models.
+A separate benchmark now compares two Deepset checkpoints; no replacement is
+activated and no unmeasured accuracy is claimed. Original instructions are preserved.
 LoRA reduces trainable parameters but does not guarantee greater accuracy.
 
 ## 2. Training
@@ -144,7 +146,8 @@ non-exposure cannot be certified. Selection/calibration share 132 contexts despi
 disjoint IDs. These local results are not an official unseen test; no retuning
 follows final scoring.
 
-The candidate still misses aspirational 65 EM, 70 F1 and 50 answerable EM. Reduced
+Production is below the new 85–95% overall EM/F1 goals, 80–85% answerable EM and
+95% unanswerable EM. Pretrained benchmark results remain pending. Reduced
 abstention increases wrong non-null outputs from 19.14% to 23.14% of all examples.
 English questions are capped at 64 tokens. Public-sample
 conformance, instructor dry run/live service, authorized weights, team defense and

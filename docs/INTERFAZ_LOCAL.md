@@ -1,124 +1,63 @@
-# PIMIENTERO AI — aplicación local
+# Local application — Pimientero AI
 
-Intelligent Question Answering System. Interfaz opcional para explorar textos mediante el modelo real
-DistilBERT continued20k, checkpoint-1600. No reemplaza la API académica ni mejora por sí misma su precisión.
+## Start and stop
 
-## Iniciar en Windows
+Run `INICIAR_PIMIENTERO.bat` from the project directory. It uses `.venv`, verifies
+all hashes in `configs/active_model.json`, starts the academic API on port 8000
+and the UI gateway on port 8765, and opens http://127.0.0.1:8765 after readiness.
+The first model load can take several minutes. Stop with `DETENER_PIMIENTERO.bat`
+or Ctrl+C in the launcher window. Do not close the laptop while a benchmark runs.
 
-1. Dentro de la carpeta del proyecto, haz doble clic en **INICIAR_PIMIENTERO.bat**.
-2. Espera a que termine la carga del modelo en CPU. El navegador predeterminado se abre automáticamente
-   en **http://127.0.0.1:8765**. La primera carga puede tardar unos minutos.
-3. Introduce un contexto y una pregunta, preferiblemente en inglés. Pulsa la flecha o Enter.
-   Shift+Enter introduce una línea nueva. No hace falta introducir tokens ni iniciar túneles.
-4. Para detenerla, ejecuta **DETENER_PIMIENTERO.bat**, o pulsa Ctrl+C en la ventana de inicio.
-   Espera el mensaje de cierre antes de cerrar esa ventana. Cerrar solo la pestaña no detiene los servicios.
+The current model is quality40k checkpoint-2000, with the previously evaluated
+length05 policy and threshold -0.40494251441686124. continued20k is preserved as
+backup. The benchmark never replaces production or changes calibration.
 
-La ejecución normal muestra una consola con el estado de carga. Una segunda ejecución no inicia otro modelo.
-Si otro programa ocupa 8000 o 8765, el lanzador se niega a reutilizarlo y explica el conflicto; no mata procesos ajenos.
-Si se cierra Windows o se termina abruptamente el lanzador, revisa los procesos/puertos antes de volver a iniciar.
+## Prerequisites
 
-## Dependencias y archivos locales
+Use Python 3.13 and the existing `.venv`. For a fresh setup, create the environment
+and install `requirements.txt`; provide the local model artifacts separately.
+GitHub intentionally excludes weights, datasets, caches and secrets. The model
+folder must include weights, tokenizer, configuration, training metadata and
+calibration. Expected hashes and calibration contents are recorded in
+`configs/active_model.json`. Never change hashes just to bypass a mismatch.
 
-Se reutilizan Python, FastAPI, Uvicorn, HTTPX, Torch y Transformers ya fijados en `requirements.txt`.
-No se requiere Node, npm, compilación del frontend, CDN, conexión a un proveedor de IA ni fuente remota.
-Para una instalación nueva, desde PowerShell en la carpeta del repositorio:
+## Interface behavior
 
-```powershell
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
+The existing white/black/gray design is retained. Add an English context and ask
+English questions. New conversation clears the current context; session history
+can restore previous requests and responses. History is kept in memory, not sent
+to an external AI service. Copy answer uses the browser clipboard permission.
+Light/dark mode and responsive navigation retain their original behavior.
 
-Los pesos no están en GitHub. Hay que restaurar el directorio `models/continued20k/` de la copia autorizada
-del equipo, incluidos pesos, configuración, tokenizer, metadatos y `calibration.json`.
-El lanzador verifica los hashes del modelo y de la calibración seleccionados; no los descarga ni los modifica.
-Ni la instalación de dependencias ni la interfaz ejecutan entrenamiento o descargan SQuAD.
+The dashboard reads verified quality40k metrics: EM 61.82%, F1 65.53%, answerable
+EM 48.05%, unanswerable EM 75.59%, and weighted EM 54.93%. The active-model section
+reports the actual API checkpoint. Scores are not calibrated probabilities of
+correctness. A valid offset does not guarantee that the answer is semantically
+correct. The model can return null and still makes unsupported-answer errors.
 
-## Uso y privacidad de la sesión
+## Architecture and security
 
-- El contexto se mantiene entre consultas. Puedes editarlo o limpiarlo; nunca se trunca silenciosamente.
-- Los límites son 5.000 caracteres de contexto y 500 de pregunta, contando puntos de código Unicode como Python.
-- El historial conserva preguntas, respuestas y contextos **en memoria de la pestaña**. Elegir una pregunta
-  recupera su contexto y resultado anterior; enviarla otra vez ejecuta una nueva inferencia.
-- Nueva conversación limpia la vista y el contexto. Limpiar conversación limpia la vista conservando el contexto.
-  Ambas conservan el historial de la sesión. Recargar o cerrar la pestaña borra ese historial.
-- El modo claro es predeterminado; el botón de apariencia activa el modo oscuro durante la sesión.
-- Una respuesta `null` se presenta como ausencia de respuesta en el contexto, sin sustituirla por una invención.
-- El score es una señal del modelo, **no una probabilidad calibrada de acierto**. El offset es el índice original
-  de caracteres, empezando por cero. El botón Copiar copia solo el texto de una respuesta no nula.
-- El dashboard distingue resultados históricos de evaluación de conteos y tiempos de la sesión actual.
-  EM 53,61 % y F1 56,18 % proceden de `fresh_holdout` en `logs/continued20k/evaluation.json` (1.024 ejemplos).
-- No hay persistencia de conversaciones en disco, analítica, cookies de seguimiento ni servicios de IA externos.
-  Los logs locales de Uvicorn registran rutas y códigos HTTP, no cuerpos ni tokens.
+`frontend/index.html`, `frontend/style.css` and `frontend/app.js` require no build,
+CDN or JavaScript package installation. `qa/ui.py` is the loopback-only gateway;
+`qa/api.py` is the academic API. `scripts/local_app.py` owns startup and shutdown,
+prevents duplicate launches, and refuses occupied ports without killing unrelated
+processes. The launcher generates a temporary token in server memory. The browser
+never receives the bearer token. Exact authentication, host allowlisting, origin
+checks, CSP and input limits remain in place. Do not expose port 8765 publicly.
 
-## Arquitectura y seguridad
+## Validation and troubleshooting
 
-```text
-Navegador → 127.0.0.1:8765 (qa.ui, frontend)
-                      ↓ HTTPX + Bearer solo en memoria del servidor
-            127.0.0.1:8000 (qa.api original) → DistilBERT CPU
-```
+Run `.venv\Scripts\python.exe -m pytest -q`. With the application running, use
+`.venv\Scripts\python.exe -m scripts.verify_ui --output tmp/ui-check.json` for real
+API/gateway inference checks. It verifies the selected hash and answer/null,
+Unicode and long-context behavior. This is not a browser visual test.
 
-`frontend/` contiene HTML semántico, CSS responsive y JavaScript sin dependencias.
-`qa/ui.py` sirve recursos estáticos y un proxy restringido a las tres rutas de la API. No acepta una URL
-de destino proporcionada por el navegador. No carga un segundo modelo.
-`scripts/local_app.py` genera un token aleatorio por ejecución y lo entrega por entorno solo a sus dos hijos.
-El token no se envía al navegador ni se escribe en archivos. Los procesos se enlazan únicamente a loopback.
-El proxy verifica Host, Origin y un encabezado de escritura; no habilita CORS. CSP impide scripts externos y
-embebido en frames. Estas medidas no pretenden aislar al propietario del sistema ni a programas maliciosos
-que ya se ejecuten en su cuenta local.
+If disconnected, wait for readiness and retry. Local logs are in
+`tmp/local-app/8000.log` and `8765.log`, excluded from Git. Input over the contract
+limits is rejected rather than silently truncated. Missing model files require
+restoring the approved artifacts; startup never downloads or trains a model.
 
-**No publiques el puerto 8765 mediante Cloudflare/ngrok.** Esta interfaz es un acceso local de confianza.
-La evaluación del profesor continúa usando la API original en 8000 y su token oficial, configurado por separado.
-No ejecutes simultáneamente el lanzador local y otro servidor académico en el mismo puerto.
-`qa/api.py`, los pesos, la calibración y las métricas académicas no se modificaron para integrar la interfaz.
-
-## Verificación ejecutada
-
-- Suite completa: **58 pruebas superadas** (`logs/ui_pytest.txt`), incluyendo las 51 existentes y 7 casos nuevos
-  del gateway (parametrizaciones incluidas). Seguridad de origen/Host, token solo servidor, null, límites y errores.
-- Modelo real a través del gateway: respuesta, null, Unicode (offset 2), contexto largo de 3.631 caracteres
-  (respuesta en offset 3.600), rechazo de 5.001 caracteres y API académica protegida.
-  Resultados exactos: `logs/ui_http_verification.json`. Son smoke tests, no una nueva evaluación de precisión.
-- Revisión de navegador en Windows: consulta real, ausencia de respuesta, contexto/pregunta vacíos, exceso de
-  longitud, copia, historial recuperable, modo oscuro, dashboard, menú responsive a 390×844 y error al cerrar servicios.
-- Inicio, cierre y prevención de duplicados del lanzador comprobados en esta laptop. La compatibilidad con una
-  segunda computadora o versiones antiguas de navegador no se ha probado.
-
-Para repetir las pruebas con la aplicación iniciada:
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m scripts.verify_ui
-```
-
-## Capturas reales
-
-Actualización del dashboard: muestra los resultados verificados de la candidata
-quality40k (EM 61,82 %, F1 65,53 %, EM respondibles 48,05 %, imposibles 75,59 %,
-ponderado 54,93 %), leídos de `logs/quality20261029/final_comparison.json`.
-El panel «Modelo en ejecución» continúa identificando continued20k. Mostrar las
-métricas de la candidata no la activa para responder consultas. Se conserva el diseño.
-
-Estas capturas documentan las pruebas visuales originales. La etiqueta actual del
-score aclara «Score (no probabilidad)»; el porcentaje visible en capturas antiguas
-no representa una probabilidad de que la respuesta sea correcta.
-
-![Consulta con inferencia real](screenshots/conversation.jpg)
-![Dashboard con métricas históricas](screenshots/dashboard.jpg)
-![Modo oscuro](screenshots/dark.jpg)
-![Dashboard responsive](screenshots/mobile.jpg)
-
-## Si algo falla
-
-La ventana de inicio explica dependencias ausentes, pesos incorrectos o puertos ocupados. Los logs están en
-`tmp/local-app/8000.log` y `8765.log`, ignorados por Git. Si la interfaz indica desconexión, inicia el `.bat`,
-espera a que esté lista y vuelve a intentar. Un error de inferencia conserva la pregunta para reintentar.
-Ante pesos/calibración distintos, restaura los artefactos seleccionados: no cambies los hashes para eludir la verificación.
-
-## Activación aprobada de quality40k
-
-El lanzador ahora carga quality40k checkpoint-2000, con umbral -0.4049425144
-y política length05. El dashboard corresponde a ese modelo activo. continued20k
-permanece intacto como respaldo. La configuración y todos los hashes esperados
-están en configs/active_model.json. Esta nota sustituye las referencias anteriores
-a la candidata pendiente de activación. No hay rediseño ni túnel público.
+Historical screenshots under `docs/screenshots/` preserve the pre-English UI test
+record. They are not screenshots of this localization. Browser automation timed
+out during the preceding activation check; only the recorded gateway checks are
+claimed for that run. See `logs/quality20261029/activation_ui.json`.

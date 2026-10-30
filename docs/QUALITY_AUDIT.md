@@ -20,7 +20,7 @@ or an offset bug. Simply forcing abstention on that wording is not acceptable.
 
 The API score is a sigmoid of absolute distance from the decision threshold. It
 is not an empirically calibrated probability of correctness; the wrong Zarya
-answer has score 0.8747. The GUI now labels it `Score (no probabilidad)` and avoids
+answer has score 0.8747. The GUI now labels it `Score (not a probability)` and avoids
 a percentage. Historical screenshots predate this small label correction.
 
 ## Implementation review

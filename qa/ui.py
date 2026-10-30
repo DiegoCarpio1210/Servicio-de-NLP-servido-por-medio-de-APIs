@@ -29,12 +29,12 @@ def create_app(transport=None):
     async def local_guard(request: Request, call_next):
         # Host allowlist prevents DNS rebinding; no CORS and strict Origin for writes.
         if request.headers.get('host') not in {'127.0.0.1:8765', 'localhost:8765'}:
-            return JSONResponse({'error':'Acceso local no permitido.'}, 403)
+            return JSONResponse({'error':'Local access is not allowed.'}, 403)
         if request.method not in {'GET','HEAD'} and (
             request.headers.get('origin') not in ORIGINS or
             request.headers.get('x-pimientero-ui') != '1'
         ):
-            return JSONResponse({'error':'Origen de la solicitud no permitido.'}, 403)
+            return JSONResponse({'error':'Request origin is not allowed.'}, 403)
         response = await call_next(request)
         response.headers['Content-Security-Policy'] = "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
         response.headers['X-Content-Type-Options'] = 'nosniff'
@@ -44,16 +44,16 @@ def create_app(transport=None):
 
     async def forward(path, body=None):
         if not token:
-            return JSONResponse({'error':'Inicia la aplicación con INICIAR_PIMIENTERO.bat.'}, 503)
+            return JSONResponse({'error':'Start the application with INICIAR_PIMIENTERO.bat.'}, 503)
         try:
             client = app.state.client
             headers = {'Authorization':'Bearer '+token}
             r = await client.get(path,headers=headers) if body is None else await client.post(path,headers=headers,json=body)
             if r.status_code != 200:
-                return JSONResponse({'error':'La API está cargando o no está disponible. Revisa la ventana de inicio.'}, 503)
+                return JSONResponse({'error':'The API is loading or unavailable. Check the launcher window.'}, 503)
             return r.json()
         except (httpx.HTTPError, ValueError):
-            return JSONResponse({'error':'No se pudo conectar con la API local. Revisa la ventana de inicio.'}, 503)
+            return JSONResponse({'error':'Could not connect to the local API. Check the launcher window.'}, 503)
 
     @app.get('/')
     def index():
@@ -71,7 +71,7 @@ def create_app(transport=None):
     def evaluation():
         data = json.loads((ROOT/'logs/quality20261029/final_comparison.json').read_text())['profiles']['trained']
         return {'source':'logs/quality20261029/final_comparison.json · trained',
-                'label':'quality40k · checkpoint-2000 · modelo activo',
+                'label':'quality40k · checkpoint-2000 · active model',
                 'metrics':data['groups']['all'],
                 'answerable':data['groups']['answerable'],
                 'unanswerable':data['groups']['unanswerable'],

@@ -1,7 +1,7 @@
 # Extractive QA as a local API
 
 University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
-No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
+Production currently uses our own fine-tuned DistilBERT; all inference runs locally on CPU. The user reports that pretrained QA models are now permitted, and a separate benchmark evaluates them without changing production.
 **Status: quality40k checkpoint-2000 is now the approved production default; continued20k is preserved as backup. On the same reserved 1,024 examples, weighted EM improves from 47.02% to 54.93% (95% paired interval for gain +5.48 to +10.43 points). Public accuracy remains 4/5. NOT ready for final submission.**
 See [measured comparison and independence limitations](docs/QUALITY_RESULTS.md) and
 [candidate activation review](docs/CANDIDATE_REVIEW_ES.md). The dashboard displays the verified results of the active quality40k model. The approved threshold and length05 extraction policy are unchanged from evaluation.
@@ -36,11 +36,11 @@ responsive navigation and a dashboard separating historical evaluation from curr
 The bearer token stays in the server processes; the browser talks to the loopback-only gateway.
 The academic API on port 8000 and its authentication contract remain unchanged. Do not expose the UI port 8765 publicly.
 
-**[Spanish setup, architecture, security and verified screenshots](docs/INTERFAZ_LOCAL.md)**.
+**[English setup, architecture, security and test evidence](docs/INTERFAZ_LOCAL.md)**.
 Evidence: `logs/ui_pytest.txt` (58 passed) and `logs/ui_http_verification.json` (real selected-model smoke checks).
 The GUI is an optional local demonstration; it does not change the documented model accuracy or outstanding academic gates.
 
-![Pimientero AI with a real DistilBERT answer](docs/screenshots/conversation.jpg)
+Historical screenshots in `docs/screenshots/` predate English localization; the current design is preserved.
 
 ## Repository map
 
@@ -248,7 +248,7 @@ The independent evaluation already completed; do not retrain merely to start or 
 
 ## Selected continuation: completed, do not retrain
 
-For step-by-step team operation, see [the Spanish runbook](docs/RUNBOOK_ES.md). The prepared HTTPS rehearsal
+For step-by-step team operation, see [the English runbook](docs/RUNBOOK_ES.md). The prepared HTTPS rehearsal
 is `python -m scripts.rehearse --url <HTTPS-URL> --output logs/external_network_verification.json`.
 Run it from the other network with `--external-network --network-note "actual device/network description"`;
 it prompts for the token without saving it. Current-model HTTPS from the origin laptop passed; a genuinely separate-network rehearsal remains pending.
@@ -263,3 +263,11 @@ do not tune on it. Generic scripts.evaluate refuses this manifest-based experime
 as calibration. Existing evaluation results are complete and do not need rerunning.
 
 Historical continued20k connectivity evidence (not a new quality40k external test): an authorized temporary Cloudflare test passed: 50 calls in 19.25s, max .755s. The tunnel was closed and three probes returned 530. Another-network testing remains pending. Follow docs/FINAL_REHEARSAL.md for the remaining authorized human-operated rehearsal.
+
+## Autonomous pretrained benchmark
+
+Run `RUN_PRETRAINED_BENCHMARK.bat` once. The independent CPU process evaluates
+Deepset DeBERTa-v3-base-SQuAD2, then RoBERTa-base-SQuAD2, plus unchanged quality40k.
+Follow `logs/pretrained_benchmark/progress.json`, `pid.json`, `execution.log` and
+candidate progress files. Restarting skips completed work. No training, model
+activation or public tunnel is performed. See [protocol, licenses and limitations](docs/PRETRAINED_BENCHMARK.md).

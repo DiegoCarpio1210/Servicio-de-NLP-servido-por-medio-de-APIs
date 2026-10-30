@@ -37,3 +37,4 @@ __pycache__/
 /logs/subset_launcher*
 
 /logs/**/*.lock
+/logs/pretrained_benchmark/

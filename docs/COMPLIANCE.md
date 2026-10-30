@@ -122,3 +122,15 @@ real UI gateway cases passed. Dashboard metrics match the active checkpoint.
 Browser automation timed out; no new visual-click test is claimed. Original
 weights, backup and public-sample failure remain unchanged. Evidence: activation.json,
 activation_ui.json, activation_pytest.txt and logs/quality40k/{info,public,real_http_contract}.json.
+
+## Pretrained-model clarification and English localization
+
+The user reports that the professor now permits pretrained QA models. Original
+PDF/YAML files remain unchanged; the historical BASE-only entries describe the
+original brief and retained self-trained deployment. A separate bounded, resumable
+CPU benchmark evaluates the verified Deepset repositories without promotion.
+See PRETRAINED_BENCHMARK.md for licenses, fixed revisions and reused-validation
+limitations. Running stages are not counted as completed accuracy or HTTP checks.
+The UI, launcher messages, gateway errors and editable operating guides are now
+in English. API JSON keys and authentication behavior are unchanged. Historical
+logs and screenshots preserve their original evidence and language.

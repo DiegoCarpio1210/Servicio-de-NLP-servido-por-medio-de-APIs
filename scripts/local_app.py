@@ -24,16 +24,16 @@ def main():
     args=parser.parse_args()
     os.chdir(ROOT); RUN.mkdir(parents=True,exist_ok=True)
     if args.stop:
-        (RUN/'STOP').touch();print('Solicitud de cierre enviada a Pimientero AI.');return 0
+        (RUN/'STOP').touch();print('Shutdown requested for Pimientero AI.');return 0
     for module in ('torch','transformers','fastapi','uvicorn','httpx'):
         if importlib.util.find_spec(module) is None:
-            print('Falta '+module+'. Instala requirements.txt en .venv.');return 1
+            print('Missing '+module+'. Install requirements.txt in .venv.');return 1
     import httpx
     import msvcrt
     lock=(RUN/'launcher.lock').open('a+b'); lock.seek(0);lock.write(b'0');lock.flush();lock.seek(0)
     try: msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
     except OSError:
-        print('Pimientero AI ya se está ejecutando. No se iniciará otra instancia.')
+        print('Pimientero AI is already running. No duplicate instance will be started.')
         if not args.no_browser:webbrowser.open(URL)
         lock.close();return 0
     processes=[];logs=[];before={}
@@ -41,37 +41,37 @@ def main():
         for port in (8000,8765):
             with socket.socket() as sock:
                 try:sock.bind(('127.0.0.1',port))
-                except OSError:raise RuntimeError(f'El puerto {port} está ocupado. Cierra el servicio existente antes de iniciar; no se ha detenido ningún proceso ajeno.')
+                except OSError:raise RuntimeError(f'Port {port} is occupied. Close the existing service first; no unrelated process was stopped.')
         active=json.loads((ROOT/'configs/active_model.json').read_text())
         model=ROOT/active['model_dir']
         for name,expected in active['hashes'].items():
-            if not (model/name).is_file():raise RuntimeError(f'Falta {model/name}. Restaura los archivos del modelo; no se descargarán automáticamente.')
+            if not (model/name).is_file():raise RuntimeError(f'Missing {model/name}. Restore the model files; they will not be downloaded automatically.')
             with (model/name).open('rb') as f:before[name]=hashlib.file_digest(f,'sha256').hexdigest()
-            if before[name]!=expected:raise RuntimeError(f'El archivo {name} no coincide con quality40k checkpoint-2000.')
+            if before[name]!=expected:raise RuntimeError(f'File {name} does not match quality40k checkpoint-2000.')
         (RUN/'STOP').unlink(missing_ok=True)
         env=os.environ.copy();env.update(QA_API_TOKEN=secrets.token_urlsafe(32),TEAM_ID='Pimientero',MODEL_DIR=str(model),CUDA_VISIBLE_DEVICES='')
-        print('PIMIENTERO AI | Cargando DistilBERT en CPU. La primera carga puede tardar unos minutos.',flush=True)
+        print('PIMIENTERO AI | Loading DistilBERT on CPU. The first load may take a few minutes.',flush=True)
         for app,port in [('qa.api:app',8000),('qa.ui:app',8765)]:
             log=(RUN/f'{port}.log').open('w');logs.append(log)
             processes.append(subprocess.Popen([sys.executable,'-m','uvicorn',app,'--host','127.0.0.1','--port',str(port),'--workers','1'],env=env,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW))
         with httpx.Client(timeout=3,trust_env=False) as client:
             for _ in range(300):
                 if (RUN/'STOP').exists():return 0
-                if any(p.poll() is not None for p in processes):raise RuntimeError('Un servicio no pudo iniciar. Revisa tmp/local-app/8000.log y 8765.log.')
+                if any(p.poll() is not None for p in processes):raise RuntimeError('A service failed to start. Check tmp/local-app/8000.log and 8765.log.')
                 try:
                     r=client.get(URL+'/ui/info')
                     if r.status_code==200:
                         data=r.json()
-                        if data['checkpoint_sha256']!=before['model.safetensors'] or data['training_steps']!=active['training_steps'] or data['no_answer_threshold']!=active['calibration']['threshold'] or data['extraction_policy']!=active['calibration']['policy']:raise RuntimeError('La API cargó un modelo inesperado.')
+                        if data['checkpoint_sha256']!=before['model.safetensors'] or data['training_steps']!=active['training_steps'] or data['no_answer_threshold']!=active['calibration']['threshold'] or data['extraction_policy']!=active['calibration']['policy']:raise RuntimeError('The API loaded an unexpected model.')
                         break
                 except httpx.HTTPError:pass
                 time.sleep(1)
-            else:raise RuntimeError('El modelo no estuvo listo en 5 minutos. Revisa los registros locales.')
+            else:raise RuntimeError('The model was not ready within 5 minutes. Check the local logs.')
         (RUN/'status.json').write_text(json.dumps({'state':'ready','url':URL,'info':data,'pids':[p.pid for p in processes]},indent=2))
-        print('Lista: '+URL+' | Para cerrar: DETENER_PIMIENTERO.bat o Ctrl+C en esta ventana.',flush=True)
+        print('Ready: '+URL+' | To stop: DETENER_PIMIENTERO.bat or Ctrl+C in this window.',flush=True)
         if not args.no_browser:webbrowser.open(URL)
         while not (RUN/'STOP').exists():
-            if any(p.poll() is not None for p in processes):raise RuntimeError('Un servicio se detuvo. Revisa los registros y vuelve a iniciar.')
+            if any(p.poll() is not None for p in processes):raise RuntimeError('A service stopped. Check the logs and start again.')
             time.sleep(.5)
         return 0
     except KeyboardInterrupt:return 0
@@ -86,7 +86,7 @@ def main():
         for log in logs:log.close()
         (RUN/'status.json').write_text(json.dumps({'state':'closed','owned_processes_stopped':all(p.poll() is not None for p in processes)}))
         lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_UNLCK,1);lock.close()
-        print('Servicios locales cerrados. Token temporal descartado.',flush=True)
+        print('Local services stopped. Temporary token discarded.',flush=True)
 
 
 if __name__=='__main__':raise SystemExit(main())
