@@ -1,0 +1,42 @@
+{
+  "stable": "models/continued20k",
+  "stable_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+  "postprocessors": [
+    {
+      "name": "standard",
+      "max_length": 30,
+      "length_penalty": 0.0
+    },
+    {
+      "name": "short15",
+      "max_length": 15,
+      "length_penalty": 0.0
+    },
+    {
+      "name": "length01",
+      "max_length": 30,
+      "length_penalty": 0.1
+    },
+    {
+      "name": "length025",
+      "max_length": 30,
+      "length_penalty": 0.25
+    },
+    {
+      "name": "length05",
+      "max_length": 30,
+      "length_penalty": 0.5
+    }
+  ],
+  "selection_rule": "Choose each model postprocessor by development 75/25 EM among profiles with development impossible EM >=70%, F1 tie-break. Threshold is fitted only on calibration with >=70% impossible EM. Final compare stable, stable experimental and one trained candidate; never retune after final.",
+  "training_authorized_candidates": 1,
+  "training_budget_seconds": 3600,
+  "estimated_training_minutes": [
+    42,
+    60
+  ],
+  "estimate_basis": "2579 seconds / 2534 optimizer steps in previous real GPU run; ~2500 new steps; previous peak reserved 2798 MiB of 4096.",
+  "training_trigger": "If inference-only development metrics do not meet 65 EM / 70 F1 / 50 answerable EM / 70 impossible EM, run one 40k/1epoch continuation.",
+  "promotion_rule": "No automatic replacement. Recommend only if paired context-cluster bootstrap 95% CI for weighted EM gain excludes zero and impossible EM >=70%; otherwise keep stable.",
+  "public_and_manual": "Diagnostics only after policy selection; never calibrate or train on these examples."
+}

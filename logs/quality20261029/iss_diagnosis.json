@@ -1,0 +1,609 @@
+{
+  "purpose": "User-supplied diagnostic only. Never use for training, calibration, policy or model selection.",
+  "model_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+  "threshold": -0.98309326171875,
+  "context_characters": 1295,
+  "results": [
+    {
+      "question": "What is the name of the first ISS module?",
+      "reference": "Zarya",
+      "response": {
+        "answer": "Zarya",
+        "start": 284,
+        "score": 0.9997229022618246
+      },
+      "diagnostic": {
+        "text": "Zarya",
+        "start": 284,
+        "margin": -9.173956394195557,
+        "null_score": 3.7548632621765137,
+        "best_span_score": 12.92881965637207,
+        "top_spans": [
+          {
+            "text": "Zarya",
+            "start": 284,
+            "score": 12.92881965637207,
+            "start_logit": 6.269574165344238,
+            "end_logit": 6.659245491027832,
+            "tokens": 2
+          },
+          {
+            "text": "rya",
+            "start": 286,
+            "score": 7.3459882736206055,
+            "start_logit": 0.6867425441741943,
+            "end_logit": 6.659245491027832,
+            "tokens": 1
+          },
+          {
+            "text": "called Zarya",
+            "start": 277,
+            "score": 7.036874294281006,
+            "start_logit": 0.37762874364852905,
+            "end_logit": 6.659245491027832,
+            "tokens": 3
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998",
+            "start": 284,
+            "score": 6.466343402862549,
+            "start_logit": 6.269574165344238,
+            "end_logit": 0.19676923751831055,
+            "tokens": 10
+          },
+          {
+            "text": "Zarya,",
+            "start": 284,
+            "score": 6.3037614822387695,
+            "start_logit": 6.269574165344238,
+            "end_logit": 0.034187108278274536,
+            "tokens": 3
+          },
+          {
+            "text": "International Space Station, called Zarya",
+            "start": 248,
+            "score": 5.637582302093506,
+            "start_logit": -1.0216631889343262,
+            "end_logit": 6.659245491027832,
+            "tokens": 7
+          },
+          {
+            "text": "Za",
+            "start": 284,
+            "score": 5.036038398742676,
+            "start_logit": 6.269574165344238,
+            "end_logit": -1.2335355281829834,
+            "tokens": 1
+          },
+          {
+            "text": "The first module of the International Space Station, called Zarya",
+            "start": 224,
+            "score": 4.681541919708252,
+            "start_logit": -1.9777036905288696,
+            "end_logit": 6.659245491027832,
+            "tokens": 12
+          },
+          {
+            "text": "the International Space Station, called Zarya",
+            "start": 244,
+            "score": 3.5435519218444824,
+            "start_logit": -3.1156935691833496,
+            "end_logit": 6.659245491027832,
+            "tokens": 8
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998. The ISS is a collaborative project involving five major space agencies",
+            "start": 284,
+            "score": 3.421499729156494,
+            "start_logit": 6.269574165344238,
+            "end_logit": -2.848074436187744,
+            "tokens": 22
+          }
+        ],
+        "windows": 1
+      },
+      "offset_valid": true
+    },
+    {
+      "question": "When was the first ISS module launched?",
+      "reference": "November 20, 1998",
+      "response": {
+        "answer": "November 20, 1998",
+        "start": 307,
+        "score": 0.9376244701107354
+      },
+      "diagnostic": {
+        "text": "November 20, 1998",
+        "start": 307,
+        "margin": -3.693269729614258,
+        "null_score": 9.98016357421875,
+        "best_span_score": 13.673433303833008,
+        "top_spans": [
+          {
+            "text": "November 20, 1998",
+            "start": 307,
+            "score": 13.673433303833008,
+            "start_logit": 6.621022701263428,
+            "end_logit": 7.05241060256958,
+            "tokens": 4
+          },
+          {
+            "text": "1998",
+            "start": 320,
+            "score": 10.80084228515625,
+            "start_logit": 3.748432159423828,
+            "end_logit": 7.05241060256958,
+            "tokens": 1
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998",
+            "start": 284,
+            "score": 10.233226776123047,
+            "start_logit": 3.1808156967163086,
+            "end_logit": 7.05241060256958,
+            "tokens": 10
+          },
+          {
+            "text": "November 20",
+            "start": 307,
+            "score": 9.897680282592773,
+            "start_logit": 6.621022701263428,
+            "end_logit": 3.2766575813293457,
+            "tokens": 2
+          },
+          {
+            "text": "on November 20, 1998",
+            "start": 304,
+            "score": 9.162525177001953,
+            "start_logit": 2.1101150512695312,
+            "end_logit": 7.05241060256958,
+            "tokens": 5
+          },
+          {
+            "text": "20, 1998",
+            "start": 316,
+            "score": 8.784193992614746,
+            "start_logit": 1.731783151626587,
+            "end_logit": 7.05241060256958,
+            "tokens": 3
+          },
+          {
+            "text": "November",
+            "start": 307,
+            "score": 8.493997573852539,
+            "start_logit": 6.621022701263428,
+            "end_logit": 1.8729753494262695,
+            "tokens": 1
+          },
+          {
+            "text": "November 20,",
+            "start": 307,
+            "score": 8.304097175598145,
+            "start_logit": 6.621022701263428,
+            "end_logit": 1.6830742359161377,
+            "tokens": 3
+          },
+          {
+            "text": "November 20, 1998.",
+            "start": 307,
+            "score": 8.103591918945312,
+            "start_logit": 6.621022701263428,
+            "end_logit": 1.4825689792633057,
+            "tokens": 5
+          },
+          {
+            "text": "Zarya",
+            "start": 284,
+            "score": 6.563782691955566,
+            "start_logit": 3.1808156967163086,
+            "end_logit": 3.382966995239258,
+            "tokens": 2
+          }
+        ],
+        "windows": 1
+      },
+      "offset_valid": true
+    },
+    {
+      "question": "What provides electricity to the International Space Station?",
+      "reference": "solar arrays",
+      "response": {
+        "answer": "solar arrays",
+        "start": 1023,
+        "score": 0.7413163625624132
+      },
+      "diagnostic": {
+        "text": "solar arrays",
+        "start": 1023,
+        "margin": -2.035914897918701,
+        "null_score": 7.366058826446533,
+        "best_span_score": 9.401973724365234,
+        "top_spans": [
+          {
+            "text": "solar arrays",
+            "start": 1023,
+            "score": 9.401973724365234,
+            "start_logit": 4.279938220977783,
+            "end_logit": 5.122035026550293,
+            "tokens": 2
+          },
+          {
+            "text": "large solar arrays",
+            "start": 1017,
+            "score": 9.145448684692383,
+            "start_logit": 4.023413181304932,
+            "end_logit": 5.122035026550293,
+            "tokens": 3
+          },
+          {
+            "text": "solar arrays that convert sunlight",
+            "start": 1023,
+            "score": 8.547800064086914,
+            "start_logit": 4.279938220977783,
+            "end_logit": 4.267861366271973,
+            "tokens": 5
+          },
+          {
+            "text": "large solar arrays that convert sunlight",
+            "start": 1017,
+            "score": 8.291275024414062,
+            "start_logit": 4.023413181304932,
+            "end_logit": 4.267861366271973,
+            "tokens": 6
+          },
+          {
+            "text": "solar arrays that convert sunlight into electrical energy",
+            "start": 1023,
+            "score": 8.149557113647461,
+            "start_logit": 4.279938220977783,
+            "end_logit": 3.8696184158325195,
+            "tokens": 8
+          },
+          {
+            "text": "large solar arrays that convert sunlight into electrical energy",
+            "start": 1017,
+            "score": 7.893031597137451,
+            "start_logit": 4.023413181304932,
+            "end_logit": 3.8696184158325195,
+            "tokens": 9
+          },
+          {
+            "text": "sunlight",
+            "start": 1049,
+            "score": 7.064608097076416,
+            "start_logit": 2.7967467308044434,
+            "end_logit": 4.267861366271973,
+            "tokens": 1
+          },
+          {
+            "text": "sunlight into electrical energy",
+            "start": 1049,
+            "score": 6.666365146636963,
+            "start_logit": 2.7967467308044434,
+            "end_logit": 3.8696184158325195,
+            "tokens": 4
+          },
+          {
+            "text": "electrical energy",
+            "start": 1063,
+            "score": 6.586446762084961,
+            "start_logit": 2.7168281078338623,
+            "end_logit": 3.8696184158325195,
+            "tokens": 2
+          },
+          {
+            "text": "convert sunlight",
+            "start": 1041,
+            "score": 6.151684761047363,
+            "start_logit": 1.8838236331939697,
+            "end_logit": 4.267861366271973,
+            "tokens": 2
+          }
+        ],
+        "windows": 1
+      },
+      "offset_valid": true
+    },
+    {
+      "question": "How fast does the International Space Station travel?",
+      "reference": "28,000 kilometers per hour",
+      "response": {
+        "answer": "28,000 kilometers per hour and completes one orbit around Earth approximately every 90 minutes",
+        "start": 638,
+        "score": 0.9087926659276149
+      },
+      "diagnostic": {
+        "text": "28,000 kilometers per hour and completes one orbit around Earth approximately every 90 minutes",
+        "start": 638,
+        "margin": -3.2820749282836914,
+        "null_score": 9.33108901977539,
+        "best_span_score": 12.613163948059082,
+        "top_spans": [
+          {
+            "text": "28,000 kilometers per hour and completes one orbit around Earth approximately every 90 minutes",
+            "start": 638,
+            "score": 12.613163948059082,
+            "start_logit": 6.292320251464844,
+            "end_logit": 6.320843696594238,
+            "tokens": 16
+          },
+          {
+            "text": "28,000 kilometers per hour",
+            "start": 638,
+            "score": 12.483085632324219,
+            "start_logit": 6.292320251464844,
+            "end_logit": 6.190764904022217,
+            "tokens": 6
+          },
+          {
+            "text": "about 28,000 kilometers per hour and completes one orbit around Earth approximately every 90 minutes",
+            "start": 632,
+            "score": 12.426775932312012,
+            "start_logit": 6.105932235717773,
+            "end_logit": 6.320843696594238,
+            "tokens": 17
+          },
+          {
+            "text": "about 28,000 kilometers per hour",
+            "start": 632,
+            "score": 12.296697616577148,
+            "start_logit": 6.105932235717773,
+            "end_logit": 6.190764904022217,
+            "tokens": 7
+          },
+          {
+            "text": "28,000 kilometers",
+            "start": 638,
+            "score": 11.247060775756836,
+            "start_logit": 6.292320251464844,
+            "end_logit": 4.954740524291992,
+            "tokens": 4
+          },
+          {
+            "text": "about 28,000 kilometers",
+            "start": 632,
+            "score": 11.060672760009766,
+            "start_logit": 6.105932235717773,
+            "end_logit": 4.954740524291992,
+            "tokens": 5
+          },
+          {
+            "text": "28,000",
+            "start": 638,
+            "score": 10.4777250289917,
+            "start_logit": 6.292320251464844,
+            "end_logit": 4.1854047775268555,
+            "tokens": 3
+          },
+          {
+            "text": "about 28,000",
+            "start": 632,
+            "score": 10.291337013244629,
+            "start_logit": 6.105932235717773,
+            "end_logit": 4.1854047775268555,
+            "tokens": 4
+          },
+          {
+            "text": "400 kilometers. It travels at a speed of about 28,000 kilometers per hour and completes one orbit around Earth approximately every 90 minutes",
+            "start": 591,
+            "score": 10.114784240722656,
+            "start_logit": 3.7939400672912598,
+            "end_logit": 6.320843696594238,
+            "tokens": 26
+          },
+          {
+            "text": "400 kilometers. It travels at a speed of about 28,000 kilometers per hour",
+            "start": 591,
+            "score": 9.984704971313477,
+            "start_logit": 3.7939400672912598,
+            "end_logit": 6.190764904022217,
+            "tokens": 16
+          }
+        ],
+        "windows": 1
+      },
+      "offset_valid": true
+    },
+    {
+      "question": "Who was the first astronaut to walk on the Moon?",
+      "reference": null,
+      "response": {
+        "answer": null,
+        "start": null,
+        "score": 0.8646320219533328
+      },
+      "diagnostic": {
+        "text": "Zarya",
+        "start": 284,
+        "margin": 0.8712139129638672,
+        "null_score": 5.217573165893555,
+        "best_span_score": 4.3463592529296875,
+        "top_spans": [
+          {
+            "text": "Zarya",
+            "start": 284,
+            "score": 4.3463592529296875,
+            "start_logit": 2.1253366470336914,
+            "end_logit": 2.221022367477417,
+            "tokens": 2
+          },
+          {
+            "text": "biology, physics, astronomy, and other scientific fields.\n\nThe first module of the International Space Station, called Zarya",
+            "start": 165,
+            "score": -0.5124638080596924,
+            "start_logit": -2.7334861755371094,
+            "end_logit": 2.221022367477417,
+            "tokens": 23
+          },
+          {
+            "text": "called Zarya",
+            "start": 277,
+            "score": -0.6490294933319092,
+            "start_logit": -2.870051860809326,
+            "end_logit": 2.221022367477417,
+            "tokens": 3
+          },
+          {
+            "text": "astronauts conduct experiments in biology, physics, astronomy, and other scientific fields.\n\nThe first module of the International Space Station, called Zarya",
+            "start": 131,
+            "score": -1.0940072536468506,
+            "start_logit": -3.3150296211242676,
+            "end_logit": 2.221022367477417,
+            "tokens": 27
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998. The ISS is a collaborative project involving five major space agencies: NASA",
+            "start": 284,
+            "score": -1.1010863780975342,
+            "start_logit": 2.1253366470336914,
+            "end_logit": -3.2264230251312256,
+            "tokens": 24
+          },
+          {
+            "text": "The first module of the International Space Station, called Zarya",
+            "start": 224,
+            "score": -1.1862971782684326,
+            "start_logit": -3.4073195457458496,
+            "end_logit": 2.221022367477417,
+            "tokens": 12
+          },
+          {
+            "text": "rya",
+            "start": 286,
+            "score": -1.2549448013305664,
+            "start_logit": -3.4759671688079834,
+            "end_logit": 2.221022367477417,
+            "tokens": 1
+          },
+          {
+            "text": "Zarya,",
+            "start": 284,
+            "score": -1.291703224182129,
+            "start_logit": 2.1253366470336914,
+            "end_logit": -3.4170398712158203,
+            "tokens": 3
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998. The ISS is a collaborative project involving five major space agencies: NASA from the United States",
+            "start": 284,
+            "score": -1.4413113594055176,
+            "start_logit": 2.1253366470336914,
+            "end_logit": -3.566648006439209,
+            "tokens": 28
+          },
+          {
+            "text": "first module of the International Space Station, called Zarya",
+            "start": 228,
+            "score": -1.551445484161377,
+            "start_logit": -3.772467851638794,
+            "end_logit": 2.221022367477417,
+            "tokens": 11
+          }
+        ],
+        "windows": 1
+      },
+      "offset_valid": true
+    },
+    {
+      "question": "What is my name?",
+      "reference": null,
+      "response": {
+        "answer": "Zarya",
+        "start": 284,
+        "score": 0.8747308528972655
+      },
+      "diagnostic": {
+        "text": "Zarya",
+        "start": 284,
+        "margin": -2.9265449047088623,
+        "null_score": 3.1095688343048096,
+        "best_span_score": 6.036113739013672,
+        "top_spans": [
+          {
+            "text": "Zarya",
+            "start": 284,
+            "score": 6.036113739013672,
+            "start_logit": 3.1265311241149902,
+            "end_logit": 2.9095828533172607,
+            "tokens": 2
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998",
+            "start": 284,
+            "score": 0.4232170581817627,
+            "start_logit": 3.1265311241149902,
+            "end_logit": -2.7033140659332275,
+            "tokens": 10
+          },
+          {
+            "text": "rya",
+            "start": 286,
+            "score": 0.08435225486755371,
+            "start_logit": -2.825230598449707,
+            "end_logit": 2.9095828533172607,
+            "tokens": 1
+          },
+          {
+            "text": "Zarya,",
+            "start": 284,
+            "score": 0.019132137298583984,
+            "start_logit": 3.1265311241149902,
+            "end_logit": -3.1073989868164062,
+            "tokens": 3
+          },
+          {
+            "text": "astronauts conduct experiments in biology, physics, astronomy, and other scientific fields.\n\nThe first module of the International Space Station, called Zarya",
+            "start": 131,
+            "score": -0.00583195686340332,
+            "start_logit": -2.915414810180664,
+            "end_logit": 2.9095828533172607,
+            "tokens": 27
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998.",
+            "start": 284,
+            "score": -0.3163027763366699,
+            "start_logit": 3.1265311241149902,
+            "end_logit": -3.44283390045166,
+            "tokens": 11
+          },
+          {
+            "text": "The first module of the International Space Station, called Zarya",
+            "start": 224,
+            "score": -0.3699955940246582,
+            "start_logit": -3.279578447341919,
+            "end_logit": 2.9095828533172607,
+            "tokens": 12
+          },
+          {
+            "text": "called Zarya",
+            "start": 277,
+            "score": -0.6844165325164795,
+            "start_logit": -3.5939993858337402,
+            "end_logit": 2.9095828533172607,
+            "tokens": 3
+          },
+          {
+            "text": "Zarya, was launched on November 20, 1998. The ISS is a collaborative project involving five major space agencies: NASA",
+            "start": 284,
+            "score": -0.7047970294952393,
+            "start_logit": 3.1265311241149902,
+            "end_logit": -3.8313281536102295,
+            "tokens": 24
+          },
+          {
+            "text": "Za",
+            "start": 284,
+            "score": -0.9695749282836914,
+            "start_logit": 3.1265311241149902,
+            "end_logit": -4.096106052398682,
+            "tokens": 1
+          }
+        ],
+        "windows": 1
+      },
+      "offset_valid": true
+    }
+  ],
+  "parameters_changed": false
+}

@@ -1,0 +1,13 @@
+{
+  "device": "Quadro P1000",
+  "batch_size": 16,
+  "sequence_length": 384,
+  "measured_optimizer_steps": 8,
+  "warmup_steps": 4,
+  "mean_step_seconds": 2.507385249984509,
+  "estimated_2534_steps_minutes": 105.8952370576791,
+  "peak_allocated_mib": 2667.33740234375,
+  "peak_reserved_mib": 2802.0,
+  "weights_saved": false,
+  "purpose": "Timing on disposable warm-start copy; only approved training examples used; no evaluation examples"
+}

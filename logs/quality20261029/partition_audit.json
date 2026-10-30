@@ -1,0 +1,14 @@
+{
+  "counts": {
+    "train": 40000,
+    "selection": 512,
+    "calibration": 512,
+    "development": 1024,
+    "final": 1024
+  },
+  "all_ids_disjoint": true,
+  "final_and_development_contexts_disjoint_from_other_partitions": true,
+  "selection_calibration_shared_contexts": 132,
+  "final_predictions_computed": false,
+  "manifest_sha256": "50d308790dd01612bbcc024d950fed843673eea79dfb847e176ad2dab570db39"
+}

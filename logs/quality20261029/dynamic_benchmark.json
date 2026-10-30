@@ -1,0 +1,45 @@
+{
+  "device": "Quadro P1000",
+  "sample_examples": 512,
+  "timed_batches": [
+    {
+      "padded_length": 80,
+      "seconds": 0.4823282999568619
+    },
+    {
+      "padded_length": 128,
+      "seconds": 0.6918563999934122
+    },
+    {
+      "padded_length": 144,
+      "seconds": 0.8245194000191987
+    },
+    {
+      "padded_length": 160,
+      "seconds": 0.8940147999674082
+    },
+    {
+      "padded_length": 176,
+      "seconds": 0.9758228000137024
+    },
+    {
+      "padded_length": 200,
+      "seconds": 1.236356099951081
+    },
+    {
+      "padded_length": 248,
+      "seconds": 1.406981599982828
+    },
+    {
+      "padded_length": 384,
+      "seconds": 2.3916848999797367
+    }
+  ],
+  "mean_step_seconds": 1.1129455374830286,
+  "estimated_2534_step_minutes": 47.00339986636657,
+  "estimated_minutes_with_20pct_overhead": 56.404079839639884,
+  "peak_reserved_mib": 3260.0,
+  "limitation": "Eight length-quantile batches approximate grouping; actual batch lengths, temperature and evaluation overhead vary.",
+  "weights_saved": false,
+  "training_stop_guard_seconds": 3600
+}

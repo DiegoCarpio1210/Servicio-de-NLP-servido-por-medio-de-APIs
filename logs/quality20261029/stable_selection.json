@@ -1,0 +1,343 @@
+{
+  "selected": "short15",
+  "profiles": {
+    "standard": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "standard",
+        "max_length": 30,
+        "length_penalty": 0.0
+      },
+      "threshold": -0.9831047058105469,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 51.7578125,
+            "F1": 53.91764530149181
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 32.8125,
+            "F1": 37.13216560298362
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.703125,
+            "F1": 70.703125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 42.28515625,
+          "F1": 45.52490545223772
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 57.2265625,
+            "F1": 60.949590311521604
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 31.8359375,
+            "F1": 39.281993123043215
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 82.6171875,
+            "F1": 82.6171875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.53125,
+          "F1": 50.11579171728241
+        }
+      }
+    },
+    "short15": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "short15",
+        "max_length": 15,
+        "length_penalty": 0.0
+      },
+      "threshold": -0.9831047058105469,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 51.953125,
+            "F1": 53.92273327418089
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 33.203125,
+            "F1": 37.14234154836177
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.703125,
+            "F1": 70.703125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 42.578125,
+          "F1": 45.53253741127133
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 57.51953125,
+            "F1": 61.18863612515957
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 32.421875,
+            "F1": 39.76008475031912
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 82.6171875,
+            "F1": 82.6171875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.970703125,
+          "F1": 50.47436043773934
+        }
+      }
+    },
+    "length01": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "length01",
+        "max_length": 30,
+        "length_penalty": 0.1
+      },
+      "threshold": -0.8270532154838461,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 52.1484375,
+            "F1": 54.19108280149181
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 33.984375,
+            "F1": 38.06966560298362
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.3125,
+            "F1": 70.3125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 43.06640625,
+          "F1": 46.13037420223772
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 57.03125,
+            "F1": 60.836239307057326
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 32.8125,
+            "F1": 40.422478614114645
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 81.25,
+            "F1": 81.25
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.921875,
+          "F1": 50.62935896058598
+        }
+      }
+    },
+    "length025": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "length025",
+        "max_length": 30,
+        "length_penalty": 0.25
+      },
+      "threshold": -0.7363529205322266,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 52.5390625,
+            "F1": 54.13629384045284
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 33.984375,
+            "F1": 37.178837680905694
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 71.09375,
+            "F1": 71.09375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 43.26171875,
+          "F1": 45.65756576067927
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 56.54296875,
+            "F1": 60.293841358294486
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 32.421875,
+            "F1": 39.923620216588965
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 80.6640625,
+            "F1": 80.6640625
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.482421875,
+          "F1": 50.10873078744172
+        }
+      }
+    },
+    "length05": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "length05",
+        "max_length": 30,
+        "length_penalty": 0.5
+      },
+      "threshold": -0.5043733219135031,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 53.125,
+            "F1": 54.35020753092904
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 34.765625,
+            "F1": 37.216040061858074
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 71.484375,
+            "F1": 71.484375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 43.9453125,
+          "F1": 45.783123796393554
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 56.640625,
+            "F1": 60.580299691627815
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 32.2265625,
+            "F1": 40.10591188325564
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 81.0546875,
+            "F1": 81.0546875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.43359375,
+          "F1": 50.34310578744173
+        }
+      }
+    },
+    "production": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "standard",
+        "max_length": 30,
+        "length_penalty": 0.0
+      },
+      "threshold": -0.98309326171875,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 51.7578125,
+            "F1": 53.91764530149181
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 32.8125,
+            "F1": 37.13216560298362
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.703125,
+            "F1": 70.703125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 42.28515625,
+          "F1": 45.52490545223772
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 57.2265625,
+            "F1": 60.949590311521604
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 31.8359375,
+            "F1": 39.281993123043215
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 82.6171875,
+            "F1": 82.6171875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.53125,
+          "F1": 50.11579171728241
+        }
+      }
+    }
+  },
+  "device": "cuda",
+  "final_not_consulted": true
+}

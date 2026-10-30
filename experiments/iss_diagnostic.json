@@ -1,0 +1,12 @@
+{
+  "purpose": "User-supplied diagnostic only. Never use for training, calibration, policy or model selection.",
+  "context": "The International Space Station (ISS) is a large spacecraft that orbits Earth. It serves as a scientific research laboratory where astronauts conduct experiments in biology, physics, astronomy, and other scientific fields.\n\nThe first module of the International Space Station, called Zarya, was launched on November 20, 1998. The ISS is a collaborative project involving five major space agencies: NASA from the United States, Roscosmos from Russia, JAXA from Japan, ESA from Europe, and CSA from Canada.\n\nThe International Space Station orbits Earth at an average altitude of approximately 400 kilometers. It travels at a speed of about 28,000 kilometers per hour and completes one orbit around Earth approximately every 90 minutes.\n\nAstronauts aboard the ISS experience microgravity, allowing scientists to investigate phenomena that are difficult to study on Earth. Research conducted on the station contributes to advances in medicine, materials science, and space exploration.\n\nThe ISS receives electricity from large solar arrays that convert sunlight into electrical energy. Its systems recycle water and help maintain a breathable atmosphere for the crew.\n\nThe station is designed to support a continuous human presence in space. The first long-duration crew arrived on November 2, 2000.",
+  "questions": [
+    {"question":"What is the name of the first ISS module?", "reference":"Zarya"},
+    {"question":"When was the first ISS module launched?", "reference":"November 20, 1998"},
+    {"question":"What provides electricity to the International Space Station?", "reference":"solar arrays"},
+    {"question":"How fast does the International Space Station travel?", "reference":"28,000 kilometers per hour"},
+    {"question":"Who was the first astronaut to walk on the Moon?", "reference":null},
+    {"question":"What is my name?", "reference":null}
+  ]
+}
