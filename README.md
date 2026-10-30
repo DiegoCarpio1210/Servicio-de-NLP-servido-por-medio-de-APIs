@@ -5,12 +5,34 @@ No commercial inference API or pre-fine-tuned QA checkpoint is used. All inferen
 **Status: continued20k candidate evaluated on a fresh 1,024-example holdout: EM 53.61%, F1 56.18%, 75/25 weighted EM 43.73%; public 4/5. NOT yet ready for submission.**
 See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
 
+## PIMIENTERO AI — local graphical application
+
+On Windows, double-click **`INICIAR_PIMIENTERO.bat`**. It checks dependencies and the selected model hashes,
+starts the CPU API and a separate local UI gateway, waits for readiness, and opens **http://127.0.0.1:8765**
+in your default browser. Stop both services with **`DETENER_PIMIENTERO.bat`** or Ctrl+C in the launcher.
+No public tunnel, training, dataset download, frontend build or manually entered API token is needed.
+The model files must already exist in the ignored `models/continued20k/` directory.
+
+The interface includes context-based questions, session history, copy, null-answer handling, light/dark modes,
+responsive navigation and a dashboard separating historical evaluation from current session timings.
+The bearer token stays in the server processes; the browser talks to the loopback-only gateway.
+The academic API on port 8000 and its authentication contract remain unchanged. Do not expose the UI port 8765 publicly.
+
+**[Spanish setup, architecture, security and verified screenshots](docs/INTERFAZ_LOCAL.md)**.
+Evidence: `logs/ui_pytest.txt` (58 passed) and `logs/ui_http_verification.json` (real selected-model smoke checks).
+The GUI is an optional local demonstration; it does not change the documented model accuracy or outstanding academic gates.
+
+![Pimientero AI with a real DistilBERT answer](docs/screenshots/conversation.jpg)
+
 ## Repository map
 
 ```text
 originals/             Professor's PDF, immutable YAML, samples, report template, master brief
 configs/               subset12k (current), smoke/pilot/extended/full (historical)
 qa/api.py              Strict contract, exact Bearer authentication, background loading
+qa/ui.py               Loopback UI gateway; keeps the API token server-side
+frontend/              Local HTML/CSS/JavaScript application; no build or CDN
+scripts/local_app.py   Windows startup, model verification, process ownership and shutdown
 qa/features.py         Shared overflow windows and CLS/span labels
 qa/spans.py            Valid context spans, character offsets, minimum-null aggregation
 qa/inference.py        Local calibrated checkpoint, CPU, load once, inference lock

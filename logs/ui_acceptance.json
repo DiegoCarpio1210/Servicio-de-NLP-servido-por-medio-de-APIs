@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-29",
+  "platform": "Windows, current Lenovo laptop",
+  "browser": "Codex in-app browser for interaction tests; default Brave opened by BAT",
+  "pytest": "58 passed; logs/ui_pytest.txt",
+  "real_http": "logs/ui_http_verification.json",
+  "ui_checks": [
+    "Empty context warning",
+    "Empty question warning",
+    "5001 characters rejected without truncation",
+    "Real Paris answer with offset 0",
+    "Real null answer displayed as unavailable",
+    "Copy response clipboard readback equals Paris",
+    "Session history restores context, question and prior answer after new conversation",
+    "Dashboard uses fresh_holdout EM 53.61 and F1 56.18",
+    "Light and dark rendering",
+    "390x844 viewport with clientWidth=scrollWidth=375 and functional menu",
+    "Disconnected server message and question preserved for retry"
+  ],
+  "launcher_checks": [
+    "Model and calibration hashes match selected artifacts",
+    "Duplicate launch refused without a second instance",
+    "DETENER_PIMIENTERO.bat closed owned services",
+    "INICIAR_PIMIENTERO.bat restarted services and opened Brave"
+  ],
+  "model_unchanged": true,
+  "calibration_unchanged": true,
+  "screenshot_directory": "docs/screenshots",
+  "limitations": [
+    "No second clean-machine installation tested",
+    "Responsive browser viewport, not a physical phone test",
+    "No new model accuracy evaluation performed"
+  ]
+}

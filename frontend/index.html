@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pimientero AI · Question Answering</title><link rel="stylesheet" href="/assets/style.css"><script src="/assets/app.js" defer></script></head>
+<body>
+<div class="shell">
+ <aside id="sidebar" aria-label="Navegación principal">
+  <a class="brand" href="/" aria-label="Pimientero AI, inicio"><span class="brand-icon">p<span>·</span></span><span>Pimientero <b>AI</b></span></a>
+  <button class="new-chat" id="new-chat"><span aria-hidden="true">＋</span> Nueva conversación <kbd>N</kbd></button>
+  <div class="section-label">ESPACIO DE TRABAJO</div>
+  <button class="nav active" id="nav-chat"><span aria-hidden="true">◫</span> Preguntas y respuestas</button>
+  <button class="nav" id="nav-stats"><span aria-hidden="true">▥</span> Estadísticas del modelo</button>
+  <div class="history-heading"><span class="section-label">ESTA SESIÓN</span><span id="history-count">0</span></div>
+  <div id="history" class="history"><p class="empty-history">Tus preguntas aparecerán aquí.</p></div>
+  <div class="sidebar-bottom">
+   <button class="nav" id="model-button"><span aria-hidden="true">◇</span> Información del modelo</button>
+   <button class="nav" id="theme-button" aria-pressed="false"><span aria-hidden="true">◐</span><span id="theme-label">Cambiar a modo oscuro</span></button>
+   <div class="profile"><div class="avatar">P</div><div><strong>Equipo Pimientero</strong><small>Ingeniería de Inteligencia Artificial</small></div></div>
+  </div>
+ </aside>
+ <main>
+  <header class="topbar"><div class="topbar-left"><button id="menu-button" class="icon-button" aria-label="Mostrar u ocultar menú" aria-expanded="false">☰</button><span id="page-label">Preguntas y respuestas</span><span class="topbar-separator">/</span><span class="muted">Espacio local</span></div><div class="connection"><span id="status-dot" class="dot"></span><span id="connection-text" role="status">Conectando…</span></div></header>
+  <section id="chat-view" class="workspace">
+   <div class="hero"><div class="eyebrow"><span class="mini-mark">p·</span> PIMIENTERO AI</div><h1>¿Sobre qué quieres<br>aprender hoy?</h1><p>Tu texto, una pregunta, una respuesta precisa.<br>Explora la información que ya tienes.</p><div class="model-pill"><span class="dot"></span> DistilBERT <span>·</span> Inferencia local en CPU</div></div>
+   <section class="context-card" aria-labelledby="context-title"><div class="card-header"><div><span class="step-number">01</span><h2 id="context-title">Añade tu contexto</h2></div><button id="clear-context" class="text-button">Limpiar</button></div><textarea id="context" rows="5" placeholder="Pega aquí el texto que quieres explorar. El modelo buscará la respuesta únicamente dentro de este contexto." aria-labelledby="context-title" aria-describedby="context-help context-count"></textarea><div class="card-footer"><span id="context-help">El contexto se conserva entre preguntas.</span><span id="context-count">0 / 5.000 caracteres</span></div></section>
+   <div id="messages" class="messages" aria-live="polite" aria-relevant="additions"></div>
+   <form id="question-form" class="question-card"><label for="question"><span class="step-number">02</span> Haz una pregunta</label><div class="composer"><textarea id="question" rows="2" placeholder="¿Qué te gustaría saber sobre el texto?" aria-describedby="question-count"></textarea><button id="send" type="submit" aria-label="Enviar pregunta"><span aria-hidden="true">↑</span></button></div><div class="card-footer"><span>Enter para enviar · Shift + Enter para nueva línea</span><span id="question-count">0 / 500</span></div></form>
+   <p id="error" class="error" role="alert" hidden></p>
+   <div class="workspace-footer"><span>Respuestas extraídas de tu contexto. Sin IA externa.</span><button id="clear-chat" class="text-button">Limpiar conversación</button></div>
+   <p class="language-note">Modelo entrenado en inglés. Para mejores resultados, usa contexto y preguntas en inglés.</p>
+  </section>
+  <section id="stats-view" class="stats workspace" hidden><div class="eyebrow">TRANSPARENCIA DEL MODELO</div><h1>La inteligencia,<br>en números.</h1><p class="muted">Datos del modelo activo y resultados documentados. Sin estimaciones ficticias.</p><div id="metrics-grid" class="metrics-grid"></div><section class="detail-card"><h2>Modelo en ejecución</h2><dl id="model-details"></dl></section><section class="detail-card"><h2>Acerca de esta evaluación</h2><p>Exact Match mide la coincidencia de la respuesta normalizada. F1 mide la coincidencia de palabras. Son resultados históricos del conjunto independiente de 1.024 ejemplos; no describen la calidad de cada consulta actual.</p><p>El score de una respuesta es una señal del modelo, no una probabilidad calibrada de acierto. Cuando la información no es suficiente, el modelo puede devolver una respuesta nula.</p><small id="evaluation-source"></small></section></section>
+  <footer class="app-footer"><span>PIMIENTERO AI</span><span>Intelligent Question Answering System</span></footer>
+ </main>
+</div>
+</body></html>

@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-29",
+  "remote_head": "23e44e9b9dfb27ef862ca059af27feba216c1a2a",
+  "pending_work": "Local GUI, launcher, tests, screenshots and documentation inspected; not previously published",
+  "originals_match_zip": true,
+  "services_and_training_active": false,
+  "gpu": "Quadro P1000 4096 MiB; 0 MiB used at audit",
+  "stable_weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+  "stable_calibration_sha256": "52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd",
+  "academic_review": "All 12 PDF pages, YAML, rubric and original master prompt reviewed; original API unchanged; no training before audit"
+}
