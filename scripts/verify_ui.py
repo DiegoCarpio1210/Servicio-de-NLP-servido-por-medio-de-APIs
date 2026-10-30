@@ -1,11 +1,15 @@
 """Small real-model UI gateway smoke test, against an already running local launcher."""
 import json
+import argparse
 import time
 from pathlib import Path
 import httpx
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--output',default='logs/ui_http_verification.json')
+    args=parser.parse_args()
     checks=[]
     with httpx.Client(base_url='http://127.0.0.1:8765',timeout=30,trust_env=False) as client:
         info=client.get('/ui/info').json()
@@ -38,7 +42,7 @@ def main():
             assert api.get('/info').status_code==401
             assert api.post('/predict',json={'id':'direct','context':'Paris','question':'Where?'}).status_code==401
     evidence={'checks':checks,'info':info,'oversized_input':422,'host_rebinding':403,'cross_site_post':403,'academic_api_without_token':401,'scope':'Real local CPU model through UI gateway; four smoke inputs, not a new accuracy evaluation'}
-    Path('logs/ui_http_verification.json').write_text(json.dumps(evidence,indent=2)+'\n')
+    Path(args.output).write_text(json.dumps(evidence,indent=2)+'\n')
     print(json.dumps(evidence,indent=2))
 
 

@@ -1,0 +1,630 @@
+{
+  "profile": "production",
+  "info": {
+    "team": "Pimientero",
+    "model": "distilbert/distilbert-base-uncased",
+    "params": 66364418,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "training_steps": 1600,
+    "training_run_steps": 2534,
+    "no_answer_threshold": -0.98309326171875,
+    "calibration_objective": "experimental_75_25_EM_null_floor70"
+  },
+  "device": "cpu",
+  "transport": "real loopback HTTP; not HTTPS or another network",
+  "rows": [
+    {
+      "cycle": 0,
+      "id": "sample-01",
+      "seconds": 0.28307239996502176,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 0,
+      "id": "sample-02",
+      "seconds": 0.27100020000943914,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 0,
+      "id": "sample-03",
+      "seconds": 0.2507345999474637,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 0,
+      "id": "sample-04",
+      "seconds": 0.273403600032907,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 0,
+      "id": "sample-05",
+      "seconds": 0.9212060999707319,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-01",
+      "seconds": 0.2961331999977119,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-02",
+      "seconds": 0.2757243000087328,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-03",
+      "seconds": 0.30549579998478293,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-04",
+      "seconds": 0.29232310003135353,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 1,
+      "id": "sample-05",
+      "seconds": 0.8262663999921642,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-01",
+      "seconds": 0.28460970002925023,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-02",
+      "seconds": 0.28314710000995547,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-03",
+      "seconds": 0.2940894000348635,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-04",
+      "seconds": 0.2791072999825701,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 2,
+      "id": "sample-05",
+      "seconds": 0.7996097999857739,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-01",
+      "seconds": 0.3002377999946475,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-02",
+      "seconds": 0.30489179998403415,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-03",
+      "seconds": 0.3084640000015497,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-04",
+      "seconds": 0.2790427000145428,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 3,
+      "id": "sample-05",
+      "seconds": 0.8089670000481419,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-01",
+      "seconds": 0.3037624999997206,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-02",
+      "seconds": 0.31222590000834316,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-03",
+      "seconds": 0.39705990004586056,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-04",
+      "seconds": 0.3190766000188887,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 4,
+      "id": "sample-05",
+      "seconds": 0.9458708000020124,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-01",
+      "seconds": 0.34783789998618886,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-02",
+      "seconds": 0.31082439998863265,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-03",
+      "seconds": 0.38044939999235794,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-04",
+      "seconds": 0.34742020000703633,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 5,
+      "id": "sample-05",
+      "seconds": 0.9418834999669343,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-01",
+      "seconds": 0.32189959997776896,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-02",
+      "seconds": 0.33403999998699874,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-03",
+      "seconds": 0.3311749999993481,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-04",
+      "seconds": 0.3127251999685541,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 6,
+      "id": "sample-05",
+      "seconds": 0.9697782999719493,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-01",
+      "seconds": 0.4003482999978587,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-02",
+      "seconds": 0.3394853000063449,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-03",
+      "seconds": 0.4355476999771781,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-04",
+      "seconds": 0.4629944000043906,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 7,
+      "id": "sample-05",
+      "seconds": 1.186087200010661,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-01",
+      "seconds": 0.40861829998902977,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-02",
+      "seconds": 0.3190595000050962,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-03",
+      "seconds": 0.33964819996617734,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-04",
+      "seconds": 0.3490851000533439,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 8,
+      "id": "sample-05",
+      "seconds": 0.8806715999962762,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-01",
+      "seconds": 0.30019689997425303,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.639330873481493
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-02",
+      "seconds": 0.3208020000020042,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.8999924502162328
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-03",
+      "seconds": 0.32833150000078604,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.6831299268036866
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-04",
+      "seconds": 0.3342721000080928,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000 times and the GPU memory requirement by 3 times",
+        "start": 263,
+        "score": 0.7588868600613902
+      },
+      "correct": false
+    },
+    {
+      "cycle": 9,
+      "id": "sample-05",
+      "seconds": 0.9093927000067197,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9802169678198023
+      },
+      "correct": true
+    }
+  ],
+  "public_correct_of_5": 4,
+  "requests": 50,
+  "elapsed_seconds": 22.93099959997926,
+  "max_request_seconds": 1.186087200010661,
+  "mean_request_seconds": 0.4425619259988889,
+  "peak_sampled_process_tree_rss_mib": 826.87109375,
+  "server_cpu_seconds": 87.8125,
+  "mean_server_cpu_percent_all_logical_cores": 31.911859321387595,
+  "time_limits_pass": true,
+  "production_unchanged": true,
+  "server_stopped": true
+}

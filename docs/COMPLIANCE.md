@@ -4,7 +4,36 @@ Authority: professor OpenAPI YAML overrides the PDF summary. All four original f
 those in the original ZIP (`logs/source_integrity.json`). This review covers PDF sections I-XV, YAML schemas
 and endpoints, the ten report sections, and the master brief. PASSED means the stated check was executed or
 its artifact inspected; it never means a guaranteed grade. FAILED distinguishes an observed failure from PENDING.
-All evidence paths below are repository-relative. The single authorized continuation is complete; current evidence is logs/continued20k/. Historical 12k evidence remains preserved.
+All evidence paths below are repository-relative. Production remains continued20k;
+the completed quality40k candidate is recommended but awaits activation approval.
+Historical evidence is preserved. The current comparison is in logs/quality20261029/.
+
+## Recovery and candidate review — 2026-10-30
+
+| Requirement | Current status | Evidence / limitation |
+|---|---|---|
+| Completed genuine quality40k training | PASSED | 40k examples, 2531 steps, 1 epoch, 43m11s CUDA; logs/quality40k/training_metadata.json |
+| Selected checkpoint identity/integrity | PASSED | artifact_audit.json: export matches checkpoint-2000; minimum selection loss 1.441129; tokenizer/config match; optimizer/RNG files hashed |
+| Stable model and calibration preserved | PASSED | artifact_audit.json and ui_recovery.json; production checkpoint remains 1600 |
+| Calibration/development/final separation | PASSED with disclosed limitations | partition_audit.json; final/development contexts disjoint from all other partitions; calibration/selection share 132 contexts |
+| Absolutely unprecedented official final test | NOT CLAIMED | Reserved official-train contexts; historical full-run exposure uncertain; see QUALITY_RESULTS.md |
+| Frozen comparable model evaluation | PASSED | 37fc668 locked policies before final; final_comparison.json includes paired context bootstrap |
+| Candidate improvement | PASSED local evidence | +7.91 weighted EM points, 95% CI [+5.48,+10.43]; impossible EM decreases 3.52 points |
+| Aspirational EM/F1/answerable targets | NOT MET | 61.82 EM, 65.53 F1, 48.05 answerable EM; these are not professor pass thresholds |
+| Candidate public examples all correct | FAILED | 4/5; sample-04 returns 10,000 rather than null; no hardcoded workaround |
+| Real CPU contract/authentication/offsets/Unicode/long inputs | PASSED | 18 HTTP checks per profile in cpu_*/real_http_contract.json |
+| Candidate 50 requests under 5s each / 150s total | PASSED local HTTP | 28.54s total, maximum 1.419s; repeats five cases ten times, no hidden-test guarantee |
+| Memory/CPU measurement | PASSED sampled measurement | cpu_*/result.json; candidate 826.0 MiB RSS, 32.45% across logical cores; not continuous peak |
+| Automated regression tests | PASSED | recovery_pytest.txt: 60 passed in 24.00s |
+| Stable UI startup/gateway/stop recovery | PASSED | ui_recovery.json: real answer/null/Unicode/long-context tests, host/CSRF rejection; launcher lifecycle evidence |
+| Visual design/history/copy/dark/responsive | PRIOR VERIFIED, unchanged | Existing screenshots/UI evidence; no new visual redesign or new browser-session claim |
+| Candidate public HTTPS/mobile checks | PENDING if activated | This evaluation used loopback only; prior stable connectivity evidence remains valid for stable |
+| Candidate activation and dashboard update | PENDING user approval | CANDIDATE_REVIEW_ES.md; current production/default/dashboard unchanged |
+| Report headings 0–9, English, nonempty | PASSED | REPORT.md matches original template; 756 prose words including headings, excluding tables |
+| Official delivery | PENDING | Public sample failure, instructor dry run/live service, weight distribution, team defense, final tag approval |
+
+The following detailed rows retain stable-system evidence; newer candidate results
+above and QUALITY_RESULTS.md govern the experimental comparison.
 
 | Source / requirement | Status | Evidence / limitation |
 |---|---|---|
@@ -19,7 +48,7 @@ All evidence paths below are repository-relative. The single authorized continua
 | V.5: retain authentic Git history | PASSED | Incremental commits including 020603a and 0e4c678; no squash |
 | VI: permitted reproducible SQuAD 2.0 subset | PASSED | 20,000 unique official train examples, including 8,000 new; 6,675 impossible; manifest and seed recorded |
 | VI: validation not used for gradient training | PASSED | Disjoint train/selection/calibration/holdout IDs; verification.json |
-| Master 3: independent calibration and evaluation | PASSED | 512 selection, 512 calibration, old 1024 plus fresh 1024 excluding historical contexts; policy locked in bac0cba |
+| Master 3: independent calibration and evaluation | HISTORICAL separation; limitations disclosed | Earlier policies locked in bac0cba; these sets are now consulted. Current reserved-context audit and abandoned-run uncertainty are documented above |
 | Master 3: genuine EM/F1 and subgroup results | PASSED measurement | Fresh holdout EM/F1 53.61/56.18; answerable 33.92/39.08; impossible 73.15; weighted EM 43.73 |
 | Master 3: no public-example training/tuning | PASSED | Learning uses official train/validation IDs only; threshold recomputed on 512 calibration rows |
 | Master 3: correct CLS and overflow labels | PASSED | training_features tests: impossible/outside-window labels, final-window answer, Unicode |
@@ -62,11 +91,11 @@ All evidence paths below are repository-relative. The single authorized continua
 | XIV: 3-minute pitch, four rubric criteria | PASSED materials; rehearsal pending | docs/PITCH.md includes actual quality/latency and limitations |
 | XIV: individual Q&A without AI, attendance | PENDING human requirement | docs/DEFENSE.md; all members must prepare and attend |
 | XV: reading references | PASSED resources | docs/SOURCES.md; team must understand cited methods |
-| Master: no fabricated metrics, no unrequested expansion | PASSED | Only completed run reported; no additional epoch or training launched |
+| Master: no fabricated metrics, no unrequested expansion | PASSED | Three completed authorized runs documented; no training restarted during recovery |
 
 ## Required user actions before submission
 
-1. Review the measured accuracy: current public result is 4/5; fresh answerable EM is 33.92 and impossible EM is 73.15. The one authorized continuation is complete. No additional training is authorized automatically.
+1. Review and approve or decline quality40k activation. Same-final-set answerable EM improves 36.33 to 48.05, impossible EM falls 79.10 to 75.59. Public result remains 4/5. No further training is authorized.
 2. Obtain the instructor token and enter it locally with the secure README prompt; do not send it in chat.
 3. Ngrok backup passed four real HTTPS checks from the origin laptop. Cloudflare passed five mobile functional checks. A separate mobile ngrok test and a 50-request mobile benchmark were not performed.
 4. Start the candidate on CPU, send the active HTTPS URL to the instructor, and perform the official dry run.

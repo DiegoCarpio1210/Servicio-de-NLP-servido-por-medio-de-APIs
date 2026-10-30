@@ -1,0 +1,630 @@
+{
+  "profile": "trained",
+  "info": {
+    "team": "Pimientero",
+    "model": "distilbert/distilbert-base-uncased",
+    "params": 66364418,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+    "training_steps": 2000,
+    "training_run_steps": 2531,
+    "no_answer_threshold": -0.40494251441686124,
+    "calibration_objective": "experimental_75_25_EM_null_floor70"
+  },
+  "device": "cpu",
+  "transport": "real loopback HTTP; not HTTPS or another network",
+  "rows": [
+    {
+      "cycle": 0,
+      "id": "sample-01",
+      "seconds": 0.36561879998771474,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 0,
+      "id": "sample-02",
+      "seconds": 0.5019432000117376,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 0,
+      "id": "sample-03",
+      "seconds": 0.4840872000204399,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 0,
+      "id": "sample-04",
+      "seconds": 0.46322669996879995,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 0,
+      "id": "sample-05",
+      "seconds": 1.301430999999866,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-01",
+      "seconds": 0.3295965000288561,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-02",
+      "seconds": 0.30670010001631454,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-03",
+      "seconds": 0.38276130001759157,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 1,
+      "id": "sample-04",
+      "seconds": 0.3619522999506444,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 1,
+      "id": "sample-05",
+      "seconds": 0.9749450999661349,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-01",
+      "seconds": 0.4614284000126645,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-02",
+      "seconds": 0.4703832999803126,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-03",
+      "seconds": 0.5197476000175811,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 2,
+      "id": "sample-04",
+      "seconds": 0.5058111999533139,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 2,
+      "id": "sample-05",
+      "seconds": 1.419376200006809,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-01",
+      "seconds": 0.5037703000125475,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-02",
+      "seconds": 0.44704510003793985,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-03",
+      "seconds": 0.4944247000385076,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 3,
+      "id": "sample-04",
+      "seconds": 0.5241851999890059,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 3,
+      "id": "sample-05",
+      "seconds": 1.3867055000155233,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-01",
+      "seconds": 0.5034446999779902,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-02",
+      "seconds": 0.49339670001063496,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-03",
+      "seconds": 0.47782070003449917,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 4,
+      "id": "sample-04",
+      "seconds": 0.4850355999660678,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 4,
+      "id": "sample-05",
+      "seconds": 1.357965699979104,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-01",
+      "seconds": 0.4774813000112772,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-02",
+      "seconds": 0.4613188999937847,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-03",
+      "seconds": 0.4492923999787308,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 5,
+      "id": "sample-04",
+      "seconds": 0.508644399989862,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 5,
+      "id": "sample-05",
+      "seconds": 1.2704856999916956,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-01",
+      "seconds": 0.29359920002752915,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-02",
+      "seconds": 0.3507806999841705,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-03",
+      "seconds": 0.3529987999936566,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 6,
+      "id": "sample-04",
+      "seconds": 0.3864519000053406,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 6,
+      "id": "sample-05",
+      "seconds": 0.8452171999961138,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-01",
+      "seconds": 0.285713899997063,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-02",
+      "seconds": 0.3060184000059962,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-03",
+      "seconds": 0.36640410003019497,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 7,
+      "id": "sample-04",
+      "seconds": 0.28384899999946356,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 7,
+      "id": "sample-05",
+      "seconds": 0.8133731999550946,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-01",
+      "seconds": 0.31657409999752417,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-02",
+      "seconds": 0.31676719995448366,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-03",
+      "seconds": 0.32986080000409856,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 8,
+      "id": "sample-04",
+      "seconds": 0.304926400014665,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 8,
+      "id": "sample-05",
+      "seconds": 0.8918091999948956,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-01",
+      "seconds": 0.3018536999588832,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.887563318172014
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-02",
+      "seconds": 0.30577090004226193,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9368704886110478
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-03",
+      "seconds": 0.3478705000015907,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.5527114110081515
+      },
+      "correct": true
+    },
+    {
+      "cycle": 9,
+      "id": "sample-04",
+      "seconds": 0.38969969999743626,
+      "response": {
+        "id": "sample-04",
+        "answer": "10,000",
+        "start": 263,
+        "score": 0.9035114830231086
+      },
+      "correct": false
+    },
+    {
+      "cycle": 9,
+      "id": "sample-05",
+      "seconds": 1.0830481000011787,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9895653499926919
+      },
+      "correct": true
+    }
+  ],
+  "public_correct_of_5": 4,
+  "requests": 50,
+  "elapsed_seconds": 28.538093300012406,
+  "max_request_seconds": 1.419376200006809,
+  "mean_request_seconds": 0.5512522559985519,
+  "peak_sampled_process_tree_rss_mib": 825.9765625,
+  "server_cpu_seconds": 111.140625,
+  "mean_server_cpu_percent_all_logical_cores": 32.453880687242595,
+  "time_limits_pass": true,
+  "production_unchanged": true,
+  "server_stopped": true
+}

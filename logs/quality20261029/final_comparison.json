@@ -1,0 +1,88 @@
+{
+  "profiles": {
+    "production": {
+      "groups": {
+        "all": {
+          "count": 1024,
+          "EM": 57.71484375,
+          "F1": 60.812711707605224
+        },
+        "answerable": {
+          "count": 512,
+          "EM": 36.328125,
+          "F1": 42.52386091521046
+        },
+        "unanswerable": {
+          "count": 512,
+          "EM": 79.1015625,
+          "F1": 79.1015625
+        }
+      },
+      "weighted_75_25": {
+        "EM": 47.021484375,
+        "F1": 51.66828631140785
+      }
+    },
+    "inference_only": {
+      "groups": {
+        "all": {
+          "count": 1024,
+          "EM": 57.8125,
+          "F1": 60.828406462069516
+        },
+        "answerable": {
+          "count": 512,
+          "EM": 36.328125,
+          "F1": 42.35993792413903
+        },
+        "unanswerable": {
+          "count": 512,
+          "EM": 79.296875,
+          "F1": 79.296875
+        }
+      },
+      "weighted_75_25": {
+        "EM": 47.0703125,
+        "F1": 51.59417219310427
+      }
+    },
+    "trained": {
+      "groups": {
+        "all": {
+          "count": 1024,
+          "EM": 61.81640625,
+          "F1": 65.52553295229076
+        },
+        "answerable": {
+          "count": 512,
+          "EM": 48.046875,
+          "F1": 55.465128404581534
+        },
+        "unanswerable": {
+          "count": 512,
+          "EM": 75.5859375,
+          "F1": 75.5859375
+        }
+      },
+      "weighted_75_25": {
+        "EM": 54.931640625,
+        "F1": 60.49533067843615
+      }
+    }
+  },
+  "weighted_EM_gain_vs_production_95pct_context_bootstrap": {
+    "inference_only": [
+      0.0,
+      0.15992325460609047
+    ],
+    "trained": [
+      5.484851943209045,
+      10.43396389827482
+    ]
+  },
+  "final_count": 1024,
+  "provenance": "Prospectively frozen context-disjoint official train holdout; no retained model was trained on its contexts. See manifest limitations for abandoned full-data run.",
+  "historical_metrics_not_directly_comparable": true,
+  "no_post_final_tuning": true,
+  "production_unchanged": true
+}

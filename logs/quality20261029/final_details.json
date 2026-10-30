@@ -1,0 +1,314 @@
+{
+  "profiles": {
+    "production": {
+      "overall": {
+        "count": 1024,
+        "EM": 57.71484375,
+        "F1": 60.812711707605224,
+        "abstention_rate_percent": 62.6953125,
+        "non_exact_prediction_rate_percent": 42.28515625,
+        "wrong_nonnull_answers_percent_of_all": 19.140625,
+        "wrong_nonnull_answers_percent_of_answered": 51.30890052356021
+      },
+      "question_types": {
+        "other": {
+          "count": 205,
+          "EM": 53.65853658536585,
+          "F1": 59.89944800369663,
+          "abstention_rate_percent": 54.146341463414636,
+          "non_exact_prediction_rate_percent": 46.34146341463415,
+          "wrong_nonnull_answers_percent_of_all": 24.390243902439025,
+          "wrong_nonnull_answers_percent_of_answered": 53.191489361702125
+        },
+        "when": {
+          "count": 51,
+          "EM": 60.78431372549019,
+          "F1": 61.76470588235294,
+          "abstention_rate_percent": 41.1764705882353,
+          "non_exact_prediction_rate_percent": 39.21568627450981,
+          "wrong_nonnull_answers_percent_of_all": 25.49019607843137,
+          "wrong_nonnull_answers_percent_of_answered": 43.333333333333336
+        },
+        "what": {
+          "count": 496,
+          "EM": 60.08064516129032,
+          "F1": 62.5044909167893,
+          "abstention_rate_percent": 68.54838709677419,
+          "non_exact_prediction_rate_percent": 39.91935483870968,
+          "wrong_nonnull_answers_percent_of_all": 16.93548387096774,
+          "wrong_nonnull_answers_percent_of_answered": 53.84615384615385
+        },
+        "how many": {
+          "count": 42,
+          "EM": 54.76190476190476,
+          "F1": 57.93650793650793,
+          "abstention_rate_percent": 54.76190476190476,
+          "non_exact_prediction_rate_percent": 45.23809523809524,
+          "wrong_nonnull_answers_percent_of_all": 26.19047619047619,
+          "wrong_nonnull_answers_percent_of_answered": 57.89473684210526
+        },
+        "why": {
+          "count": 13,
+          "EM": 69.23076923076923,
+          "F1": 73.07692307692308,
+          "abstention_rate_percent": 92.3076923076923,
+          "non_exact_prediction_rate_percent": 30.76923076923077,
+          "wrong_nonnull_answers_percent_of_all": 7.6923076923076925,
+          "wrong_nonnull_answers_percent_of_answered": 100.0
+        },
+        "who": {
+          "count": 105,
+          "EM": 61.904761904761905,
+          "F1": 63.63756613756614,
+          "abstention_rate_percent": 60.95238095238095,
+          "non_exact_prediction_rate_percent": 38.095238095238095,
+          "wrong_nonnull_answers_percent_of_all": 15.238095238095237,
+          "wrong_nonnull_answers_percent_of_answered": 39.02439024390244
+        },
+        "which": {
+          "count": 32,
+          "EM": 43.75,
+          "F1": 45.83333333333333,
+          "abstention_rate_percent": 53.125,
+          "non_exact_prediction_rate_percent": 56.25,
+          "wrong_nonnull_answers_percent_of_all": 18.75,
+          "wrong_nonnull_answers_percent_of_answered": 40.0
+        },
+        "how": {
+          "count": 28,
+          "EM": 57.142857142857146,
+          "F1": 61.904761904761905,
+          "abstention_rate_percent": 82.14285714285714,
+          "non_exact_prediction_rate_percent": 42.857142857142854,
+          "wrong_nonnull_answers_percent_of_all": 7.142857142857143,
+          "wrong_nonnull_answers_percent_of_answered": 40.0
+        },
+        "where": {
+          "count": 41,
+          "EM": 53.65853658536585,
+          "F1": 55.495723788406714,
+          "abstention_rate_percent": 56.09756097560975,
+          "non_exact_prediction_rate_percent": 46.34146341463415,
+          "wrong_nonnull_answers_percent_of_all": 24.390243902439025,
+          "wrong_nonnull_answers_percent_of_answered": 55.55555555555556
+        },
+        "how much": {
+          "count": 11,
+          "EM": 27.272727272727273,
+          "F1": 27.272727272727273,
+          "abstention_rate_percent": 72.72727272727273,
+          "non_exact_prediction_rate_percent": 72.72727272727273,
+          "wrong_nonnull_answers_percent_of_all": 27.272727272727273,
+          "wrong_nonnull_answers_percent_of_answered": 100.0
+        }
+      }
+    },
+    "inference_only": {
+      "overall": {
+        "count": 1024,
+        "EM": 57.8125,
+        "F1": 60.828406462069516,
+        "abstention_rate_percent": 62.890625,
+        "non_exact_prediction_rate_percent": 42.1875,
+        "wrong_nonnull_answers_percent_of_all": 18.9453125,
+        "wrong_nonnull_answers_percent_of_answered": 51.05263157894737
+      },
+      "question_types": {
+        "other": {
+          "count": 205,
+          "EM": 53.65853658536585,
+          "F1": 59.89944800369663,
+          "abstention_rate_percent": 54.63414634146341,
+          "non_exact_prediction_rate_percent": 46.34146341463415,
+          "wrong_nonnull_answers_percent_of_all": 23.902439024390244,
+          "wrong_nonnull_answers_percent_of_answered": 52.68817204301075
+        },
+        "when": {
+          "count": 51,
+          "EM": 60.78431372549019,
+          "F1": 61.76470588235294,
+          "abstention_rate_percent": 41.1764705882353,
+          "non_exact_prediction_rate_percent": 39.21568627450981,
+          "wrong_nonnull_answers_percent_of_all": 25.49019607843137,
+          "wrong_nonnull_answers_percent_of_answered": 43.333333333333336
+        },
+        "what": {
+          "count": 496,
+          "EM": 60.28225806451613,
+          "F1": 62.536892990522034,
+          "abstention_rate_percent": 68.75,
+          "non_exact_prediction_rate_percent": 39.71774193548387,
+          "wrong_nonnull_answers_percent_of_all": 16.733870967741936,
+          "wrong_nonnull_answers_percent_of_answered": 53.54838709677419
+        },
+        "how many": {
+          "count": 42,
+          "EM": 54.76190476190476,
+          "F1": 57.93650793650793,
+          "abstention_rate_percent": 54.76190476190476,
+          "non_exact_prediction_rate_percent": 45.23809523809524,
+          "wrong_nonnull_answers_percent_of_all": 26.19047619047619,
+          "wrong_nonnull_answers_percent_of_answered": 57.89473684210526
+        },
+        "why": {
+          "count": 13,
+          "EM": 69.23076923076923,
+          "F1": 73.07692307692308,
+          "abstention_rate_percent": 92.3076923076923,
+          "non_exact_prediction_rate_percent": 30.76923076923077,
+          "wrong_nonnull_answers_percent_of_all": 7.6923076923076925,
+          "wrong_nonnull_answers_percent_of_answered": 100.0
+        },
+        "who": {
+          "count": 105,
+          "EM": 61.904761904761905,
+          "F1": 63.63756613756614,
+          "abstention_rate_percent": 60.95238095238095,
+          "non_exact_prediction_rate_percent": 38.095238095238095,
+          "wrong_nonnull_answers_percent_of_all": 15.238095238095237,
+          "wrong_nonnull_answers_percent_of_answered": 39.02439024390244
+        },
+        "which": {
+          "count": 32,
+          "EM": 43.75,
+          "F1": 45.83333333333333,
+          "abstention_rate_percent": 53.125,
+          "non_exact_prediction_rate_percent": 56.25,
+          "wrong_nonnull_answers_percent_of_all": 18.75,
+          "wrong_nonnull_answers_percent_of_answered": 40.0
+        },
+        "how": {
+          "count": 28,
+          "EM": 57.142857142857146,
+          "F1": 61.904761904761905,
+          "abstention_rate_percent": 82.14285714285714,
+          "non_exact_prediction_rate_percent": 42.857142857142854,
+          "wrong_nonnull_answers_percent_of_all": 7.142857142857143,
+          "wrong_nonnull_answers_percent_of_answered": 40.0
+        },
+        "where": {
+          "count": 41,
+          "EM": 53.65853658536585,
+          "F1": 55.495723788406714,
+          "abstention_rate_percent": 56.09756097560975,
+          "non_exact_prediction_rate_percent": 46.34146341463415,
+          "wrong_nonnull_answers_percent_of_all": 24.390243902439025,
+          "wrong_nonnull_answers_percent_of_answered": 55.55555555555556
+        },
+        "how much": {
+          "count": 11,
+          "EM": 27.272727272727273,
+          "F1": 27.272727272727273,
+          "abstention_rate_percent": 72.72727272727273,
+          "non_exact_prediction_rate_percent": 72.72727272727273,
+          "wrong_nonnull_answers_percent_of_all": 27.272727272727273,
+          "wrong_nonnull_answers_percent_of_answered": 100.0
+        }
+      }
+    },
+    "trained": {
+      "overall": {
+        "count": 1024,
+        "EM": 61.81640625,
+        "F1": 65.52553295229076,
+        "abstention_rate_percent": 52.83203125,
+        "non_exact_prediction_rate_percent": 38.18359375,
+        "wrong_nonnull_answers_percent_of_all": 23.14453125,
+        "wrong_nonnull_answers_percent_of_answered": 49.06832298136646
+      },
+      "question_types": {
+        "other": {
+          "count": 205,
+          "EM": 62.926829268292686,
+          "F1": 68.84959349593497,
+          "abstention_rate_percent": 45.853658536585364,
+          "non_exact_prediction_rate_percent": 37.073170731707314,
+          "wrong_nonnull_answers_percent_of_all": 24.390243902439025,
+          "wrong_nonnull_answers_percent_of_answered": 45.04504504504504
+        },
+        "when": {
+          "count": 51,
+          "EM": 66.66666666666667,
+          "F1": 66.66666666666667,
+          "abstention_rate_percent": 25.49019607843137,
+          "non_exact_prediction_rate_percent": 33.333333333333336,
+          "wrong_nonnull_answers_percent_of_all": 29.41176470588235,
+          "wrong_nonnull_answers_percent_of_answered": 39.473684210526315
+        },
+        "what": {
+          "count": 496,
+          "EM": 61.693548387096776,
+          "F1": 64.47263533957081,
+          "abstention_rate_percent": 59.67741935483871,
+          "non_exact_prediction_rate_percent": 38.306451612903224,
+          "wrong_nonnull_answers_percent_of_all": 21.370967741935484,
+          "wrong_nonnull_answers_percent_of_answered": 53.0
+        },
+        "how many": {
+          "count": 42,
+          "EM": 52.38095238095238,
+          "F1": 61.5079365079365,
+          "abstention_rate_percent": 38.095238095238095,
+          "non_exact_prediction_rate_percent": 47.61904761904762,
+          "wrong_nonnull_answers_percent_of_all": 40.476190476190474,
+          "wrong_nonnull_answers_percent_of_answered": 65.38461538461539
+        },
+        "why": {
+          "count": 13,
+          "EM": 76.92307692307692,
+          "F1": 81.86813186813187,
+          "abstention_rate_percent": 84.61538461538461,
+          "non_exact_prediction_rate_percent": 23.076923076923077,
+          "wrong_nonnull_answers_percent_of_all": 7.6923076923076925,
+          "wrong_nonnull_answers_percent_of_answered": 50.0
+        },
+        "who": {
+          "count": 105,
+          "EM": 64.76190476190476,
+          "F1": 68.16089466089466,
+          "abstention_rate_percent": 52.38095238095238,
+          "non_exact_prediction_rate_percent": 35.23809523809524,
+          "wrong_nonnull_answers_percent_of_all": 20.0,
+          "wrong_nonnull_answers_percent_of_answered": 42.0
+        },
+        "which": {
+          "count": 32,
+          "EM": 62.5,
+          "F1": 64.58333333333334,
+          "abstention_rate_percent": 37.5,
+          "non_exact_prediction_rate_percent": 37.5,
+          "wrong_nonnull_answers_percent_of_all": 18.75,
+          "wrong_nonnull_answers_percent_of_answered": 30.0
+        },
+        "how": {
+          "count": 28,
+          "EM": 64.28571428571429,
+          "F1": 71.156462585034,
+          "abstention_rate_percent": 71.42857142857143,
+          "non_exact_prediction_rate_percent": 35.714285714285715,
+          "wrong_nonnull_answers_percent_of_all": 10.714285714285714,
+          "wrong_nonnull_answers_percent_of_answered": 37.5
+        },
+        "where": {
+          "count": 41,
+          "EM": 56.09756097560975,
+          "F1": 57.934748178650615,
+          "abstention_rate_percent": 41.46341463414634,
+          "non_exact_prediction_rate_percent": 43.90243902439025,
+          "wrong_nonnull_answers_percent_of_all": 34.146341463414636,
+          "wrong_nonnull_answers_percent_of_answered": 58.333333333333336
+        },
+        "how much": {
+          "count": 11,
+          "EM": 27.272727272727273,
+          "F1": 33.33333333333333,
+          "abstention_rate_percent": 63.63636363636363,
+          "non_exact_prediction_rate_percent": 72.72727272727273,
+          "wrong_nonnull_answers_percent_of_all": 36.36363636363637,
+          "wrong_nonnull_answers_percent_of_answered": 100.0
+        }
+      }
+    }
+  },
+  "interpretation": "Wrong means normalized non-exact, including partial matches; question prefixes are descriptive and were not used for tuning. Small subgroups are uncertain."
+}

@@ -51,6 +51,9 @@ used by any retained fine-tuned model or by official validation. Entire selected
 contexts are excluded from candidate gradient training. The final examples remain
 unscored until model and policy choices are locked. This is a new local holdout,
 not the professor's test, and its source differs from historical validation.
+Official training examples also have fewer annotated alternative answers than
+official validation; this can change EM/F1. Only same-example comparisons below
+are interpretable as measured differences between these candidates.
 
 An abandoned full-data run has no retained checkpoint or complete consumed-ID
 record. It is not an ancestor of the compared models, but universal historical
@@ -92,3 +95,17 @@ References: [Transformers QA guide](https://huggingface.co/docs/transformers/en/
 [BERT-base model card](https://huggingface.co/google-bert/bert-base-uncased),
 [DeBERTa-v3-base model card](https://huggingface.co/microsoft/deberta-v3-base),
 [LoRA paper](https://arxiv.org/abs/2106.09685).
+
+## Completed comparison and post-selection ISS check
+
+The authorized run completed in 43m11s, selecting checkpoint-2000. See
+[QUALITY_RESULTS.md](QUALITY_RESULTS.md) for the same-example comparison, bootstrap,
+CPU HTTP checks and the recommendation pending approval. No further training is
+authorized by the latest recovery request.
+
+After final scoring, the candidate answered the speed question with exactly
+“28,000 kilometers per hour” at offset 638. It still answered “Zarya” to “What is
+my name?” at offset 284, score 0.9805. The other four diagnostic answers retained
+their expected behavior. `iss_candidate.json` records raw candidates and logits.
+These checks did not change any setting; high scores still do not establish
+semantic correctness. Sample-04 likewise remains incorrect.

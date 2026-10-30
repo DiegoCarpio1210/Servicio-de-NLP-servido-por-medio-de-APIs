@@ -1,0 +1,415 @@
+{
+  "purpose": "Diagnostics after final evaluation; never used for optimization",
+  "profile": {
+    "model_dir": "models/quality40k",
+    "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+    "policy": {
+      "name": "length05",
+      "max_length": 30,
+      "length_penalty": 0.5
+    },
+    "threshold": -0.40494251441686124,
+    "calibration": {
+      "groups": {
+        "all": {
+          "count": 512,
+          "EM": 59.9609375,
+          "F1": 61.817397362024515
+        },
+        "answerable": {
+          "count": 256,
+          "EM": 49.609375,
+          "F1": 53.32229472404904
+        },
+        "unanswerable": {
+          "count": 256,
+          "EM": 70.3125,
+          "F1": 70.3125
+        }
+      },
+      "weighted_75_25": {
+        "EM": 54.78515625,
+        "F1": 57.569846043036776
+      }
+    },
+    "development": {
+      "groups": {
+        "all": {
+          "count": 1024,
+          "EM": 59.08203125,
+          "F1": 63.44489686265332
+        },
+        "answerable": {
+          "count": 512,
+          "EM": 41.2109375,
+          "F1": 49.93666872530663
+        },
+        "unanswerable": {
+          "count": 512,
+          "EM": 76.953125,
+          "F1": 76.953125
+        }
+      },
+      "weighted_75_25": {
+        "EM": 50.146484375,
+        "F1": 56.69078279397998
+      }
+    }
+  },
+  "results": [
+    {
+      "question": "What is the name of the first ISS module?",
+      "reference": "Zarya",
+      "response": {
+        "answer": "Zarya",
+        "start": 284,
+        "score": 0.9993482929515659
+      },
+      "diagnostic": {
+        "text": "Zarya",
+        "start": 284,
+        "margin": -7.740206004141415,
+        "null_score": 5.244420051574707,
+        "best_span_score": 12.984626055716122,
+        "top_spans": [
+          {
+            "text": "Zarya",
+            "start": 284,
+            "score": 12.984626055716122,
+            "start_logit": 6.30146598815918,
+            "end_logit": 7.029733180999756,
+            "tokens": 2
+          },
+          {
+            "text": "International Space Station, called Zarya",
+            "start": 248,
+            "score": 7.1405426595421675,
+            "start_logit": 1.0837643146514893,
+            "end_logit": 7.029733180999756,
+            "tokens": 7
+          },
+          {
+            "text": "Zarya,",
+            "start": 284,
+            "score": 6.949218521498465,
+            "start_logit": 6.30146598815918,
+            "end_logit": 1.1970586776733398,
+            "tokens": 3
+          },
+          {
+            "text": "rya",
+            "start": 286,
+            "score": 6.863814830780029,
+            "start_logit": -0.16591821610927582,
+            "end_logit": 7.029733180999756,
+            "tokens": 1
+          },
+          {
+            "text": "called Zarya",
+            "start": 277,
+            "score": 6.708458195112967,
+            "start_logit": 0.2280312478542328,
+            "end_logit": 7.029733180999756,
+            "tokens": 3
+          }
+        ],
+        "windows": 1
+      }
+    },
+    {
+      "question": "When was the first ISS module launched?",
+      "reference": "November 20, 1998",
+      "response": {
+        "answer": "November 20, 1998",
+        "start": 307,
+        "score": 0.9875229855392774
+      },
+      "diagnostic": {
+        "text": "November 20, 1998",
+        "start": 307,
+        "margin": -4.77625417899816,
+        "null_score": 9.099312782287598,
+        "best_span_score": 13.875566961285758,
+        "top_spans": [
+          {
+            "text": "November 20, 1998",
+            "start": 307,
+            "score": 13.875566961285758,
+            "start_logit": 6.960296154022217,
+            "end_logit": 7.608417987823486,
+            "tokens": 4
+          },
+          {
+            "text": "1998",
+            "start": 320,
+            "score": 10.770644187927246,
+            "start_logit": 3.1622259616851807,
+            "end_logit": 7.608417987823486,
+            "tokens": 1
+          },
+          {
+            "text": "November 20",
+            "start": 307,
+            "score": 10.187352419851864,
+            "start_logit": 6.960296154022217,
+            "end_logit": 3.5736303329467773,
+            "tokens": 2
+          },
+          {
+            "text": "November",
+            "start": 307,
+            "score": 9.145182609558105,
+            "start_logit": 6.960296154022217,
+            "end_logit": 2.1848862171173096,
+            "tokens": 1
+          },
+          {
+            "text": "November 20, 1998.",
+            "start": 307,
+            "score": 8.98139287544799,
+            "start_logit": 6.960296154022217,
+            "end_logit": 2.8258161544799805,
+            "tokens": 5
+          }
+        ],
+        "windows": 1
+      }
+    },
+    {
+      "question": "What provides electricity to the International Space Station?",
+      "reference": "solar arrays",
+      "response": {
+        "answer": "solar arrays",
+        "start": 1023,
+        "score": 0.6025597504960961
+      },
+      "diagnostic": {
+        "text": "solar arrays",
+        "start": 1023,
+        "margin": -0.8210847387300371,
+        "null_score": 5.211095333099365,
+        "best_span_score": 6.032180071829402,
+        "top_spans": [
+          {
+            "text": "solar arrays",
+            "start": 1023,
+            "score": 6.032180071829402,
+            "start_logit": 2.8877062797546387,
+            "end_logit": 3.4910473823547363,
+            "tokens": 2
+          },
+          {
+            "text": "solar arrays that convert sunlight",
+            "start": 1023,
+            "score": 5.23695756508422,
+            "start_logit": 2.8877062797546387,
+            "end_logit": 3.15397047996521,
+            "tokens": 5
+          },
+          {
+            "text": "large solar arrays",
+            "start": 1017,
+            "score": 4.6474783519733185,
+            "start_logit": 1.7057369947433472,
+            "end_logit": 3.4910473823547363,
+            "tokens": 3
+          },
+          {
+            "text": "solar arrays that convert sunlight into electrical energy",
+            "start": 1023,
+            "score": 4.515619042392504,
+            "start_logit": 2.8877062797546387,
+            "end_logit": 2.667633533477783,
+            "tokens": 8
+          },
+          {
+            "text": "sunlight",
+            "start": 1049,
+            "score": 4.491260528564453,
+            "start_logit": 1.3372900485992432,
+            "end_logit": 3.15397047996521,
+            "tokens": 1
+          }
+        ],
+        "windows": 1
+      }
+    },
+    {
+      "question": "How fast does the International Space Station travel?",
+      "reference": "28,000 kilometers per hour",
+      "response": {
+        "answer": "28,000 kilometers per hour",
+        "start": 638,
+        "score": 0.9517222857451748
+      },
+      "diagnostic": {
+        "text": "28,000 kilometers per hour",
+        "start": 638,
+        "margin": -3.3862457384084337,
+        "null_score": 9.028359413146973,
+        "best_span_score": 12.414605151555406,
+        "top_spans": [
+          {
+            "text": "28,000 kilometers per hour",
+            "start": 638,
+            "score": 12.414605151555406,
+            "start_logit": 6.604459762573242,
+            "end_logit": 6.706025123596191,
+            "tokens": 6
+          },
+          {
+            "text": "about 28,000 kilometers per hour",
+            "start": 632,
+            "score": 11.856984767696465,
+            "start_logit": 6.12391471862793,
+            "end_logit": 6.706025123596191,
+            "tokens": 7
+          },
+          {
+            "text": "28,000 kilometers",
+            "start": 638,
+            "score": 11.565422536847281,
+            "start_logit": 6.604459762573242,
+            "end_logit": 5.654109954833984,
+            "tokens": 4
+          },
+          {
+            "text": "28,000 kilometers per hour and completes one orbit around Earth approximately every 90 minutes",
+            "start": 638,
+            "score": 11.447383884424543,
+            "start_logit": 6.604459762573242,
+            "end_logit": 6.229218482971191,
+            "tokens": 16
+          },
+          {
+            "text": "about 28,000 kilometers",
+            "start": 632,
+            "score": 10.973305717244864,
+            "start_logit": 6.12391471862793,
+            "end_logit": 5.654109954833984,
+            "tokens": 5
+          }
+        ],
+        "windows": 1
+      }
+    },
+    {
+      "question": "Who was the first astronaut to walk on the Moon?",
+      "reference": null,
+      "response": {
+        "answer": null,
+        "start": null,
+        "score": 0.9242158467291293
+      },
+      "diagnostic": {
+        "text": "Zarya",
+        "start": 284,
+        "margin": 2.096113919259465,
+        "null_score": 6.672950744628906,
+        "best_span_score": 4.576836825369441,
+        "top_spans": [
+          {
+            "text": "Zarya",
+            "start": 284,
+            "score": 4.576836825369441,
+            "start_logit": 2.496422529220581,
+            "end_logit": 2.426987886428833,
+            "tokens": 2
+          },
+          {
+            "text": "International Space Station, called Zarya",
+            "start": 248,
+            "score": -0.4986978437689896,
+            "start_logit": -1.952730655670166,
+            "end_logit": 2.426987886428833,
+            "tokens": 7
+          },
+          {
+            "text": "called Zarya",
+            "start": 277,
+            "score": -0.8607950111400852,
+            "start_logit": -2.7384767532348633,
+            "end_logit": 2.426987886428833,
+            "tokens": 3
+          },
+          {
+            "text": "Zarya,",
+            "start": 284,
+            "score": -0.9189369579326877,
+            "start_logit": 2.496422529220581,
+            "end_logit": -2.866053342819214,
+            "tokens": 3
+          },
+          {
+            "text": "rya",
+            "start": 286,
+            "score": -1.5348985195159912,
+            "start_logit": -3.961886405944824,
+            "end_logit": 2.426987886428833,
+            "tokens": 1
+          }
+        ],
+        "windows": 1
+      }
+    },
+    {
+      "question": "What is my name?",
+      "reference": null,
+      "response": {
+        "answer": "Zarya",
+        "start": 284,
+        "score": 0.9804887946137141
+      },
+      "diagnostic": {
+        "text": "Zarya",
+        "start": 284,
+        "margin": -4.32200479602679,
+        "null_score": 3.3402059078216553,
+        "best_span_score": 7.662210703848445,
+        "top_spans": [
+          {
+            "text": "Zarya",
+            "start": 284,
+            "score": 7.662210703848445,
+            "start_logit": 3.9236795902252197,
+            "end_logit": 4.085104465484619,
+            "tokens": 2
+          },
+          {
+            "text": "Zarya,",
+            "start": 284,
+            "score": 1.59045244254949,
+            "start_logit": 3.9236795902252197,
+            "end_logit": -1.7839208841323853,
+            "tokens": 3
+          },
+          {
+            "text": "rya",
+            "start": 286,
+            "score": 1.4427809715270996,
+            "start_logit": -2.6423234939575195,
+            "end_logit": 4.085104465484619,
+            "tokens": 1
+          },
+          {
+            "text": "called Zarya",
+            "start": 277,
+            "score": 0.6641156772601834,
+            "start_logit": -2.871682643890381,
+            "end_logit": 4.085104465484619,
+            "tokens": 3
+          },
+          {
+            "text": "The first module of the International Space Station, called Zarya",
+            "start": 224,
+            "score": 0.4296124099692811,
+            "start_logit": -2.413038730621338,
+            "end_logit": 4.085104465484619,
+            "tokens": 12
+          }
+        ],
+        "windows": 1
+      }
+    }
+  ]
+}

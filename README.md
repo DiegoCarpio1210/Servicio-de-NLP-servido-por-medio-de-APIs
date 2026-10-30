@@ -2,7 +2,9 @@
 
 University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
 No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
-**Status: continued20k candidate evaluated on a fresh 1,024-example holdout: EM 53.61%, F1 56.18%, 75/25 weighted EM 43.73%; public 4/5. NOT yet ready for submission.**
+**Status: quality40k is recommended for approval; production still uses continued20k. On the same reserved 1,024 examples, weighted EM improves from 47.02% to 54.93% (95% paired interval for gain +5.48 to +10.43 points). Public accuracy remains 4/5. NOT ready for final submission.**
+See [measured comparison and independence limitations](docs/QUALITY_RESULTS.md) and
+[candidate activation review](docs/CANDIDATE_REVIEW_ES.md). No model, threshold or dashboard has been switched.
 See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
 
 ## PIMIENTERO AI — local graphical application

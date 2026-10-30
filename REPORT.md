@@ -1,131 +1,149 @@
 # Project Report — Extractive QA as a Service
 
-Draft with measured baseline and continuation results. Final submission is PENDING.
+Measured draft; official submission is PENDING. Production remains continued20k; quality40k awaits approval.
 
 ## 0. Team
 
 | Field | Value |
 |---|---|
-| Team id | `Pimientero` |
+| Team id | Pimientero |
 | Members | Diego Roberto Carpio Flamenco; Julio Roberto Guardado Quijano; Alfredo Enmanuel Cortez Martínez; Iván Daniel Salguero Esperanza |
 | Repository URL | https://github.com/DiegoCarpio1210/Servicio-de-NLP-servido-por-medio-de-APIs |
-| `submission` commit hash | PENDING; tag deliberately not created |
-| Public service URL used at the dry run | PENDING instructor dry run |
-| AI tools used (which, and for what) | OpenAI Codex: implementation, tests, training orchestration, documentation; no commercial inference in the service |
+| `submission` commit hash | PENDING; tag not authorized |
+| Public service URL used at the dry run | PENDING official instructor dry run |
+| AI tools used (which, and for what) | OpenAI Codex: code, tests, experiment orchestration and documentation; no commercial inference in the service |
 
 ## 1. Model choice and justification
 
-**Base checkpoint:** `distilbert/distilbert-base-uncased`, revision `12040accade4e8a0f71eabdb258fecc2e7e948be`.
-Six encoder layers reduce computation compared with the twelve-layer `google-bert/bert-base-uncased` alternative.
-BERT was evaluated architecturally, not fine-tuned or benchmarked here. DistilBERT is a practical CPU candidate;
-its quality still depends on sufficient training. The first run initialized the QA head; continuation retained and optimized both head and encoder.
+We fine-tuned `distilbert/distilbert-base-uncased`, BASE revision
+`12040accade4e8a0f71eabdb258fecc2e7e948be`, including its QA head and encoder.
+Six layers and 66,364,418 parameters suit laptop CPU inference. Twelve-layer
+BERT-base is a permitted but costlier alternative, not locally benchmarked.
+A downloaded SQuAD-fine-tuned model would not demonstrate our own BASE training.
+LoRA reduces trainable parameters but does not guarantee greater accuracy.
 
 ## 2. Training
 
-Initial run: 12,000 SQuAD 2.0 examples, two epochs, 1,522 steps, 26m22s.
-Continuation: nested 20,000 examples (12,000 previous + 8,000 new; 6,675 impossible),
-2.00 additional epochs, 2534 steps, 42.98 minutes.
-Both use the Quadro P1000 4 GiB and train encoder plus QA head. Original weights/checkpoints are preserved.
-The continuation export uses the minimum-loss checkpoint at step 1600
-(epoch 1.263), which can precede the end of the completed run.
-
-| Setting | Initial / continuation |
-|---|---|
-| Learning rate / warmup | 3e-5 / 10%; then 1e-5 / 5%; linear decay, weight decay .01 |
-| Batch / accumulation / precision | 16 / 1 / FP32; length-grouped dynamic padding |
-| max_seq_length / doc_stride / seed | 384 / 128 / 42 |
-| Validation | 512 selection, 512 calibration, old 1,024 holdout, fresh 1,024 context-disjoint holdout |
-
-[Continuation loss curve](logs/continued20k/loss.png). The candidate **continued** was fixed using calibration.
-Fresh holdout EM/F1: 53.61/56.18; answerable
-33.92/39.08; impossible 73.15.
-75/25 weighted EM/F1: 43.73/47.60.
-The old holdout was already consulted and was not used to optimize this experiment.
-
-Comparable fresh holdout (510 answerable / 514 impossible), percentages:
-
-| Profile | EM | F1 | Answerable EM | Impossible EM | 75/25 EM |
+| Run | Training examples | Epochs completed | Run steps | Selected step | Time |
 |---|---:|---:|---:|---:|---:|
-| Original | 52.25 | 53.50 | 22.35 | 81.91 | 37.24 |
-| Recalibrated | 37.70 | 41.94 | 47.65 | 27.82 | 42.69 |
-| Continued candidate | 53.61 | 56.18 | 33.92 | 73.15 | 43.73 |
+| subset12k | 12,000 | 2 | 1,522 | 1,522 | 26m22s |
+| continued20k | 20,000 | 2 | 2,534 | 1,600 | 42m59s |
+| quality40k | 40,000 | 1 | 2,531 | 2,000 | 43m11s |
 
-The continuation gains 6.49 weighted EM points over original, while losing 8.75 impossible-class points.
-Its 1.04-point weighted gain over recalibrated is not statistically conclusive; it restores correct-null performance
-at the cost of answerable accuracy. Candidate selection used calibration only, before these measurements.
+quality40k continues the preserved checkpoint-1600 with 20,000 previous and
+20,000 new SQuAD 2.0 examples, including 13,406 impossible questions. Its selected
+checkpoint minimizes loss on 512 selection examples: 1.441129 at epoch 0.7902.
+The full run completed epoch 1.0; exported weights match checkpoint-2000.
+
+| Setting | quality40k |
+|---|---|
+| GPU / peak reserved memory | Quadro P1000 / 2,798 MiB |
+| LR / warmup / decay | 2e-5 / 5% / linear; weight decay .01 |
+| Batch / accumulation / precision | 16 / 1 / FP32; dynamic padding and length grouping |
+| Sequence / stride / seed | 384 / 128 / 42 |
+| Checkpoints | Every 200 steps; selection evaluation every 400; resumable optimizer/RNG files |
+
+[Loss curve](logs/quality40k/loss.png), [training metadata](logs/quality40k/training_metadata.json),
+and [artifact hashes](logs/quality20261029/artifact_audit.json) provide evidence.
+No additional training was performed during recovery.
+
+Both candidates were scored on the same frozen 1,024 examples:
+
+| Profile | EM | F1 | Answerable EM | Answerable F1 | Impossible EM | 75/25 EM |
+|---|---:|---:|---:|---:|---:|---:|
+| continued20k stable | 57.71 | 60.81 | 36.33 | 42.52 | 79.10 | 47.02 |
+| continued20k short15 | 57.81 | 60.83 | 36.33 | 42.36 | 79.30 | 47.07 |
+| quality40k + length05 | 61.82 | 65.53 | 48.05 | 55.47 | 75.59 | 54.93 |
+
+The trained candidate gains 7.91 weighted-EM points; paired context-cluster
+bootstrap 95% CI is [+5.48,+10.43], using 3,000 resamples. Impossible EM falls
+3.52 points. This supports recommending quality40k for approval, not a guaranteed
+instructor score. Historical stable EM/F1 53.61/56.18 used different examples.
 
 ## 3. No-answer threshold
 
-Return null when minimum window CLS start-plus-end minus best valid span score exceeds
-**-0.98309326**. The continuation threshold maximizes calibration 75/25 weighted EM,
-with weighted F1 tie-break, subject to impossible calibration EM >=70%. This is a calibration safeguard,
-not a guaranteed test result. The candidate and thresholds were locked before final evaluations.
-Lower thresholds increase abstention; higher ones risk unsupported spans. Public examples never train or calibrate the model. EM/F1 are proxies, not the instructor's partial-credit judge.
-See docs/CONTINUATION_EXPERIMENT.md for all three profiles and the historical baseline scoring correction.
+Stable uses threshold -0.98309326. The experimental candidate scores spans as
+start logit + end logit minus `0.5 * log(token_length)`, maximum 30 tokens.
+Return null when minimum-window CLS score minus best-span score exceeds
+-0.4049425144. Only 512 calibration examples fitted thresholds, maximizing 75/25
+weighted EM with a 70% impossible-EM floor. A separate 1,024-example development
+set selected the policy. Decisions were committed in `37fc668` before final scoring.
+Public and ISS examples never selected parameters. Scores measure threshold
+distance, not probability of correctness; the GUI states this explicitly.
 
 ## 4. Serving architecture
 
-FastAPI and uvicorn use one worker. A background loader reads local weights and calibration once, forces CPU,
-warms the model, then changes health from 503 to 200. A lock and inference mode govern prediction. All overlapping
-windows are scored; answers are sliced from the original context, preserving character offsets. Exact Bearer
-comparison uses only `QA_API_TOKEN`; invalid inputs receive the YAML error format.
-Current-model Cloudflare HTTPS passed from this laptop: 50 calls in 19.25s, maximum .755s. The temporary tunnel was closed. Ngrok backup passed four real HTTPS checks from this laptop (health, authentication, prediction); the API and tunnel were then stopped. Evidence: logs/ngrok_setup.json. Instructor dry run is PENDING. Optional /info fields expose the loaded weight hash and actual training steps.
-Clean-machine PowerShell commands and secure token entry are in README:
+FastAPI loads one local CPU model, four Torch threads, port 8000. `/health` is
+public; `/info` and `/predict` require exact `Bearer` authentication against
+`QA_API_TOKEN`, using constant-time comparison. JSON validation enforces the
+contract. Overflow windows preserve long contexts; original-string offsets support
+Unicode. A separate loopback gateway on 8765 serves the optional GUI and keeps
+the API token out of the browser.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-$env:TEAM_ID = 'Pimientero'
-$env:MODEL_DIR = 'models/continued20k'
-# Set QA_API_TOKEN securely as described in README, after final training/calibration.
-.\.venv\Scripts\python.exe -m uvicorn qa.api:app --host 0.0.0.0 --port 8000 --workers 1
-.\tools\cloudflared.exe tunnel --url http://localhost:8000
-```
+Run `INICIAR_PIMIENTERO.bat`; stop with `DETENER_PIMIENTERO.bat`. These still select
+continued20k. For the official session, follow [the secure runbook](docs/RUNBOOK_ES.md)
+to set the instructor token locally and start an authorized HTTPS tunnel.
+No public service was exposed for this candidate evaluation.
 
 ## 5. Results on the public sample set
 
-| Item | Expected | Your answer | `start` | Correct? |
-|---|---|---|---|---|
-| sample-01 | 16 / 16 attention heads | 16 | 383 | Yes |
-| sample-02 | 3.5 days | 3.5 days | 437 | Yes |
-| sample-03 | null | null | null | Yes |
-| sample-04 | null | 10,000 times and the GPU memory requirement by 3 times | 263 | No |
-| sample-05 | 50,257 / 50,257 tokens | 50,257 | 3157 | Yes |
+| Item | quality40k answer | Start | Correct |
+|---|---|---:|---|
+| sample-01 | 16 | 383 | Yes |
+| sample-02 | 3.5 days | 437 | Yes |
+| sample-03 | null | null | Yes |
+| sample-04 | 10,000 | 263 | No |
+| sample-05 | 50,257 | 3157 | Yes |
 
-Real HTTP: 4/5. Sample 04 incorrectly extracts GPT-3 reduction figures for a BERT-base question: a semantic attribution error. Results were observed only after candidate locking; no case-specific fixes.
-Read-only logit inspection confirmed complete single-window coverage and valid offsets. The shorter runner-up
-span is also about GPT-3, so shortening extraction would not solve abstention. See docs/SAMPLE04_DIAGNOSIS.md.
+Both models achieve 4/5. Sample-04 incorrectly attributes a GPT-3 quantity to
+BERT. No question-specific rule was added. Mandatory all-public-samples conformance
+remains unresolved. [Raw HTTP evidence](logs/quality20261029/cpu_trained/result.json).
 
 ## 6. Model size and latency (not graded)
 
-66,364,418 parameters; 254.10 MiB including tokenizer/metadata.
-CPU mean 0.271s, maximum 0.632s; 50 sequential calls 14.08s.
-This repeats five public cases ten times, not fifty hidden questions. Laptop: Intel family 6/model 158,
-31.72 GiB RAM. Current-policy HTTPS from this host took 19.25s for 50 calls, mean .385s and max .755s.
-Three post-close probes returned HTTP 530; model/calibration hashes were unchanged. Five manual independent-network functional checks passed on a Samsung using mobile data (logs/continued20k/mobile_connectivity.json); this was not a mobile latency benchmark. The final POST returned Paris at offset 0. The restored tunnel was closed (HTTP 530), its in-memory token invalidated, and model/calibration hashes preserved.
+| CPU HTTP profile | 50 calls | Mean | Maximum | Sampled process-tree RAM |
+|---|---:|---:|---:|---:|
+| Stable | 22.93s | .443s | 1.186s | 826.9 MiB |
+| quality40k | 28.54s | .551s | 1.419s | 826.0 MiB |
+
+Both satisfy 5s/request and 150s total. Calls repeat five public inputs ten times,
+not fifty hidden questions. Mean server CPU utilization across all logical cores
+was 31.91% versus 32.45%; single-run timings are descriptive. Eighteen real HTTP
+contract checks per profile passed, including authentication, Unicode and long
+contexts. All temporary servers stopped. Prior stable Cloudflare/mobile and ngrok
+checks remain historical evidence, not external tests of quality40k.
 
 ## 7. Problems encountered and how you fixed them
 
-1. **Problem:** the full-data schedule projected about 16 hours on this laptop. **Cause:** 130,319 examples,
-   three epochs and fixed padding. **Fix:** user-authorized stratified 12k subset, two epochs, measured FP32
-   batch 16, length grouping and dynamic padding. Actual duration: 26m22s. **Commit:** `020603a`.
-2. **Problem:** the API default still referenced the obsolete `models/final` directory. **Cause:** deployment
-   configuration lagged behind the selected checkpoint. **Fix:** default to `models/subset12k`, expose its SHA-256
-   and training-step count, and verify the real HTTP model identity. **Commit:** `0e4c678`.
+1. Full-data training projected approximately 16 hours. Stratified subsets,
+   measured FP32 batches and dynamic padding reduced actual time (`020603a`).
+2. The API default referenced obsolete `models/final`. Corrected deployment
+   configuration and verified hashes/steps through real HTTP (`0e4c678`).
+3. ISS speed extraction was too long despite valid offsets and one complete
+   window. General policies and a controlled continuation were compared
+   (`9a546ec`, `37fc668`); the candidate now extracts the shorter correct speed.
+   Unsupported-name extraction remains incorrect. Sixty automated tests pass.
 
 ## 8. Decoder investigation
 
-The original model extracted a question count for payment in sample 03; the continuation now returns null. Sample 04 asks about BERT-base,
-but the paragraph's numbers describe GPT-3. A decoder could generate an explicit explanation that those facts
-do not answer the question. That is a hypothetical capability, not a measured fix: it could still hallucinate.
-Generated explanations would violate this API's exact-span contract and need grounding back to offsets or null.
-Autoregressive generation adds sequential compute; larger context models add memory costs. No decoder was
-implemented or benchmarked. Our current encoder already covers the long public context with windows.
+Sample-04 requires recognizing that a number describes another model. A decoder
+might explain this mismatch, but that is hypothetical and could hallucinate.
+Generated explanations violate our verbatim-span contract unless grounded back to
+an offset or null. Autoregressive inference adds sequential compute and memory.
+No decoder was trained or benchmarked; the permitted encoder remains the backend.
 
 ## 9. Known limitations
 
-Model accuracy remains dataset-dependent; weighted scores assume the stated 75/25 mix transfers.
-The impossible-class calibration floor is not a deployment guarantee. Confidence is not probability-calibrated;
-questions cap at 64 tokens, spans at 30. Training is English-only. The new holdout is now observed and must
-not become a tuning set. Instructor dry run, weight sharing and
-final review remain PENDING. No second continuation or submission tag was created.
+All official-validation contexts had been consulted. The new final set therefore
+uses reserved official-TRAIN contexts excluded from retained models and other
+partitions. An aborted full-data run has unknown consumed IDs; absolute historical
+non-exposure cannot be certified. Selection/calibration share 132 contexts despite
+disjoint IDs. These local results are not an official unseen test; no retuning
+follows final scoring.
+
+The candidate still misses aspirational 65 EM, 70 F1 and 50 answerable EM. Reduced
+abstention increases wrong non-null outputs from 19.14% to 23.14% of all examples.
+English questions are capped at 64 tokens. Candidate activation, public-sample
+conformance, instructor dry run/live service, authorized weights, team defense and
+final submission approval remain pending. REPORT.md is retained; no PDF or tag is
+created. Details: [quality comparison](docs/QUALITY_RESULTS.md).

@@ -93,6 +93,10 @@ Para repetir las pruebas con la aplicación iniciada:
 
 ## Capturas reales
 
+Estas capturas documentan las pruebas visuales originales. La etiqueta actual del
+score aclara «Score (no probabilidad)»; el porcentaje visible en capturas antiguas
+no representa una probabilidad de que la respuesta sea correcta.
+
 ![Consulta con inferencia real](screenshots/conversation.jpg)
 ![Dashboard con métricas históricas](screenshots/dashboard.jpg)
 ![Modo oscuro](screenshots/dark.jpg)

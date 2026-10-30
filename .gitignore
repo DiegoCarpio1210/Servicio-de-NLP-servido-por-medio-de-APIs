@@ -4,6 +4,9 @@
 /models/
 /checkpoints/
 .env
+.env.*
+!.env.example
+ngrok.yml
 __pycache__/
 .pytest_cache/
 *.pyc

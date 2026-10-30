@@ -1,0 +1,29 @@
+{
+  "original_sources_unchanged": [
+    "Gu\ufffda_de_trabajo_APIs_and_NLP.pdf",
+    "public_sample.json",
+    "qa_api_contract.yaml",
+    "REPORT_TEMPLATE.md"
+  ],
+  "report_headings_match": true,
+  "report_nonempty_sections": 10,
+  "report_prose_words": 756,
+  "stable_and_candidate_weights_unchanged": true,
+  "production_api_ui_launcher_unchanged_since_35fa732": true,
+  "ui_lifecycle": {
+    "state": "closed",
+    "owned_processes_stopped": true
+  },
+  "ports_8000_8765_closed": true,
+  "tracked_forbidden_artifact_paths": [],
+  "private_paths_ignored": [
+    ".env",
+    ".env.local",
+    "ngrok.yml",
+    "models/quality40k/model.safetensors",
+    "checkpoints/quality40k/checkpoint-2000/optimizer.pt"
+  ],
+  "no_public_tunnel_opened": true,
+  "no_new_training_during_recovery": true,
+  "submission_tag_created": false
+}
