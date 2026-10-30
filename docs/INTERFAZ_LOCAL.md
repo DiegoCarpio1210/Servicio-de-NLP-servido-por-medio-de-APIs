@@ -93,6 +93,12 @@ Para repetir las pruebas con la aplicación iniciada:
 
 ## Capturas reales
 
+Actualización del dashboard: muestra los resultados verificados de la candidata
+quality40k (EM 61,82 %, F1 65,53 %, EM respondibles 48,05 %, imposibles 75,59 %,
+ponderado 54,93 %), leídos de `logs/quality20261029/final_comparison.json`.
+El panel «Modelo en ejecución» continúa identificando continued20k. Mostrar las
+métricas de la candidata no la activa para responder consultas. Se conserva el diseño.
+
 Estas capturas documentan las pruebas visuales originales. La etiqueta actual del
 score aclara «Score (no probabilidad)»; el porcentaje visible en capturas antiguas
 no representa una probabilidad de que la respuesta sea correcta.

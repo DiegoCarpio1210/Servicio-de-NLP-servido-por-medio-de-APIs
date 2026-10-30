@@ -19,7 +19,9 @@ Both models score 4/5 public examples; sample-04 remains incorrect. All three
 profiles pass CPU HTTP authentication/contract checks and 50-request time budgets.
 quality40k: 28.54s total, 1.42s maximum; no public tunnel was opened.
 
-The local GUI and production hashes remain unchanged. Recovery tests: 60 passed.
+The GUI design and production hashes remain unchanged. The dashboard now displays
+verified quality40k candidate metrics, explicitly separated from the active model.
+Recovery tests: 60 passed; dashboard/gateway tests: 7 passed after this update.
 Prior mobile Cloudflare and ngrok backup checks are completed for stable; they
 are not a new external test of quality40k. See QUALITY_RESULTS.md, QUALITY_AUDIT.md,
 CANDIDATE_REVIEW_ES.md and COMPLIANCE.md.

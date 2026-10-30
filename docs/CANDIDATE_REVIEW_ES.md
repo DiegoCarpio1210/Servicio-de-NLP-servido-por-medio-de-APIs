@@ -1,7 +1,8 @@
 # Candidata quality40k: revisión antes de activarla
 
 La aplicación habitual sigue utilizando `continued20k`, checkpoint-1600. El
-dashboard conserva sus métricas históricas. No cambies únicamente `MODEL_DIR`:
+dashboard muestra las métricas verificadas de quality40k como candidata y distingue
+el modelo activo. No cambies únicamente `MODEL_DIR`:
 la nueva candidata requiere tanto sus pesos como su política de extracción y
 umbral, y todavía necesita aprobación para activarse en producción.
 

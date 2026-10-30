@@ -51,10 +51,17 @@ def test_api_down_and_null(monkeypatch):
         assert client.post('/ui/predict',headers=ORIGIN,json=BODY).json()==null
 
 
-def test_limits_and_historical_metrics(monkeypatch):
+def test_limits_and_candidate_metrics(monkeypatch):
     with client_for(monkeypatch,lambda r:pytest.fail('Must not reach API')) as client:
         for body in ({**BODY,'context':'x'*5001},{**BODY,'question':'x'*501},{**BODY,'context':''}):
             assert client.post('/ui/predict',headers=ORIGIN,json=body).status_code==422
         data=client.get('/ui/evaluation').json()
         assert data['metrics']['count']==1024
-        assert data['metrics']['EM']==53.61328125
+        assert data['metrics']['EM']==61.81640625
+        assert data['metrics']['F1']==65.52553295229076
+        assert data['answerable']['EM']==48.046875
+        assert data['unanswerable']['EM']==75.5859375
+        assert data['weighted_75_25']['EM']==54.931640625
+        assert 'candidata' in data['label']
+        for path in ('/','/assets/app.js','/assets/style.css'):
+            assert client.get(path).status_code==200

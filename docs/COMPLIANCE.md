@@ -28,7 +28,8 @@ Historical evidence is preserved. The current comparison is in logs/quality20261
 | Stable UI startup/gateway/stop recovery | PASSED | ui_recovery.json: real answer/null/Unicode/long-context tests, host/CSRF rejection; launcher lifecycle evidence |
 | Visual design/history/copy/dark/responsive | PRIOR VERIFIED, unchanged | Existing screenshots/UI evidence; no new visual redesign or new browser-session claim |
 | Candidate public HTTPS/mobile checks | PENDING if activated | This evaluation used loopback only; prior stable connectivity evidence remains valid for stable |
-| Candidate activation and dashboard update | PENDING user approval | CANDIDATE_REVIEW_ES.md; current production/default/dashboard unchanged |
+| Candidate activation | PENDING user approval | CANDIDATE_REVIEW_ES.md; production/default unchanged |
+| Candidate dashboard metrics and complete GUI source | PASSED update | qa/ui.py reads verified final_comparison.json; explicit candidate label; README links HTML/CSS/JS, gateway, launcher and stop BAT |
 | Report headings 0–9, English, nonempty | PASSED | REPORT.md matches original template; 756 prose words including headings, excluding tables |
 | Official delivery | PENDING | Public sample failure, instructor dry run/live service, weight distribution, team defense, final tag approval |
 

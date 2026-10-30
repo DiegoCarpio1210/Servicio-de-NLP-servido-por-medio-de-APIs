@@ -4,7 +4,7 @@ University AI Engineering project. DistilBERT BASE is fine-tuned by this reposit
 No commercial inference API or pre-fine-tuned QA checkpoint is used. All inference runs locally on CPU.
 **Status: quality40k is recommended for approval; production still uses continued20k. On the same reserved 1,024 examples, weighted EM improves from 47.02% to 54.93% (95% paired interval for gain +5.48 to +10.43 points). Public accuracy remains 4/5. NOT ready for final submission.**
 See [measured comparison and independence limitations](docs/QUALITY_RESULTS.md) and
-[candidate activation review](docs/CANDIDATE_REVIEW_ES.md). No model, threshold or dashboard has been switched.
+[candidate activation review](docs/CANDIDATE_REVIEW_ES.md). The dashboard displays verified quality40k candidate results, separately from the active continued20k model. Serving weights and threshold have not been switched.
 See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
 
 ## PIMIENTERO AI — local graphical application
@@ -14,6 +14,22 @@ starts the CPU API and a separate local UI gateway, waits for readiness, and ope
 in your default browser. Stop both services with **`DETENER_PIMIENTERO.bat`** or Ctrl+C in the launcher.
 No public tunnel, training, dataset download, frontend build or manually entered API token is needed.
 The model files must already exist in the ignored `models/continued20k/` directory.
+
+Open **http://127.0.0.1:8765** after the launcher reports readiness. The academic
+API is at **http://127.0.0.1:8000**; its protected endpoints require authentication.
+The source repository deliberately excludes trained weights, datasets and secrets;
+a fresh clone needs the dependencies and separately supplied local model artifacts.
+
+### Source files for the instructor
+
+| Component | Published source |
+|---|---|
+| Interface | [HTML](frontend/index.html), [CSS](frontend/style.css), [JavaScript](frontend/app.js) |
+| Local interface backend | [UI gateway](qa/ui.py) |
+| Academic API | [FastAPI service](qa/api.py), [CPU inference](qa/inference.py) |
+| Start / stop | [INICIAR_PIMIENTERO.bat](INICIAR_PIMIENTERO.bat), [DETENER_PIMIENTERO.bat](DETENER_PIMIENTERO.bat) |
+| Process management | [Python launcher and shutdown](scripts/local_app.py) |
+| Verified candidate metrics | [Final comparison](logs/quality20261029/final_comparison.json), [methodology](docs/QUALITY_RESULTS.md) |
 
 The interface includes context-based questions, session history, copy, null-answer handling, light/dark modes,
 responsive navigation and a dashboard separating historical evaluation from current session timings.
@@ -30,7 +46,7 @@ The GUI is an optional local demonstration; it does not change the documented mo
 
 ```text
 originals/             Professor's PDF, immutable YAML, samples, report template, master brief
-configs/               subset12k (current), smoke/pilot/extended/full (historical)
+configs/               Reproducible training configurations, including continued20k and quality40k
 qa/api.py              Strict contract, exact Bearer authentication, background loading
 qa/ui.py               Loopback UI gateway; keeps the API token server-side
 frontend/              Local HTML/CSS/JavaScript application; no build or CDN

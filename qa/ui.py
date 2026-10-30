@@ -69,10 +69,13 @@ def create_app(transport=None):
 
     @app.get('/ui/evaluation')
     def evaluation():
-        data = json.loads((ROOT/'logs/continued20k/evaluation.json').read_text())
-        return {'source':'logs/continued20k/evaluation.json · fresh_holdout',
-                'label':'Evaluación independiente histórica · 1.024 ejemplos',
-                'metrics':data['fresh_holdout']['all']}
+        data = json.loads((ROOT/'logs/quality20261029/final_comparison.json').read_text())['profiles']['trained']
+        return {'source':'logs/quality20261029/final_comparison.json · trained',
+                'label':'quality40k · checkpoint-2000 · candidata evaluada',
+                'metrics':data['groups']['all'],
+                'answerable':data['groups']['answerable'],
+                'unanswerable':data['groups']['unanswerable'],
+                'weighted_75_25':data['weighted_75_25']}
 
     @app.post('/ui/predict')
     async def predict(body: PredictRequest):

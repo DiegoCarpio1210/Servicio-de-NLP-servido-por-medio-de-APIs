@@ -62,8 +62,11 @@ function renderStats() {
   const total = turns.filter(t=>t.result).length;
   const recent = [...turns].reverse().find(t=>t.result);
   const items = [
-    ['Exact Match',evaluation ? evaluation.metrics.EM.toFixed(2)+' %' : '—','Evaluación independiente histórica'],
-    ['F1 Score',evaluation ? evaluation.metrics.F1.toFixed(2)+' %' : '—','Evaluación independiente histórica'],
+    ['Exact Match',evaluation ? evaluation.metrics.EM.toFixed(2)+' %' : '—',evaluation?.label || 'Evaluación no disponible'],
+    ['F1 Score',evaluation ? evaluation.metrics.F1.toFixed(2)+' %' : '—',evaluation?.label || 'Evaluación no disponible'],
+    ['EM respondibles',evaluation ? evaluation.answerable.EM.toFixed(2)+' %' : '—','quality40k · 512 preguntas respondibles'],
+    ['EM imposibles',evaluation ? evaluation.unanswerable.EM.toFixed(2)+' %' : '—','quality40k · 512 preguntas imposibles'],
+    ['EM ponderado 75/25',evaluation ? evaluation.weighted_75_25.EM.toFixed(2)+' %' : '—','quality40k · distribución de referencia'],
     ['Consultas de esta sesión',String(turns.length),`${total} respuestas recibidas`],
     ['Última respuesta',recent ? (recent.ms/1000).toFixed(2)+' s' : '—','Tiempo actual de ida y vuelta; incluye la API'],
   ];

@@ -1,5 +1,10 @@
 # Completed quality40k comparison — 2026-10-30
 
+Subsequent user-requested dashboard update: candidate quality40k metrics are now
+displayed explicitly as candidate results. The active-model panel and inference
+still identify/use continued20k. Earlier statements below that the dashboard was
+unchanged describe the evaluation phase before this authorized display update.
+
 **Recommendation: select quality40k with its locked length05 policy, subject to
 user approval. Production still uses continued20k checkpoint-1600.** No further
 training or public exposure was performed during this recovery/evaluation.
