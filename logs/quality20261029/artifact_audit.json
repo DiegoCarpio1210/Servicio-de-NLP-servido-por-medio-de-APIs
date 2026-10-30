@@ -1,0 +1,249 @@
+{
+  "metadata": {
+    "base_model": "distilbert/distilbert-base-uncased",
+    "seed": 42,
+    "train_size": 40000,
+    "validation_size": 512,
+    "epochs": 1,
+    "learning_rate": 2e-05,
+    "batch_size": 16,
+    "gradient_accumulation_steps": 1,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0.01,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "output_dir": "checkpoints/quality40k",
+    "model_dir": "models/quality40k",
+    "max_steps": -1,
+    "base_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "save_steps": 200,
+    "eval_steps": 400,
+    "logging_steps": 25,
+    "require_cuda": true,
+    "fp16": false,
+    "dynamic_padding": true,
+    "data_manifest": "logs\\quality20261029\\manifest.json",
+    "warm_start": "models/continued20k",
+    "warm_start_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "max_training_seconds": 3600,
+    "optimizer_steps": 2531,
+    "elapsed_seconds": 2590.554418600048,
+    "completed": true,
+    "actual_epochs": 1.0,
+    "best_checkpoint": "checkpoints/quality40k\\checkpoint-2000",
+    "peak_gpu_allocated_mib": 2667.33935546875,
+    "peak_gpu_reserved_mib": 2798.0,
+    "dataset": "rajpurkar/squad_v2",
+    "splits": {
+      "train": {
+        "count": 40000,
+        "unanswerable": 13406,
+        "unanswerable_ratio": 0.33515,
+        "fingerprint": "690caf93a9482fcb"
+      },
+      "validation": {
+        "count": 512,
+        "unanswerable": 256,
+        "unanswerable_ratio": 0.5,
+        "fingerprint": "457ee5723f8656ca"
+      }
+    },
+    "hardware": "Quadro P1000",
+    "torch_version": "2.7.1+cu118",
+    "params": 66364418,
+    "training_device": "cuda",
+    "selected_optimizer_steps": 2000,
+    "selected_epoch": 0.7902015013828526
+  },
+  "checkpoint_selection": "Minimum loss on the original 512 selection examples; not final accuracy selection",
+  "selection_losses": [
+    {
+      "step": 400,
+      "loss": 1.5603134632110596
+    },
+    {
+      "step": 800,
+      "loss": 1.5951707363128662
+    },
+    {
+      "step": 1200,
+      "loss": 1.529650092124939
+    },
+    {
+      "step": 1600,
+      "loss": 1.4516047239303589
+    },
+    {
+      "step": 2000,
+      "loss": 1.441129446029663
+    },
+    {
+      "step": 2400,
+      "loss": 1.4689359664916992
+    },
+    {
+      "step": 2531,
+      "loss": 1.4568456411361694
+    }
+  ],
+  "best": {
+    "step": 2000,
+    "loss": 1.441129446029663
+  },
+  "exported_hashes": {
+    "config.json": "2190b45d6d0617eb577ff39ee02ce94103f90729cba2391bdb8d2859541b393a",
+    "model.safetensors": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+    "special_tokens_map.json": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140",
+    "tokenizer.json": "88288f3bbc81d03d5cc31434d30f8bd3c80771c9875a75fa763d167a8e34889e",
+    "tokenizer_config.json": "28c9ee630d522e35659d41fd5580c4ea4e6fe7698ad29b9269a5eb6c2b2f2090",
+    "training_args.bin": "562720e28ec51eed7473b0ef980e75a0dfffa77912b153dab23447163c74c1c0",
+    "training_metadata.json": "954ffa2712008220839b753b22411b3bc7007ea060f86b5cbc22838153982ca9",
+    "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+  },
+  "checkpoints": {
+    "checkpoint-2000": {
+      "config.json": {
+        "bytes": 532,
+        "sha256": "2190b45d6d0617eb577ff39ee02ce94103f90729cba2391bdb8d2859541b393a"
+      },
+      "model.safetensors": {
+        "bytes": 265470032,
+        "sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f"
+      },
+      "optimizer.pt": {
+        "bytes": 531001355,
+        "sha256": "48ce6b04c6a91e1b48ae9e6027cb27c4fd928ee6125b225dc8a246f450451805"
+      },
+      "rng_state.pth": {
+        "bytes": 14645,
+        "sha256": "5f84df80d9cd5a72fd4c6162f12fb771d5e75eef99444167ae64094687b35a08"
+      },
+      "scheduler.pt": {
+        "bytes": 1465,
+        "sha256": "0d04d8956c2d2e434ac8caa7a735477fe55af7655bb4c93dbb959ce22557d106"
+      },
+      "special_tokens_map.json": {
+        "bytes": 732,
+        "sha256": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140"
+      },
+      "tokenizer.json": {
+        "bytes": 711661,
+        "sha256": "88288f3bbc81d03d5cc31434d30f8bd3c80771c9875a75fa763d167a8e34889e"
+      },
+      "tokenizer_config.json": {
+        "bytes": 1481,
+        "sha256": "28c9ee630d522e35659d41fd5580c4ea4e6fe7698ad29b9269a5eb6c2b2f2090"
+      },
+      "trainer_state.json": {
+        "bytes": 16456,
+        "sha256": "72959c5c10e84d60b1d01a22affdefc6d30d39af525294862381f36acce96624"
+      },
+      "training_args.bin": {
+        "bytes": 5841,
+        "sha256": "562720e28ec51eed7473b0ef980e75a0dfffa77912b153dab23447163c74c1c0"
+      },
+      "vocab.txt": {
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+      }
+    },
+    "checkpoint-2400": {
+      "config.json": {
+        "bytes": 532,
+        "sha256": "2190b45d6d0617eb577ff39ee02ce94103f90729cba2391bdb8d2859541b393a"
+      },
+      "model.safetensors": {
+        "bytes": 265470032,
+        "sha256": "ccc401ac48f712ce4a0ae2fee192de994dd87ded44709943de66bccdc7f67bc1"
+      },
+      "optimizer.pt": {
+        "bytes": 531001355,
+        "sha256": "741568d5ab2691b800714c85c8a0c374d337d727d1c6a7cd219584a0a4b4731d"
+      },
+      "rng_state.pth": {
+        "bytes": 14645,
+        "sha256": "45aedfc13ecc69f297719f2dcd7ae4762db5f4656fb95aff91e7b0eac25bebe3"
+      },
+      "scheduler.pt": {
+        "bytes": 1465,
+        "sha256": "915001742df1f74871bfe312e6dad63025566319725de3c997bbfb5ce2418eb0"
+      },
+      "special_tokens_map.json": {
+        "bytes": 732,
+        "sha256": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140"
+      },
+      "tokenizer.json": {
+        "bytes": 711661,
+        "sha256": "88288f3bbc81d03d5cc31434d30f8bd3c80771c9875a75fa763d167a8e34889e"
+      },
+      "tokenizer_config.json": {
+        "bytes": 1481,
+        "sha256": "28c9ee630d522e35659d41fd5580c4ea4e6fe7698ad29b9269a5eb6c2b2f2090"
+      },
+      "trainer_state.json": {
+        "bytes": 19582,
+        "sha256": "c26bfca8c809fe41797857ff1eccbbb6bfb6a9d810f9711506739a9f43317ccd"
+      },
+      "training_args.bin": {
+        "bytes": 5841,
+        "sha256": "562720e28ec51eed7473b0ef980e75a0dfffa77912b153dab23447163c74c1c0"
+      },
+      "vocab.txt": {
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+      }
+    },
+    "checkpoint-2531": {
+      "config.json": {
+        "bytes": 532,
+        "sha256": "2190b45d6d0617eb577ff39ee02ce94103f90729cba2391bdb8d2859541b393a"
+      },
+      "model.safetensors": {
+        "bytes": 265470032,
+        "sha256": "cff37efa67384249205df5a0dbaee225684accc6deeef6684f8340850cf81852"
+      },
+      "optimizer.pt": {
+        "bytes": 531001355,
+        "sha256": "70594fce8f741ccbfff3a5ed11da2ec3b01e858ba1e8946ab615ac12b5198bec"
+      },
+      "rng_state.pth": {
+        "bytes": 14645,
+        "sha256": "9a0582528b8ecf4ff5b81a195122b8e4162de710a1d3536bc3f12e3257f15e11"
+      },
+      "scheduler.pt": {
+        "bytes": 1465,
+        "sha256": "8d80b2c93e28963fa47304293e7603778d38f18d060eafa314d79d83626a677c"
+      },
+      "special_tokens_map.json": {
+        "bytes": 732,
+        "sha256": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140"
+      },
+      "tokenizer.json": {
+        "bytes": 711661,
+        "sha256": "88288f3bbc81d03d5cc31434d30f8bd3c80771c9875a75fa763d167a8e34889e"
+      },
+      "tokenizer_config.json": {
+        "bytes": 1481,
+        "sha256": "28c9ee630d522e35659d41fd5580c4ea4e6fe7698ad29b9269a5eb6c2b2f2090"
+      },
+      "trainer_state.json": {
+        "bytes": 20679,
+        "sha256": "582bb686e611027420b953031d191cde635afa03acc1fa8483fde1bed8302e4d"
+      },
+      "training_args.bin": {
+        "bytes": 5841,
+        "sha256": "562720e28ec51eed7473b0ef980e75a0dfffa77912b153dab23447163c74c1c0"
+      },
+      "vocab.txt": {
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+      }
+    }
+  },
+  "stable_unchanged": {
+    "weights": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+    "calibration": "52289cfdd93d7f37ef035715720e4afea67cdd1fac435b7d7f89476a7664a6dd"
+  },
+  "optimizer_files_present_and_hashed": true,
+  "resume_execution_tested": false
+}

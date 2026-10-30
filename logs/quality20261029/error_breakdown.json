@@ -1,0 +1,20 @@
+{
+  "calibration": {
+    "answerable_count": 256,
+    "impossible_count": 256,
+    "answerable_false_abstentions": 142,
+    "false_abstentions_with_exact_span_available": 66.0,
+    "answerable_wrong_span_when_answered": 30,
+    "answerable_raw_best_span_EM_without_abstention": 58.59375,
+    "impossible_false_answers": 75
+  },
+  "development": {
+    "answerable_count": 512,
+    "impossible_count": 512,
+    "answerable_false_abstentions": 237,
+    "false_abstentions_with_exact_span_available": 83.0,
+    "answerable_wrong_span_when_answered": 112,
+    "answerable_raw_best_span_EM_without_abstention": 48.046875,
+    "impossible_false_answers": 89
+  }
+}

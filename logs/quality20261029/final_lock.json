@@ -1,0 +1,176 @@
+{
+  "utc": "2026-10-30T12:44:47.612444+00:00",
+  "profiles": {
+    "production": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "standard",
+        "max_length": 30,
+        "length_penalty": 0.0
+      },
+      "threshold": -0.98309326171875,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 51.7578125,
+            "F1": 53.91764530149181
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 32.8125,
+            "F1": 37.13216560298362
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.703125,
+            "F1": 70.703125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 42.28515625,
+          "F1": 45.52490545223772
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 57.2265625,
+            "F1": 60.949590311521604
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 31.8359375,
+            "F1": 39.281993123043215
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 82.6171875,
+            "F1": 82.6171875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.53125,
+          "F1": 50.11579171728241
+        }
+      }
+    },
+    "inference_only": {
+      "model_dir": "models/continued20k",
+      "weights_sha256": "7d66ffcff40157ed8f9f728f51ffe3c1b5b3f249ac8c100ece9666d1f7007848",
+      "policy": {
+        "name": "short15",
+        "max_length": 15,
+        "length_penalty": 0.0
+      },
+      "threshold": -0.9831047058105469,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 51.953125,
+            "F1": 53.92273327418089
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 33.203125,
+            "F1": 37.14234154836177
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.703125,
+            "F1": 70.703125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 42.578125,
+          "F1": 45.53253741127133
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 57.51953125,
+            "F1": 61.18863612515957
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 32.421875,
+            "F1": 39.76008475031912
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 82.6171875,
+            "F1": 82.6171875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 44.970703125,
+          "F1": 50.47436043773934
+        }
+      }
+    },
+    "trained": {
+      "model_dir": "models/quality40k",
+      "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "policy": {
+        "name": "length05",
+        "max_length": 30,
+        "length_penalty": 0.5
+      },
+      "threshold": -0.40494251441686124,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 59.9609375,
+            "F1": 61.817397362024515
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 49.609375,
+            "F1": 53.32229472404904
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.3125,
+            "F1": 70.3125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 54.78515625,
+          "F1": 57.569846043036776
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 59.08203125,
+            "F1": 63.44489686265332
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 41.2109375,
+            "F1": 49.93666872530663
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 76.953125,
+            "F1": 76.953125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 50.146484375,
+          "F1": 56.69078279397998
+        }
+      }
+    }
+  },
+  "manifest_sha256": "50d308790dd01612bbcc024d950fed843673eea79dfb847e176ad2dab570db39",
+  "no_final_predictions_seen": true,
+  "no_public_or_manual_selection": true
+}

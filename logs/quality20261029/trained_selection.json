@@ -1,0 +1,287 @@
+{
+  "selected": "length05",
+  "profiles": {
+    "standard": {
+      "model_dir": "models/quality40k",
+      "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "policy": {
+        "name": "standard",
+        "max_length": 30,
+        "length_penalty": 0.0
+      },
+      "threshold": -0.8609766960144043,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 59.375,
+            "F1": 62.4367033458181
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 48.046875,
+            "F1": 54.17028169163619
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.703125,
+            "F1": 70.703125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 53.7109375,
+          "F1": 58.30349251872714
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 58.88671875,
+            "F1": 63.811184463430806
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 40.4296875,
+            "F1": 50.27861892686162
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 77.34375,
+            "F1": 77.34375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.658203125,
+          "F1": 57.044901695146216
+        }
+      }
+    },
+    "short15": {
+      "model_dir": "models/quality40k",
+      "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "policy": {
+        "name": "short15",
+        "max_length": 15,
+        "length_penalty": 0.0
+      },
+      "threshold": -0.8609766960144043,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 59.765625,
+            "F1": 62.37006553240468
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 48.828125,
+            "F1": 54.037006064809376
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.703125,
+            "F1": 70.703125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 54.296875,
+          "F1": 58.203535798607035
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 58.984375,
+            "F1": 63.80298133350203
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 40.4296875,
+            "F1": 50.06690016700407
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 77.5390625,
+            "F1": 77.5390625
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.70703125,
+          "F1": 56.934940750253055
+        }
+      }
+    },
+    "length01": {
+      "model_dir": "models/quality40k",
+      "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "policy": {
+        "name": "length01",
+        "max_length": 30,
+        "length_penalty": 0.1
+      },
+      "threshold": -0.8068554917903032,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 59.765625,
+            "F1": 62.76156766654639
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 48.4375,
+            "F1": 54.429385333092775
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 71.09375,
+            "F1": 71.09375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 54.1015625,
+          "F1": 58.59547649981958
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 58.69140625,
+            "F1": 63.68531640787525
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 40.0390625,
+            "F1": 50.026882815750504
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 77.34375,
+            "F1": 77.34375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.365234375,
+          "F1": 56.85609961181288
+        }
+      }
+    },
+    "length025": {
+      "model_dir": "models/quality40k",
+      "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "policy": {
+        "name": "length025",
+        "max_length": 30,
+        "length_penalty": 0.25
+      },
+      "threshold": -0.6067231463299212,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 59.765625,
+            "F1": 62.32373022187301
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 49.21875,
+            "F1": 54.334960443746006
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.3125,
+            "F1": 70.3125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 54.4921875,
+          "F1": 58.3293453328095
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 58.59375,
+            "F1": 63.27655169585009
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 41.015625,
+            "F1": 50.38122839170018
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 76.171875,
+            "F1": 76.171875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.8046875,
+          "F1": 56.82889004377514
+        }
+      }
+    },
+    "length05": {
+      "model_dir": "models/quality40k",
+      "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+      "policy": {
+        "name": "length05",
+        "max_length": 30,
+        "length_penalty": 0.5
+      },
+      "threshold": -0.40494251441686124,
+      "calibration": {
+        "groups": {
+          "all": {
+            "count": 512,
+            "EM": 59.9609375,
+            "F1": 61.817397362024515
+          },
+          "answerable": {
+            "count": 256,
+            "EM": 49.609375,
+            "F1": 53.32229472404904
+          },
+          "unanswerable": {
+            "count": 256,
+            "EM": 70.3125,
+            "F1": 70.3125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 54.78515625,
+          "F1": 57.569846043036776
+        }
+      },
+      "development": {
+        "groups": {
+          "all": {
+            "count": 1024,
+            "EM": 59.08203125,
+            "F1": 63.44489686265332
+          },
+          "answerable": {
+            "count": 512,
+            "EM": 41.2109375,
+            "F1": 49.93666872530663
+          },
+          "unanswerable": {
+            "count": 512,
+            "EM": 76.953125,
+            "F1": 76.953125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 50.146484375,
+          "F1": 56.69078279397998
+        }
+      }
+    }
+  },
+  "device": "cuda",
+  "final_not_consulted": true
+}
