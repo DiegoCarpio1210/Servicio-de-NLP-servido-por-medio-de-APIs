@@ -68,6 +68,11 @@ def run(resume):
     if resume:
         optimizer.load_state_dict(state['optimizer']);scheduler.load_state_dict(state['scheduler'])
         random.setstate(state['python_rng']);np.random.set_state(state['numpy_rng']);torch.set_rng_state(state['torch_rng']);torch.cuda.set_rng_state_all(state['cuda_rng'])
+        assert state['cursor']==state['step']*cfg['accumulation'] and len(state['history'])==state['step']
+        assert scheduler.last_epoch==state['step']
+        atomic(OUT/'resume_verification.json',{'restored_step':state['step'],'restored_cursor':state['cursor'],
+          'optimizer_state_entries':len(optimizer.state),'scheduler_last_epoch':scheduler.last_epoch,
+          'history_entries':len(state['history']),'python_numpy_torch_cuda_rng_restored':True,'checkpoint':str(checkpoint.relative_to(ROOT))})
     torch.cuda.reset_peak_memory_stats();started=time.perf_counter();old_elapsed=state['elapsed_seconds'];stopping=False
     def request_stop(*_):
         nonlocal stopping
