@@ -1,0 +1,15 @@
+{
+  "selected_configuration": "unchanged original production policy",
+  "active_manifest_sha256": "6239dc3b251b459d09e8779cefe0396ebe1c957263239cbd29c7763b58cb7397",
+  "threshold": 2.7772940397262573,
+  "development_results_sha256": "c561d97f4fb46153b7b8cd5733e4f04ab59fff420b6a3de3ce0ac5ee882234d5",
+  "final_cohort_sha256": "5a9cbb1db90b6ba9b267b0f3688d2ed90da68095aa49d9ea86b08c1d83f64504",
+  "source_hashes": {
+    "qa/api.py": "8cb2d3bebacd6bbff3c4ded5a30755974a80bc79552c2e12f3ea24371bbc99ac",
+    "qa/inference.py": "08418034b219620fdf3213b1d3f73e7ba28972886dce11a96e41a9f436c5cdc3",
+    "qa/features.py": "d7a5b143c52b0675920fd79a7318c03d06620ca229a97b308d874ed72b327169",
+    "qa/postprocessing.py": "23bf8dfa46718ab0ef50ddb72bb5587a938ff01421c9b4d07b22e5cb8602d95c",
+    "qa/spans.py": "e33d8d30f7317730af9f7544f9d1069117bf3b73bfb85b06c5438bce99d2b9af"
+  },
+  "decision": "No demonstrated preprocessing, offset or window bug. Four non-exact spans need semantic review; lowering abstention would not repair their candidate boundaries. No changes selected."
+}
