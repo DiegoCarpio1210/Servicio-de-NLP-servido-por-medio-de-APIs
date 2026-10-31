@@ -41,3 +41,4 @@ __pycache__/
 /logs/final500/
 /logs/stable_deberta/
 /logs/deberta_lora/
+/logs/semantic50/

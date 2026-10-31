@@ -1,0 +1,120 @@
+{
+  "seed": 20261031,
+  "model": "deepset/deberta-v3-base-squad2",
+  "production_threshold": 2.7772940397262573,
+  "cohorts": {
+    "development": {
+      "count": 50,
+      "answerable": 35,
+      "unanswerable": 15,
+      "contexts": 10,
+      "max_context_characters": 3055,
+      "categories": {
+        "null": 15,
+        "number": 6,
+        "date": 2,
+        "name": 5,
+        "unicode-name": 1,
+        "long-context": 4,
+        "multi-part": 1,
+        "short": 5,
+        "location": 5,
+        "long": 4,
+        "time": 2
+      },
+      "sha256": "5e1d09be08d14d65d524f92e856126a5c2d42bef480b9f614eb142cb52f8fcd1",
+      "overlap": {
+        "questions": {
+          "exact_normalized_overlap": 0,
+          "near_duplicate_matches": [],
+          "word_shingle_size": 3,
+          "jaccard_threshold": 0.8
+        },
+        "contexts": {
+          "exact_normalized_overlap": 0,
+          "near_duplicate_matches": [],
+          "word_shingle_size": 5,
+          "jaccard_threshold": 0.8
+        }
+      }
+    },
+    "final": {
+      "count": 50,
+      "answerable": 38,
+      "unanswerable": 12,
+      "contexts": 10,
+      "max_context_characters": 4063,
+      "categories": {
+        "long-context": 4,
+        "short": 6,
+        "location": 3,
+        "long": 5,
+        "null": 12,
+        "name": 6,
+        "number": 7,
+        "date": 4,
+        "time": 2,
+        "unicode-name": 1
+      },
+      "sha256": "5a9cbb1db90b6ba9b267b0f3688d2ed90da68095aa49d9ea86b08c1d83f64504",
+      "overlap": {
+        "questions": {
+          "exact_normalized_overlap": 0,
+          "near_duplicate_matches": [],
+          "word_shingle_size": 3,
+          "jaccard_threshold": 0.8
+        },
+        "contexts": {
+          "exact_normalized_overlap": 0,
+          "near_duplicate_matches": [],
+          "word_shingle_size": 5,
+          "jaccard_threshold": 0.8
+        }
+      }
+    }
+  },
+  "historical_audit": {
+    "records": [
+      {
+        "path": "configs/final500_manifest.json",
+        "sha256": "c240d59a3cc9f664b57f41e2059d8eece6e88ab2843b5dd340599e583d8773a9"
+      },
+      {
+        "path": "logs/pretrained_benchmark/manifest.json",
+        "sha256": "aeadd3c14f31884e88337376861e1153a7fd527b1dc7cfd57b4cb6c5f00fdcca"
+      },
+      {
+        "path": "logs/quality20261029/manifest.json",
+        "sha256": "50d308790dd01612bbcc024d950fed843673eea79dfb847e176ad2dab570db39"
+      },
+      {
+        "path": "logs/continued20k/data_manifest.json",
+        "sha256": "e82d89004054d36a9ff9e8f41bab2f8c07d05436ebdb583cc2f3ba0c71968afc"
+      },
+      {
+        "path": "logs/subset12k/data_manifest.json",
+        "sha256": "dcc58b303787a63752ebfb5fc5b054499b3d556284a9607cbb5d5b13af6a29b1"
+      },
+      {
+        "path": "logs/deberta_lora/pilot200/data.json",
+        "sha256": "4cac421e4f2a712ce0777f973e9acde00b2f3222e25d16557f1ca38b682b8640"
+      },
+      {
+        "path": "originals/public_sample.json",
+        "sha256": "3d823617676453f7c0a87a09fa9e68b168a7766aa11a1b8cc07f39a0a8253a94"
+      }
+    ],
+    "contexts": 3102,
+    "questions": 8245
+  },
+  "modes": {
+    "sequential": 1,
+    "bounded_concurrent": 2
+  },
+  "requests_per_cohort_per_mode": 50,
+  "request_limit_seconds": 5,
+  "total_limit_seconds": 150,
+  "provenance": "Assistant-authored fictional contexts/questions, frozen before inference; not an independently authored or vendor-audited benchmark",
+  "semantic_grading": "Claude unavailable; independent grading export, no invented semantic labels",
+  "final_rule": "Freeze selected policy after development analysis; run final accuracy once. Concurrent replay tests reliability, not model selection."
+}
