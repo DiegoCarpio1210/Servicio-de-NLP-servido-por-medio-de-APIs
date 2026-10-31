@@ -1,0 +1,21 @@
+{
+  "candidate_systems": ["original", "step200"],
+  "calibration_partition": "pilot200/calibration_reserved",
+  "calibration_count": 128,
+  "development_use": "Previously observed diagnostics only, never threshold selection",
+  "original_threshold": 2.7772940397262573,
+  "objective": "Maximize 75/25 weighted EM subject to empirical unanswerable EM >=95% on calibration only",
+  "tie_break": ["weighted F1 descending", "unanswerable EM descending", "threshold ascending"],
+  "comparison_rounding_digits": 10,
+  "threshold_search": "Existing weighted_threshold_sweep: minimum margin minus one and each distinct margin",
+  "decision": "null when start is None or margin > threshold; equality answers",
+  "margin": "minimum window CLS start+end logits minus highest valid span score",
+  "policy": {"max_length": 30, "length_penalty": 0.0},
+  "inference_window": 384,
+  "stride": 128,
+  "seed": 20261031,
+  "bootstrap_resamples": 3000,
+  "training": false,
+  "production_changes": false,
+  "final_test": "No credible independent final set is available locally; do not manufacture one"
+}
