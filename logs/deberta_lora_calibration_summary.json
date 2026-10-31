@@ -1,0 +1,810 @@
+{
+  "pilot_verified": true,
+  "thresholds": {
+    "original": 14.58487319946289,
+    "step200": 12.982471942901611
+  },
+  "calibration": {
+    "original": {
+      "original_policy": {
+        "threshold": 2.7772940397262573,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 64.0625,
+            "F1": 68.03045105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 29.6875,
+            "F1": 37.623402111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 98.4375,
+            "F1": 98.4375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 46.875,
+          "F1": 52.826926583380384
+        },
+        "abstention_rate": 64.84375
+      },
+      "calibrated": {
+        "threshold": 14.58487319946289,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 65.625,
+            "F1": 69.59295105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 34.375,
+            "F1": 42.310902111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 96.875,
+            "F1": 96.875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 50.0,
+          "F1": 55.951926583380384
+        },
+        "abstention_rate": 60.9375
+      }
+    },
+    "step200": {
+      "original_policy": {
+        "threshold": 2.7772940397262573,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 64.0625,
+            "F1": 68.03045105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 29.6875,
+            "F1": 37.623402111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 98.4375,
+            "F1": 98.4375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 46.875,
+          "F1": 52.826926583380384
+        },
+        "abstention_rate": 64.0625
+      },
+      "calibrated": {
+        "threshold": 12.982471942901611,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 64.84375,
+            "F1": 68.81170105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 34.375,
+            "F1": 42.310902111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 95.3125,
+            "F1": 95.3125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.609375,
+          "F1": 55.561301583380384
+        },
+        "abstention_rate": 60.15625
+      }
+    }
+  },
+  "development_original_policy_breakdown": {
+    "0": {
+      "answerable_null": 24,
+      "answerable_exact": 14,
+      "answerable_partial_nonnull": 15,
+      "answerable_zero_overlap_nonnull": 11,
+      "answerable_nonnull_inexact": 26,
+      "impossible_correct_null": 64,
+      "candidate_answerable_EM": 32.8125,
+      "candidate_answerable_F1": 52.13204779787007,
+      "exact_candidate_rejected": 7,
+      "margin_quantiles": {
+        "answerable": [
+          -24.830750465393066,
+          -9.798376977443695,
+          -0.7378993928432465,
+          10.45540452003479,
+          30.608336448669434
+        ],
+        "unanswerable": [
+          12.987383842468262,
+          22.25409561395645,
+          25.645382165908813,
+          27.357611536979675,
+          32.07672309875488
+        ]
+      }
+    },
+    "100": {
+      "answerable_null": 22,
+      "answerable_exact": 14,
+      "answerable_partial_nonnull": 17,
+      "answerable_zero_overlap_nonnull": 11,
+      "answerable_nonnull_inexact": 28,
+      "impossible_correct_null": 64,
+      "candidate_answerable_EM": 32.8125,
+      "candidate_answerable_F1": 52.13204779787007,
+      "exact_candidate_rejected": 7,
+      "margin_quantiles": {
+        "answerable": [
+          -24.395411491394043,
+          -10.288348376750946,
+          -1.7960293292999268,
+          9.106356978416443,
+          28.97168207168579
+        ],
+        "unanswerable": [
+          11.967763900756836,
+          21.02020324021578,
+          24.262593865394592,
+          25.77144432067871,
+          30.439760208129883
+        ]
+      }
+    },
+    "200": {
+      "answerable_null": 22,
+      "answerable_exact": 14,
+      "answerable_partial_nonnull": 17,
+      "answerable_zero_overlap_nonnull": 11,
+      "answerable_nonnull_inexact": 28,
+      "impossible_correct_null": 64,
+      "candidate_answerable_EM": 32.8125,
+      "candidate_answerable_F1": 52.13204779787007,
+      "exact_candidate_rejected": 7,
+      "margin_quantiles": {
+        "answerable": [
+          -24.28220224380493,
+          -10.576568365097046,
+          -2.229802429676056,
+          8.487034916877747,
+          28.37808609008789
+        ],
+        "unanswerable": [
+          11.570812225341797,
+          20.585101084783673,
+          23.784157037734985,
+          25.228384256362915,
+          29.85708236694336
+        ]
+      }
+    }
+  },
+  "development_calibrated_breakdown": {
+    "original": {
+      "answerable_null": 13,
+      "answerable_exact": 16,
+      "answerable_partial_nonnull": 19,
+      "answerable_zero_overlap_nonnull": 16,
+      "answerable_nonnull_inexact": 35,
+      "impossible_correct_null": 61,
+      "candidate_answerable_EM": 32.8125,
+      "candidate_answerable_F1": 52.13204779787007,
+      "exact_candidate_rejected": 5,
+      "margin_quantiles": {
+        "answerable": [
+          -24.830750465393066,
+          -9.798376977443695,
+          -0.7378993928432465,
+          10.45540452003479,
+          30.608336448669434
+        ],
+        "unanswerable": [
+          12.987383842468262,
+          22.25409561395645,
+          25.645382165908813,
+          27.357611536979675,
+          32.07672309875488
+        ]
+      }
+    },
+    "step200": {
+      "answerable_null": 11,
+      "answerable_exact": 17,
+      "answerable_partial_nonnull": 19,
+      "answerable_zero_overlap_nonnull": 17,
+      "answerable_nonnull_inexact": 36,
+      "impossible_correct_null": 61,
+      "candidate_answerable_EM": 32.8125,
+      "candidate_answerable_F1": 52.13204779787007,
+      "exact_candidate_rejected": 4,
+      "margin_quantiles": {
+        "answerable": [
+          -24.28220224380493,
+          -10.576568365097046,
+          -2.229802429676056,
+          8.487034916877747,
+          28.37808609008789
+        ],
+        "unanswerable": [
+          11.570812225341797,
+          20.585101084783673,
+          23.784157037734985,
+          25.228384256362915,
+          29.85708236694336
+        ]
+      }
+    }
+  },
+  "calibration_margin_distributions": {
+    "original": {
+      "answerable": [
+        -23.832324504852295,
+        -15.33187848329544,
+        -7.698382377624512,
+        15.124010801315308,
+        29.874756813049316
+      ],
+      "unanswerable": [
+        1.5421490669250488,
+        21.760181546211243,
+        25.45085906982422,
+        27.3448646068573,
+        30.568416595458984
+      ]
+    },
+    "step200": {
+      "answerable": [
+        -23.488489866256714,
+        -15.665683507919312,
+        -8.37148928642273,
+        13.455356299877167,
+        27.590886116027832
+      ],
+      "unanswerable": [
+        0.21957111358642578,
+        19.7320521697402,
+        23.4185231924057,
+        25.198968529701233,
+        28.373083114624023
+      ]
+    }
+  },
+  "development_changes_step0_to_200": {
+    "changed_candidate_text_or_start": 1,
+    "changed_answerable_candidate_spans": 0,
+    "changed_decisions_at_original_threshold": 2,
+    "margin_change_mean": {
+      "answerable": -1.2791847516782582,
+      "unanswerable": -1.9787149981129915
+    }
+  },
+  "observed_development": {
+    "original_policy": {
+      "threshold": 2.7772940397262573,
+      "groups": {
+        "all": {
+          "count": 128,
+          "EM": 60.9375,
+          "F1": 67.64323574958439
+        },
+        "answerable": {
+          "count": 64,
+          "EM": 21.875,
+          "F1": 35.286471499168776
+        },
+        "unanswerable": {
+          "count": 64,
+          "EM": 100.0,
+          "F1": 100.0
+        }
+      },
+      "weighted_75_25": {
+        "EM": 41.40625,
+        "F1": 51.46485362437658
+      },
+      "abstention_rate": 68.75
+    },
+    "original_calibrated": {
+      "threshold": 14.58487319946289,
+      "groups": {
+        "all": {
+          "count": 128,
+          "EM": 60.15625,
+          "F1": 69.01042324958439
+        },
+        "answerable": {
+          "count": 64,
+          "EM": 25.0,
+          "F1": 42.70834649916877
+        },
+        "unanswerable": {
+          "count": 64,
+          "EM": 95.3125,
+          "F1": 95.3125
+        }
+      },
+      "weighted_75_25": {
+        "EM": 42.578125,
+        "F1": 55.85938487437657
+      },
+      "abstention_rate": 57.8125
+    },
+    "step200_original_policy": {
+      "threshold": 2.7772940397262573,
+      "groups": {
+        "all": {
+          "count": 128,
+          "EM": 60.9375,
+          "F1": 68.88021491625105
+        },
+        "answerable": {
+          "count": 64,
+          "EM": 21.875,
+          "F1": 37.760429832502105
+        },
+        "unanswerable": {
+          "count": 64,
+          "EM": 100.0,
+          "F1": 100.0
+        }
+      },
+      "weighted_75_25": {
+        "EM": 41.40625,
+        "F1": 53.32032237437658
+      },
+      "abstention_rate": 67.1875
+    },
+    "step200_calibrated": {
+      "threshold": 12.982471942901611,
+      "groups": {
+        "all": {
+          "count": 128,
+          "EM": 60.9375,
+          "F1": 69.79167324958439
+        },
+        "answerable": {
+          "count": 64,
+          "EM": 26.5625,
+          "F1": 44.27084649916877
+        },
+        "unanswerable": {
+          "count": 64,
+          "EM": 95.3125,
+          "F1": 95.3125
+        }
+      },
+      "weighted_75_25": {
+        "EM": 43.75,
+        "F1": 57.03125987437657
+      },
+      "abstention_rate": 56.25
+    }
+  },
+  "confidence": {
+    "calibration": {
+      "systems_95CI": [
+        {
+          "EM": [
+            58.59375,
+            69.53125
+          ],
+          "F1": [
+            62.61706211964364,
+            73.58326628082064
+          ],
+          "answerable_EM": [
+            18.75,
+            40.625
+          ],
+          "unanswerable_EM": [
+            95.3125,
+            100.0
+          ],
+          "weighted_EM": [
+            38.671875,
+            55.46875
+          ],
+          "weighted_F1": [
+            44.92007255934735,
+            60.84490459721439
+          ]
+        },
+        {
+          "EM": [
+            59.375,
+            71.875
+          ],
+          "F1": [
+            63.808863528530644,
+            75.54163066515308
+          ],
+          "answerable_EM": [
+            23.4375,
+            45.3125
+          ],
+          "unanswerable_EM": [
+            92.1875,
+            100.0
+          ],
+          "weighted_EM": [
+            41.40625,
+            58.984375
+          ],
+          "weighted_F1": [
+            47.760474308300395,
+            64.20888125970495
+          ]
+        },
+        {
+          "EM": [
+            58.59375,
+            71.09375
+          ],
+          "F1": [
+            62.82946195750204,
+            74.78669061539306
+          ],
+          "answerable_EM": [
+            23.4375,
+            45.3125
+          ],
+          "unanswerable_EM": [
+            89.0625,
+            100.0
+          ],
+          "weighted_EM": [
+            41.40625,
+            58.59375
+          ],
+          "weighted_F1": [
+            47.299666979872484,
+            63.91179911008375
+          ]
+        }
+      ],
+      "step200_minus_original_both_calibrated_95CI": {
+        "EM": [
+          -2.34375,
+          0.0
+        ],
+        "F1": [
+          -2.34375,
+          0.0
+        ],
+        "answerable_EM": [
+          0.0,
+          0.0
+        ],
+        "unanswerable_EM": [
+          -4.6875,
+          0.0
+        ],
+        "weighted_EM": [
+          -1.171875,
+          0.0
+        ],
+        "weighted_F1": [
+          -1.171875,
+          0.0
+        ]
+      }
+    },
+    "observed_development": {
+      "systems_95CI": [
+        {
+          "EM": [
+            56.25,
+            66.40625
+          ],
+          "F1": [
+            62.69336119864612,
+            73.0310668703457
+          ],
+          "answerable_EM": [
+            12.5,
+            32.8125
+          ],
+          "unanswerable_EM": [
+            100.0,
+            100.0
+          ],
+          "weighted_EM": [
+            34.375,
+            49.609375
+          ],
+          "weighted_F1": [
+            44.04004179796919,
+            59.546600305518545
+          ]
+        },
+        {
+          "EM": [
+            54.6875,
+            65.625
+          ],
+          "F1": [
+            63.36371987247643,
+            74.73491445231548
+          ],
+          "answerable_EM": [
+            15.625,
+            35.9375
+          ],
+          "unanswerable_EM": [
+            89.0625,
+            100.0
+          ],
+          "weighted_EM": [
+            34.765625,
+            50.78125
+          ],
+          "weighted_F1": [
+            48.272956030735465,
+            63.72159111167333
+          ]
+        },
+        {
+          "EM": [
+            55.46875,
+            67.1875
+          ],
+          "F1": [
+            64.0814612315963,
+            75.35686952817204
+          ],
+          "answerable_EM": [
+            17.1875,
+            37.5
+          ],
+          "unanswerable_EM": [
+            89.0625,
+            100.0
+          ],
+          "weighted_EM": [
+            36.328125,
+            51.962890625000036
+          ],
+          "weighted_F1": [
+            49.248922198452554,
+            64.66522758970204
+          ]
+        }
+      ],
+      "step200_minus_original_both_calibrated_95CI": {
+        "EM": [
+          -1.5625,
+          3.125
+        ],
+        "F1": [
+          -1.5625,
+          3.125000000000007
+        ],
+        "answerable_EM": [
+          0.0,
+          4.6875
+        ],
+        "unanswerable_EM": [
+          -4.6875,
+          4.6875
+        ],
+        "weighted_EM": [
+          -0.78125,
+          4.296875
+        ],
+        "weighted_F1": [
+          -0.78125,
+          4.296874999999993
+        ]
+      }
+    }
+  },
+  "pareto": {
+    "original": [
+      {
+        "threshold": -0.9426122903823853,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 64.84375,
+            "F1": 68.81170105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 29.6875,
+            "F1": 37.623402111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 100.0,
+            "F1": 100.0
+          }
+        },
+        "weighted_75_25": {
+          "EM": 47.265625,
+          "F1": 53.217551583380384
+        },
+        "abstention_rate": 66.40625
+      },
+      {
+        "threshold": 10.951323986053467,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 65.625,
+            "F1": 69.59295105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 32.8125,
+            "F1": 40.748402111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 98.4375,
+            "F1": 98.4375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.21875,
+          "F1": 55.170676583380384
+        },
+        "abstention_rate": 62.5
+      },
+      {
+        "threshold": 14.58487319946289,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 65.625,
+            "F1": 69.59295105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 34.375,
+            "F1": 42.310902111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 96.875,
+            "F1": 96.875
+          }
+        },
+        "weighted_75_25": {
+          "EM": 50.0,
+          "F1": 55.951926583380384
+        },
+        "abstention_rate": 60.9375
+      }
+    ],
+    "step200": [
+      {
+        "threshold": -2.20771861076355,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 64.84375,
+            "F1": 68.81170105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 29.6875,
+            "F1": 37.623402111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 100.0,
+            "F1": 100.0
+          }
+        },
+        "weighted_75_25": {
+          "EM": 47.265625,
+          "F1": 53.217551583380384
+        },
+        "abstention_rate": 67.1875
+      },
+      {
+        "threshold": 9.00881290435791,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 65.625,
+            "F1": 69.59295105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 32.8125,
+            "F1": 40.748402111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 98.4375,
+            "F1": 98.4375
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.21875,
+          "F1": 55.170676583380384
+        },
+        "abstention_rate": 62.5
+      },
+      {
+        "threshold": 12.982471942901611,
+        "groups": {
+          "all": {
+            "count": 128,
+            "EM": 64.84375,
+            "F1": 68.81170105558692
+          },
+          "answerable": {
+            "count": 64,
+            "EM": 34.375,
+            "F1": 42.310902111173846
+          },
+          "unanswerable": {
+            "count": 64,
+            "EM": 95.3125,
+            "F1": 95.3125
+          }
+        },
+        "weighted_75_25": {
+          "EM": 49.609375,
+          "F1": 55.561301583380384
+        },
+        "abstention_rate": 60.15625
+      }
+    ]
+  },
+  "loading": {
+    "step0": {
+      "qa_head_equals_original": true,
+      "all_lora_B_zero": true
+    },
+    "original": {
+      "checked_development_examples": 3,
+      "maximum_margin_difference": 0.0,
+      "calibration_seconds": 20.47298670001328
+    },
+    "step100": {
+      "all_loaded_tensors_verified": 50,
+      "active_adapter": "step100",
+      "qa_head_l2_change": 0.03342797403035432,
+      "adapter_sha256": "41e5e5bc73501e5956f8c7e2d58497607add5cbd0754ed445457a56d13f02c06",
+      "checked_development_examples": 3,
+      "maximum_margin_difference": 0.0
+    },
+    "step200": {
+      "all_loaded_tensors_verified": 50,
+      "active_adapter": "step200",
+      "qa_head_l2_change": 0.045238109821708734,
+      "adapter_sha256": "200a2f3e431afd81986d4c5415abba09145d9a8751060c2acb0ed78dce8a99e1",
+      "checked_development_examples": 3,
+      "maximum_margin_difference": 0.0,
+      "calibration_seconds": 21.159309200011194
+    }
+  },
+  "integrity": {
+    "completed": true,
+    "protected_files_unchanged": true,
+    "calibration_examples_per_model": 128,
+    "gradient_updates": 0,
+    "peak_allocated_mib": 790.00634765625,
+    "peak_reserved_mib": 800.0
+  },
+  "new_training_updates": 0,
+  "independent_final_evaluation": null,
+  "production_changed": false
+}

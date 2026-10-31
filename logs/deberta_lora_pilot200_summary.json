@@ -1,0 +1,190 @@
+{
+  "completed": true,
+  "updates": 200,
+  "config": {
+    "seed": 20261031,
+    "max_updates": 200,
+    "learning_rate": 2e-05,
+    "warmup_updates": 10,
+    "sequence_length": 256,
+    "stride": 96,
+    "microbatch": 1,
+    "accumulation": 8,
+    "rank": 4,
+    "alpha": 8,
+    "dropout": 0.05,
+    "precision": "FP32",
+    "gradient_checkpointing": true,
+    "targets": [
+      "query_proj",
+      "value_proj"
+    ],
+    "modules_to_save": [
+      "qa_outputs"
+    ],
+    "validation_updates": [
+      0,
+      100,
+      200
+    ],
+    "checkpoint_every": 25,
+    "threshold": 2.7772940397262573,
+    "policy": {
+      "max_length": 30,
+      "length_penalty": 0.0
+    },
+    "selection": "maximum development weighted75/25 EM; ties retain earlier state, including base step 0",
+    "no_calibration": true,
+    "development_count": 128,
+    "training_examples": 1024,
+    "calibration_reserved_count": 128
+  },
+  "dataset_audit": {
+    "historical_ids_excluded": 6963,
+    "historical_contexts_excluded": 1822,
+    "scanned_records": 190,
+    "adversarial_train": {
+      "total": 30000,
+      "invalid_or_empty_spans": 0,
+      "duplicates": 51,
+      "historical_overlap_excluded": 1142,
+      "eligible": 28807
+    },
+    "adversarial_validation": {
+      "total": 3000,
+      "invalid_or_empty_spans": 0,
+      "duplicates": 3,
+      "historical_overlap_excluded": 1072,
+      "eligible": 1925
+    },
+    "eligible_squad_unanswerable": 42470
+  },
+  "dataset_revision": "c2d5f738db1ad21a4126a144dfbb00cb51e0a4a9",
+  "feature_stats": {
+    "examples": 1024,
+    "features": 1111,
+    "positive_features": 524,
+    "null_features": 587
+  },
+  "validation": [
+    {
+      "step": 0,
+      "groups": {
+        "all": {
+          "count": 128,
+          "EM": 60.9375,
+          "F1": 67.64323574958439
+        },
+        "answerable": {
+          "count": 64,
+          "EM": 21.875,
+          "F1": 35.286471499168776
+        },
+        "unanswerable": {
+          "count": 64,
+          "EM": 100.0,
+          "F1": 100.0
+        }
+      },
+      "weighted_75_25": {
+        "EM": 41.40625,
+        "F1": 51.46485362437658
+      },
+      "validation_loss": 2.876346292188373
+    },
+    {
+      "step": 100,
+      "groups": {
+        "all": {
+          "count": 128,
+          "EM": 60.9375,
+          "F1": 68.88021491625105
+        },
+        "answerable": {
+          "count": 64,
+          "EM": 21.875,
+          "F1": 37.760429832502105
+        },
+        "unanswerable": {
+          "count": 64,
+          "EM": 100.0,
+          "F1": 100.0
+        }
+      },
+      "weighted_75_25": {
+        "EM": 41.40625,
+        "F1": 53.32032237437658
+      },
+      "validation_loss": 2.7004998012156847
+    },
+    {
+      "step": 200,
+      "groups": {
+        "all": {
+          "count": 128,
+          "EM": 60.9375,
+          "F1": 68.88021491625105
+        },
+        "answerable": {
+          "count": 64,
+          "EM": 21.875,
+          "F1": 37.760429832502105
+        },
+        "unanswerable": {
+          "count": 64,
+          "EM": 100.0,
+          "F1": 100.0
+        }
+      },
+      "weighted_75_25": {
+        "EM": 41.40625,
+        "F1": 53.32032237437658
+      },
+      "validation_loss": 2.631271141505934
+    }
+  ],
+  "loss_blocks": [
+    {
+      "updates": "1-50",
+      "mean_loss": 3.4339325561090757
+    },
+    {
+      "updates": "51-100",
+      "mean_loss": 2.930186772894513
+    },
+    {
+      "updates": "101-150",
+      "mean_loss": 3.1632281724058156
+    },
+    {
+      "updates": "151-200",
+      "mean_loss": 3.1018869089897088
+    }
+  ],
+  "training_seconds": 461.1955621004454,
+  "training_phase_wall_seconds": 523.1143188999849,
+  "mean_update_seconds": 2.305977810502227,
+  "recorded_peak_allocated_mib": 797.9052734375,
+  "recorded_peak_reserved_mib": 846.0,
+  "recorded_peak_process_ram_mib": 1437.30078125,
+  "best_step": 0,
+  "recovery": {
+    "restored_step": 28,
+    "restored_cursor": 224,
+    "optimizer_state_entries": 50,
+    "scheduler_last_epoch": 28,
+    "history_entries": 28,
+    "python_numpy_torch_cuda_rng_restored": true,
+    "checkpoint": "logs\\deberta_lora\\pilot200\\checkpoint-0028"
+  },
+  "protected_files_unchanged": true,
+  "latest_checkpoint": {
+    "directory": "checkpoint-0200",
+    "step": 200
+  },
+  "calibration_used": false,
+  "previous_benchmarks_re_evaluated": false,
+  "manifest_sha256": "756630b172bae7d58ce92bcf273a570a1977c53f483f1e93ab63de483606c3e1",
+  "max_gradient_norm_before_clip": 22.43768882751465,
+  "latest_adapter_sha256": "200a2f3e431afd81986d4c5415abba09145d9a8751060c2acb0ed78dce8a99e1"
+}
