@@ -20,8 +20,10 @@ We fine-tuned `distilbert/distilbert-base-uncased`, BASE revision
 Six layers and 66,364,418 parameters suit laptop CPU inference. Twelve-layer
 BERT-base is a permitted but costlier alternative, not locally benchmarked.
 The user reports a later instructor clarification permitting pretrained QA models.
-A separate benchmark now compares two Deepset checkpoints; no replacement is
-activated and no unmeasured accuracy is claimed. Original instructions are preserved.
+The completed 500-question benchmark selected DeBERTa as the strongest model.
+The user explicitly approved its frozen weighted_EM configuration as the stable
+baseline. quality40k remains a backup; the training history below describes our
+self-trained models, not a new training run of DeBERTa. Original instructions are preserved.
 LoRA reduces trainable parameters but does not guarantee greater accuracy.
 
 ## 2. Training
@@ -147,7 +149,11 @@ disjoint IDs. These local results are not an official unseen test; no retuning
 follows final scoring.
 
 Production is below the new 85–95% overall EM/F1 goals, 80–85% answerable EM and
-95% unanswerable EM. Pretrained benchmark results remain pending. Reduced
+95% unanswerable EM. The completed pretrained comparison reports DeBERTa EM 83.00%, F1 86.69%,
+answerable EM 77.60%, unanswerable EM 88.40% on 500 balanced validation questions.
+Only the F1 >=85% target passes. All contexts have historical exposure; IDs and
+normalized questions were unused in available local records. See
+[FINAL_500_EVALUATION](docs/FINAL_500_EVALUATION.md) for full metrics and confidence intervals. Reduced
 abstention increases wrong non-null outputs from 19.14% to 23.14% of all examples.
 English questions are capped at 64 tokens. Public-sample
 conformance, instructor dry run/live service, authorized weights, team defense and

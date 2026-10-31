@@ -1,0 +1,71 @@
+{
+  "info": {
+    "team": "Pimientero",
+    "model": "deepset/deberta-v3-base-squad2",
+    "params": 183833090,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+    "training_steps": 0,
+    "training_run_steps": 0,
+    "no_answer_threshold": 2.7772940397262573,
+    "extraction_policy": {
+      "max_length": 30,
+      "length_penalty": 0.0
+    },
+    "calibration_objective": "weighted_75_25_EM"
+  },
+  "evaluation": {
+    "source": "logs/final500_summary.json \u00b7 SQuAD 2.0 validation \u00b7 500 questions (250/250) \u00b7 reused contexts",
+    "label": "deberta-v3-base-squad2 \u00b7 active model \u00b7 SQuAD 2.0 \u00b7 n=500",
+    "metrics": {
+      "count": 500,
+      "EM": 83.0,
+      "F1": 86.68685393984626
+    },
+    "answerable": {
+      "count": 250,
+      "EM": 77.6,
+      "F1": 84.97370787969254
+    },
+    "unanswerable": {
+      "count": 250,
+      "EM": 88.4,
+      "F1": 88.4
+    },
+    "weighted_75_25": {
+      "EM": 80.3,
+      "F1": 85.83028090976941
+    }
+  },
+  "assets": {
+    "/": 200,
+    "/assets/app.js": 200,
+    "/assets/style.css": 200
+  },
+  "predictions": [
+    {
+      "response": {
+        "id": "stable-ui",
+        "answer": "Paris",
+        "start": 0,
+        "score": 0.9999999989556956
+      },
+      "expected": "Paris",
+      "exact_text_correct": true,
+      "normalized_EM": 1.0
+    },
+    {
+      "response": {
+        "id": "stable-ui",
+        "answer": " Paris",
+        "start": 1,
+        "score": 0.9999999946482274
+      },
+      "expected": "Paris",
+      "exact_text_correct": false,
+      "normalized_EM": 1.0
+    }
+  ],
+  "tested_via": "Actual local HTTP UI gateway; no visual browser claim"
+}

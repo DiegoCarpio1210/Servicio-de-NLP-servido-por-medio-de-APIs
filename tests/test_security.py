@@ -21,15 +21,18 @@ def test_auth_precedes_invalid_json(monkeypatch):
         assert r.status_code==401 and r.json()=={'error':'unauthorized'}
 
 
-def test_default_model_is_quality40k(monkeypatch):
+def test_default_model_uses_pinned_deberta_deployment(monkeypatch):
     from test_contract import FakeEngine
     import qa.inference
     seen=[]
-    def loader(path): seen.append(path); return FakeEngine()
+    def loader(path, deployment=None): seen.append((path,deployment)); return FakeEngine()
     monkeypatch.setenv('QA_API_TOKEN',secrets.token_hex(16)); monkeypatch.delenv('MODEL_DIR',raising=False)
     monkeypatch.setattr(qa.inference,'Engine',loader)
     with TestClient(create_app()) as c:
         for _ in range(100):
             if c.get('/health').status_code==200: break
             time.sleep(.01)
-        assert seen==['models/quality40k']
+        assert len(seen)==1
+        assert seen[0][0].as_posix().endswith('/models/pretrained/deberta-v3-base-squad2')
+        assert seen[0][1]['source']['revision']=='eea39c60cc305c2e4a9504f5ff117294bebb42db'
+        assert seen[0][1]['calibration']['threshold']==2.7772940397262573

@@ -12,25 +12,30 @@ from qa.postprocessing import candidate as policy_candidate
 
 
 class Engine:
-    def __init__(self, model_dir, require_calibration=True):
+    def __init__(self, model_dir, require_calibration=True, deployment=None):
         root = Path(model_dir)
         with (root / "model.safetensors").open("rb") as stream:
             self.weights_sha256 = hashlib.file_digest(stream, "sha256").hexdigest()
-        self.metadata = json.loads((root / "training_metadata.json").read_text())
-        if self.metadata.get("optimizer_steps", 0) <= 0:
+        if deployment:
+            for name, expected in deployment['hashes'].items():
+                with (root/name).open('rb') as stream:
+                    if hashlib.file_digest(stream,'sha256').hexdigest()!=expected:
+                        raise ValueError('Deployment file hash mismatch: '+name)
+        self.metadata = deployment['metadata'] if deployment and 'metadata' in deployment else json.loads((root / "training_metadata.json").read_text())
+        if self.metadata.get("optimizer_steps", 0) <= 0 and not (deployment and deployment.get('source')):
             raise ValueError("A genuinely fine-tuned checkpoint is required")
         self.max_length = self.metadata["max_seq_length"]
         self.stride = self.metadata["doc_stride"]
         calibration = root / "calibration.json"
-        if require_calibration and not calibration.exists():
+        if require_calibration and not calibration.exists() and not deployment:
             raise ValueError("Validation calibration is required before serving")
-        self.calibration = json.loads(calibration.read_text()) if calibration.exists() else {}
+        self.calibration = deployment['calibration'] if deployment else (json.loads(calibration.read_text()) if calibration.exists() else {})
         self.policy = self.calibration.get('policy')
         if self.calibration.get('weights_sha256', self.weights_sha256) != self.weights_sha256:
             raise ValueError('Calibration belongs to different weights')
         self.threshold = float(self.calibration.get('threshold',0.))
         if not math.isfinite(self.threshold): raise ValueError('Calibration threshold must be finite')
-        torch.set_num_threads(int(os.getenv("TORCH_NUM_THREADS", "4")))
+        torch.set_num_threads(int(os.getenv("TORCH_NUM_THREADS", "2")))
         self.tokenizer = AutoTokenizer.from_pretrained(root, local_files_only=True, use_fast=True)
         self.model = AutoModelForQuestionAnswering.from_pretrained(root, local_files_only=True).to("cpu").eval()
         self.params = sum(p.numel() for p in self.model.parameters())

@@ -1,11 +1,16 @@
 # Extractive QA as a local API
 
-University AI Engineering project. DistilBERT BASE is fine-tuned by this repository on SQuAD 2.0.
-Production currently uses our own fine-tuned DistilBERT; all inference runs locally on CPU. The user reports that pretrained QA models are now permitted, and a separate benchmark evaluates them without changing production.
-**Status: quality40k checkpoint-2000 is now the approved production default; continued20k is preserved as backup. On the same reserved 1,024 examples, weighted EM improves from 47.02% to 54.93% (95% paired interval for gain +5.48 to +10.43 points). Public accuracy remains 4/5. NOT ready for final submission.**
-See [measured comparison and independence limitations](docs/QUALITY_RESULTS.md) and
-[candidate activation review](docs/CANDIDATE_REVIEW_ES.md). The dashboard displays the verified results of the active quality40k model. The approved threshold and length05 extraction policy are unchanged from evaluation.
-See `docs/STATUS.md` for measured results and `docs/COMPLIANCE.md` for every academic/API requirement. Never present smoke or pilot accuracy as full training.
+University AI Engineering project. **The approved stable baseline is now
+Deepset DeBERTa-v3-base-SQuAD2 with the frozen weighted_EM configuration.**
+All inference runs locally on CPU. quality40k is preserved as a reversible backup.
+The user reports the instructor permits pretrained QA checkpoints.
+
+On 500 balanced SQuAD 2.0 validation questions, DeBERTa scored **83.00% EM /
+86.69% F1**, answerable EM **77.60%**, unanswerable EM **88.40%**. It misses three
+of the four requested targets. This activation was explicitly approved despite
+those unmet targets; it is not a claim of final submission readiness.
+All 500 contexts had prior local exposure. See [full benchmark](docs/FINAL_500_EVALUATION.md)
+and [deployment, recovery and rollback](docs/STABLE_DEBERTA.md).
 
 ## PIMIENTERO AI — local graphical application
 
@@ -13,12 +18,12 @@ On Windows, double-click **`INICIAR_PIMIENTERO.bat`**. It checks dependencies an
 starts the CPU API and a separate local UI gateway, waits for readiness, and opens **http://127.0.0.1:8765**
 in your default browser. Stop both services with **`DETENER_PIMIENTERO.bat`** or Ctrl+C in the launcher.
 No public tunnel, training, dataset download, frontend build or manually entered API token is needed.
-The model files must already exist in the ignored `models/quality40k/` directory.
+The model files must already exist in the ignored `models/pretrained/deberta-v3-base-squad2/` directory.
 
 Open **http://127.0.0.1:8765** after the launcher reports readiness. The academic
 API is at **http://127.0.0.1:8000**; its protected endpoints require authentication.
 The source repository deliberately excludes trained weights, datasets and secrets;
-a fresh clone needs the dependencies and separately supplied local model artifacts.
+a fresh clone needs the dependencies, then `python -m scripts.restore_deberta` to download the pinned public model and verify every file hash. The launcher never downloads automatically.
 
 ### Source files for the instructor
 
@@ -141,13 +146,13 @@ Retraining invalidates previous calibration. Never copy a threshold from a diffe
 
 ## Start the actual service
 
-Do not use `models/smoke` for the professor's evaluation. Use the selected `models/quality40k` export; training and calibration are already complete.
+Do not use `models/smoke` for the professor's evaluation. Use the active pinned DeBERTa deployment; no training or recalibration is required.
 Set the registered team ID and request the instructor's development token. Do not paste tokens into source files,
 chat, logs or tracked files. This project does not automatically read `.env`.
 
 ```powershell
 $env:TEAM_ID = 'Pimientero'
-$env:MODEL_DIR = (Resolve-Path 'models/quality40k').Path
+Remove-Item Env:MODEL_DIR -ErrorAction SilentlyContinue # use configs/active_model.json
 $env:TORCH_NUM_THREADS = '4'
 $secret = Read-Host 'Instructor API token' -AsSecureString
 $env:QA_API_TOKEN = [System.Net.NetworkCredential]::new('', $secret).Password
@@ -271,3 +276,18 @@ Deepset DeBERTa-v3-base-SQuAD2, then RoBERTa-base-SQuAD2, plus unchanged quality
 Follow `logs/pretrained_benchmark/progress.json`, `pid.json`, `execution.log` and
 candidate progress files. Restarting skips completed work. No training, model
 activation or public tunnel is performed. See [protocol, licenses and limitations](docs/PRETRAINED_BENCHMARK.md).
+
+## Frozen 500-question comparison
+
+See [the final evaluation report](docs/FINAL_500_EVALUATION.md) for the three-model
+comparison, target checks, confidence intervals and local API load results.
+`configs/final500_manifest.json` freezes the same 250 answerable and 250
+unanswerable IDs and existing policies for every model. It does not establish
+complete independence: all selected contexts appeared in earlier local work.
+
+With the existing local SQuAD dataset and model folders available, run
+`python -m experiments.run_final500`, then `python -m experiments.report_final500`.
+Completed model runs are skipped. Reporting also uses the previous benchmark
+artifacts for its historical comparison. Complete per-question predictions remain
+local in `logs/final500/per_question.csv`; the compact summary is published as
+`logs/final500_summary.json`. No activation, recalibration or training is performed.

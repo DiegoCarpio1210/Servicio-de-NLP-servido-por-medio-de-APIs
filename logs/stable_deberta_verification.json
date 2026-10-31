@@ -1,0 +1,42 @@
+{
+  "info": {
+    "team": "Pimientero",
+    "model": "deepset/deberta-v3-base-squad2",
+    "params": 183833090,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+    "training_steps": 0,
+    "training_run_steps": 0,
+    "no_answer_threshold": 2.7772940397262573,
+    "extraction_policy": {
+      "max_length": 30,
+      "length_penalty": 0.0
+    },
+    "calibration_objective": "weighted_75_25_EM"
+  },
+  "null_check": {
+    "id": "5acf98ad77cf76001a6853c6",
+    "answer": null,
+    "start": null,
+    "score": 0.9999999986457109
+  },
+  "contract_pass": true,
+  "sequential": {
+    "requests": 50,
+    "concurrency": 1,
+    "seconds": 75.55607329995837,
+    "maximum_seconds": 2.827575800009072,
+    "valid": 50,
+    "pass": true
+  },
+  "concurrent": {
+    "requests": 50,
+    "concurrency": 2,
+    "seconds": 57.56691829999909,
+    "maximum_seconds": 3.2822440000018105,
+    "valid": 50,
+    "pass": true
+  },
+  "server_stopped": true
+}

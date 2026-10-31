@@ -134,3 +134,28 @@ limitations. Running stages are not counted as completed accuracy or HTTP checks
 The UI, launcher messages, gateway errors and editable operating guides are now
 in English. API JSON keys and authentication behavior are unchanged. Historical
 logs and screenshots preserve their original evidence and language.
+
+## Approved DeBERTa stable baseline — 2026-10-30
+
+The user approved the frozen weighted_EM DeBERTa checkpoint after the completed
+500-question comparison. This supersedes earlier active-model statements above;
+quality40k remains a verified rollback option. The original teacher documents
+are preserved. No training or calibration occurred during activation.
+
+| Requirement | Evidence / status |
+|---|---|
+| Same 500 questions, 250 per class | configs/final500_manifest.json; zero recorded ID/question overlap, all contexts previously used |
+| Honest targets and confidence intervals | FINAL_500_EVALUATION.md; DeBERTa passes F1 >=85 only; EM 83.00, answerable EM 77.60, unanswerable EM 88.40 fail their targets |
+| Production identity and frozen configuration | configs/deberta_deployment.json; /info weight SHA and threshold match |
+| Complete regression suite | logs/stable_deberta_pytest.txt: 65 passed |
+| API authentication, exact contract, null, errors, Unicode and long contexts | logs/stable_deberta_verification.json: passed |
+| 50 sequential requests | 50/50, 75.56 seconds total, 2.828 seconds maximum |
+| 50 concurrent requests, two clients | 50/50, 57.57 seconds total, 3.283 seconds maximum; tokenizer lock retained |
+| UI source, real gateway and metrics | logs/stable_deberta_ui.json; 500-question active-model metrics; two normalized-correct predictions |
+| Unicode extraction detail | Emoji-prefixed example returns ` Paris` at offset 1, a valid original-context span; no trimming or special-case correction |
+| Reproducible public checkpoint recovery | scripts/restore_deberta.py; exact revision and per-file hashes, deepset attribution |
+| Reversible default | scripts/select_deployment.py; quality40k weights/calibration untouched |
+| Public exposure / final submission | No tunnel or submission tag; official instructor evaluation and unmet targets remain pending |
+
+The new baseline is operational, not certified to satisfy every accuracy target.
+See STABLE_DEBERTA.md for startup, recovery and rollback.

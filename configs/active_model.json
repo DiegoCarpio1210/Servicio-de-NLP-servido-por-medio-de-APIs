@@ -1,25 +1,34 @@
 {
-  "model_dir": "models/quality40k",
-  "training_steps": 2000,
+  "model_dir": "models/pretrained/deberta-v3-base-squad2",
+  "training_steps": 0,
   "hashes": {
-    "model.safetensors": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
-    "tokenizer.json": "88288f3bbc81d03d5cc31434d30f8bd3c80771c9875a75fa763d167a8e34889e",
-    "tokenizer_config.json": "28c9ee630d522e35659d41fd5580c4ea4e6fe7698ad29b9269a5eb6c2b2f2090",
-    "special_tokens_map.json": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140",
-    "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
-    "config.json": "2190b45d6d0617eb577ff39ee02ce94103f90729cba2391bdb8d2859541b393a",
-    "calibration.json": "92add960d092fdf7269f32c36e184e486f4d497d36b71a3e53f243099ed48fe0"
+    "model.safetensors": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+    "config.json": "10362f86504bdffbc7296412ff01240a391e4b683c7ea2aced2ce099f1e80261",
+    "tokenizer.json": "7fb827d15550c884144bec6129b81d7ee7cc42c7181a678aa6b408c04a03d764",
+    "tokenizer_config.json": "b4a034b657a1dbbc871d283ece7418b5f48a673259fd0ad56145e752f3059b1d",
+    "special_tokens_map.json": "311de3f4eed9d76a43bf0d71f10e62e086ca65ccce9f15d5da0d2098bf519ecc",
+    "spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+  },
+  "metadata": {
+    "base_model": "deepset/deberta-v3-base-squad2",
+    "optimizer_steps": 0,
+    "max_seq_length": 384,
+    "doc_stride": 128
   },
   "calibration": {
-    "threshold": -0.40494251441686124,
+    "threshold": 2.7772940397262573,
     "policy": {
-      "name": "length05",
       "max_length": 30,
-      "length_penalty": 0.5
+      "length_penalty": 0.0
     },
-    "objective": "teacher_em_null_floor70",
-    "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
-    "source": "logs/quality20261029/final_lock.json"
+    "objective": "weighted_75_25_EM",
+    "weights_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a"
   },
-  "backup_model_dir": "models/continued20k"
+  "source": {
+    "repo_id": "deepset/deberta-v3-base-squad2",
+    "revision": "eea39c60cc305c2e4a9504f5ff117294bebb42db",
+    "license": "cc-by-4.0"
+  },
+  "backup_model_dir": "models/quality40k",
+  "evaluation_key": "deberta-v3-base-squad2"
 }

@@ -1,0 +1,13 @@
+{
+  "thresholds": {
+    "weighted_EM": 2.7772940397262573,
+    "null95_calibration": -17.0256290435791
+  },
+  "policy": {
+    "max_length": 30,
+    "length_penalty": 0.0
+  },
+  "weights_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+  "manifest_sha256": "aeadd3c14f31884e88337376861e1153a7fd527b1dc7cfd57b4cb6c5f00fdcca",
+  "before_final": true
+}

@@ -21,10 +21,10 @@ def create_app(loader=None):
     token = os.getenv("QA_API_TOKEN", "")
     team = os.getenv("TEAM_ID", "Pimientero")
     def default_loader():
-        from qa.inference import Engine
+        from qa.deployment import load_engine
         if not token or not team or any(c.isspace() for c in team):
             raise ValueError("Set QA_API_TOKEN and a registered TEAM_ID without spaces")
-        engine = Engine(os.getenv("MODEL_DIR", "models/quality40k"))
+        engine = load_engine()
         engine.predict("Warmup context.", "What is this?")
         return engine
 

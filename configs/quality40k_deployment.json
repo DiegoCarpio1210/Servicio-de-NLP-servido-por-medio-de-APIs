@@ -1,0 +1,26 @@
+{
+  "model_dir": "models/quality40k",
+  "training_steps": 2000,
+  "hashes": {
+    "model.safetensors": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+    "tokenizer.json": "88288f3bbc81d03d5cc31434d30f8bd3c80771c9875a75fa763d167a8e34889e",
+    "tokenizer_config.json": "28c9ee630d522e35659d41fd5580c4ea4e6fe7698ad29b9269a5eb6c2b2f2090",
+    "special_tokens_map.json": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140",
+    "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+    "config.json": "2190b45d6d0617eb577ff39ee02ce94103f90729cba2391bdb8d2859541b393a",
+    "calibration.json": "92add960d092fdf7269f32c36e184e486f4d497d36b71a3e53f243099ed48fe0"
+  },
+  "calibration": {
+    "threshold": -0.40494251441686124,
+    "policy": {
+      "name": "length05",
+      "max_length": 30,
+      "length_penalty": 0.5
+    },
+    "objective": "teacher_em_null_floor70",
+    "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+    "source": "logs/quality20261029/final_lock.json"
+  },
+  "backup_model_dir": "models/continued20k",
+  "evaluation_key": "quality40k"
+}

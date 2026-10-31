@@ -47,10 +47,10 @@ def main():
         for name,expected in active['hashes'].items():
             if not (model/name).is_file():raise RuntimeError(f'Missing {model/name}. Restore the model files; they will not be downloaded automatically.')
             with (model/name).open('rb') as f:before[name]=hashlib.file_digest(f,'sha256').hexdigest()
-            if before[name]!=expected:raise RuntimeError(f'File {name} does not match quality40k checkpoint-2000.')
+            if before[name]!=expected:raise RuntimeError(f'File {name} does not match the selected deployment manifest.')
         (RUN/'STOP').unlink(missing_ok=True)
         env=os.environ.copy();env.update(QA_API_TOKEN=secrets.token_urlsafe(32),TEAM_ID='Pimientero',MODEL_DIR=str(model),CUDA_VISIBLE_DEVICES='')
-        print('PIMIENTERO AI | Loading DistilBERT on CPU. The first load may take a few minutes.',flush=True)
+        print('PIMIENTERO AI | Loading '+active['model_dir']+' on CPU. The first load may take a few minutes.',flush=True)
         for app,port in [('qa.api:app',8000),('qa.ui:app',8765)]:
             log=(RUN/f'{port}.log').open('w');logs.append(log)
             processes.append(subprocess.Popen([sys.executable,'-m','uvicorn',app,'--host','127.0.0.1','--port',str(port),'--workers','1'],env=env,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW))

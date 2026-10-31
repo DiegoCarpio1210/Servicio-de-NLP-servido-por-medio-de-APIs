@@ -1,0 +1,422 @@
+{
+  "models": {
+    "deberta-v3-base-squad2": {
+      "metrics": {
+        "groups": {
+          "all": {
+            "count": 500,
+            "EM": 83.0,
+            "F1": 86.68685393984626
+          },
+          "answerable": {
+            "count": 250,
+            "EM": 77.6,
+            "F1": 84.97370787969254
+          },
+          "unanswerable": {
+            "count": 250,
+            "EM": 88.4,
+            "F1": 88.4
+          }
+        },
+        "weighted_75_25": {
+          "EM": 80.3,
+          "F1": 85.83028090976941
+        },
+        "abstention_rate": 0.472,
+        "answerability_classification_accuracy": 0.912,
+        "abstention_accuracy_unanswerable_EM": 88.4
+      },
+      "targets": {
+        "overall_EM_85": false,
+        "overall_F1_85": true,
+        "answerable_EM_80": false,
+        "unanswerable_EM_95": false
+      },
+      "all_targets": false,
+      "profile": {
+        "folder": "models/pretrained/deberta-v3-base-squad2",
+        "profile": "weighted_EM",
+        "threshold": 2.7772940397262573,
+        "policy": {
+          "max_length": 30,
+          "length_penalty": 0.0
+        },
+        "weights_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+        "source_policy_sha256": "ec59100c5618d4698bba285b51aed3434f24a5d8c7ab462ccba351b8273c69b9"
+      },
+      "latency": {
+        "mean_seconds": 0.8004691210003803,
+        "p95_seconds": 0.898741459971643,
+        "max_seconds": 2.3401836999692023
+      },
+      "peak_rss_mib": 1268.33984375,
+      "http": {
+        "info": {
+          "team": "Pimientero",
+          "model": "deepset/deberta-v3-base-squad2",
+          "params": 183833090,
+          "max_seq_length": 384,
+          "doc_stride": 128,
+          "checkpoint_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+          "training_steps": 0,
+          "training_run_steps": 0,
+          "no_answer_threshold": 2.7772940397262573,
+          "extraction_policy": {
+            "max_length": 30,
+            "length_penalty": 0.0
+          },
+          "calibration_objective": "weighted_75_25_EM"
+        },
+        "null_check": {
+          "id": "5acf98ad77cf76001a6853c6",
+          "answer": null,
+          "start": null,
+          "score": 0.9999999986457109
+        },
+        "contract_pass": true,
+        "sequential": {
+          "requests": 50,
+          "concurrency": 1,
+          "seconds": 73.08535589999519,
+          "maximum_seconds": 2.764356800005771,
+          "valid": 50,
+          "pass": true
+        },
+        "concurrent": {
+          "requests": 50,
+          "concurrency": 2,
+          "seconds": 55.823712299985345,
+          "maximum_seconds": 3.2812112999963574,
+          "valid": 50,
+          "pass": true
+        },
+        "server_stopped": true
+      },
+      "all_offsets_valid": true,
+      "manifest_sha256": "c240d59a3cc9f664b57f41e2059d8eece6e88ab2843b5dd340599e583d8773a9",
+      "confidence_intervals_95": {
+        "EM": [
+          79.8,
+          86.0
+        ],
+        "F1": [
+          83.86136958731333,
+          89.31381845621934
+        ],
+        "answerable_EM": [
+          72.4,
+          82.8
+        ],
+        "answerable_F1": [
+          80.834199441413,
+          88.86051474877307
+        ],
+        "unanswerable_EM": [
+          84.4,
+          92.0
+        ],
+        "weighted_EM_75_25": [
+          76.2,
+          84.10250000000002
+        ],
+        "abstention_rate": [
+          44.6,
+          49.6
+        ]
+      },
+      "concurrent_outputs_equal_sequential": true,
+      "api_compatible": true
+    },
+    "roberta-base-squad2": {
+      "metrics": {
+        "groups": {
+          "all": {
+            "count": 500,
+            "EM": 78.6,
+            "F1": 81.68070446764564
+          },
+          "answerable": {
+            "count": 250,
+            "EM": 74.8,
+            "F1": 80.96140893529129
+          },
+          "unanswerable": {
+            "count": 250,
+            "EM": 82.4,
+            "F1": 82.4
+          }
+        },
+        "weighted_75_25": {
+          "EM": 76.69999999999999,
+          "F1": 81.32105670146848
+        },
+        "abstention_rate": 0.464,
+        "answerability_classification_accuracy": 0.86,
+        "abstention_accuracy_unanswerable_EM": 82.4
+      },
+      "targets": {
+        "overall_EM_85": false,
+        "overall_F1_85": false,
+        "answerable_EM_80": false,
+        "unanswerable_EM_95": false
+      },
+      "all_targets": false,
+      "profile": {
+        "folder": "models/pretrained/roberta-base-squad2",
+        "profile": "weighted_EM",
+        "threshold": 0.041785240173339844,
+        "policy": {
+          "max_length": 30,
+          "length_penalty": 0.0
+        },
+        "weights_sha256": "ac5db66fdcfecb400345d09787b71009d60805ef9883451071669cf951b5e2c7",
+        "source_policy_sha256": "8c24ecdc4b4457e2a08597fd636895a49e38e9b8714140270386f14bcab70200"
+      },
+      "latency": {
+        "mean_seconds": 0.5040700368006946,
+        "p95_seconds": 0.5853347150288751,
+        "max_seconds": 1.4358368999673985
+      },
+      "peak_rss_mib": 1109.44140625,
+      "http": {
+        "info": {
+          "team": "Pimientero",
+          "model": "deepset/roberta-base-squad2",
+          "params": 124056578,
+          "max_seq_length": 384,
+          "doc_stride": 128,
+          "checkpoint_sha256": "ac5db66fdcfecb400345d09787b71009d60805ef9883451071669cf951b5e2c7",
+          "training_steps": 0,
+          "training_run_steps": 0,
+          "no_answer_threshold": 0.041785240173339844,
+          "extraction_policy": {
+            "max_length": 30,
+            "length_penalty": 0.0
+          },
+          "calibration_objective": "weighted_75_25_EM"
+        },
+        "null_check": {
+          "id": "5a3e2dc0378766001a0024c5",
+          "answer": null,
+          "start": null,
+          "score": 0.999962437178428
+        },
+        "contract_pass": true,
+        "sequential": {
+          "requests": 50,
+          "concurrency": 1,
+          "seconds": 53.01191870000912,
+          "maximum_seconds": 2.019897199992556,
+          "valid": 50,
+          "pass": true
+        },
+        "concurrent": {
+          "requests": 50,
+          "concurrency": 2,
+          "seconds": 36.186869899975136,
+          "maximum_seconds": 2.1311112999683246,
+          "valid": 50,
+          "pass": true
+        },
+        "server_stopped": true
+      },
+      "all_offsets_valid": true,
+      "manifest_sha256": "c240d59a3cc9f664b57f41e2059d8eece6e88ab2843b5dd340599e583d8773a9",
+      "confidence_intervals_95": {
+        "EM": [
+          75.0,
+          82.19999999999999
+        ],
+        "F1": [
+          78.31655646379764,
+          84.76455505333446
+        ],
+        "answerable_EM": [
+          69.6,
+          80.0
+        ],
+        "answerable_F1": [
+          76.11457458336871,
+          85.22621605126898
+        ],
+        "unanswerable_EM": [
+          77.6,
+          86.8
+        ],
+        "weighted_EM_75_25": [
+          72.4975,
+          80.89999999999999
+        ],
+        "abstention_rate": [
+          43.4,
+          49.599999999999994
+        ]
+      },
+      "concurrent_outputs_equal_sequential": true,
+      "api_compatible": true
+    },
+    "quality40k": {
+      "metrics": {
+        "groups": {
+          "all": {
+            "count": 500,
+            "EM": 58.4,
+            "F1": 61.06252100840336
+          },
+          "answerable": {
+            "count": 250,
+            "EM": 46.4,
+            "F1": 51.72504201680672
+          },
+          "unanswerable": {
+            "count": 250,
+            "EM": 70.4,
+            "F1": 70.4
+          }
+        },
+        "weighted_75_25": {
+          "EM": 52.4,
+          "F1": 56.39378151260504
+        },
+        "abstention_rate": 0.534,
+        "answerability_classification_accuracy": 0.67,
+        "abstention_accuracy_unanswerable_EM": 70.4
+      },
+      "targets": {
+        "overall_EM_85": false,
+        "overall_F1_85": false,
+        "answerable_EM_80": false,
+        "unanswerable_EM_95": false
+      },
+      "all_targets": false,
+      "profile": {
+        "folder": "models/quality40k",
+        "profile": "active",
+        "threshold": -0.40494251441686124,
+        "policy": {
+          "name": "length05",
+          "max_length": 30,
+          "length_penalty": 0.5
+        },
+        "weights_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+        "source_policy_sha256": "dc49b9816b9ed62a9a5f2cf6ef274aca87e488406906a5e5c1649dc78b93e820"
+      },
+      "latency": {
+        "mean_seconds": 0.2574268432013923,
+        "p95_seconds": 0.29245203001191833,
+        "max_seconds": 0.7657663999707438
+      },
+      "peak_rss_mib": 931.28125,
+      "http": {
+        "info": {
+          "team": "Pimientero",
+          "model": "distilbert/distilbert-base-uncased",
+          "params": 66364418,
+          "max_seq_length": 384,
+          "doc_stride": 128,
+          "checkpoint_sha256": "d42cc12e1ba17bc04e1ff652bd7e3bc7292d6d9ce39032501820c470b844d60f",
+          "training_steps": 2000,
+          "training_run_steps": 2531,
+          "no_answer_threshold": -0.40494251441686124,
+          "extraction_policy": {
+            "name": "length05",
+            "max_length": 30,
+            "length_penalty": 0.5
+          },
+          "calibration_objective": "weighted_75_25_EM"
+        },
+        "null_check": {
+          "id": "5acf98ad77cf76001a6853c6",
+          "answer": null,
+          "start": null,
+          "score": 0.9759862925883782
+        },
+        "contract_pass": true,
+        "sequential": {
+          "requests": 50,
+          "concurrency": 1,
+          "seconds": 40.01750549999997,
+          "maximum_seconds": 1.3964000000269152,
+          "valid": 50,
+          "pass": true
+        },
+        "concurrent": {
+          "requests": 50,
+          "concurrency": 2,
+          "seconds": 25.05281800002558,
+          "maximum_seconds": 1.4665440000244416,
+          "valid": 50,
+          "pass": true
+        },
+        "server_stopped": true
+      },
+      "all_offsets_valid": true,
+      "manifest_sha256": "c240d59a3cc9f664b57f41e2059d8eece6e88ab2843b5dd340599e583d8773a9",
+      "confidence_intervals_95": {
+        "EM": [
+          54.2,
+          62.60500000000002
+        ],
+        "F1": [
+          56.93864145658264,
+          65.16739402427638
+        ],
+        "answerable_EM": [
+          40.4,
+          52.4
+        ],
+        "answerable_F1": [
+          45.67956582633053,
+          57.52928571428572
+        ],
+        "unanswerable_EM": [
+          64.8,
+          76.0
+        ],
+        "weighted_EM_75_25": [
+          47.5,
+          57.3
+        ],
+        "abstention_rate": [
+          49.595,
+          57.4
+        ]
+      },
+      "concurrent_outputs_equal_sequential": true,
+      "api_compatible": true
+    }
+  },
+  "audit": {
+    "historical_validation_ids": 4415,
+    "scanned_json_files": 208,
+    "eligible_unseen_id_and_normalized_question_count": 7452,
+    "selected_id_overlap": 0,
+    "selected_normalized_question_overlap": 0,
+    "selected_context_overlap": 500,
+    "distinct_selected_contexts": 500,
+    "unused_context_count_in_eligible_pool": 0
+  },
+  "manifest_sha256": "c240d59a3cc9f664b57f41e2059d8eece6e88ab2843b5dd340599e583d8773a9",
+  "paired_weighted_EM_gain_vs_quality40k_95CI": {
+    "deberta-v3-base-squad2": [
+      22.499999999999993,
+      33.29999999999999
+    ],
+    "roberta-base-squad2": [
+      19.299999999999997,
+      29.502500000000015
+    ]
+  },
+  "recommendation": "DeBERTa is NOT recommended for activation under the requested all-targets rule. None of the three models fully satisfies all four requested requirements.",
+  "no_recalibration": true,
+  "all_offsets_valid": true,
+  "production_unchanged_during_benchmark": true,
+  "raw_csv_sha256": "6cc33c208e724effbe0d759187b2fafad45218f8be100b0e09dc16ffbb4c3211",
+  "limitations": [
+    "New IDs/questions relative to available local JSON records, not guaranteed universal non-exposure.",
+    "Contexts have historical local exposure; vendor model selection used SQuAD validation. Not an independent official test.",
+    "Abandoned full-data run consumed IDs are unknown; SQuAD pretrained models saw the training split, so only validation is used.",
+    "Prior recorded metrics use different examples and are descriptive comparisons, not paired gains."
+  ]
+}

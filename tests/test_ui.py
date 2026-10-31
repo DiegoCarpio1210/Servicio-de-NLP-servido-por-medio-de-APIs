@@ -56,12 +56,12 @@ def test_limits_and_candidate_metrics(monkeypatch):
         for body in ({**BODY,'context':'x'*5001},{**BODY,'question':'x'*501},{**BODY,'context':''}):
             assert client.post('/ui/predict',headers=ORIGIN,json=body).status_code==422
         data=client.get('/ui/evaluation').json()
-        assert data['metrics']['count']==1024
-        assert data['metrics']['EM']==61.81640625
-        assert data['metrics']['F1']==65.52553295229076
-        assert data['answerable']['EM']==48.046875
-        assert data['unanswerable']['EM']==75.5859375
-        assert data['weighted_75_25']['EM']==54.931640625
+        assert data['metrics']['count']==500
+        assert data['metrics']['EM']==83.0
+        assert data['metrics']['F1']==86.68685393984626
+        assert data['answerable']['EM']==77.6
+        assert data['unanswerable']['EM']==88.4
+        assert data['weighted_75_25']['EM']==80.3
         assert 'active model' in data['label']
         for path in ('/','/assets/app.js','/assets/style.css'):
             assert client.get(path).status_code==200

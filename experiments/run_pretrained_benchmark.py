@@ -165,7 +165,7 @@ def worker(key):
     if psutil.virtual_memory().available<config['minimum_available_ram_gib']*2**30:raise MemoryError('Insufficient available RAM')
     if shutil.disk_usage(ROOT).free<config['minimum_free_disk_gib']*2**30:raise OSError('Insufficient disk space')
     if key=='quality40k':
-        active=read(ROOT/'configs/active_model.json');folder=ROOT/active['model_dir'];policy=active['calibration']['policy']
+        active=read(ROOT/'configs/quality40k_deployment.json');folder=ROOT/active['model_dir'];policy=active['calibration']['policy']
     else:
         item=next(m for m in config['models'] if m['id'].split('/')[-1]==key)
         folder=ROOT/'models/pretrained'/key;policy={'max_length':30,'length_penalty':0.}

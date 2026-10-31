@@ -64,9 +64,9 @@ function renderStats() {
   const items = [
     ['Exact Match',evaluation ? evaluation.metrics.EM.toFixed(2)+' %' : '—',evaluation?.label || 'Evaluation unavailable'],
     ['F1 Score',evaluation ? evaluation.metrics.F1.toFixed(2)+' %' : '—',evaluation?.label || 'Evaluation unavailable'],
-    ['Answerable EM',evaluation ? evaluation.answerable.EM.toFixed(2)+' %' : '—','quality40k · 512 answerable questions'],
-    ['Unanswerable EM',evaluation ? evaluation.unanswerable.EM.toFixed(2)+' %' : '—','quality40k · 512 unanswerable questions'],
-    ['75/25 weighted EM',evaluation ? evaluation.weighted_75_25.EM.toFixed(2)+' %' : '—','quality40k · reference distribution'],
+    ['Answerable EM',evaluation ? evaluation.answerable.EM.toFixed(2)+' %' : '—',`${evaluation?.answerable.count || 0} answerable questions`],
+    ['Unanswerable EM',evaluation ? evaluation.unanswerable.EM.toFixed(2)+' %' : '—',`${evaluation?.unanswerable.count || 0} unanswerable questions`],
+    ['75/25 weighted EM',evaluation ? evaluation.weighted_75_25.EM.toFixed(2)+' %' : '—','75% answerable / 25% unanswerable'],
     ['Session requests',String(turns.length),`${total} responses received`],
     ['Latest response',recent ? (recent.ms/1000).toFixed(2)+' s' : '—','Current round-trip time, including the API'],
   ];
@@ -74,13 +74,14 @@ function renderStats() {
     const card=element('div','metric'); card.append(element('small','',label),element('strong','',value),element('span','',note)); $('metrics-grid').append(card);
   }
   $('model-details').replaceChildren();
-  const details = [['Status',connected?'API connected':'API unavailable'],['Model',info?.model || '—'],['Parameters',info ? info.params.toLocaleString('en-US') : '—'],['Checkpoint',info ? `${info.training_steps===2000 ? 'quality40k' : 'continued20k'} · checkpoint-${info.training_steps}` : '—'],['Checkpoint / run steps',info ? `${info.training_steps} / ${info.training_run_steps}` : '—'],['Device','CPU'],['Window / overlap',info ? `${info.max_seq_length} / ${info.doc_stride} tokens` : '—']];
+  const details = [['Status',connected?'API connected':'API unavailable'],['Model',info?.model || '—'],['Parameters',info ? info.params.toLocaleString('en-US') : '—'],['Checkpoint',info ? info.checkpoint_sha256.slice(0,16) : '—'],['Checkpoint / run steps',info ? `${info.training_steps} / ${info.training_run_steps}` : '—'],['Device','CPU'],['Window / overlap',info ? `${info.max_seq_length} / ${info.doc_stride} tokens` : '—']];
   for (const [key,value] of details) { const row=element('div'); row.append(element('dt','',key),element('dd','',value)); $('model-details').append(row); }
   $('evaluation-source').textContent=evaluation ? 'Source: '+evaluation.source : 'Historical evaluation unavailable.';
 }
 async function refresh() {
   try { await request('/ui/status'); connected=true;
     info = await request('/ui/info');
+    $('active-model-name').textContent=info.model.includes('deberta') ? 'DeBERTa' : 'DistilBERT';
   } catch { connected=false; }
   $('status-dot').classList.toggle('online',connected);
   $('connection-text').textContent=connected?'API connected · local':'API unavailable';

@@ -69,9 +69,11 @@ def create_app(transport=None):
 
     @app.get('/ui/evaluation')
     def evaluation():
-        data = json.loads((ROOT/'logs/quality20261029/final_comparison.json').read_text())['profiles']['trained']
-        return {'source':'logs/quality20261029/final_comparison.json · trained',
-                'label':'quality40k · checkpoint-2000 · active model',
+        from qa.deployment import configuration
+        active=configuration(); key=active['evaluation_key']
+        data = json.loads((ROOT/'logs/final500_summary.json').read_text())['models'][key]['metrics']
+        return {'source':'logs/final500_summary.json · SQuAD 2.0 validation · 500 questions (250/250) · reused contexts',
+                'label':key+' · active model · SQuAD 2.0 · n=500',
                 'metrics':data['groups']['all'],
                 'answerable':data['groups']['answerable'],
                 'unanswerable':data['groups']['unanswerable'],

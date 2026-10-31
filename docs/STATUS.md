@@ -1,7 +1,12 @@
 # Current status — Pimientero — 2026-10-30
 
-**quality40k checkpoint-2000 is approved and active; continued20k is backup. Submission
-is NOT complete.** No new training is authorized or started during this recovery.
+**DeBERTa-v3-base-SQuAD2 weighted_EM is the approved stable baseline; quality40k is backup. Submission is NOT complete.**
+
+Current 500-question results: EM 83.00%, F1 86.69%, answerable EM 77.60%,
+unanswerable EM 88.40%. Three of four requested targets remain unmet. See
+[stable deployment](STABLE_DEBERTA.md) and [complete benchmark](FINAL_500_EVALUATION.md).
+
+The following quality40k training/evaluation history is retained for reference. No new training is authorized or started during this recovery.
 
 quality40k completed 40,000 examples / one epoch / 2,531 steps in 43m11s on Quadro
 P1000. Export matches checkpoint-2000 (minimum selection loss 1.441129).
