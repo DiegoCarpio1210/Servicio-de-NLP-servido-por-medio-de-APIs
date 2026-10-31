@@ -1,5 +1,8 @@
 # Extractive QA as a local API
 
+**Final operating instructions and delivery gates:** [Pimientero final handoff](docs/PIMIENTERO_FINAL_HANDOFF.md).
+Use that runbook for the current DeBERTa deployment. The training and earlier-model sections below are retained as history, not steps needed to start the application. No further training or benchmark rerun is required.
+
 University AI Engineering project. **The approved stable baseline is now
 Deepset DeBERTa-v3-base-SQuAD2 with the frozen weighted_EM configuration.**
 All inference runs locally on CPU. quality40k is preserved as a reversible backup.
@@ -99,11 +102,11 @@ NVIDIA driver from the official PyTorch installation instructions, then confirm:
 ```
 
 The measured machine has a Quadro P1000 (4 GiB VRAM), approximately 31.72 GiB system RAM,
-and an Intel family 6/model 158 CPU. The QA model has 66,364,418 parameters: approximately 253 MiB for FP32
-weights alone. Optimizer checkpoints, base cache and the dataset require additional disk; keep several GiB free.
+and an Intel family 6/model 158 CPU. The active DeBERTa has 183,833,090 parameters; its safetensors file is 735,360,940 bytes.
+The historical DistilBERT has 66,364,418 parameters. Optimizer checkpoints, base cache and the dataset require additional disk; keep several GiB free.
 No unmeasured memory or latency guarantee is made.
 
-## Train and calibrate
+## Historical training and calibration — do not rerun for delivery
 
 ```powershell
 # Mechanical verification only; not suitable for the presentation:
@@ -126,7 +129,7 @@ A zero size in configuration means the full split. Subsets preserve the answerab
 exact counts and fingerprints are recorded. Train and validation remain separate. Questions are capped at 64
 tokens; contexts are never silently cut. Windows use 384 tokens and overlap 128; answers outside a window
 use CLS supervision. All encoder weights and the newly initialized QA head are trained.
-The current schedule is 2 epochs on 12,000 examples, learning rate 3e-5, linear decay, 10% warmup, weight decay .01,
+The historical subset12k schedule was 2 epochs on 12,000 examples, learning rate 3e-5, linear decay, 10% warmup, weight decay .01,
 FP32 batch 16 and accumulation 1. Dynamic padding and length grouping remove padded computation without cutting real tokens.
 
 The best checkpoint is selected on 512 validation examples. A separate 512-example partition calibrates
@@ -153,11 +156,11 @@ chat, logs or tracked files. This project does not automatically read `.env`.
 ```powershell
 $env:TEAM_ID = 'Pimientero'
 Remove-Item Env:MODEL_DIR -ErrorAction SilentlyContinue # use configs/active_model.json
-$env:TORCH_NUM_THREADS = '4'
+$env:TORCH_NUM_THREADS = '2'
 $secret = Read-Host 'Instructor API token' -AsSecureString
 $env:QA_API_TOKEN = [System.Net.NetworkCredential]::new('', $secret).Password
 Remove-Variable secret
-.\.venv\Scripts\python.exe -m uvicorn qa.api:app --host 0.0.0.0 --port 8000 --workers 1
+.\.venv\Scripts\python.exe -m uvicorn qa.api:app --host 127.0.0.1 --port 8000 --workers 1
 ```
 
 On presentation day stop the server, set the new token, restart, and repeat access checks.
@@ -189,7 +192,7 @@ random token; it uses the registered team ID `Pimientero`. Historical pilot logs
 
 ## HTTPS tunnel and external rehearsal
 
-Cloudflare is the primary tunnel; ngrok 3.39.11 is installed but requires local account configuration and a backup tunnel test. Consult `docs/SOURCES.md`.
+Cloudflare is the primary tunnel; historical ngrok and Samsung mobile tests are recorded for continued20k, not the active DeBERTa. No current HTTPS endpoint is claimed. Follow the final handoff for a separately authorized current-model rehearsal.
 Authenticate ngrok using your account's authtoken in its official configuration flow; this is different from
 `QA_API_TOKEN`. Then, in another terminal:
 
@@ -201,16 +204,15 @@ ngrok http 8000
 
 Copy the printed HTTPS URL. Repeat all five curl tests and the HTTP evaluator against that URL **from another
 network** (e.g. mobile tethering). Do not add interactive authentication that would block the professor's harness.
-Measure the full round trip: <5 seconds each, <150 seconds for 50 sequential requests. Cloudflare was installed and measured through HTTPS from this host; ngrok and
-an independent-network test remain manual gates. A Quick Tunnel URL changes when restarted.
+Measure the full round trip: <5 seconds each, <150 seconds for 50 sequential requests. Historical Cloudflare/mobile and ngrok checks used continued20k; current DeBERTa external verification remains pending. A Quick Tunnel URL changes when restarted.
 Send the current URL to the instructor before the dry run and presentation; resend after changes.
 Keep the laptop on AC, disable sleep through Windows power settings for the session, and leave server and tunnel
 running. Do not deploy the model to cloud hosting. If both tunnels fail, ask the instructor about the documented
 local encrypted-harness fallback.
 
-## Final submission gates
+## Historical submission checklist — current gates in the final handoff
 
-1. Finish substantial training; inspect real loss, validation EM/F1, subgroup scores and threshold sensitivity.
+1. Training is complete; preserve the results. Confirm instructor acceptance of the pretrained DeBERTa exception rather than restarting research.
 2. Measure public accuracy and CPU/tunnel latency. Fix timeouts; never hard-code public answers.
 3. Fill the team, members, repository URL, public URL and real final evidence in REPORT.md.
 4. Resolve every PENDING/FAILED item in `docs/STATUS.md`; rehearse pitch and individual Q&A without AI.
@@ -253,10 +255,7 @@ The independent evaluation already completed; do not retrain merely to start or 
 
 ## Selected continuation: completed, do not retrain
 
-For step-by-step team operation, see [the English runbook](docs/RUNBOOK_ES.md). The prepared HTTPS rehearsal
-is `python -m scripts.rehearse --url <HTTPS-URL> --output logs/external_network_verification.json`.
-Run it from the other network with `--external-network --network-note "actual device/network description"`;
-it prompts for the token without saving it. Current-model HTTPS from the origin laptop passed; a genuinely separate-network rehearsal remains pending.
+This section records continued20k history. Its `scripts.rehearse` helper reads continued20k identity evidence and must not be presented as a current DeBERTa verifier. For current operation use [the final handoff](docs/PIMIENTERO_FINAL_HANDOFF.md).
 
 The run used 20k examples (12k previous + 8k new), two additional epochs, 1e-5 learning rate and a fresh schedule.
 It took 42m59s. Exported checkpoint-1600 had the best selection loss; the run itself completed 2,534 steps.
@@ -267,7 +266,7 @@ docs/CONTINUATION_EXPERIMENT.md for the full comparison and its uncertainty. The
 do not tune on it. Generic scripts.evaluate refuses this manifest-based experiment to avoid using selection data
 as calibration. Existing evaluation results are complete and do not need rerunning.
 
-Historical continued20k connectivity evidence (not a new quality40k external test): an authorized temporary Cloudflare test passed: 50 calls in 19.25s, max .755s. The tunnel was closed and three probes returned 530. Another-network testing remains pending. Follow docs/FINAL_REHEARSAL.md for the remaining authorized human-operated rehearsal.
+Historical continued20k connectivity evidence (not a DeBERTa test): an authorized temporary Cloudflare test passed 50 calls in 19.25s, max .755s. Later Samsung mobile checks and a ngrok backup check are preserved in `logs/continued20k/`. Those tunnels were closed. Current-model external testing remains pending.
 
 ## Autonomous pretrained benchmark
 

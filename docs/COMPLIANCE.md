@@ -1,5 +1,26 @@
 # Requirement-by-requirement compliance review
 
+## Current final audit — 2026-10-31
+
+This section supersedes active-model statements in the historical phase tables below. Production is original DeBERTa, threshold 2.7772940397262573; quality40k is the backup. No runtime changes were made in consolidation.
+
+| Requirement | Status / current evidence |
+|---|---|
+| Model/tokenizer/policy integrity | PASS: 81 protected hashes, `logs/final_audit.json` |
+| Real active CPU API and local UI gateway | PASS: minimal live health, missing/wrong/valid authentication, answer/null and dashboard checks; server stopped |
+| Schema, offsets, Unicode, long contexts, errors, tokenizer concurrency | PASS: existing real HTTP evidence plus complete regression suite; 77 tests on experiment branch (`final_audit_pytest.txt`), 65 production tests on main (`final_main_pytest.txt`) |
+| 50 sequential / 50 bounded-concurrent | PASS saved final cohort: 47.10s/max 2.317s and 46.18s/max 3.032s; raw records and dataset hashes rechecked, no rerun |
+| Semantic 45/50 objective | LOCAL REVIEW ONLY: 49 supported, one ambiguous; not Claude or official grading; `FINAL_SEMANTIC_REVIEW.md` |
+| Public samples | NOT ALL PASSED: saved DeBERTa sample-04 is ` 3 times`, start 309, expected null; other four normalize correctly |
+| Pretrained SQuAD model eligibility | INSTRUCTOR CLARIFICATION REQUIRED: user reports permission, original PDF prohibits it; historical own DistilBERT training does not remove this difference |
+| Historical 500-question targets | Three unmet; EM 83%, answerable 77.60%, impossible 88.40%; only F1 86.69% meets its requested target |
+| Public HTTPS / independent network | PENDING current DeBERTa session; no current tunnel, historical continued20k tests are not current proof |
+| Setup / dependencies / recovery | Pinned direct requirements, `pip check` passed, exact public revision/hash restore available; clean-machine reinstall not repeated |
+| Report and handoff | Updated English REPORT headings 0–9; `PIMIENTERO_FINAL_HANDOFF.md` contains exact local/tunnel/manual procedures |
+| Official delivery | PENDING: public-sample dry-run acceptance, checkpoint eligibility confirmation, live HTTPS/token, defense, final fields and authorized submission tag |
+
+Historical records below are retained as phase-specific evidence, not claims about the currently active model.
+
 Authority: professor OpenAPI YAML overrides the PDF summary. All four original files are byte-identical to
 those in the original ZIP (`logs/source_integrity.json`). This review covers PDF sections I-XV, YAML schemas
 and endpoints, the ten report sections, and the master brief. PASSED means the stated check was executed or

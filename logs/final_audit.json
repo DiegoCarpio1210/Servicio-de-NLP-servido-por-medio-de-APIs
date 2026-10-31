@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-31",
+  "protected_files_verified": 81,
+  "saved_cohort_hashes_and_HTTP_results_verified": true,
+  "contract_sha256": "1b0b49382be06f589157b5b11d46cb0da1afd92aef236bd763986c23952673aa",
+  "public_exposure": false,
+  "info": {
+    "team": "Pimientero",
+    "model": "deepset/deberta-v3-base-squad2",
+    "params": 183833090,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+    "training_steps": 0,
+    "training_run_steps": 0,
+    "no_answer_threshold": 2.7772940397262573,
+    "extraction_policy": {
+      "max_length": 30,
+      "length_penalty": 0.0
+    },
+    "calibration_objective": "weighted_75_25_EM"
+  },
+  "predictions": [
+    {
+      "question": "What is the capital of France?",
+      "response": {
+        "id": "audit-smoke",
+        "answer": "Paris",
+        "start": 0,
+        "score": 0.9999999989556956
+      },
+      "seconds": 0.833068199979607
+    },
+    {
+      "question": "Who is the mayor of Paris?",
+      "response": {
+        "id": "audit-smoke",
+        "answer": null,
+        "start": null,
+        "score": 0.9999999904111853
+      },
+      "seconds": 0.7618705999921076
+    }
+  ],
+  "UI_assets_gateway_dashboard_verified": true,
+  "health_auth_predict_pass": true,
+  "server_stopped": true
+}
