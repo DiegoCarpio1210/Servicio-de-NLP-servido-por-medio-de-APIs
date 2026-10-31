@@ -85,8 +85,8 @@ class BenchmarkEngine:
         import torch
         from qa.features import encode
         from qa.postprocessing import candidate
-        batch=encode(self.tokenizer,[question],[context],384,128);windows=[]
         with self.lock,torch.inference_mode():
+            batch=encode(self.tokenizer,[question],[context],384,128);windows=[]
             for i in range(len(batch['input_ids'])):
                 inputs={k:torch.tensor([batch[k][i]]) for k in self.tokenizer.model_input_names}
                 out=self.model(**inputs)

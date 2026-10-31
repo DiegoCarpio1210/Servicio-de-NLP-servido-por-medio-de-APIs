@@ -37,9 +37,10 @@ class Engine:
         self.lock = Lock()
 
     def candidate(self, context, question):
-        batch = encode(self.tokenizer, [question], [context], self.max_length, self.stride)
-        windows = []
         with self.lock, torch.inference_mode():
+            # Fast tokenizers mutate truncation settings; serialize tokenization too.
+            batch = encode(self.tokenizer, [question], [context], self.max_length, self.stride)
+            windows = []
             for lo in range(0, len(batch["input_ids"]), 8):
                 hi = min(lo + 8, len(batch["input_ids"]))
                 inputs = {k: torch.tensor(batch[k][lo:hi]) for k in self.tokenizer.model_input_names}

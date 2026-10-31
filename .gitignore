@@ -38,3 +38,4 @@ __pycache__/
 
 /logs/**/*.lock
 /logs/pretrained_benchmark/
+/logs/final500/
