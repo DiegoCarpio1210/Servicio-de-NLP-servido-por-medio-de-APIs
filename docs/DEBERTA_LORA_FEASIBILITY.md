@@ -1,5 +1,10 @@
 # DeBERTa LoRA feasibility — preparation only
 
+Update: the authorized bounded smoke test has now been completed on this branch.
+See [measured results](DEBERTA_LORA_SMOKE_TEST.md). The original preparation below
+is retained as historical planning; its unmeasured estimates are superseded by
+the new report. No substantive dataset training or stable activation occurred.
+
 Stable base: `02a9d34` on `main`. Experimental branch:
 `experiment/deberta-lora`. No training, dependency installation, adapter creation
 or calibration change has been performed. This branch currently adds only this

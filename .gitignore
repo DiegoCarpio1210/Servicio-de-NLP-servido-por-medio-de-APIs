@@ -40,3 +40,4 @@ __pycache__/
 /logs/pretrained_benchmark/
 /logs/final500/
 /logs/stable_deberta/
+/logs/deberta_lora/

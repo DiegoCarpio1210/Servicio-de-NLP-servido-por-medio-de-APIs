@@ -1,0 +1,3 @@
+# Install with --no-deps --target tmp/lora-deps from the existing .venv.
+# The stable requirements.txt and virtual environment remain unchanged.
+peft==0.17.1

@@ -1,0 +1,182 @@
+{
+  "runs": [
+    {
+      "completed": true,
+      "config": {
+        "length": 128,
+        "steps": 3,
+        "accumulation": 1
+      },
+      "precision": "FP32",
+      "seed": 20261030,
+      "branch": "experiment/deberta-lora",
+      "base_parameters": 183833090,
+      "total_parameters": 183982084,
+      "trainable_parameters": 148994,
+      "gradient_checkpointing": true,
+      "trainable_percentage": 0.08098288526832863,
+      "fixture": {
+        "type": "synthetic mechanics only",
+        "answer": "cobalt",
+        "start_token": 22,
+        "end_token": 22,
+        "sequence_length": 128
+      },
+      "frozen_parameters_unchanged": true,
+      "warnings": [],
+      "protected_files_unchanged": true,
+      "cuda_allocated_after_cleanup": 17039360,
+      "steps": [
+        {
+          "step": 1,
+          "loss": 0.041970569640398026,
+          "seconds": 0.8393617999972776,
+          "nonzero_lora_gradients": 24,
+          "peak_allocated_bytes": 786492416,
+          "peak_reserved_bytes": 830472192
+        },
+        {
+          "step": 2,
+          "loss": 0.004191067069768906,
+          "seconds": 1.0081514000194147,
+          "nonzero_lora_gradients": 48,
+          "peak_allocated_bytes": 787685376,
+          "peak_reserved_bytes": 830472192
+        },
+        {
+          "step": 3,
+          "loss": 0.003941685892641544,
+          "seconds": 0.1884182000067085,
+          "nonzero_lora_gradients": 48,
+          "peak_allocated_bytes": 787685376,
+          "peak_reserved_bytes": 830472192
+        }
+      ],
+      "peak_allocated_mib": 751.1953125,
+      "peak_reserved_mib": 792.0,
+      "warm_step_mean_seconds": 0.5982848000130616,
+      "environment": {
+        "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+        "torch": "2.7.1+cu118",
+        "cuda_runtime": "11.8",
+        "cuda_available": true,
+        "transformers": "4.57.1",
+        "peft": "0.17.1",
+        "accelerate": "1.11.0",
+        "nvidia_smi": "Quadro P1000, 4096 MiB, 4004 MiB, 573.22",
+        "datasets_available": [
+          "data\\hf",
+          "data\\squad_v2"
+        ],
+        "gpu": "Quadro P1000",
+        "compute_capability": [
+          6,
+          1
+        ],
+        "free_total_bytes": [
+          3528877671,
+          4294836224
+        ],
+        "bf16_supported": true,
+        "bf16_native_supported": false
+      },
+      "artifact_folder": "logs/deberta_lora/20261030_221431"
+    },
+    {
+      "completed": true,
+      "config": {
+        "length": 256,
+        "steps": 3,
+        "accumulation": 8
+      },
+      "precision": "FP32",
+      "seed": 20261030,
+      "branch": "experiment/deberta-lora",
+      "base_parameters": 183833090,
+      "total_parameters": 183982084,
+      "trainable_parameters": 148994,
+      "gradient_checkpointing": true,
+      "trainable_percentage": 0.08098288526832863,
+      "fixture": {
+        "type": "synthetic mechanics only",
+        "answer": "cobalt",
+        "start_token": 22,
+        "end_token": 22,
+        "sequence_length": 256
+      },
+      "frozen_parameters_unchanged": true,
+      "warnings": [],
+      "protected_files_unchanged": true,
+      "cuda_allocated_after_cleanup": 17039360,
+      "steps": [
+        {
+          "step": 1,
+          "loss": 0.04981340453377925,
+          "seconds": 2.8449690000270493,
+          "nonzero_lora_gradients": 24,
+          "peak_allocated_bytes": 811878400,
+          "peak_reserved_bytes": 864026624
+        },
+        {
+          "step": 2,
+          "loss": 0.07407035739743151,
+          "seconds": 2.3044120999984443,
+          "nonzero_lora_gradients": 48,
+          "peak_allocated_bytes": 813071360,
+          "peak_reserved_bytes": 866123776
+        },
+        {
+          "step": 3,
+          "loss": 0.04301690304419026,
+          "seconds": 2.3073302999837324,
+          "nonzero_lora_gradients": 48,
+          "peak_allocated_bytes": 813071360,
+          "peak_reserved_bytes": 866123776
+        }
+      ],
+      "peak_allocated_mib": 775.4052734375,
+      "peak_reserved_mib": 826.0,
+      "warm_step_mean_seconds": 2.3058711999910884,
+      "environment": {
+        "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+        "torch": "2.7.1+cu118",
+        "cuda_runtime": "11.8",
+        "cuda_available": true,
+        "transformers": "4.57.1",
+        "peft": "0.17.1",
+        "accelerate": "1.11.0",
+        "nvidia_smi": "Quadro P1000, 4096 MiB, 4004 MiB, 573.22",
+        "datasets_available": [
+          "data\\hf",
+          "data\\squad_v2"
+        ],
+        "gpu": "Quadro P1000",
+        "compute_capability": [
+          6,
+          1
+        ],
+        "free_total_bytes": [
+          3528877671,
+          4294836224
+        ],
+        "bf16_supported": true,
+        "bf16_native_supported": false
+      },
+      "artifact_folder": "logs/deberta_lora/20261030_221525"
+    }
+  ],
+  "startup_failures": [
+    "PEFT files unreadable in sandbox: import failed before GPU initialization",
+    "Elevated Git ownership check rejected branch read; fixed with command-scoped safe.directory"
+  ],
+  "no_oom": true,
+  "optimizer_steps_total": 6,
+  "no_saved_adapter": true,
+  "no_quality_evaluation": true,
+  "native_bf16_check": "False; emulation-inclusive torch check returned True",
+  "stable_main": "02a9d344af19db8db6479e65be933c6455b6524e",
+  "available_dataset_rows": {
+    "train": 130319,
+    "validation": 11873
+  }
+}

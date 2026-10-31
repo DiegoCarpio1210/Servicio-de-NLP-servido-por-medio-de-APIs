@@ -1,0 +1,31 @@
+{
+  "real_cpu_model": true,
+  "transport": "In-process FastAPI TestClient; no public listener",
+  "health": {
+    "status": "ok"
+  },
+  "auth_missing_wrong_rejected": true,
+  "info": {
+    "team": "Pimientero",
+    "model": "deepset/deberta-v3-base-squad2",
+    "params": 183833090,
+    "max_seq_length": 384,
+    "doc_stride": 128,
+    "checkpoint_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
+    "training_steps": 0,
+    "training_run_steps": 0,
+    "no_answer_threshold": 2.7772940397262573,
+    "extraction_policy": {
+      "max_length": 30,
+      "length_penalty": 0.0
+    },
+    "calibration_objective": "weighted_75_25_EM"
+  },
+  "prediction": {
+    "id": "lora-isolation",
+    "answer": "Paris",
+    "start": 0,
+    "score": 0.9999999989556956
+  },
+  "stable_environment_peft_absent": true
+}
