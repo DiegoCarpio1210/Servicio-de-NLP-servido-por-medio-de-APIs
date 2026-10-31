@@ -1,0 +1,65 @@
+{
+  "seed": 20261031,
+  "max_updates": 200,
+  "learning_rate": 2e-05,
+  "warmup_updates": 10,
+  "sequence_length": 256,
+  "stride": 96,
+  "microbatch": 1,
+  "accumulation": 8,
+  "rank": 4,
+  "alpha": 8,
+  "dropout": 0.05,
+  "precision": "FP32",
+  "gradient_checkpointing": true,
+  "targets": [
+    "query_proj",
+    "value_proj"
+  ],
+  "modules_to_save": [
+    "qa_outputs"
+  ],
+  "validation_updates": [
+    0,
+    100,
+    200
+  ],
+  "checkpoint_every": 25,
+  "threshold": 2.7772940397262573,
+  "policy": {
+    "max_length": 30,
+    "length_penalty": 0.0
+  },
+  "selection": "maximum development weighted75/25 EM; ties retain earlier state, including base step 0",
+  "no_calibration": true,
+  "development_count": 128,
+  "training_examples": 1024,
+  "calibration_reserved_count": 128,
+  "manifest_sha256": "756630b172bae7d58ce92bcf273a570a1977c53f483f1e93ab63de483606c3e1",
+  "audit": {
+    "historical_ids_excluded": 6963,
+    "historical_contexts_excluded": 1822,
+    "scanned_records": 190,
+    "adversarial_train": {
+      "total": 30000,
+      "invalid_or_empty_spans": 0,
+      "duplicates": 51,
+      "historical_overlap_excluded": 1142,
+      "eligible": 28807
+    },
+    "adversarial_validation": {
+      "total": 3000,
+      "invalid_or_empty_spans": 0,
+      "duplicates": 3,
+      "historical_overlap_excluded": 1072,
+      "eligible": 1925
+    },
+    "eligible_squad_unanswerable": 42470
+  },
+  "adversarial_revision": "c2d5f738db1ad21a4126a144dfbb00cb51e0a4a9",
+  "source_files_sha256": {
+    "data\\adversarial_qa\\adversarialQA\\train-00000-of-00001.parquet": "0010a888ffe67a4da4afb7a9cbb7e0e77daaf02aaf055ee1697c88519afb94d8",
+    "data\\adversarial_qa\\adversarialQA\\validation-00000-of-00001.parquet": "1ed5569eb1dedc73ad7a1dc34d9064ca8693216b1b47e5c2773a9b2a81668f1f"
+  },
+  "data_sha256": "4cac421e4f2a712ce0777f973e9acde00b2f3222e25d16557f1ca38b682b8640"
+}
