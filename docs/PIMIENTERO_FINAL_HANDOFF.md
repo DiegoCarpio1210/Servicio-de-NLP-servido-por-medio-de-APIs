@@ -16,7 +16,7 @@ The local extractive QA service uses **deepset/deberta-v3-base-squad2**, CPU, on
 | Final bounded concurrency, two clients | 50/50 valid; 46.18s total, 1.831s mean, 3.032s maximum |
 | Total previous readiness traffic | 200 evaluated POSTs, 100 distinct questions, 278 HTTP requests including expected rejection/loading checks |
 | Current final audit | `logs/final_audit.json`: protected hashes, saved dataset/results integrity and minimal live HTTP/UI checks; no repeat benchmark |
-| Regression and dependencies | 77 experimental-branch tests passed; main has its own smaller production suite. Separate logs identify each run. `pip check` passed. Direct dependency versions are pinned; a fresh isolated installation was not repeated. |
+| Regression and dependencies | 77 experimental-branch tests passed in 65.86s (`logs/final_audit_pytest.txt`); main's 65 production tests passed in 14.31s (`logs/final_main_pytest.txt`). `pip check` passed. Direct dependency versions are pinned; a fresh isolated installation was not repeated. |
 
 See [semantic decisions](FINAL_SEMANTIC_REVIEW.md), [HTTP methodology](CLAUDE_50_QUESTION_READINESS.md), [500-question limitations](FINAL_500_EVALUATION.md) and [recovery/rollback](STABLE_DEBERTA.md). Raw authored datasets and predictions remain local. Main contains delivery documentation and compact evidence; evaluation tools and research remain on `experiment/deberta-lora`.
 

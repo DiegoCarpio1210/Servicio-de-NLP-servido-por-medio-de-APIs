@@ -17,7 +17,7 @@ Measured final-development report; official submission remains pending. Active m
 
 Production uses `deepset/deberta-v3-base-squad2`, revision `eea39c60cc305c2e4a9504f5ff117294bebb42db`, with 183,833,090 parameters. The user reports instructor permission for pretrained QA checkpoints; this exception must be confirmed because the original brief prohibits them. We do not represent vendor training as our own.
 
-On the same 500 SQuAD2 questions, DeBERTa achieved EM/F1 83.00/86.69, RoBERTa 78.60/81.68 and our DistilBERT quality40k 58.40/61.06. DeBERTa costs more CPU time and memory but improves measured accuracy. Only its overall F1 meets all four requested targets individually; three remain unmet. See [benchmark and uncertainty](docs/FINAL_500_EVALUATION.md).
+On the same 500 SQuAD2 questions, DeBERTa achieved EM/F1 83.00/86.69, RoBERTa 78.60/81.68 and our DistilBERT quality40k 58.40/61.06. DeBERTa costs more CPU time and memory but improves measured accuracy. Of the four requested targets, only overall F1 is met; three remain unmet. See [benchmark and uncertainty](docs/FINAL_500_EVALUATION.md).
 
 ## 2. Training
 

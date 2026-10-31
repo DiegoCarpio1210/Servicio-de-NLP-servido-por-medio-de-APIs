@@ -8,7 +8,7 @@ This section supersedes active-model statements in the historical phase tables b
 |---|---|
 | Model/tokenizer/policy integrity | PASS: 81 protected hashes, `logs/final_audit.json` |
 | Real active CPU API and local UI gateway | PASS: minimal live health, missing/wrong/valid authentication, answer/null and dashboard checks; server stopped |
-| Schema, offsets, Unicode, long contexts, errors, tokenizer concurrency | PASS: existing real HTTP evidence plus complete regression suite; 77 tests on experiment branch, separate production-suite evidence on main |
+| Schema, offsets, Unicode, long contexts, errors, tokenizer concurrency | PASS: existing real HTTP evidence plus complete regression suite; 77 tests on experiment branch (`final_audit_pytest.txt`), 65 production tests on main (`final_main_pytest.txt`) |
 | 50 sequential / 50 bounded-concurrent | PASS saved final cohort: 47.10s/max 2.317s and 46.18s/max 3.032s; raw records and dataset hashes rechecked, no rerun |
 | Semantic 45/50 objective | LOCAL REVIEW ONLY: 49 supported, one ambiguous; not Claude or official grading; `FINAL_SEMANTIC_REVIEW.md` |
 | Public samples | NOT ALL PASSED: saved DeBERTa sample-04 is ` 3 times`, start 309, expected null; other four normalize correctly |
