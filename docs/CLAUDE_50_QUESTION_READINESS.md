@@ -1,5 +1,7 @@
 # Readiness for a 45/50 semantic QA evaluation
 
+Follow-up, 31 October 2026: [a local semantic review](FINAL_SEMANTIC_REVIEW.md) inspected all saved final responses and supports 49/50 with one ambiguous item. This is not Claude or independent grading. The original ungraded experiment results below are preserved; no prediction or threshold was changed.
+
 **Local HTTP readiness was measured; the Claude-semantic 45/50 target is not verified.** No Claude credential was configured, no external judge was called, and no semantic scores were invented. Exact Match/F1 below are separate lexical metrics. Production remains the original DeBERTa with threshold 2.7772940397262573.
 
 ## Verified professor requirements
