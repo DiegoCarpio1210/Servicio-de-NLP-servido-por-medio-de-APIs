@@ -1,0 +1,23 @@
+{
+  "seed": 20261031,
+  "source": "microsoft/deberta-v3-base",
+  "revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3",
+  "rank": 4,
+  "alpha": 8,
+  "dropout": 0.05,
+  "precision": "FP32",
+  "microbatch": 1,
+  "accumulation": 8,
+  "sequence_length": 256,
+  "stride": 96,
+  "lora_lr": 0.0002,
+  "head_lr": 0.0005,
+  "warmup_updates": 500,
+  "max_updates": 10000,
+  "runtime_hours": 12,
+  "checkpoint_every": 250,
+  "validation_every": 500,
+  "early_stop_min_updates": 2000,
+  "patience": 4,
+  "min_delta": 0.001
+}

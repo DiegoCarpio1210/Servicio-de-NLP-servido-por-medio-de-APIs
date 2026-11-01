@@ -1,0 +1,67 @@
+{
+  "seed": 20261031,
+  "dataset": "SQuAD 2.0 cached official train/validation",
+  "dataset_fingerprints": {
+    "train": "23f88e6715ad06e4",
+    "validation": "429b743d37b5caf6"
+  },
+  "source_split": "train",
+  "data_sha256": "81b58a629b0b464bcb58458d16b2f3d5ab4bc1425e8e7901dfeb48653847f78c",
+  "integrity": {
+    "records": 142192
+  },
+  "excluded": {
+    "historical_overlap": 13258,
+    "duplicate_question": 157,
+    "API_length": 1
+  },
+  "historical_records": [
+    {
+      "path": "configs/final500_manifest.json",
+      "sha256": "c240d59a3cc9f664b57f41e2059d8eece6e88ab2843b5dd340599e583d8773a9"
+    },
+    {
+      "path": "logs/pretrained_benchmark/manifest.json",
+      "sha256": "aeadd3c14f31884e88337376861e1153a7fd527b1dc7cfd57b4cb6c5f00fdcca"
+    },
+    {
+      "path": "logs/quality20261029/manifest.json",
+      "sha256": "50d308790dd01612bbcc024d950fed843673eea79dfb847e176ad2dab570db39"
+    },
+    {
+      "path": "logs/continued20k/data_manifest.json",
+      "sha256": "e82d89004054d36a9ff9e8f41bab2f8c07d05436ebdb583cc2f3ba0c71968afc"
+    },
+    {
+      "path": "logs/subset12k/data_manifest.json",
+      "sha256": "dcc58b303787a63752ebfb5fc5b054499b3d556284a9607cbb5d5b13af6a29b1"
+    },
+    {
+      "path": "logs/deberta_lora/pilot200/data.json",
+      "sha256": "4cac421e4f2a712ce0777f973e9acde00b2f3222e25d16557f1ca38b682b8640"
+    },
+    {
+      "path": "originals/public_sample.json",
+      "sha256": "3d823617676453f7c0a87a09fa9e68b168a7766aa11a1b8cc07f39a0a8253a94"
+    }
+  ],
+  "splits": {
+    "development": {
+      "count": 256,
+      "answerable": 128
+    },
+    "calibration": {
+      "count": 256,
+      "answerable": 128
+    },
+    "final": {
+      "count": 500,
+      "answerable": 250
+    },
+    "train": {
+      "count": 20000,
+      "answerable": 13324
+    }
+  },
+  "limitations": "Context/question exact-normalized exclusions; not universal near-duplicate or pretraining independence. Stable SQuAD-specialized comparator was vendor-trained on official train; comparison may favor it."
+}

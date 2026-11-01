@@ -1,0 +1,24 @@
+{
+  "model": "microsoft/deberta-v3-base",
+  "checkpoint": 3500,
+  "threshold": -1.061314582824707,
+  "sample_size": 1000,
+  "previous_ids_excluded": 21012,
+  "overall": {
+    "count": 1000,
+    "EM": 66.3,
+    "F1": 72.87
+  },
+  "answerable": {
+    "count": 750,
+    "EM": 60.93,
+    "F1": 69.69
+  },
+  "impossible": {
+    "count": 250,
+    "EM": 82.4,
+    "F1": 82.4
+  },
+  "api_errors": 0,
+  "seconds": 2124.9
+}

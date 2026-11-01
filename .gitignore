@@ -42,3 +42,4 @@ __pycache__/
 /logs/stable_deberta/
 /logs/deberta_lora/
 /logs/semantic50/
+/logs/deberta_base_training/
