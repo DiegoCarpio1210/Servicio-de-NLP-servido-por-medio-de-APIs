@@ -67,17 +67,58 @@ def create_app(transport=None):
     async def info():
         return await forward('/info')
 
-    @app.get('/ui/evaluation')
+    @app.get("/ui/evaluation")
     def evaluation():
         from qa.deployment import configuration
-        active=configuration(); key=active['evaluation_key']
-        data = json.loads((ROOT/'logs/final500_summary.json').read_text())['models'][key]['metrics']
-        return {'source':'logs/final500_summary.json · SQuAD 2.0 validation · 500 questions (250/250) · reused contexts',
-                'label':key+' · active model · SQuAD 2.0 · n=500',
-                'metrics':data['groups']['all'],
-                'answerable':data['groups']['answerable'],
-                'unanswerable':data['groups']['unanswerable'],
-                'weighted_75_25':data['weighted_75_25']}
+
+        active = configuration()
+        key = active["evaluation_key"]
+
+        if key == "deberta-base-student":
+            report_path = (
+                ROOT / "logs/pimientero_evaluacion/report_1000.json"
+            )
+
+            report = json.loads(
+                report_path.read_text(encoding="utf-8")
+            )
+
+            if (
+                active["metadata"]["base_model"] != report["model"]
+                or active["training_steps"] != report["checkpoint"]
+                or active["calibration"]["threshold"] != report["threshold"]
+            ):
+                return JSONResponse(
+                    {"error": "Evaluation does not match active model"},
+                    status_code=409
+                )
+
+            return {
+                "source": (
+                    "SQuAD 2.0 validation - 1000 questions "
+                    "(750 answerable / 250 unanswerable)"
+                ),
+                "label": "Pimientero AI - Custom DeBERTa - n=1000",
+                "metrics": report["overall"],
+                "answerable": report["answerable"],
+                "unanswerable": report["impossible"],
+                "weighted_75_25": report["overall"]
+            }
+
+        data = json.loads(
+            (ROOT / "logs/final500_summary.json").read_text(
+                encoding="utf-8"
+            )
+        )["models"][key]["metrics"]
+
+        return {
+            "source": "Historical SQuAD 2.0 evaluation - 500 questions",
+            "label": key + " - historical evaluation",
+            "metrics": data["groups"]["all"],
+            "answerable": data["groups"]["answerable"],
+            "unanswerable": data["groups"]["unanswerable"],
+            "weighted_75_25": data["weighted_75_25"]
+        }
 
     @app.post('/ui/predict')
     async def predict(body: PredictRequest):

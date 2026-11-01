@@ -1,34 +1,47 @@
 {
-  "model_dir": "models/pretrained/deberta-v3-base-squad2",
-  "training_steps": 0,
+  "model_dir": "models/deberta-base-student",
+  "training_steps": 3500,
   "hashes": {
-    "model.safetensors": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a",
-    "config.json": "10362f86504bdffbc7296412ff01240a391e4b683c7ea2aced2ce099f1e80261",
-    "tokenizer.json": "7fb827d15550c884144bec6129b81d7ee7cc42c7181a678aa6b408c04a03d764",
-    "tokenizer_config.json": "b4a034b657a1dbbc871d283ece7418b5f48a673259fd0ad56145e752f3059b1d",
-    "special_tokens_map.json": "311de3f4eed9d76a43bf0d71f10e62e086ca65ccce9f15d5da0d2098bf519ecc",
+    "model.safetensors": "1cd3fa25675e3cd5b42f26d0ab8ade8368fceb7971e3aaa3f1df1aaa12d36cce",
+    "config.json": "3f45c6277501288b1342da9fec04a00c3418efcc24ba1b9a78a1f5d2edbf2429",
+    "tokenizer.json": "6a7c751a6065dbf79fd7fd8d97108210addd087e09d175255583a63e4cb03fec",
+    "tokenizer_config.json": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
+    "special_tokens_map.json": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
     "spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
   },
   "metadata": {
-    "base_model": "deepset/deberta-v3-base-squad2",
-    "optimizer_steps": 0,
+    "base_model": "microsoft/deberta-v3-base",
+    "source_revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3",
+    "optimizer_steps": 5500,
+    "selected_optimizer_steps": 3500,
     "max_seq_length": 384,
-    "doc_stride": 128
+    "doc_stride": 128,
+    "training_method": "LoRA rank4 plus new QA head"
   },
   "calibration": {
-    "threshold": 2.7772940397262573,
+    "threshold": -1.061314582824707,
+    "objective": "weighted_75_25_EM",
     "policy": {
       "max_length": 30,
       "length_penalty": 0.0
     },
-    "objective": "weighted_75_25_EM",
-    "weights_sha256": "aff8759009b728d7d35c1163cd3578b911a3e3e1fbd2522c2b4af398e523f92a"
+    "selected_step": 3500,
+    "adapter_sha256": "be1b28a59473d30987f4810e84ebc88ffc552e6409740efcb0a9d136179fd155",
+    "calibration_loss": 0.912394555464257,
+    "weights_sha256": "1cd3fa25675e3cd5b42f26d0ab8ade8368fceb7971e3aaa3f1df1aaa12d36cce"
   },
   "source": {
-    "repo_id": "deepset/deberta-v3-base-squad2",
-    "revision": "eea39c60cc305c2e4a9504f5ff117294bebb42db",
-    "license": "cc-by-4.0"
+    "repo_id": "microsoft/deberta-v3-base",
+    "revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3",
+    "license": "MIT",
+    "sha256": {
+      "config.json": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b",
+      "tokenizer_config.json": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+      "spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "pytorch_model.bin": "691d48a2800b926a19e3051def466fc2cca4f59a15e42ce4a0cf7f1b380b5e33",
+      "README.md": "7e9ea69ca00d0609cc0e0b9cec76f9ba6ae71601244c4136a3f25bd02dce4c4d"
+    }
   },
-  "backup_model_dir": "models/quality40k",
-  "evaluation_key": "deberta-v3-base-squad2"
+  "backup_model_dir": "models/pretrained/deberta-v3-base-squad2",
+  "evaluation_key": "deberta-base-student"
 }

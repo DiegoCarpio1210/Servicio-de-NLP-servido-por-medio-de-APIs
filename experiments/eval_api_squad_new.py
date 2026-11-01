@@ -1,4 +1,4 @@
-﻿import argparse
+import argparse
 import collections
 import json
 import random
@@ -9,7 +9,14 @@ import urllib.request
 from pathlib import Path
 
 API = "http://127.0.0.1:8001"
-TOKEN = "pimientero-prueba-local-2026"
+import os
+
+TOKEN = os.environ.get("QA_API_TOKEN")
+
+if not TOKEN:
+    raise RuntimeError(
+        "Define QA_API_TOKEN antes de ejecutar la evaluacion."
+    )
 
 DATA_URL = (
     "https://rajpurkar.github.io/"
