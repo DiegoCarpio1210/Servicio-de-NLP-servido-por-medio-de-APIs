@@ -1,0 +1,60 @@
+{
+  "results": {
+    "student_base_lora": {
+      "metrics": {
+        "all": {
+          "count": 500,
+          "EM": 68.4,
+          "F1": 74.64559107559107
+        },
+        "answerable": {
+          "count": 250,
+          "EM": 53.6,
+          "F1": 66.09118215118215
+        },
+        "unanswerable": {
+          "count": 250,
+          "EM": 83.2,
+          "F1": 83.2
+        }
+      },
+      "weighted_75_25": {
+        "EM": 61.0,
+        "F1": 70.36838661338662
+      },
+      "threshold": -1.061314582824707,
+      "mean_seconds": 0.778677454196848,
+      "max_seconds": 1.5533480000449345,
+      "abstention_rate": 0.53
+    },
+    "stable_squad_specialized": {
+      "metrics": {
+        "all": {
+          "count": 500,
+          "EM": 98.4,
+          "F1": 99.33174114774116
+        },
+        "answerable": {
+          "count": 250,
+          "EM": 96.8,
+          "F1": 98.6634822954823
+        },
+        "unanswerable": {
+          "count": 250,
+          "EM": 100.0,
+          "F1": 100.0
+        }
+      },
+      "weighted_75_25": {
+        "EM": 97.6,
+        "F1": 98.99761172161172
+      },
+      "mean_seconds": 0.8442184844000731,
+      "max_seconds": 1.675437800004147,
+      "abstention_rate": 0.502
+    }
+  },
+  "count": 500,
+  "semantic_judge": null,
+  "limitation": "Reserved official-train contexts; stable publisher trained on SQuAD train. Not vendor-unseen comparison or Claude semantic score."
+}
