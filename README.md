@@ -1,292 +1,117 @@
-# Extractive QA as a local API
+# Pimientero AI — Extractive Question Answering API
 
-**Final operating instructions and delivery gates:** [Pimientero final handoff](docs/PIMIENTERO_FINAL_HANDOFF.md).
-Use that runbook for the current DeBERTa deployment. The training and earlier-model sections below are retained as history, not steps needed to start the application. No further training or benchmark rerun is required.
+**Submission model:** `microsoft/deberta-v3-base` (base checkpoint, not SQuAD fine-tuned), trained by our team with **LoRA rank 4 and a newly initialized QA head**. Training ran for **5,500 optimizer steps**; the selected model is **checkpoint 3,500**. This branch, `feature/pimientero-student-primary`, serves our own trained model. Historical experiments in the repository are not the submission model.
 
-University AI Engineering project. **The approved stable baseline is now
-Deepset DeBERTa-v3-base-SQuAD2 with the frozen weighted_EM configuration.**
-All inference runs locally on CPU. quality40k is preserved as a reversible backup.
-The user reports the instructor permits pretrained QA checkpoints.
+**Official report and evidence:** [REPORT.md](REPORT.md) · [Dry-run screenshots](docs/dry_run/) · [Training loss curve](logs/deberta_base_training/train/learning_curves.png) · [Training history](logs/deberta_base_training/train/training_history.json).
 
-On 500 balanced SQuAD 2.0 validation questions, DeBERTa scored **83.00% EM /
-86.69% F1**, answerable EM **77.60%**, unanswerable EM **88.40%**. It misses three
-of the four requested targets. This activation was explicitly approved despite
-those unmet targets; it is not a claim of final submission readiness.
-All 500 contexts had prior local exposure. See [full benchmark](docs/FINAL_500_EVALUATION.md)
-and [deployment, recovery and rollback](docs/STABLE_DEBERTA.md).
+## Results and limitations
 
-## PIMIENTERO AI — local graphical application
+| Evaluation | Exact Match | Token F1 | Note |
+|---|---:|---:|---|
+| SQuAD 2.0 validation (500 items; 250 answerable / 250 unanswerable) | 68.40% | 74.65% | Balanced cohort |
+| SQuAD 2.0 validation (1,000 items; 750 answerable / 250 unanswerable) | 66.30% | 72.87% | Different answerability mix |
+| Instructor's five public examples via HTTPS | 3/5 correct | — | `sample-04` false positive; `sample-05` false negative |
 
-On Windows, double-click **`INICIAR_PIMIENTERO.bat`**. It checks dependencies and the selected model hashes,
-starts the CPU API and a separate local UI gateway, waits for readiness, and opens **http://127.0.0.1:8765**
-in your default browser. Stop both services with **`DETENER_PIMIENTERO.bat`** or Ctrl+C in the launcher.
-No public tunnel, training, dataset download, frontend build or manually entered API token is needed.
-The model files must already exist in the ignored `models/pretrained/deberta-v3-base-squad2/` directory.
+The five public examples took **6.45 s in total**, with observed individual HTTPS round trips of **0.93–2.28 s**. These measurements are not a guarantee of performance on unseen questions or under different network conditions. A response's `score` is not a calibrated probability of correctness.
 
-Open **http://127.0.0.1:8765** after the launcher reports readiness. The academic
-API is at **http://127.0.0.1:8000**; its protected endpoints require authentication.
-The source repository deliberately excludes trained weights, datasets and secrets;
-a fresh clone needs the dependencies, then `python -m scripts.restore_deberta` to download the pinned public model and verify every file hash. The launcher never downloads automatically.
+## Download the trained model (required on a fresh clone)
 
-### Source files for the instructor
+Git intentionally excludes model weights and datasets. Download **`Pimientero-AI-DeBERTa-3500.zip`** from the [v1.0.0-student Release](https://github.com/DiegoCarpio1210/Servicio-de-NLP-servido-por-medio-de-APIs/releases/tag/v1.0.0-student).
 
-| Component | Published source |
-|---|---|
-| Interface | [HTML](frontend/index.html), [CSS](frontend/style.css), [JavaScript](frontend/app.js) |
-| Local interface backend | [UI gateway](qa/ui.py) |
-| Academic API | [FastAPI service](qa/api.py), [CPU inference](qa/inference.py) |
-| Start / stop | [INICIAR_PIMIENTERO.bat](INICIAR_PIMIENTERO.bat), [DETENER_PIMIENTERO.bat](DETENER_PIMIENTERO.bat) |
-| Process management | [Python launcher and shutdown](scripts/local_app.py) |
-| Verified candidate metrics | [Final comparison](logs/quality20261029/final_comparison.json), [methodology](docs/QUALITY_RESULTS.md) |
-
-The interface includes context-based questions, session history, copy, null-answer handling, light/dark modes,
-responsive navigation and a dashboard separating historical evaluation from current session timings.
-The bearer token stays in the server processes; the browser talks to the loopback-only gateway.
-The academic API on port 8000 and its authentication contract remain unchanged. Do not expose the UI port 8765 publicly.
-
-**[English setup, architecture, security and test evidence](docs/INTERFAZ_LOCAL.md)**.
-Evidence: `logs/ui_pytest.txt` (58 passed) and `logs/ui_http_verification.json` (real selected-model smoke checks).
-The GUI is an optional local demonstration; it does not change the documented model accuracy or outstanding academic gates.
-
-Historical screenshots in `docs/screenshots/` predate English localization; the current design is preserved.
-
-## Repository map
+Extract the ZIP to the repository's **`models/`** directory, yielding:
 
 ```text
-originals/             Professor's PDF, immutable YAML, samples, report template, master brief
-configs/               Reproducible training configurations, including continued20k and quality40k
-qa/api.py              Strict contract, exact Bearer authentication, background loading
-qa/ui.py               Loopback UI gateway; keeps the API token server-side
-frontend/              Local HTML/CSS/JavaScript application; no build or CDN
-scripts/local_app.py   Windows startup, model verification, process ownership and shutdown
-qa/features.py         Shared overflow windows and CLS/span labels
-qa/spans.py            Valid context spans, character offsets, minimum-null aggregation
-qa/inference.py        Local calibrated checkpoint, CPU, load once, inference lock
-qa/data.py             Seeded stratified subsets and local dataset snapshot
-qa/metrics.py          SQuAD-normalized EM/F1, multiple references
-scripts/train.py       Real fine-tuning, resume, checkpoints, logs and loss curve
-scripts/evaluate.py    Validation-only calibration; separate threshold holdout
-scripts/evaluate_public.py  Real HTTP sample evaluation and sequential latency
-scripts/verify_local.py     Ephemeral test token; real CPU server lifecycle
-scripts/prepare_data.py     Download official data once and preserve local splits
-scripts/offline.ps1         Avoid redundant Hub calls after downloading assets
-scripts/audit.py            Final reproducibility and submission checks
-scripts/smoke.ps1           Five local or external curl checks
-models/                Ignored local weights, tokenizer, metadata, calibration
-checkpoints/           Ignored resumable optimizer and model checkpoints
-logs/                  Real training/evaluation/test evidence (no token)
-tests/                 Contract, span, metrics and real tokenizer tests
-REPORT.md              Required headings 0-9, honest draft
- docs/                 Architecture, defense, pitch, requirements, issues and status
+models/
+  deberta-base-student/
+    model.safetensors
+    config.json
+    tokenizer.json
+    tokenizer_config.json
+    special_tokens_map.json
+    spm.model
+    calibration.json
+    training_metadata.json
+    added_tokens.json
 ```
 
-## Windows PowerShell setup
+ZIP SHA-256: `8c1381b071e321a58979a38d92457e9691476b68123e04a96e7cf2fa979ac43e`.
 
-Run in the project directory. Python 3.13 was tested; use a compatible 64-bit Python.
-The development environment reused the machine's installed CUDA PyTorch through a venv with system-site-packages.
-For a clean installation use the isolated venv below; `requirements.txt` fixes direct dependency versions.
+`model.safetensors` SHA-256: `1cd3fa25675e3cd5b42f26d0ab8ade8368fceb7971e3aaa3f1df1aaa12d36cce`.
+
+The model launcher validates configured file hashes against [`configs/active_model.json`](configs/active_model.json). **Do not run `scripts.restore_deberta`** for the submission: that older script restores a historical specialized model instead.
+
+## Set up on Windows (Python virtual environment)
+
+From the repository root in PowerShell:
 
 ```powershell
-python -m venv .venv
+py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m pip check
-.\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m scripts.prepare_data
 ```
 
-GPU training is optional; serving always forces CPU. To use CUDA, install the PyTorch 2.7.1 wheel matching your
-NVIDIA driver from the official PyTorch installation instructions, then confirm:
+### Option A: Local graphical interface
 
-```powershell
-.\.venv\Scripts\python.exe -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
-```
+Run `INICIAR_PIMIENTERO.bat`. Once loaded, open **http://127.0.0.1:8765**. The launcher runs a loopback-only FastAPI process on port **8000**, the local UI gateway on port **8765**, and generates a temporary private API token for its child processes. Stop via `DETENER_PIMIENTERO.bat` or Ctrl+C in the launcher console.
 
-The measured machine has a Quadro P1000 (4 GiB VRAM), approximately 31.72 GiB system RAM,
-and an Intel family 6/model 158 CPU. The active DeBERTa has 183,833,090 parameters; its safetensors file is 735,360,940 bytes.
-The historical DistilBERT has 66,364,418 parameters. Optimizer checkpoints, base cache and the dataset require additional disk; keep several GiB free.
-No unmeasured memory or latency guarantee is made.
+This mode is local only. **Do not publicly expose the UI gateway (`8765`).**
 
-## Historical training and calibration — do not rerun for delivery
+### Option B: Instructor-facing API with a known Bearer token
 
-```powershell
-# Mechanical verification only; not suitable for the presentation:
-.\.venv\Scripts\python.exe -m scripts.train --config configs/smoke.json
-.\.venv\Scripts\python.exe -m scripts.evaluate --model-dir models/smoke --limit 64
-
-# Historical pilot (retained for reproducibility):
-.\.venv\Scripts\python.exe -m scripts.train --config configs/pilot.json
-.\.venv\Scripts\python.exe -m scripts.evaluate --model-dir models/pilot
-# Historical completed 12k workflow; do not launch again:
-.\.venv\Scripts\python.exe -m scripts.run_subset
-
-# CPU training override, much slower:
-.\.venv\Scripts\python.exe -m scripts.train --config configs/pilot.json --cpu
-# Resume: replace checkpoint-N with an existing saved directory:
-.\.venv\Scripts\python.exe -m scripts.train --config configs/subset12k.json --resume checkpoints/subset12k/checkpoint-N
-```
-
-A zero size in configuration means the full split. Subsets preserve the answerability ratio with seed 42;
-exact counts and fingerprints are recorded. Train and validation remain separate. Questions are capped at 64
-tokens; contexts are never silently cut. Windows use 384 tokens and overlap 128; answers outside a window
-use CLS supervision. All encoder weights and the newly initialized QA head are trained.
-The historical subset12k schedule was 2 epochs on 12,000 examples, learning rate 3e-5, linear decay, 10% warmup, weight decay .01,
-FP32 batch 16 and accumulation 1. Dynamic padding and length grouping remove padded computation without cutting real tokens.
-
-The best checkpoint is selected on 512 validation examples. A separate 512-example partition calibrates
-abstention; 1,024 different examples provide independent final scores. The pipeline preserves all IDs to verify
-separation. Old pilot evidence used a different split and remains labeled historical. Public samples are excluded
-from all learning decisions. No automatic extension to more examples or epochs is allowed.
-
-After downloading once, avoid redundant network access:
-
-```powershell
-. .\scripts\offline.ps1
-```
-
-To download new assets later, remove `HF_HUB_OFFLINE` and `HF_DATASETS_OFFLINE` from the environment.
-Training saves `training_metadata.json`; evaluation creates `calibration.json`. Serving requires both.
-Retraining invalidates previous calibration. Never copy a threshold from a different model or tune on public samples.
-
-## Start the actual service
-
-Do not use `models/smoke` for the professor's evaluation. Use the active pinned DeBERTa deployment; no training or recalibration is required.
-Set the registered team ID and request the instructor's development token. Do not paste tokens into source files,
-chat, logs or tracked files. This project does not automatically read `.env`.
+Start an independent PowerShell session in the repository root. Use a private development token, not a token committed to source control:
 
 ```powershell
 $env:TEAM_ID = 'Pimientero'
-Remove-Item Env:MODEL_DIR -ErrorAction SilentlyContinue # use configs/active_model.json
+$env:MODEL_DIR = (Resolve-Path 'models\deberta-base-student').Path
 $env:TORCH_NUM_THREADS = '2'
-$secret = Read-Host 'Instructor API token' -AsSecureString
+$secret = Read-Host 'QA_API_TOKEN' -AsSecureString
 $env:QA_API_TOKEN = [System.Net.NetworkCredential]::new('', $secret).Password
 Remove-Variable secret
-.\.venv\Scripts\python.exe -m uvicorn qa.api:app --host 127.0.0.1 --port 8000 --workers 1
+.\.venv\Scripts\python.exe -m uvicorn qa.api:app --host 127.0.0.1 --port 8002 --workers 1
 ```
 
-On presentation day stop the server, set the new token, restart, and repeat access checks.
-The token is captured at startup, compared exactly including `Bearer`, and never logged.
-`/health` is public. Missing configuration/checkpoint keeps health at 503; the server will not pretend to be ready.
-Protected predictions during startup return the contract's internal-error shape; wait for health 200 first.
-No reload or multiple model workers during assessment.
+The API binds to `127.0.0.1`; a tunnel securely proxies requests from a public HTTPS address to it. If you want to use port **8000** as in the brief, stop the local graphical launcher first and replace `8002` with `8000`.
 
-## Five required curl checks
-
-Run from a second PowerShell terminal with the same token environment, or set it securely again there.
-`request.json` contains only the request fields of public sample 01.
+In a **separate** terminal (with Cloudflare Tunnel's executable installed locally), run:
 
 ```powershell
-$base = 'http://localhost:8000'
-curl.exe -i "$base/health"
-curl.exe -i "$base/info"
-curl.exe -i -H "Authorization: Bearer wrong" "$base/info"
-curl.exe -i -H "Authorization: Bearer $env:QA_API_TOKEN" "$base/info"
-curl.exe -i -X POST "$base/predict" -H "Authorization: Bearer $env:QA_API_TOKEN" -H "Content-Type: application/json" -d "@request.json"
-.\.venv\Scripts\python.exe -m scripts.evaluate_public --url $base
-.\.venv\Scripts\python.exe -m scripts.evaluate_public --url $base --repeat 10 --output logs/latency-local.json
+.\tools\cloudflared.exe tunnel --url http://127.0.0.1:8002
 ```
 
-Expected status sequence: 200, 401, 401, 200, 200. The evaluator checks all five answers and offsets;
-its nonzero exit status means some sample failed. Repeating 10 times measures 50 sequential calls, not
-50 independent hidden questions. Use `scripts.verify_local` for an isolated real-model check with a temporary
-random token; it uses the registered team ID `Pimientero`. Historical pilot logs made before team identification retain their original test ID.
+Cloudflare Quick Tunnel generates a **temporary** `https://...trycloudflare.com` URL. It has no uptime guarantee, and the laptop, Uvicorn and `cloudflared` must remain running. Share the current URL with the instructor for the evaluation. The professor-provided presentation token can replace the development token by **restarting only the instructor-facing API** with the new `QA_API_TOKEN` environment variable; do not hardcode it.
 
-## HTTPS tunnel and external rehearsal
+## API contract
 
-Cloudflare is the primary tunnel; historical ngrok and Samsung mobile tests are recorded for continued20k, not the active DeBERTa. No current HTTPS endpoint is claimed. Follow the final handoff for a separately authorized current-model rehearsal.
-Authenticate ngrok using your account's authtoken in its official configuration flow; this is different from
-`QA_API_TOKEN`. Then, in another terminal:
+All response bodies use JSON. `/health` is public; `/info` and `/predict` require `Authorization: Bearer <QA_API_TOKEN>`.
 
-```powershell
-ngrok http 8000
-# Backup, run separately:
-.\tools\cloudflared.exe tunnel --url http://localhost:8000
+| Method | Endpoint | Authentication | Purpose |
+|---|---|---|---|
+| GET | `/health` | None | `200 {"status":"ok"}` when loaded; `503` while loading |
+| GET | `/info` | Bearer | Team, original model ID and parameter count |
+| POST | `/predict` | Bearer | Extractive answer or `null` |
+
+Example JSON request for `/predict`:
+
+```json
+{
+  "id": "demo-01",
+  "context": "The robotics laboratory was founded in 2021 by Professor James Wilson.",
+  "question": "Who founded the robotics laboratory?"
+}
 ```
 
-Copy the printed HTTPS URL. Repeat all five curl tests and the HTTP evaluator against that URL **from another
-network** (e.g. mobile tethering). Do not add interactive authentication that would block the professor's harness.
-Measure the full round trip: <5 seconds each, <150 seconds for 50 sequential requests. Historical Cloudflare/mobile and ngrok checks used continued20k; current DeBERTa external verification remains pending. A Quick Tunnel URL changes when restarted.
-Send the current URL to the instructor before the dry run and presentation; resend after changes.
-Keep the laptop on AC, disable sleep through Windows power settings for the session, and leave server and tunnel
-running. Do not deploy the model to cloud hosting. If both tunnels fail, ask the instructor about the documented
-local encrypted-harness fallback.
+Response keys: `id`, `answer`, `start`, `score`. `answer` must be an exact substring of `context`, or `null`; `start` is the zero-based character index, or `null` with a null answer. The service is designed for English questions, including questions with no supported answer and contexts requiring overlapping windows.
 
-## Historical submission checklist — current gates in the final handoff
+## Training records and reproducibility
 
-1. Training is complete; preserve the results. Confirm instructor acceptance of the pretrained DeBERTa exception rather than restarting research.
-2. Measure public accuracy and CPU/tunnel latency. Fix timeouts; never hard-code public answers.
-3. Fill the team, members, repository URL, public URL and real final evidence in REPORT.md.
-4. Resolve every PENDING/FAILED item in `docs/STATUS.md`; rehearse pitch and individual Q&A without AI.
-5. Run `python -m scripts.audit` and inspect Git history and ignored weights. Share weights in an authorized
-   release/shared folder separately. Invite the instructor if the repository is private.
-6. Create the final tag only after these gates pass:
+- [Training configuration](logs/deberta_base_training/train/config.json): 20,000 SQuAD 2.0 training examples, 21,715 token windows; rank 4, alpha 8, LoRA LR `2e-4`, QA-head LR `5e-4`, microbatch 1, gradient accumulation 8, FP32, 256-token windows / stride 96.
+- [Training history](logs/deberta_base_training/train/training_history.json), [learning curves](logs/deberta_base_training/train/learning_curves.png), [final summary](logs/deberta_base_training/train/final_summary.json), and [validation metrics](logs/deberta_base_training/train/validation_metrics.json).
+- 5,500 optimizer updates, with checkpoint 3,500 selected based on validation loss and final no-answer threshold **`-1.061314582824707`**.
+- [1,000-item summary](logs/pimientero_evaluacion/report_1000.json) and [official dry-run evidence](docs/dry_run/) document separate quality checks.
 
-```powershell
-git add README.md REPORT.md docs qa scripts tests configs logs requirements.txt .gitignore
-git commit -m "Record validated final training, API and tunnel results"
-git rev-parse HEAD
-git tag submission
-# Only after choosing and authorizing your remote:
-git remote -v  # origin is already configured
-git push -u origin main
-git push origin submission
-```
+The instructor's five public examples were not used to claim improved accuracy. Two errors remained: `sample-04` incorrectly extracted `3 times` instead of returning `null`, and `sample-05` returned `null` rather than `50,257` in the long context.
 
-A commit cannot contain its own hash without changing the hash. Record the final reviewed hash in the handoff
-or resolve `submission^{commit}`; do not fabricate a self-referential hash in REPORT.md.
-The user authorized publication of development progress to the official repository. The final submission tag remains withheld until validation is complete.
+## Submission
 
-## Team and historical 12k run
+The instructor requested a Git tag named **`submission`** on the final reviewed commit, with history preserved, no weights in Git, and a completed root-level [`REPORT.md`](REPORT.md). The supporting screenshots are in [`docs/dry_run/`](docs/dry_run/). The trained weight package is an asset of [v1.0.0-student](https://github.com/DiegoCarpio1210/Servicio-de-NLP-servido-por-medio-de-APIs/releases/tag/v1.0.0-student).
 
-Team: **Pimientero**. Members and official repository are recorded in `configs/team.json` and REPORT.md.
-The full-data job was stopped. The 12,000-example, two-epoch job completed; measured results are in logs/subset12k/summary.json. Read `docs/STATUS.md` before launching another training process.
-The job writes `logs/subset12k/job.json`; model weights and live console logs are not published.
-
-The pre-run estimate and FP32/FP16 batch benchmarks are in `logs/subset12k/`. To stop safely or resume, follow
-`docs/STATUS.md`. Do not use the historical `run_full.py` workflow; it has been superseded by `run_subset.py`.
-
-## Completed-model verification
-
-`python -m scripts.verify_completed` is the historical 12k verifier. Current export identity was checked by
-`scripts.verify_continuation_artifacts`; results are saved under logs/continued20k.
-`python -m scripts.verify_local --model-dir models/quality40k --repeat 10` verifies real HTTP behavior
-and timing. `/info` adds `checkpoint_sha256` and `training_steps` to prove the loaded artifact; the original YAML
-allows extra response fields. Public evaluation exits 1 when answers are wrong even if the API contract passes.
-The independent evaluation already completed; do not retrain merely to start or verify this service.
-
-## Selected continuation: completed, do not retrain
-
-This section records continued20k history. Its `scripts.rehearse` helper reads continued20k identity evidence and must not be presented as a current DeBERTa verifier. For current operation use [the final handoff](docs/PIMIENTERO_FINAL_HANDOFF.md).
-
-The run used 20k examples (12k previous + 8k new), two additional epochs, 1e-5 learning rate and a fresh schedule.
-It took 42m59s. Exported checkpoint-1600 had the best selection loss; the run itself completed 2,534 steps.
-The original models/subset12k and its checkpoints remain intact. /info reports both step counts and the weight hash.
-The threshold is -0.98309326171875, fitted only on 512 calibration examples with a 70% impossible-class floor.
-The candidate was locked in commit bac0cba before evaluating old and fresh holdouts. See
-docs/CONTINUATION_EXPERIMENT.md for the full comparison and its uncertainty. The fresh holdout is now observed;
-do not tune on it. Generic scripts.evaluate refuses this manifest-based experiment to avoid using selection data
-as calibration. Existing evaluation results are complete and do not need rerunning.
-
-Historical continued20k connectivity evidence (not a DeBERTa test): an authorized temporary Cloudflare test passed 50 calls in 19.25s, max .755s. Later Samsung mobile checks and a ngrok backup check are preserved in `logs/continued20k/`. Those tunnels were closed. Current-model external testing remains pending.
-
-## Autonomous pretrained benchmark
-
-Run `RUN_PRETRAINED_BENCHMARK.bat` once. The independent CPU process evaluates
-Deepset DeBERTa-v3-base-SQuAD2, then RoBERTa-base-SQuAD2, plus unchanged quality40k.
-Follow `logs/pretrained_benchmark/progress.json`, `pid.json`, `execution.log` and
-candidate progress files. Restarting skips completed work. No training, model
-activation or public tunnel is performed. See [protocol, licenses and limitations](docs/PRETRAINED_BENCHMARK.md).
-
-## Frozen 500-question comparison
-
-See [the final evaluation report](docs/FINAL_500_EVALUATION.md) for the three-model
-comparison, target checks, confidence intervals and local API load results.
-`configs/final500_manifest.json` freezes the same 250 answerable and 250
-unanswerable IDs and existing policies for every model. It does not establish
-complete independence: all selected contexts appeared in earlier local work.
-
-With the existing local SQuAD dataset and model folders available, run
-`python -m experiments.run_final500`, then `python -m experiments.report_final500`.
-Completed model runs are skipped. Reporting also uses the previous benchmark
-artifacts for its historical comparison. Complete per-question predictions remain
-local in `logs/final500/per_question.csv`; the compact summary is published as
-`logs/final500_summary.json`. No activation, recalibration or training is performed.
+This README describes the **student-trained DeBERTa submission**. Previous model comparisons and benchmark documentation elsewhere in the repository are historical and are not instructions to switch the active model.
