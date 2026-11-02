@@ -74,6 +74,34 @@ def create_app(transport=None):
         active = configuration()
         key = active["evaluation_key"]
 
+        if key == "deberta-full-fast":
+            results = json.loads(
+                (ROOT / "logs/deberta_full_fast/results.json").read_text(encoding="utf-8")
+            )["new_model"]
+            if results["threshold"] != active["calibration"]["threshold"]:
+                return JSONResponse(
+                    {"error": "Evaluation does not match active model"},
+                    status_code=409
+                )
+            ans, una = results["answerable"], results["unanswerable"]
+            total = ans["count"] + una["count"]
+            overall = {
+                "count": total,
+                "EM": (ans["EM"] * ans["count"] + una["EM"] * una["count"]) / total,
+                "F1": (ans["F1"] * ans["count"] + una["F1"] * una["count"]) / total,
+            }
+            return {
+                "source": (
+                    f"SQuAD 2.0 validation - {total} questions from articles "
+                    "not used for threshold calibration"
+                ),
+                "label": f"Pimientero AI - DeBERTa-v3-base full fine-tuning - n={total}",
+                "metrics": overall,
+                "answerable": ans,
+                "unanswerable": una,
+                "weighted_75_25": {"EM": results["weighted_EM"], "F1": results["weighted_F1"]}
+            }
+
         if key == "deberta-base-student":
             report_path = (
                 ROOT / "logs/pimientero_evaluacion/report_1000.json"

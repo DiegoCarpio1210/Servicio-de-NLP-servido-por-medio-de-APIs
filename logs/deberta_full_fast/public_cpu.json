@@ -1,0 +1,73 @@
+{
+  "url": "http://127.0.0.1:8000",
+  "elapsed_seconds": 3.2885611000237986,
+  "rows": [
+    {
+      "id": "sample-01",
+      "cycle": 0,
+      "seconds": 0.5602502000983804,
+      "response": {
+        "id": "sample-01",
+        "answer": "16",
+        "start": 383,
+        "score": 0.9999595718734894
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-02",
+      "cycle": 0,
+      "seconds": 0.5070794000057504,
+      "response": {
+        "id": "sample-02",
+        "answer": "3.5 days",
+        "start": 437,
+        "score": 0.9999397443870975
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-03",
+      "cycle": 0,
+      "seconds": 0.42010049999225885,
+      "response": {
+        "id": "sample-03",
+        "answer": null,
+        "start": null,
+        "score": 0.9999998260263913
+      },
+      "contract_valid": true,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "cycle": 0,
+      "seconds": 0.4594355000881478,
+      "response": {
+        "id": "sample-04",
+        "answer": "3 times",
+        "start": 310,
+        "score": 0.9966747872650883
+      },
+      "contract_valid": true,
+      "correct": false
+    },
+    {
+      "id": "sample-05",
+      "cycle": 0,
+      "seconds": 1.2688984000124037,
+      "response": {
+        "id": "sample-05",
+        "answer": "50,257",
+        "start": 3157,
+        "score": 0.9967522849109968
+      },
+      "contract_valid": true,
+      "correct": true
+    }
+  ],
+  "all_correct": false,
+  "timeout_budget_pass": false
+}

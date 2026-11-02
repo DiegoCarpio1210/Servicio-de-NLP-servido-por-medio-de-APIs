@@ -1,9 +1,9 @@
 {
-  "model_dir": "models/deberta-base-student",
-  "training_steps": 3500,
+  "model_dir": "models/deberta-full-fast",
+  "training_steps": 5929,
   "hashes": {
-    "model.safetensors": "1cd3fa25675e3cd5b42f26d0ab8ade8368fceb7971e3aaa3f1df1aaa12d36cce",
-    "config.json": "3f45c6277501288b1342da9fec04a00c3418efcc24ba1b9a78a1f5d2edbf2429",
+    "model.safetensors": "80cdbc06fc1d77c36a45a73a35187cfb9eb2f1b2ec8b76485851722d060f76d5",
+    "config.json": "5f4de153f4334729df2f250dc9931428647a72ab942f0921e78d6f4d8d598149",
     "tokenizer.json": "6a7c751a6065dbf79fd7fd8d97108210addd087e09d175255583a63e4cb03fec",
     "tokenizer_config.json": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
     "special_tokens_map.json": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
@@ -12,23 +12,20 @@
   "metadata": {
     "base_model": "microsoft/deberta-v3-base",
     "source_revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3",
-    "optimizer_steps": 5500,
-    "selected_optimizer_steps": 3500,
+    "optimizer_steps": 5929,
     "max_seq_length": 384,
     "doc_stride": 128,
-    "training_method": "LoRA rank4 plus new QA head"
+    "training_method": "full fine-tuning, word embeddings frozen, bf16 mixed precision",
+    "selected_optimizer_steps": 5929
   },
   "calibration": {
-    "threshold": -1.061314582824707,
-    "objective": "weighted_75_25_EM",
+    "threshold": 0.8262314796447754,
+    "objective": "mean(weighted EM, weighted F1) at 75% answerable",
     "policy": {
       "max_length": 30,
       "length_penalty": 0.0
     },
-    "selected_step": 3500,
-    "adapter_sha256": "be1b28a59473d30987f4810e84ebc88ffc552e6409740efcb0a9d136179fd155",
-    "calibration_loss": 0.912394555464257,
-    "weights_sha256": "1cd3fa25675e3cd5b42f26d0ab8ade8368fceb7971e3aaa3f1df1aaa12d36cce"
+    "weights_sha256": "80cdbc06fc1d77c36a45a73a35187cfb9eb2f1b2ec8b76485851722d060f76d5"
   },
   "source": {
     "repo_id": "microsoft/deberta-v3-base",
@@ -42,6 +39,5 @@
       "README.md": "7e9ea69ca00d0609cc0e0b9cec76f9ba6ae71601244c4136a3f25bd02dce4c4d"
     }
   },
-  "backup_model_dir": "models/pretrained/deberta-v3-base-squad2",
-  "evaluation_key": "deberta-base-student"
+  "evaluation_key": "deberta-full-fast"
 }

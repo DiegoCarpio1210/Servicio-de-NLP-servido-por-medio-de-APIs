@@ -1,0 +1,74 @@
+{
+  "new_model": {
+    "dir": "C:\\Users\\danie\\OneDrive - KEY INSTITUTE\\Desktop\\Ciclo II 2026\\ML\\API\\Servicio-de-NLP-servido-por-medio-de-APIs\\models\\deberta-full-fast",
+    "threshold": 0.8262314796447754,
+    "answerable": {
+      "count": 727,
+      "EM": 83.90646492434664,
+      "F1": 88.95882588042147
+    },
+    "unanswerable": {
+      "count": 773,
+      "EM": 82.01811125485123,
+      "F1": 82.01811125485123
+    },
+    "weighted_EM": 83.43437650697278,
+    "weighted_F1": 87.22364722402891
+  },
+  "current_model": {
+    "dir": "C:\\Users\\danie\\OneDrive - KEY INSTITUTE\\Desktop\\Ciclo II 2026\\ML\\API\\Servicio-de-NLP-servido-por-medio-de-APIs\\models\\deberta-base-student",
+    "threshold": -1.061314582824707,
+    "answerable": {
+      "count": 727,
+      "EM": 59.284731774415405,
+      "F1": 67.41385121689284
+    },
+    "unanswerable": {
+      "count": 773,
+      "EM": 82.14747736093143,
+      "F1": 82.14747736093143
+    },
+    "weighted_EM": 65.00041817104442,
+    "weighted_F1": 71.09725775290248
+  },
+  "public_sample": [
+    {
+      "id": "sample-01",
+      "answer": " 16",
+      "expected": [
+        "16",
+        "16 attention heads"
+      ],
+      "correct": true
+    },
+    {
+      "id": "sample-02",
+      "answer": " 3.5 days",
+      "expected": [
+        "3.5 days"
+      ],
+      "correct": true
+    },
+    {
+      "id": "sample-03",
+      "answer": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "id": "sample-04",
+      "answer": " 3 times",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "id": "sample-05",
+      "answer": " 50,257",
+      "expected": [
+        "50,257",
+        "50,257 tokens"
+      ],
+      "correct": true
+    }
+  ]
+}

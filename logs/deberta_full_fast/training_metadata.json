@@ -1,0 +1,18 @@
+{
+  "base_model": "microsoft/deberta-v3-base",
+  "source_revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3",
+  "optimizer_steps": 5929,
+  "max_seq_length": 384,
+  "doc_stride": 128,
+  "training_method": "full fine-tuning, word embeddings frozen, bf16 mixed precision",
+  "train_examples": 94000,
+  "train_windows": 94857,
+  "epochs": 1.0,
+  "learning_rate": 3e-05,
+  "warmup_ratio": 0.1,
+  "effective_batch": 16,
+  "training_seconds": 2336.1,
+  "trainable_parameters": 85452290,
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "seed": 20261101
+}

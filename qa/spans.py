@@ -34,5 +34,12 @@ def decide(candidate, threshold):
     no_answer = candidate["start"] is None or candidate["margin"] > threshold
     distance = abs(candidate["margin"] - threshold)
     confidence = 1 / (1 + math.exp(-min(distance, 700)))
-    return {"answer": None if no_answer else candidate["text"],
-            "start": None if no_answer else candidate["start"], "score": confidence}
+    text, start = candidate["text"], candidate["start"]
+    if not no_answer:
+        # SentencePiece offsets include the space before a word; trim it and shift start.
+        stripped = text.lstrip()
+        start += len(text) - len(stripped)
+        text = stripped.rstrip()
+        no_answer = not text
+    return {"answer": None if no_answer else text,
+            "start": None if no_answer else start, "score": confidence}

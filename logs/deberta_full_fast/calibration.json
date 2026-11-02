@@ -1,0 +1,12 @@
+{
+  "threshold": 0.8262314796447754,
+  "objective": "mean(weighted EM, weighted F1) at 75% answerable",
+  "objective_value": 0.870508130663362,
+  "policy": {
+    "max_length": 30,
+    "length_penalty": 0.0
+  },
+  "weights_sha256": "80cdbc06fc1d77c36a45a73a35187cfb9eb2f1b2ec8b76485851722d060f76d5",
+  "calibration_examples": 1500,
+  "rule": "null when null_score - best_span_score > threshold"
+}

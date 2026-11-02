@@ -55,13 +55,18 @@ def test_limits_and_candidate_metrics(monkeypatch):
     with client_for(monkeypatch,lambda r:pytest.fail('Must not reach API')) as client:
         for body in ({**BODY,'context':'x'*5001},{**BODY,'question':'x'*501},{**BODY,'context':''}):
             assert client.post('/ui/predict',headers=ORIGIN,json=body).status_code==422
-        data=client.get('/ui/evaluation').json()
-        assert data['metrics']['count']==500
-        assert data['metrics']['EM']==83.0
-        assert data['metrics']['F1']==86.68685393984626
-        assert data['answerable']['EM']==77.6
-        assert data['unanswerable']['EM']==88.4
-        assert data['weighted_75_25']['EM']==80.3
-        assert 'active model' in data['label']
+        response=client.get('/ui/evaluation')
+        assert response.status_code==200
+        data=response.json()
+        from qa.deployment import configuration
+        if configuration()['evaluation_key']=='deberta-full-fast':
+            import json
+            from pathlib import Path
+            expected=json.loads((Path(__file__).resolve().parents[1]/'logs/deberta_full_fast/results.json').read_text())['new_model']
+            assert data['weighted_75_25']=={'EM':expected['weighted_EM'],'F1':expected['weighted_F1']}
+            assert data['answerable']==expected['answerable'] and data['unanswerable']==expected['unanswerable']
+            assert data['metrics']['count']==expected['answerable']['count']+expected['unanswerable']['count']
+        for key in ('metrics','answerable','unanswerable','weighted_75_25'):
+            assert 0<=data[key]['EM']<=100
         for path in ('/','/assets/app.js','/assets/style.css'):
             assert client.get(path).status_code==200

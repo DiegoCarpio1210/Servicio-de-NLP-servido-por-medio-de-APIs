@@ -43,3 +43,5 @@ __pycache__/
 /logs/deberta_lora/
 /logs/semantic50/
 /logs/deberta_base_training/
+/.venv-gpu/
+*.zip
