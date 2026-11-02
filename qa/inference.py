@@ -35,7 +35,7 @@ class Engine:
             raise ValueError('Calibration belongs to different weights')
         self.threshold = float(self.calibration.get('threshold',0.))
         if not math.isfinite(self.threshold): raise ValueError('Calibration threshold must be finite')
-        torch.set_num_threads(int(os.getenv("TORCH_NUM_THREADS", "2")))
+        torch.set_num_threads(int(os.getenv("TORCH_NUM_THREADS", "4")))
         self.tokenizer = AutoTokenizer.from_pretrained(root, local_files_only=True, use_fast=True)
         self.model = AutoModelForQuestionAnswering.from_pretrained(root, local_files_only=True).to("cpu").eval()
         self.params = sum(p.numel() for p in self.model.parameters())
