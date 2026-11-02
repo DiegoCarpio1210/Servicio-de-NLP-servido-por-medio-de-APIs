@@ -1,11 +1,11 @@
 {
-  "url": "http://127.0.0.1:8000",
-  "elapsed_seconds": 3.2885611000237986,
+  "url": "http://localhost:8000",
+  "elapsed_seconds": 5.005279699922539,
   "rows": [
     {
       "id": "sample-01",
       "cycle": 0,
-      "seconds": 0.5602502000983804,
+      "seconds": 2.498365700012073,
       "response": {
         "id": "sample-01",
         "answer": "16",
@@ -18,7 +18,7 @@
     {
       "id": "sample-02",
       "cycle": 0,
-      "seconds": 0.5070794000057504,
+      "seconds": 0.41299149999395013,
       "response": {
         "id": "sample-02",
         "answer": "3.5 days",
@@ -31,7 +31,7 @@
     {
       "id": "sample-03",
       "cycle": 0,
-      "seconds": 0.42010049999225885,
+      "seconds": 0.39960580004844815,
       "response": {
         "id": "sample-03",
         "answer": null,
@@ -44,7 +44,7 @@
     {
       "id": "sample-04",
       "cycle": 0,
-      "seconds": 0.4594355000881478,
+      "seconds": 0.3981302999891341,
       "response": {
         "id": "sample-04",
         "answer": "3 times",
@@ -57,7 +57,7 @@
     {
       "id": "sample-05",
       "cycle": 0,
-      "seconds": 1.2688984000124037,
+      "seconds": 1.197806500014849,
       "response": {
         "id": "sample-05",
         "answer": "50,257",
